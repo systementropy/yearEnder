@@ -43,6 +43,7 @@
             font-weight: 300;
             line-height: 1;
             margin: 0;
+            text-transform: uppercase;
         }
         .mainBody{
             border: 1px solid #999;
@@ -116,13 +117,23 @@
             letter-spacing: 0px;
             transition: all 1s ease 0.3s;
         }
+        .logo{
+            width: 280px;
+            margin-bottom: 15px;
+            transform: translateX(-9px);
+        }
     </style>
 </head>
 <body>
     <div class="mainBody">
         <div class="title">
-            <h1>Flashback 2019</h1>
-            <h3>The year in politics</h3>
+            <object type="image/svg+xml" data="./FlashBack2019.svg" class="logo">
+                Flashback 2019 Logo <!-- fallback image in CSS -->
+                <h1>Flashback 2019</h1>
+              </object>
+              <h3>The year in news & politics</h3>
+            <!-- <h1>Flashback 2019</h1>
+            <h3>The year in politics</h3> -->
         </div>
         <div class="graphicsContainer">
             <div id="year">
