@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+            position: relative;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 720px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            display: block;
+            z-index: -1;
+            filter: grayscale(1);
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+        .genre {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 32px;
+            width: auto;
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #dc3502;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Flashback 2019</h1>
+            <h3>The year in movies</h3>
+            <span class="genre">TOP 50 <br/>movies</span>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year"></div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <span>Source: *&^(*%(*</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;" id="loadimg">
+            <img src="./Banner/img1570611670743203999.jpg" alt="" id="1">
+            <img src="./Banner/img15614433471041976376.jpg" alt="" id="2">
+            <img src="./Banner/img15481794341986602909.jpg" alt="" id="3">
+            <img src="./Banner/img15744437161226153976.jpg" alt="" id="4">
+            <img src="./Banner/img15600703561818923866.jpg" alt="" id="5">
+            <img src="./Banner/img1566374038388876590.jpg" alt="" id="6">
+            <img src="./Banner/img1553506094817511248.jpg" alt="" id="7">
+            <img src="./Banner/img15535083841066774890.jpg" alt="" id="8">
+            <img src="./Banner/img15675337852020639819.jpg" alt="" id="9">
+            <img src="./Banner/img1568724199137400551.jpg" alt="" id="10">
+            <img src="./Banner/img15637870981489685262.jpg" alt="" id="11">
+            <img src="./Banner/img1568724651167177193.jpg" alt="" id="12">
+            <img src="./Banner/img1550513745880466934.jpg" alt="" id="13">
+            <img src="./Banner/img1574443680133015701.jpg" alt="" id="14">
+            <img src="./Banner/img1558257228655947877.jpg" alt="" id="15">
+            <img src="./Banner/img15485835371381865728.jpg" alt="" id="16">
+            <img src="./Banner/img15516086871495046923.jpg" alt="" id="17">
+            <img src="./Banner/img155212484916207918.jpg" alt="" id="18">
+            <img src="./Banner/img1566374356701859824.jpg" alt="" id="19">
+            <img src="./Banner/img15571505561708975629.jpg" alt="" id="20">
+            <img src="./Banner/img15580229151574472732.jpg" alt="" id="21">
+            <img src="./Banner/img156260900171175543.jpg" alt="" id="22">
+            <img src="./Banner/null.jpg" alt="" id="23">
+            <img src="./Banner/img15749631641014947946.jpg" alt="" id="24">
+            <img src="./Banner/img1557321639989189168.jpg" alt="" id="25">
+            <img src="./Banner/null.jpg" alt="" id="26">
+            <img src="./Banner/img15646443961999445727.jpg" alt="" id="27">
+            <img src="./Banner/null.jpg" alt="" id="28">
+            <img src="./Banner/img1574443853336930373.jpg" alt="" id="29">
+            <img src="./Banner/img1548411434344940377.jpg" alt="" id="30">
+            <img src="./Banner/img1557158861701439571.jpg" alt="" id="31">
+            <img src="./Banner/img15592357361564624455.jpg" alt="" id="32">
+            <img src="./Banner/img15711641291565685650.jpg" alt="" id="33">
+            <img src="./Banner/img1549193844249608375.jpg" alt="" id="34">
+            <img src="./Banner/img1549307419332113037.jpg" alt="" id="35">
+            <img src="./Banner/img1557147264247933082.jpg" alt="" id="36">
+            <img src="./Banner/img156637535642133382.jpg" alt="" id="37">
+            <img src="./Banner/img15705342401608242817.jpg" alt="" id="38">
+            <img src="./Banner/img15592357762041873702.jpg" alt="" id="39">
+            <img src="./Banner/img1574443701748029424.jpg" alt="" id="40">
+            <img src="./Banner/img1574529322266876481.jpg" alt="" id="41">
+            <img src="./Banner/img15485833661747503606.jpg" alt="" id="42">
+            <img src="./Banner/img1571058876838388253.jpg" alt="" id="43">
+            <img src="./Banner/img15646445861643114107.jpg" alt="" id="44">
+            <img src="./Banner/img15516281481926070.jpg" alt="" id="45">
+            <img src="./Banner/img15710640731935628376.jpg" alt="" id="46">
+            <img src="./Banner/img15584299032086436794.jpg" alt="" id="47">
+            <img src="./Banner/img15712270221136784107.jpg" alt="" id="48">
+            <img src="./Banner/img1557158876733341069.jpg" alt="" id="49">
+            <img src="./Banner/img15710588881961297488.jpg" alt="" id="50">
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+            // "A","L","C","D","RC","T"
+            var moviesData = [
+                [1,"War","A","2 Oct 2019",2927150000,2050000000],
+                [2,"Kabir Singh","L","21 Jun 2019",2763400000,680000000],
+                [3,"Uri - The Surgical Strike","A","11 Jan 2019",2440050000,440000000],
+                [4,"Housefull 4","C","25 Oct 2019",2055650000,1620000000],
+                [5,"Bharat","D","5 Jun 2019",1973450000,2400000000],
+                [6,"Mission Mangal","D","15 Aug 2019",1926700000,950000000],
+                [7,"Kesari","D","21 Mar 2019",1518750000,1260000000],
+                [8,"Total Dhamaal","C","22 Feb 2019",1500750000,1130000000],
+                [9,"Saaho","A","30 Aug 2019",1488400000,3250000000],
+                [10,"Chhichhore","D","6 Sep 2019",1473250000,530000000],
+                [11,"Super 30","D","12 Jul 2019",1470000000,1200000000],
+                [12,"Dream Girl","C","13 Sep 2019",1393700000,360000000],
+                [13,"Gully Boy","D","14 Feb 2019",1342150000,840000000],
+                [14,"Bala","C","8 Nov 2019",1106600000,320000000],
+                [15,"De De Pyaar De","RC","17 May 2019",945000000,780000000],
+                [16,"Manikarnika - The Queen Of Jhansi","D","25 Jan 2019",908100000,990000000],
+                [17,"Luka Chuppi","RC","1 Mar 2019",885050000,340000000],
+                [18,"Badla","T","8 Mar 2019",875600000,370000000],
+                [19,"Batla House","D","15 Aug 2019",849950000,560000000],
+                [20,"Kalank","D","17 Apr 2019",800350000,1370000000],
+                [21,"Student Of The Year 2","L","10 May 2019",657050000,650000000],
+                [22,"Article 15","D","28 Jun 2019",651750,300000000],
+                [23,"Pati Patni Aur Woh","RC","13 Dec 2019",513500000,null],
+                [24,"Marjaavaan","A","15 Nov 2019",454400000,380000000],
+                [25,"Romeo Akbar Walter","T","5 Apr 2019",388850000,480000000],
+                [26,"Pagalpanti","C","22 Nov 2019",339225000,720000000],
+                [27,"Judgementall Hai Kya","D","26 Jul 2019",338850000,320000000],
+                [28,"Commando 3","A","29 Nov 2019",318400000,null],
+                [29,"Saand Ki Aankh","D","25 Oct 2019",233600000,250000000],
+                [30,"The Accidental Prime Minister","D","11 Jan 2019",232475000,null],
+                [31,"Junglee","D","29 Mar 2019",229250000,430000000],
+                [32,"PM Narendra Modi","D","24 May 2019",223450000,null],
+                [33,"The Sky Is Pink","D","11 Oct 2019",201150000,420000000],
+                [34,"Thackeray","D","25 Jan 2019",198175000,310000000],
+                [35,"Ek Ladki Ko Dekha Toh Aisa Laga","D","1 Feb 2019",193175000,350000000],
+                [36,"The Tashkent Files","T","12 Apr 2019",169700000,75000000],
+                [37,"Jabariya Jodi","RC","9 Aug 2019",159825000,390000000],
+                [38,"Section 375","D","13 Sep 2019",108800000,null],
+                [39,"India's Most Wanted","D","24 May 2019",106200000,400000000],
+                [40,"Made In China","D","25 Oct 2019",103725000,300000000],
+                [41,"Ujda Chaman","C","1 Nov 2019",101850000,180000000],
+                [42,"Why Cheat India","D","18 Jan 2019",87850000,null],
+                [43,"Pal Pal Dil Ke Paas","L","20 Sep 2019",69125000,450000000],
+                [44,"Arjun Patiala","C","26 Jul 2019",62150000,240000000],
+                [45,"Sonchiriya","D","1 Mar 2019",55875000,280000000],
+                [46,"Prassthanam","D","20 Sep 2019",53700000,390000000],
+                [47,"Blank","T","3 May 2019",48800000,null],
+                [48,"Khandaani Shafakhana","C","2 Aug 2019",44150000,260000000],
+                [49,"Notebook","D","29 Mar 2019",40325000,null],
+                [50,"The Zoya Factor","D","20 Sep 2019",29675000,330000000],
+
+            ];
+            var globalCounter = 0;
+            var canvas = document.getElementById("canvas");
+            var canHgt = 700;
+            var canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            ctx.lineWidth = 1;
+  
+            var circles = [];
+            var minRadius = 20;
+            var maxRadius = 120;
+            var totalCircles = 50;
+            var createCircleAttempts = 50;
+            ctx.fillStyle ='rgba(122,50,60,0.1)'
+            function createAndDrawCircle(index) {
+                
+                var newCircle;
+                var circleSafeToDraw = false;
+                for(var tries = 0; tries < createCircleAttempts; tries++) {
+                    newCircle = {
+                        x: Math.floor(Math.random() * canWid),
+                        y: Math.floor(Math.random() * canHgt),
+                        radius: minRadius,
+                        index:index
+                    }
+                    
+                    if(doesCircleHaveACollision(newCircle)) {
+                        continue;
+                    } else {
+                        circleSafeToDraw = true;
+                        break;
+                    }
+                }
+
+                if(!circleSafeToDraw) {
+                    return;
+                }
+
+                for(var radiusSize = minRadius; radiusSize < maxRadius; radiusSize++) {
+                    newCircle.radius = radiusSize;
+                    if(doesCircleHaveACollision(newCircle)){
+                        newCircle.radius--;
+                        break;
+                    } 
+                }
+
+                circles.push(newCircle);
+                ctx.save();
+                ctx.beginPath();
+                ctx.stroke();
+                var imgObj = document.getElementById(newCircle.index+1);
+                ctx.arc(newCircle.x, newCircle.y, newCircle.radius, 0, 2*Math.PI);
+                ctx.clip();
+                ctx.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, newCircle.x-newCircle.radius, newCircle.y-newCircle.radius, 2*newCircle.radius, 2*newCircle.radius);
+                ctx.restore();
+
+                ctx2.save();
+                ctx2.beginPath();
+                ctx2.stroke();
+                var imgObj = document.getElementById(newCircle.index+1);
+                ctx2.arc(newCircle.x, newCircle.y, newCircle.radius, 0, 2*Math.PI);
+                ctx2.clip();
+                ctx2.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, newCircle.x-newCircle.radius, newCircle.y-newCircle.radius, 2*newCircle.radius, 2*newCircle.radius);
+                ctx2.restore();
+            }
+
+            function doesCircleHaveACollision(circle) {
+                for(var i = 0; i < circles.length; i++) {
+                    var otherCircle = circles[i];
+                    var a = circle.radius + otherCircle.radius;
+                    var x = circle.x - otherCircle.x;
+                    var y = circle.y - otherCircle.y;
+
+                    if (a >= Math.sqrt((x*x) + (y*y))) {
+                        return true;
+                    }
+                }
+                
+                if(circle.x + circle.radius >= canWid ||
+                    circle.x - circle.radius <= 0) {
+                    return true;
+                }
+                    
+                if(circle.y + circle.radius >= canHgt ||
+                    circle.y - circle.radius <= 0) {
+                    return true;
+                }
+                
+                return false;
+            }
+
+            for( var i = 0; i < totalCircles; i++ ) {  
+                createAndDrawCircle(i);
+            }
+            function updateCircles(element,active){
+                if(active == true){
+                    ctx.save();
+                    ctx.globalAlpha = 1;
+                    ctx.beginPath();
+                    ctx.stroke();
+                    var imgObj = document.getElementById(element.index+1);
+                    ctx.arc(element.x, element.y, element.radius, 0, 2*Math.PI);
+                    ctx.clip();
+                    ctx.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, element.x-element.radius, element.y-element.radius, 2*element.radius, 2*element.radius);
+                    ctx.restore();
+                }else{
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(element.x, element.y, element.radius, 0, 2*Math.PI);
+                    ctx.clip();
+                    ctx.fillStyle = 'rgba(0,0,0,0.3)'
+                    ctx.fill();
+                    ctx.globalAlpha = 0.1;
+                    var imgObj = document.getElementById(element.index+1);
+                    ctx.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, element.x-element.radius, element.y-element.radius, 2*element.radius, 2*element.radius);
+                    ctx.restore();
+                }
+                
+            }
+            
+            function updateGenre (genre){
+                globalCounter+=1;
+                console.log(globalCounter+"==>"+circles.length)
+                if(globalCounter>=300 && globalCounter<600){
+                    $('.genre').html("Action<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "A"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else if(globalCounter>=600 && globalCounter<900){
+                    $('.genre').html("Love Story<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "L"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else if(globalCounter>=900 && globalCounter<1200){
+                    $('.genre').html("Comedy<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "C"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else if(globalCounter>=1200 && globalCounter<1500){
+                    $('.genre').html("Drama<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "D"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else if(globalCounter>=1500 && globalCounter<1800){
+                    $('.genre').html("Rom-Com<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "RC"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else if(globalCounter>=1800 && globalCounter<2100){
+                    $('.genre').html("Thriller<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        if(moviesData[element.index][2] == "T"){
+                            updateCircles(element,true)
+                        }else{
+                            updateCircles(element,false)
+                        }
+                    }
+                }else{
+                    $('.genre').html("Top 50<br/>Movies");
+                    for (let i = 0; i < circles.length; i++) {
+                        const element = circles[i];
+                        updateCircles(element,true)
+                    }
+                }
+            }
+            function animate(){
+                if(globalCounter<2200){
+                    updateGenre();
+                    requestAnimationFrame(animate);
+                }
+                
+            }
+            animate();
+        });
+    </script>
+</body>
+</html>

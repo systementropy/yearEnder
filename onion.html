@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 20px 0 0px;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+        }
+        #year{
+            font-size: 72px;
+            font-weight: 300;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>ONION ON YOUR PLATE</h1>
+            <h3>Consumption per person per year</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year">1961</div>
+            <canvas id="canvas">
+
+            </canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <span>Source: Helgi Library, FAO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 600;
+            var canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+            // ctx.beginPath();
+            // ctx.arc(canWid/2, canHgt/2, 100, 0, 2*Math.PI);
+            // ctx.fillStyle = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+            // ctx.fill();
+            // ctx.closePath();
+            function Circle(radiusStart, radiusEnd, bgImage, label,text, perc, color, startAngle, endAngle, finalStartAngle, finalEndAngle ){
+                this.radius = radiusStart;
+                this.radiusEnd = radiusEnd;
+                
+                this.color = color;
+                this.bgImage = document.getElementById(bgImage);
+                this.label = label;
+                this.text = text;
+                this.perc = perc;
+                this.dRad = 1/2;
+                // this.color = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+                this.startAngle = startAngle;
+                this.endAngle = startAngle;
+                this.finalAngle = endAngle;
+                this.finalStartAngle = finalStartAngle;
+                this.finalEndAngle = finalEndAngle;
+                this.dAngle = 1/200;
+                this.draw = function(){
+                    ctx.beginPath();
+                    ctx.fillStyle = this.color;
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.fill();
+                    ctx.closePath();
+                    if(this.perc === 100){
+                        // if(counter>0){
+                            ctx.beginPath();
+                            ctx.fillStyle="#555";
+                            ctx.font = '300 24px monty';
+                            ctx.fillText("Vegetables consumed", ((canWid-this.radius)/2)-100, ((canHgt-this.radius)/2)-140);
+                            ctx.font = '600 40px monty';
+                            if(counter>0){ctx.fillText(this.text, ((canWid-this.radius)/2)-100, ((canHgt-this.radius)/2)-100);}
+                            ctx.closePath();
+                        // }
+                    }else{
+                        var size = 20;
+                        var tempCanvas = document.createElement("canvas"),
+                        tCtx = tempCanvas.getContext("2d");
+
+                        tempCanvas.width = size;
+                        tempCanvas.height = size;
+                        tCtx.drawImage(this.bgImage, 0, 0, this.bgImage.width, this.bgImage.height, 0, 0, size, size);
+                        ctx.save();
+                        ctx.beginPath();
+                        ctx.moveTo(canWid/2, canHgt/2);
+                        ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                        ctx.clip();
+                        // ctx.drawImage(this.bgImage, canWid/2, canHgt/2, 100, 100);
+                        var ptrn = ctx.createPattern(tempCanvas, 'repeat');
+                        ctx.fillStyle = ptrn;
+                        ctx.fill();
+                        // console.log(this.bgImage);
+                        ctx.closePath();
+                        ctx.restore();
+                        // if(counter>0){
+                            ctx.beginPath();
+                            ctx.font = '300 24px monty';
+                            ctx.fillText('Onions', ((canWid+this.radius)/2)+50, ((canHgt+this.radius)/2)+40);
+                            ctx.font = '600 40px monty';
+                            if(counter>0){ctx.fillText(this.perc+'%', ((canWid+this.radius)/2)+50, ((canHgt+this.radius)/2)+80);}
+                            ctx.closePath();
+                        // }
+                        
+                    }
+                }
+                this.update = function(){
+                    
+                    if(this.startAngle === this.finalStartAngle){
+                        if(this.endAngle<=this.finalEndAngle){
+                            this.endAngle += this.dAngle;
+                        }
+                    }
+
+                    if(this.finalAngle === this.finalEndAngle){
+                        if(this.startAngle<=this.finalStartAngle){
+                            this.startAngle += this.dAngle;
+                        }
+                    }
+                    if(this.radiusEnd>this.radius){
+                        this.radius += this.dRad;
+                    }else{
+                        if(this.label == 'onion'){
+                            if(slideIndex == 0){
+                                if(counter<500){
+                                    counter++;
+                                }else{
+                                    init(1);
+                                }
+                            }else{
+                                counter = 1;
+                            }
+                            
+                        }
+                    }
+
+                    this.draw();
+                }
+                this.update();
+            }
+            var slideIndex;
+            var counter = 0;
+            var circleArray = []
+            function init(index) {
+                slideIndex = index;
+                counter = 0;
+                if(index == 0){
+                    circleArray = [];
+                    var s1 = 0.061 * 2*Math.PI;
+                    circleArray.push(new Circle(100,100, '1', 'plate', '37 Kg', 100, '#92C24C', 0, 2*Math.PI, s1, 2*Math.PI,));
+                    circleArray.push(new Circle(100,100,'2', 'onion', '2.25Kg', 6.1, '#000', 0, 0, 0, s1 ));
+                    animate();
+                }else{
+                    $('#year').each(function () {
+                        var $this = $(this);
+                        jQuery({ Counter: 1961 }).animate({ Counter: 2013 }, {
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function () {
+                                $this.text(Math.ceil(this.Counter));
+                            }
+                        });
+                    });
+                    // var elem = document.getElementById("year");
+                    // elem.innerHTML = "2018"
+                    circleArray = [];
+                    var s1 = 0.061 * 2*Math.PI;
+                    var s2 = 0.174 * 2*Math.PI;
+                    circleArray.push(new Circle(100,208, '1', 'plate', '77.5 Kg', 100, '#92C24C', s1, 2*Math.PI, s2, 2*Math.PI ));
+                    circleArray.push(new Circle(100,208, '2', 'onion', '2.25Kg', 17.4, '#000', 0, s1,0, s2,));
+                    animate();
+                }
+                
+            }
+            setTimeout(function () {
+                init(0);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                circleArray[0].update();
+                circleArray[1].update();
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>

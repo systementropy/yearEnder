@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Indoor air pollution</h1>
+            <h3>Deaths in the house</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year"><strong>3.8 million</strong> people die prematurely from illness attributable to the household air pollution.</div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <span>Source: WHO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 500;
+            var canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Circle(radiusStart, radiusEnd, index, label,text, perc, color, startAngle, endAngle,name){
+                this.radius = radiusStart;
+                this.radiusEnd = radiusEnd;
+                this.name = name;
+                this.color = color;
+                this.index = index;
+                this.label = label;
+                this.text = text;
+                this.perc = perc;
+                this.dRad = 1;
+                // this.color = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+                this.startAngle = startAngle;
+                this.endAngle = startAngle;
+                this.finalAngle = endAngle;
+                this.dAngle = 1/80;
+
+                this.draw = function(){
+                    ctx.beginPath();
+                    ctx.fillStyle = this.color;
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.fill();
+                    ctx.closePath();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.clip();
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.restore();
+                    if(counter>0){
+                        ctx2.save();
+                        ctx2.beginPath();
+                        ctx2.translate(
+                            (canWid/2)+this.radius*Math.cos((this.endAngle+this.startAngle)/2),
+                            (canHgt/2)+this.radius*Math.sin((this.endAngle+this.startAngle)/2),
+                        );
+                        // ctx2.rotate((this.endAngle+this.startAngle)/2);
+                        // context.translate(newx, newy);
+                        // ctx2.font = '300 24px monty';
+                        ctx2.font = '600 18px monty';
+                        ctx2.fillText( 
+                            this.name,
+                            0,
+                            0,
+                            100
+                        );
+                        
+                        ctx2.fillStyle = "#333";
+                        ctx2.font = '400 32px monty';
+                        ctx2.fillText( 
+                            this.perc+'%', 
+                            0,
+                            30,
+                            
+                        );
+                        if(this.index == 0 && this.finalAngle>this.endAngle){
+                            console.log(this.perc,((0+this.radius)/2)+50*Math.sin(this.startAngle), ((0+this.radius)/2)+80*Math.cos(this.startAngle))
+                        }
+                        ctx2.closePath();
+                        ctx2.restore();
+                    }
+                        
+                        
+                }
+                this.update = function(){
+
+                    if(this.finalAngle>this.endAngle){
+                        this.endAngle += this.dAngle;
+                    }
+
+
+                    if(this.radiusEnd>this.radius){
+                        this.radius += this.dRad;
+                    }else{
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            var slideIndex;
+            var counter = 0;
+            var circleArray = []
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+
+                    // $('#year').each(function () {
+                    //     var $this = $(this);
+                    //     jQuery({ Counter: 1961 }).animate({ Counter: 2013 }, {
+                    //         duration: 2000,
+                    //         easing: 'swing',
+                    //         step: function () {
+                    //             $this.text(Math.ceil(this.Counter));
+                    //         }
+                    //     });
+                    // });
+                    // var elem = document.getElementById("year");
+                    // elem.innerHTML = "2018"
+                    circleArray = [];
+                    var colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+                    var total = 0;
+                    var pieData = [
+                        ['pneumonia',27,'Pneumonia'],
+                        ['stroke',18,'Stroke'],
+                        ['ischaemic heart disease',27,'Coronary Disease'],
+                        ['chronic obstructive pulmonary disease',20,'COPD'],
+                        ['lung cancer',8,'Lung Cancer'],
+                    ]
+                    for (let i = 0; i < pieData.length; i++) {
+                        const element = pieData[i];
+                        circleArray.push(new Circle(
+                            100,200, i, element[1], element[0], element[1], colorArray[i], 
+                            (total/100)*2*Math.PI, 
+                            ((total+element[1])/100)*2*Math.PI,
+                            element[2]
+                        ));
+                        total = total + element[1]
+
+                    }
+                    console.log(circleArray)
+                    animate();
+                
+                
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < circleArray.length; i++) {
+                    circleArray[i].update();
+                    
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>

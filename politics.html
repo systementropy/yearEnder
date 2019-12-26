@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Josefin/JosefinSans-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Josefin/JosefinSans-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Josefin/JosefinSans-Bold.ttf);
+            font-weight: 700;
+        }
+        
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 692px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0 0;
+            color: #555555;
+            text-transform: uppercase;
+        }
+        #year p{
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #year p.weeks{margin-bottom: 0;}
+        #year p span{
+            font-size: 16px;
+            flex-grow: 1;
+            padding: 5px 0;
+            outline: 1px solid #DDD;
+            width: 14.2857142857%;
+        }
+        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+        .bottom{
+            display: flex;
+            justify-content: center;
+        }
+        .bottom img{
+            height: 24px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+            z-index: -1;
+            filter: blur(0px);
+            transition: all 0.2s ease;
+        }
+        #labels.active{
+            filter: blur(5px);
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+        .Month{
+            opacity: 0;
+            letter-spacing: 10px;
+            transition: all 0s ease 0s;
+        }
+        .Month.active{
+            opacity: 1;
+            letter-spacing: 0px;
+            transition: all 1s ease 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Flashback 2019</h1>
+            <h3>The year in politics</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year">
+                <p class="Month">JAN</p>
+                <p class="weeks">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </p>
+            </div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <!-- <span>Source: WHO</span> -->
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <!-- 
+Bank merger
+Train18 gets a name ==> Jan27
+Pulwama attack      ==> Feb14
+Balakot strike      ==> Feb26
+Mission Shakti      ==> Mar27
+Indian General Elections    ==> Apr11
+Result Day                  ==> May23
+Cyclone Fani hits Odisha    ==> May3
+Bihar Encephalitis outbreak ==> Jun1
+Kathua rape case verdict    ==> Jun10
+Chandrayaan-2 launched      ==> Jul22
+Triple Talaq banned         ==> Jul31
+Art 370 revoked             ==> Aug5
+P Chidambaram arrested      ==> Aug22
+Chandrayaan-2               ==> Sep6
+India gets first Rafale     ==> Oct9
+Nobel Couple                ==> Oct14
+J&K bifurcated              ==> Oct31
+-->
+            <!-- <img src="./1.jpg" id="1" > -->
+            <img src="./onion.jpg" id="2" >
+            <img src="./politics/Jan2.jpg" alt="" id="Jan2">
+            <img src="./politics/Jan27.jpg" alt="" id="Jan27">
+            <img src="./politics/Feb14.jpg" alt="" id="Feb14">
+            <img src="./politics/Feb26.jpg" alt="" id="Feb26">
+            <img src="./politics/Mar27.jpg" alt="" id="Mar27">
+            <img src="./politics/Apr11.jpg" alt="" id="Apr11">
+            <img src="./politics/May23.jpg" alt="" id="May23">
+            <img src="./politics/May3.jpg" alt="" id="May3">
+            <img src="./politics/Jun1.jpg" alt="" id="Jun1">
+            <img src="./politics/Jun10.jpg" alt="" id="Jun10">
+            <img src="./politics/Jul22.jpg" alt="" id="Jul22">
+            <img src="./politics/Jul31.jpg" alt="" id="Jul31">
+            <img src="./politics/Aug5.jpg" alt="" id="Aug5">
+            <img src="./politics/Aug22.jpg" alt="" id="Aug22">
+            <img src="./politics/Sep6.jpg" alt="" id="Sep6">
+            <img src="./politics/Oct9.jpg" alt="" id="Oct9">
+            <img src="./politics/Oct14.jpg" alt="" id="Oct14">
+            <img src="./politics/Oct31.jpg" alt="" id="Oct31">
+            <img src="./politics/Nov9.jpg" alt="" id="Nov9">
+            <img src="./politics/Nov23.jpg" alt="" id="Nov23">
+            <img src="./politics/Nov26.jpg" alt="" id="Nov26">
+            <img src="./politics/Nov27.jpg" alt="" id="Nov27">
+            <img src="./politics/Dec6.jpg" alt="" id="Dec6">
+            <img src="./politics/Dec11.jpg" alt="" id="Dec11">
+            <img src="./politics/Dec18.jpg" alt="" id="Dec18">
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 550;
+            var canWid = 610;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var gridCtx = canvas2.getContext("2d");
+            gridCtx.scale(2,2);
+
+            var widthQuant = canWid/7;
+            var heightQuant = canHgt/5;
+            var plotQuant;
+            
+            widthQuant>heightQuant?plotQuant=heightQuant:plotQuant=widthQuant;
+            console.log(plotQuant*6,plotQuant*7)
+            var colorArray = ['#92C24CDD','#C9224CDD','#C2924CDD','#C24C92DD','#C2492CDD','#496026DD','#92c24cDD','#7a49a5DD','#4974a5DD'];
+            var slideIndex;
+            var globalCounter = 0;
+            var dateArray = [];
+            var mapMonth = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+            var activeIndex = {
+                'JAN':{
+                    'start':1,'end':31,'block':-2,'counter':0,
+                    '2':{
+                        'date':'02',
+                        'head':"Bank merger",
+                        'text':['Govt approves merger of Dena Bank and Vijaya Bank','with Bank of Baroda'],
+                        'img':"Jan2" 
+                    },
+                    '27':{
+                        'date':'27',
+                        'head':"Train18 gets a name",
+                        'text':["Indigenously manufactured Train18 named","'Vande Bharat Express'"],
+                        'img':"Jan27" 
+                    }
+                },
+                'FEB':{
+                    'start':1,'end':28,'block':-5,'counter':0,
+                    '14':{
+                        'date':'14',
+                        'head':"Pulwama attack",
+                        'text':["A convoy of vehicles carrying security personnel","attacked by a suicide bomber"],
+                        'img':"Feb14" 
+                    },
+                    '26':{
+                        'date':'26',
+                        'head':"Balakot strike",
+                        'text':['The IAF crossed the LoC to strike a','terrorist training camp near Balakot'],
+                        'img':"Feb26" 
+                    }
+                },
+                'MAR':{
+                    'start':1,'end':31,'block':-5,'counter':0,
+                    '27':{
+                        'date':'27',
+                        'head':"Mission Shakti",
+                        'text':['India becomes fourth nation in the world ','to successfully launch an anti-satellite missile'],
+                        'img':"Mar27" 
+                    }
+                },
+                'APR':{
+                    'start':1,'end':30,'block':-1,'counter':0,
+                    '11':{
+                        'date':'11',
+                        'head':"Indian General Elections",
+                        'text':['Voting begins; elections continue till May 19'],
+                        'img':"Apr11" 
+                    }
+                },
+                'MAY':{
+                    'start':1,'end':31,'block':-3,'counter':0,
+                    '23':{
+                        'date':'23',
+                        'head':"Result Day",
+                        'text':['Counting and results for Lok Sabha','elections 2019'],
+                        'img':"May23" 
+                    },
+                    '3':{
+                        'date':'03',
+                        'head':"Cyclone Fani hits Odisha",
+                        'text':['The strongest tropical cyclone ','to hit the state since 1999'],
+                        'img':"May3" 
+                    }
+                },
+                'JUN':{
+                    'start':1,'end':30,'block':-6,'counter':0,
+                    '1':{
+                        'date':'01',
+                        'head':"Bihar Encephalitis outbreak",
+                        'text':['First case reported; 100 deaths reported','in under twenty days'],
+                        'img':"Jun1" 
+                    },
+                    '10':{
+                        'date':'10',
+                        'head':"Kathua rape case verdict",
+                        'text':['Six out of seven convicted for rape & murder','of 8-year-old girl'],
+                        'img':"Jun10" 
+                    }
+                },
+                'JUL':{
+                    'start':1,'end':31,'block':-1,'counter':0,
+                    '22':{
+                        'date':'22',
+                        'head':"Chandrayaan-2 launched",
+                        'text':['Launched from the second launch pad','at the Satish Dhawan Space Centre '],
+                        'img':"Jul22" 
+                    },
+                    '31':{
+                        'date':'31',
+                        'head':"Triple Talaq banned",
+                        'text':['Parliament declares Triple Talaq unconstitutional','and makes it a punishable act'],
+                        'img':"Jul31" 
+                    }
+                },
+                'AUG':{
+                    'start':1,'end':31,'block':-4,'counter':0,
+                    '5':{
+                        'date':'05',
+                        'head':"Art 370 revoked",
+                        'text':['J&K loses special status; ','bifurcated into two UTs'],
+                        'img':"Aug5" 
+                    },
+                    '22':{
+                        'date':'22',
+                        'head':"P Chidambaram arrested",
+                        'text':['Former FM P Chidambaram arrested by CBI','in the INX media case'],
+                        'img':"Aug22" 
+                    }
+                },
+                'SEP':{
+                    'start':1,'end':30,'block':0,'counter':0,
+                    '6':{
+                        'date':'06',
+                        'head':"Chandrayaan-2 ",
+                        'text':['Vikram lander crash lands;','mission partially successful'],
+                        'img':"Sep6" 
+                    }
+                },
+                'OCT':{
+                    'start':1,'end':31,'block':-2,'counter':0,
+                    '9':{
+                        'date':'09',
+                        'head':"India gets first Rafale",
+                        'text':['Defence Minister Rajnath Singh received ','the first of the 36 Rafale fighter jets in Bordeaux, France'],
+                        'img':"Oct9" 
+                    },
+                    '14':{
+                        'date':'14',
+                        'head':"Nobel Couple",
+                        'text':['Indian-American Abhijit Banerjee, along with Esther Duflo and Michael Kremer,','won the 2019 economics Nobel'],
+                        'img':"Oct14" 
+                    },
+                    '31':{
+                        'date':'31',
+                        'head':"J&K bifurcated",
+                        'text':['Reorganisation of J&K into UTs Jammu and Kashmir,','and Ladakh comes into effect'],
+                        'img':"Oct31" 
+                    }
+                },
+                'NOV':{
+                    'start':1,'end':30,'block':-5,'counter':0,
+                    '9':{
+                        'date':'09',
+                        'head':"Ayodhya Verdict",
+                        'text':["SC's five-judge bench pronounces verdict on","the Ram Temple dispute"],
+                        'img':"Nov9" 
+                    },
+                    '23':{
+                        'date':'23',
+                        'head':"The new Maha CM",
+                        'text':["Amid Maharashtra political turmoil,","Devendra Fadnavis sworn-in as CM "],
+                        'img':"Nov23" 
+                    },
+                    '26':{
+                        'date':'26',
+                        'head':"Fadnavis resigns",
+                        'text':["Joins the list of chief ministers','who had the shortest tenures"],
+                        'img':"Nov26" 
+                    },
+                    '27':{
+                        'date':'27',
+                        'head':"Hyderabad Gangrape",
+                        'text':["A 26-year-old vet is abducted,","raped and killed"],
+                        'img':"Nov27" 
+                    }
+                },
+                'DEC':{
+                    'start':1,'end':31,'block':0,'counter':0,
+                    '6':{
+                        'date':'06',
+                        'head':"Hyderabad encounter",
+                        'text':['Four accused in the rape and murder of a vet ','killed in police encounter'],
+                        'img':"Dec6" 
+                    },
+                    '11':{
+                        'date':'11',
+                        'head':"Citizenship Amendment Bill",
+                        'text':['CAB passed by the Parliament;','protests break out in various parts of India'],
+                        'img':"Dec11" 
+                    },
+                    '18':{
+                        'date':'18',
+                        'head':"Cyrus Mistry case",
+                        'text':['NCLAT restores Mistry as Executive Chairman of Tata Sons'],
+                        'img':"Dec18" 
+                    },
+                },
+            }
+            function plotGrid(month) {
+                
+                for (let i = 0; i < 8; i++) {
+                    gridCtx.beginPath();
+                    gridCtx.strokeStyle = '#DDD';
+                    gridCtx.moveTo(i*plotQuant,0);
+                    gridCtx.lineTo(i*plotQuant,canHgt);
+                    gridCtx.stroke();
+                    gridCtx.closePath();
+                }
+                if(month == 'MAR'){
+                    for (let i = 0; i < 7; i++) {
+                        gridCtx.beginPath();
+                        gridCtx.strokeStyle = '#DDD';
+                        gridCtx.moveTo(0,i*plotQuant);
+                        gridCtx.lineTo(canWid,i*plotQuant);
+                        gridCtx.stroke();
+                        gridCtx.closePath();
+                    }
+                }else{
+                    for (let i = 0; i < 6; i++) {
+                        gridCtx.beginPath();
+                        gridCtx.strokeStyle = '#DDD';
+                        gridCtx.moveTo(0,i*plotQuant);
+                        gridCtx.lineTo(canWid,i*plotQuant);
+                        gridCtx.stroke();
+                        gridCtx.closePath();
+                    }
+                }
+                
+                for (var i = 0; i <= 35; ++i) {
+                    var x = i%7;
+                    var y = Math.floor(i/7);
+                    var actionIndex = i+activeIndex[month]['block']+1;
+                    
+                    if(actionIndex>= activeIndex[month]['start'] && actionIndex<= activeIndex[month]['end']){
+                        gridCtx.beginPath();
+                        gridCtx.fillStyle = '#333';
+                        gridCtx.moveTo(x*plotQuant+10, y*plotQuant+15);
+                        gridCtx.fillText(actionIndex,x*plotQuant+10, y*plotQuant+15);
+                        gridCtx.closePath();
+                    }
+                    if(activeIndex[month][actionIndex]){
+                        gridCtx.save();
+                        gridCtx.beginPath();
+                        var clr = colorArray[Math.floor(Math.random()*colorArray.length)];
+                        gridCtx.fillStyle = clr;
+                        activeIndex[month][actionIndex]['color']= clr
+                        gridCtx.moveTo(x*plotQuant, y*plotQuant);
+                        var thisImg = activeIndex[month][actionIndex]['img'];
+                        var imgObj = document.getElementById(thisImg);
+                        gridCtx.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, x*plotQuant, y*plotQuant, plotQuant, plotQuant);
+                        gridCtx.arc((x+0.5)*plotQuant,(y+0.5)*plotQuant,plotQuant/3, 0, 2*Math.PI);
+                        // gridCtx.clip();
+                        gridCtx.rect(x*plotQuant, y*plotQuant, plotQuant, plotQuant);
+                        gridCtx.fillStyle = clr;
+                        gridCtx.fill();
+                        
+                        
+                        gridCtx.closePath();
+                        gridCtx.restore();
+                    }
+                }
+            }
+            
+            function activateDays(month,index){
+                
+            }
+            function HighLight(index,month) {
+                // a -1 -activeIndex[month]['block']
+                this.index = index - 1 - activeIndex[month]['block'];
+                this.x = this.index%7;
+                this.y = Math.floor(this.index/7);
+                this.actionIndex = index;
+                this.month = month;
+                if(this.month == 'MAR' || this.month == 'JUN'){
+                    this.activeDateInit = {x:0,y:0,width:plotQuant*7,height:plotQuant*6};    
+                }else{
+                    this.activeDateInit = {x:0,y:0,width:plotQuant*7,height:plotQuant*5};
+                }
+                
+                this.activeDate = {x:0,y:0,width:plotQuant,height:plotQuant};
+                this.activateFrom = function(){
+                    var activeDate = this.activeDate;
+                    
+                    var dx = (this.activeDateInit.x - activeDate.x)/5;
+                    var dy = (this.activeDateInit.y - activeDate.y)/5;
+                    var dw = (this.activeDateInit.width - activeDate.width)/5;
+                    var dh = (this.activeDateInit.height - activeDate.height)/5;
+
+                    if(dx != 0 && Math.abs(dx) > 0.001){
+                        activeDate.x += dx;
+                    }
+                    if(dy != 0 && Math.abs(dy) > 0.001){
+                        activeDate.y += dy;
+                    }
+                    if(dw != 0 && Math.abs(dw) > 0.001){
+                        activeDate.width += dw;
+                    }
+                    if(dh != 0 && Math.abs(dh) > 0.001){
+                        activeDate.height += dh;
+                    }
+                    ctx.beginPath();
+                    // ctx.fillStyle = activeIndex[this.month][Math.floor(globalCounter/10)-1]['color'];
+                    
+                    ctx.moveTo(activeDate.x*plotQuant, activeDate.y*plotQuant);
+                    
+                    ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height, activeDate.x*plotQuant, activeDate.y*plotQuant, activeDate.width, activeDate.height);
+                    
+                    var gradient = ctx.createLinearGradient(activeDate.x*plotQuant, activeDate.y*plotQuant, activeDate.x*plotQuant, activeDate.y*plotQuant+activeDate.height);
+                    gradient.addColorStop(0, "rgba(0,0,0,0.1)");
+                    gradient.addColorStop(0.6999, "rgba(0,0,0,0.2)");
+                    gradient.addColorStop(0.7, "rgba(0,0,0,0.2)");
+                    gradient.addColorStop(1, "rgba(0,0,0,1)");
+                    // ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                    ctx.fillStyle = gradient;
+                    ctx.rect(activeDate.x*plotQuant, activeDate.y*plotQuant, activeDate.width, activeDate.height);
+                    ctx.fill();
+                    ctx.closePath();
+                    if(dx <= 0.01 && dy <= 0.01 && dw <= 0.01 && dh <= 0.01){
+                        shouldUpdatePause = false; 
+                        activeIndex[this.month][Math.floor(globalCounter/10)-1]['finish'] = true;
+                    }
+                }
+                this.update = function(){
+                    if(activeIndex[this.month][Math.floor(globalCounter/10)-1]){
+                        var text = activeIndex[this.month][Math.floor(globalCounter/10)-1];
+                        if(text){
+
+                            var tindex = Math.floor(globalCounter/10) - 1 - activeIndex[month]['block'];
+                            var tx = tindex%7;
+                            var ty = Math.floor(tindex/7);
+                            var tactionIndex = tindex;
+                            this.activeDate ={x:tx,y:ty,width:plotQuant,height:plotQuant};
+
+                            if(!activeIndex[this.month][Math.floor(globalCounter/10)-1]['finish']){
+                                this.img = document.getElementById(text.img)
+                                shouldUpdatePause = true;
+                                this.activateFrom();
+                            }
+                            
+                            if(!shouldUpdatePause && activeIndex[this.month][Math.floor(globalCounter/10)-1]['finish']){
+                                if(this.month == 'MAR' || this.month == 'JUN'){
+                                    var heightSize = plotQuant*6;
+                                    var widSize = plotQuant*7;
+                                    var textAdjust = plotQuant*5;
+                                }else{
+                                    var heightSize = plotQuant*5;
+                                    var widSize = plotQuant*7;
+                                    var textAdjust = plotQuant*4;
+                                }
+                                ctx.beginPath();
+                                ctx.fillStyle = activeIndex[this.month][Math.floor(globalCounter/10)-1]['color'];
+                                ctx.moveTo(0, 0);
+                                ctx.rect(0, 0, widSize, heightSize);
+                                ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                                ctx.fill()
+                                ctx.drawImage(this.img, 0, 0, this.img.width, this.img.height, 0, 0, widSize, heightSize);
+                                ctx.closePath();
+
+                                ctx.beginPath();
+                                var gradient = ctx.createLinearGradient(0, 0, 0, heightSize);
+                                gradient.addColorStop(0, "rgba(0,0,0,0.1)");
+                                gradient.addColorStop(0.6999, "rgba(0,0,0,0.2)");
+                                gradient.addColorStop(0.7, "rgba(0,0,0,0.2)");
+                                gradient.addColorStop(1, "rgba(0,0,0,1)");
+                                ctx.moveTo(0, 0);
+                                ctx.rect(0, 0, widSize, heightSize);
+                                ctx.fillStyle = gradient;
+                                ctx.fill();
+                                ctx.closePath();
+
+
+                                ctx.save();
+                                ctx.globalAlpha = (((globalCounter/10)-1)%1)*2;
+
+                                
+
+
+                                ctx.beginPath(); 
+                                ctx.font = '700 24px monty';
+                                ctx.fillStyle="#FFF";
+                                var text = activeIndex[this.month][Math.floor(globalCounter/10)-1];
+                                ctx.fillText(text.head, 25, textAdjust)
+                                ctx.closePath();
+
+                                ctx.beginPath(); 
+                                
+                                ctx.rect(25, textAdjust-70, 100, 30);
+                                ctx.fillStyle="#F00";
+                                ctx.fill();
+                                ctx.font = '600 20px monty';
+                                ctx.fillStyle="#FFF";
+                                var text = activeIndex[this.month][Math.floor(globalCounter/10)-1];
+                                ctx.fillText(text.date+" "+this.month, 35, textAdjust-47);
+                                ctx.closePath();
+                                var line = Math.ceil(text.text[0].length/60);
+                                for (let i = 0; i < text.text.length; i++) {
+                                    // const element = text.text[0].substr(i*60,60);
+                                    const element = text.text[i]
+                                    ctx.beginPath(); 
+                                    ctx.font = '300 20px monty';
+                                    ctx.fillStyle="#EEE";
+                                    ctx.fillText(element, 25, textAdjust+25+(i*25))
+                                    ctx.closePath();
+                                    
+                                }
+                                ctx.restore();
+
+                                
+                            }
+                            
+                        }
+                        globalCounter = globalCounter +0.05;
+                    }else if((Math.floor(globalCounter/10)-1)<=activeIndex[this.month]['end']){ 
+                        var tindex = Math.floor(globalCounter/10) - 1 - activeIndex[month]['block'];
+                        var tx = tindex%7;
+                        var ty = Math.floor(tindex/7);
+                        var tactionIndex = tindex;
+                        
+                        ctx.beginPath();
+                        ctx.fillStyle = '#EEE';
+                        ctx.moveTo(tx*plotQuant, ty*plotQuant);
+                        ctx.rect(tx*plotQuant, ty*plotQuant, plotQuant, plotQuant);
+                        ctx.fill();
+                        ctx.closePath();
+                        globalCounter = globalCounter +2;
+                    }else{
+                        if(slideIndex<12){init(slideIndex+1);}
+                    }
+                }
+            }
+            var globalMonthCounter = 0;
+            var shouldUpdatePause = false;
+            function init(index) {
+                $('.Month').removeClass('active');
+                gridCtx.clearRect(0,0,canWid, canHgt);
+                slideIndex = index;
+                globalCounter = 0;
+                dateArray = [];
+                plotGrid(mapMonth[slideIndex-1]);
+                dateArray.push(new HighLight(1,mapMonth[slideIndex-1]))
+                if(index == 1){animate();}
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                if(slideIndex == 3 || slideIndex == 6){
+                    gridCtx.clearRect(0,plotQuant*6,canWid, canHgt);
+                }else{
+                    gridCtx.clearRect(0,plotQuant*5,canWid, canHgt);
+                }
+                
+                if(shouldUpdatePause){
+                    $('#labels').addClass('blur');
+                    dateArray[0].activateFrom();
+                }else{
+                    $('#labels').removeClass('blur');
+                    for (let i = 0; i < dateArray.length; i++) {
+                        dateArray[i].update();
+                    }
+                }
+                
+                
+                if(globalCounter == 20 || globalCounter == 21 || globalCounter == 22){
+                    $('.Month').addClass('active').text(mapMonth[slideIndex-1]);
+                }
+                requestAnimationFrame(animate);
+            }
+        })
+    </script>
+</body>
+</html>

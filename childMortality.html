@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Child survival trends</h1>
+            <h3>Probability of death</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year"><b>1 in 26</b> children <strong>died</strong> before reaching age five <b>in 2018</b>, compared to 1 in 11 in 1990</div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <span>Source: WHO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 600;
+            var canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Line(radiusStart, radiusEnd, index, label,text, perc, color, startAngle, endAngle,name){
+                this.radius = radiusStart;
+                this.radiusEnd = radiusEnd;
+                this.name = name;
+                this.color = color;
+                this.index = index;
+                this.label = label;
+                this.text = text;
+                this.perc = perc;
+                this.dRad = 1;
+                // this.color = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+                this.startAngle = startAngle;
+                this.endAngle = startAngle;
+                this.finalAngle = endAngle;
+                this.dAngle = 1/80;
+
+                this.draw = function(){
+                    ctx.beginPath();
+                    ctx.fillStyle = this.color;
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.fill();
+                    ctx.closePath();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.clip();
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.restore();
+                    if(counter>0){
+                        ctx2.save();
+                        ctx2.beginPath();
+                        ctx2.translate(
+                            (canWid/2)+this.radius*Math.cos((this.endAngle+this.startAngle)/2),
+                            (canHgt/2)+this.radius*Math.sin((this.endAngle+this.startAngle)/2),
+                        );
+                        // ctx2.rotate((this.endAngle+this.startAngle)/2);
+                        // context.translate(newx, newy);
+                        // ctx2.font = '300 24px monty';
+                        ctx2.font = '600 18px monty';
+                        ctx2.fillText( 
+                            this.name,
+                            0,
+                            0,
+                            100
+                        );
+                        
+                        ctx2.fillStyle = "#333";
+                        ctx2.font = '400 32px monty';
+                        ctx2.fillText( 
+                            this.perc+'%', 
+                            0,
+                            30,
+                            
+                        );
+                        if(this.index == 0 && this.finalAngle>this.endAngle){
+                            console.log(this.perc,((0+this.radius)/2)+50*Math.sin(this.startAngle), ((0+this.radius)/2)+80*Math.cos(this.startAngle))
+                        }
+                        ctx2.closePath();
+                        ctx2.restore();
+                    }
+                        
+                        
+                }
+                this.update = function(){
+
+                    if(this.finalAngle>this.endAngle){
+                        this.endAngle += this.dAngle;
+                    }
+
+
+                    if(this.radiusEnd>this.radius){
+                        this.radius += this.dRad;
+                    }else{
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            var slideIndex;
+            var counter = 0;
+            var circleArray = []
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+
+                    // $('#year').each(function () {
+                    //     var $this = $(this);
+                    //     jQuery({ Counter: 1961 }).animate({ Counter: 2013 }, {
+                    //         duration: 2000,
+                    //         easing: 'swing',
+                    //         step: function () {
+                    //             $this.text(Math.ceil(this.Counter));
+                    //         }
+                    //     });
+                    // });
+                    // var elem = document.getElementById("year");
+                    // elem.innerHTML = "2018"
+                    circleArray = [];
+                    var colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+                    var total = 0;
+                    var lineData = [
+                        [1968,637345,40.085698],[1969,623540,39.06341],[1970,610823,38.071933],[1971,601848,37.112424],[1972,593068,36.143397],[1973,585160,35.134583],[1974,576775,34.130481],[1975,567212,33.102338],[1976,558735,32.092255],[1977,550316,31.047771],[1978,541771,30.03082],[1979,533533,29.047981],[1980,524414,28.087199],[1981,517829,27.167508],[1982,511721,26.298756],[1983,505482,25.481839],[1984,498634,24.702508],[1985,491421,23.958722],[1986,486343,23.255387],[1987,481612,22.584526],[1988,477047,21.941012],[1989,472371,21.316277],[1990,466752,20.710573],[1991,462121,20.10599],[1992,456157,19.511886],[1993,449193,18.913571],[1994,441108,18.317628],[1995,431784,17.726907],[1996,422172,17.146409],[1997,411779,16.557752],[1998,400332,15.972151],[1999,388065,15.374239],[2000,374915,14.774461],[2001,362008,14.179982],[2002,348948,13.583861],[2003,335728,12.985377],[2004,322325,12.397207],[2005,308702,11.809516],[2006,295140,11.232429],[2007,281649,10.665355],[2008,268041,10.103851],[2009,254181,9.555355],[2010,240802,9.022254],[2011,228170,8.502628],[2012,216251,8.004486],[2013,205416,7.526447],[2014,195508,7.079589],[2015,186257,6.669119],[2016,178069,6.295903],[2017,170964,5.979424],[2018,165458,5.706457]
+                    ];
+                    var pieData = [
+                        ['pneumonia',27,'Pneumonia'],
+                        ['stroke',18,'Stroke'],
+                        ['ischaemic heart disease',27,'Coronary Disease'],
+                        ['chronic obstructive pulmonary disease',20,'COPD'],
+                        ['lung cancer',8,'Lung Cancer'],
+                    ]
+                    for (let i = 0; i < pieData.length; i++) {
+                        const element = pieData[i];
+                        circleArray.push(new Circle(
+                            100,200, i, element[1], element[0], element[1], colorArray[i], 
+                            (total/100)*2*Math.PI, 
+                            ((total+element[1])/100)*2*Math.PI,
+                            element[2]
+                        ));
+                        total = total + element[1]
+
+                    }
+                    console.log(circleArray)
+                    animate();
+                
+                
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < circleArray.length; i++) {
+                    circleArray[i].update();
+                    
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>
