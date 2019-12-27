@@ -62,7 +62,7 @@
             padding: 0;
         }
         .title h1{
-            font-size: 46px;
+            font-size: 42px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
@@ -165,6 +165,7 @@
             
         }
         .stateName{
+            font-weight: 200;
             padding: 15px 0;
         }
         .totalSeats{
@@ -181,12 +182,17 @@
         }
         .internal{
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
         }
         .internal p{
             font-size: 18px;
             line-height: 1;
             margin: 0;
+            font-weight: 200;
+            perspective: 100px;
         }
         .bar{
             width: 2px;
@@ -198,13 +204,43 @@
             top: 80%;
             width: 100%;
         }
+        .internal .fillbg{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #F5F5F6;
+            border: 2px solid #333;
+            box-shadow: 0px 0px 1px 1px #2821195E;
+            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .internal .fill{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 50%;
+            height: 10px;
+            background: #F28500;
+            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+            
+            box-shadow: -1px 8px 7px 0px #8C6331;
+            transition: all 0.3s ease;
+            z-index: 1;
+            transform-origin: center;
+            /*! height: 100px; */
+        }
     </style>
 </head>
 <body>
     <div class="mainBody">
         <div class="title">
-            <h1>BJP in states</h1>
-            <h3>The year in news & politics</h3>
+            <h1>BJP IN STATE ASSEMBLIES</h1>
+            <!-- <h3>The year in news & politics</h3> -->
 
         </div>
         <div class="graphicsContainer">
@@ -19061,6 +19097,8 @@
                     <div class="bjpSeats"><span class="bjp"></span><p>BJP MLAs</p></div>
                     <div class="bar"></div>
                     <div class="totalSeats"><span class="total"></span><p>Assembly Seats</p></div>
+                    <div class="fill"></div>
+                    <div class="fillbg"></div>
                 </div>
             </div>
             <div class="footer">
@@ -19077,37 +19115,37 @@
         $(document).ready(function(){
             var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
             var dataIndia = [
-                ['Andhra Pradesh',175,0,["Andhra"]],
-                ['Arunachal Pradesh',60,41,["Arunachal"]],
-                ['Assam',126,61,["Assam"]],
-                ['Bihar',243,54,["Bihar"]],
-                ['Chhattisgarh',90,14,["Chhatisgarh"]],
-                ['Goa',40,27,["Goa"]],
-                ['Gujarat',182,103,["Gujrat"]],
-                ['Haryana',90,40,["Haryana"]],
-                ['Himachal Pradesh',68,44,["Himachal"]],
-                ['Jammu & Kashmir',87,0,["J_K","Laddakh"]],
-                ['Jharkhand',81,25,["Jharkhand"]],
-                ['Karnataka',224,117,["Karnataka"]],
-                ['Kerala',140,1,["Kerala"]],
-                ['Madhya Pradesh',230,107,["MP"]],
-                ['Maharashtra',288,105,["Maharashtra"]],
-                ['Manipur',60,22,["Manipur"]],
-                ['Meghalaya',60,2,["Meghayala"]],
-                ['Mizoram',40,1,["Mizoram"]],
-                ['Nagaland',60,12,["Nagaland"]],
-                ['Odisha',147,23,["Orissa"]],
-                ['Punjab',117,2,["Punjab"]],
-                ['Rajasthan',200,72,["Rajasthan"]],
-                ['Sikkim',32,12,["Sikkim"]],
-                ['Tamil Nadu',234,0,["Tamilnadu"]],
-                ['Telangana',119,1,["Telangana"]],
-                ['Tripura',60,33,["Tripura"]],
-                ['Uttar Pradesh',403,310,["UP"]],
-                ['Uttrakhand',70,56,["UK"]],
-                ['West Bengal',294,2,["WB"]],
-                ['Delhi',70,4,["Delhi"]],
-                ['Puducherry',30,0,[]]
+                ["Andhra Pradesh",175,0,["Andhra"]],
+                ["Arunachal Pradesh",60,41,["Arunachal"]],
+                ["Assam",126,61,["Assam"]],
+                ["Bihar",243,54,["Bihar"]],
+                ["Chhattisgarh",90,14,["Chhatisgarh"]],
+                ["Goa",40,27,["Goa"]],
+                ["Gujarat",182,103,["Gujrat"]],
+                ["Haryana",90,40,["Haryana"]],
+                ["Himachal Pradesh",68,44,["Himachal"]],
+                ["Jammu & Kashmir",87,0,["J_K","Laddakh"]],
+                ["Jharkhand",81,25,["Jharkhand"]],
+                ["Karnataka",224,117,["Karnataka"]],
+                ["Kerala",140,1,["Kerala"]],
+                ["Madhya Pradesh",230,107,["MP"]],
+                ["Maharashtra",288,105,["Maharashtra"]],
+                ["Manipur",60,22,["Manipur"]],
+                ["Meghalaya",60,2,["Meghayala"]],
+                ["Mizoram",40,1,["Mizoram"]],
+                ["Nagaland",60,12,["Nagaland"]],
+                ["Odisha",147,23,["Orissa"]],
+                ["Punjab",117,2,["Punjab"]],
+                ["Rajasthan",200,72,["Rajasthan"]],
+                ["Sikkim",32,12,["Sikkim"]],
+                ["Tamil Nadu",234,0,["Tamilnadu"]],
+                ["Telangana",119,1,["Telangana"]],
+                ["Tripura",60,33,["Tripura"]],
+                ["Uttar Pradesh",403,302,["UP"]],
+                ["Uttarakhand",70,56,["UK"]],
+                ["West Bengal",294,2,["WB"]],
+                ["Delhi",70,4,["Delhi"]],
+                ["Puducherry",30,0,[""]]
             ];
             var max = [242,133,0];
             var min = [255,255,255];
@@ -19116,9 +19154,9 @@
                 let element = dataIndia[i];
                 let perc = ((element[2]*100)/element[1]);
                 
-                let red = ((perc*max[0])+((100-perc)*(min[0])))/(110);
-                let green = ((perc*max[1])+((100-perc)*(min[1])))/(110);
-                let blue = ((perc*max[2])+((100-perc)*(min[2])))/(110);
+                let red = ((perc*max[0])+((100-perc)*(min[0])))/(105);
+                let green = ((perc*max[1])+((100-perc)*(min[1])))/(105);
+                let blue = ((perc*max[2])+((100-perc)*(min[2])))/(105);
                 let color = [red,green,blue]
 
                 element.push(perc);
@@ -19132,11 +19170,11 @@
             var alpha; var index;
             function updateColor(){
                 globalCounter += 1;
-                if(Math.floor(globalCounter/100) == index){
+                if(Math.floor(globalCounter/40) == index){
                     alpha += 0.1;
                 }else{
                     alpha = 0;
-                    index = Math.floor(globalCounter/100);
+                    index = Math.floor(globalCounter/40);
                 }
                 
                 // for (let index = 0; index < dataIndia.length; index++) {
@@ -19144,6 +19182,7 @@
                     $('.stateName').html(element[0]);
                     $('.total').html(element[1]);
                     $('.bjp').html(element[2]);
+                    $('.fill').css({'width':element[4]+'%'})
                     $('#'+element[3][0]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
                     if(element[0]=='Jammu & Kashmir'){
                         $('#'+element[3][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
