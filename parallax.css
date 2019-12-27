@@ -1,0 +1,101 @@
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Thin.ttf);
+    font-weight: 100;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Bold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: monty;
+    src: url(./Montserrat/Montserrat-Black.ttf);
+    font-weight: 900;
+}
+html{
+    height: 100vh;
+    overflow: hidden;
+}
+body{
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: monty;
+    font-weight: normal;
+}
+header{
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 30vh 0 5vh;
+    transform-style: inherit;
+    width: 100vw;
+}
+
+header h1{
+    margin-top: -100px;
+    font-size: 5em;
+}
+
+header, header:before{
+    background: 50% 50%;
+}
+
+header::before{
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    background-image: url(./politics/Feb26.jpg);
+    background-size: cover;
+    transform-origin: center center 0;
+    transform: translateZ(-1px) scale(2);
+    z-index: -1;
+    min-height: 100vh;
+}
+
+header *{
+    font-weight: normal;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin: 0;
+    padding: 1em 0;
+}
