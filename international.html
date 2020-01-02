@@ -8,6 +8,11 @@
     <style>
         @font-face {
             font-family: monty;
+            src: url(./Josefin/JosefinSans-Thin.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
             src: url(./Josefin/JosefinSans-Light.ttf);
             font-weight: 300;
         }
@@ -39,10 +44,11 @@
             margin: 0;
         }
         .title h3{
-            font-size: 35px;
-            font-weight: 300;
+            font-size: 62px;
+            font-weight: 200;
             line-height: 1;
             margin: 0;
+            text-transform: uppercase;
         }
         .mainBody{
             border: 1px solid #999;
@@ -116,13 +122,22 @@
             letter-spacing: 0px;
             transition: all 1s ease 0.3s;
         }
+        .logo{
+            width: 280px;
+            margin-bottom: 15px;
+            transform: translateX(-9px);
+        }
     </style>
 </head>
 <body>
     <div class="mainBody">
         <div class="title">
-            <h1>Flashback 2019</h1>
-            <h3>The year in politics</h3>
+            <object type="image/svg+xml" data="./FlashBack2019.svg" class="logo">
+                Flashback 2019 Logo <!-- fallback image in CSS -->
+                <h1>Flashback 2019</h1>
+              </object>
+              <h3>news & politics</h3>
+            
         </div>
         <div class="graphicsContainer">
             <div id="year">
@@ -232,79 +247,103 @@ J&K bifurcated              ==> Oct31
             var activeIndex = {
                 'JAN':{
                     'start':1,'end':31,'block':-2,'counter':0,
-                    '2':{
-                        'date':'02',
-                        'head':"Bank merger",
-                        'text':['Govt approves merger of Dena Bank and Vijaya Bank','with Bank of Baroda'],
+                    '1':{
+                        'date':'01',
+                        'head':"Qatar quits OPEC",
+                        'text':[""],
                         'img':"Jan2" 
                     },
-                    '27':{
-                        'date':'27',
-                        'head':"Train18 gets a name",
-                        'text':["Indigenously manufactured Train18 named","'Vande Bharat Express'"],
+                    '3':{
+                        'date':'03',
+                        'head':"Chinese probe Chang'e 4",
+                        'text':["Becomes the first human-made object to land","on the far side of the Moon"],
+                        'img':"Jan2" 
+                    },
+                    '23':{
+                        'date':'23',
+                        'head':"Venezuelan presidential crisis",
+                        'text':["Protests in favor of disputed interim President Juan;","President Maduro severs diplomatic ties with USA."],
                         'img':"Jan27" 
                     }
                 },
                 'FEB':{
                     'start':1,'end':28,'block':-5,'counter':0,
-                    '14':{
-                        'date':'14',
-                        'head':"Pulwama attack",
-                        'text':["A convoy of vehicles carrying security personnel","attacked by a suicide bomber"],
+                    '7':{
+                        'date':'07',
+                        'head':"Haitian protests",
+                        'text':["Protests demanding the resignation of Haitian","President begin in several cities across the country"],
                         'img':"Feb14" 
                     },
-                    '26':{
-                        'date':'26',
-                        'head':"Balakot strike",
-                        'text':['The IAF crossed the LoC to strike a','terrorist training camp near Balakot'],
+                    '21':{
+                        'date':'21',
+                        'head':"Beresheet probe",
+                        'text':["Beresheet probe, the world's first privately","financed mission to the Moon launched"],
                         'img':"Feb26" 
                     }
                 },
                 'MAR':{
                     'start':1,'end':31,'block':-5,'counter':0,
-                    '27':{
-                        'date':'27',
-                        'head':"Mission Shakti",
-                        'text':['India becomes fourth nation in the world ','to successfully launch an anti-satellite missile'],
+                    '10':{
+                        'date':'10',
+                        'head':"Boeing 737 MAX aircraft",
+                        'text':["A Boeing 737 MAX 8 crashes shortly after takeoff killing ","all 157 people on board; Boeing 737 MAX aircraft grounded worldwide"],
                         'img':"Mar27" 
+                    },
+                    '15':{
+                        'date':'15',
+                        'head':"Christchurch mass shooting",
+                        'text':["51 people killed in terrorist attacks on two mosques","in Christchurch, New Zealand"],
+                        'img':"Apr11" 
                     }
                 },
                 'APR':{
                     'start':1,'end':30,'block':-1,'counter':0,
                     '11':{
                         'date':'11',
-                        'head':"Indian General Elections",
-                        'text':['Voting begins; elections continue till May 19'],
+                        'head':"Julian Assange arrested",
+                        'text':["WikiLeaks co-founder Julian Assange arrested after","seven years in Ecuador's embassy in London"],
+                        'img':"Apr11" 
+                    },
+                    '21':{
+                        'date':'21',
+                        'head':"Sri Lanka Bomb attacks",
+                        'text':["A series of bomb attacks at eight","locations in Sri Lanka on Easter Sunday;","259 people dead, over 500 injured"],
+                        'img':"Apr11" 
+                    },
+                    '26':{
+                        'date':'26',
+                        'head':"Avengers: Endgame",
+                        'text':["The MCU film becomes the highest","grossing movie of all time"],
                         'img':"Apr11" 
                     }
                 },
                 'MAY':{
                     'start':1,'end':31,'block':-3,'counter':0,
-                    '23':{
-                        'date':'23',
-                        'head':"Result Day",
-                        'text':['Counting and results for Lok Sabha','elections 2019'],
+                    '10':{
+                        'date':'10',
+                        'head':"US-China trade war",
+                        'text':["United States' 25 percent tariff hike on Chinese","imports takes effect; tensions escalate between the two nations"],
+                        'img':"May3" 
+                    },
+                    '17':{
+                        'date':'17',
+                        'head':"Same-sex marriage in Taiwan",
+                        'text':["Taiwan's parliament becomes the first in Asia","to legalise same-sex marriage"],
                         'img':"May23" 
                     },
-                    '3':{
-                        'date':'03',
-                        'head':"Cyclone Fani hits Odisha",
-                        'text':['The strongest tropical cyclone ','to hit the state since 1999'],
-                        'img':"May3" 
-                    }
                 },
                 'JUN':{
                     'start':1,'end':30,'block':-6,'counter':0,
-                    '1':{
-                        'date':'01',
-                        'head':"Bihar Encephalitis outbreak",
-                        'text':['First case reported; 100 deaths reported','in under twenty days'],
+                    '9':{
+                        'date':'09',
+                        'head':"Hong Kong’s largest protest",
+                        'text':["Over 1 million people in Hong Kong protest against","proposed legislation regarding extradition to China"],
                         'img':"Jun1" 
                     },
-                    '10':{
-                        'date':'10',
-                        'head':"Kathua rape case verdict",
-                        'text':['Six out of seven convicted for rape & murder','of 8-year-old girl'],
+                    '11':{
+                        'date':'11',
+                        'head':"Homosexuality",
+                        'text':["Botswana joins the list of countries who have have","decriminalized homosexuality"],
                         'img':"Jun10" 
                     }
                 },
@@ -312,14 +351,14 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':31,'block':-1,'counter':0,
                     '22':{
                         'date':'22',
-                        'head':"Chandrayaan-2 launched",
-                        'text':['Launched from the second launch pad','at the Satish Dhawan Space Centre '],
+                        'head':"",
+                        'text':[""],
                         'img':"Jul22" 
                     },
                     '31':{
                         'date':'31',
-                        'head':"Triple Talaq banned",
-                        'text':['Parliament declares Triple Talaq unconstitutional','and makes it a punishable act'],
+                        'head':"",
+                        'text':[""],
                         'img':"Jul31" 
                     }
                 },
@@ -327,14 +366,14 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':31,'block':-4,'counter':0,
                     '5':{
                         'date':'05',
-                        'head':"Art 370 revoked",
-                        'text':['J&K loses special status; ','bifurcated into two UTs'],
+                        'head':"",
+                        'text':[""],
                         'img':"Aug5" 
                     },
                     '22':{
                         'date':'22',
-                        'head':"P Chidambaram arrested",
-                        'text':['Former FM P Chidambaram arrested by CBI','in the INX media case'],
+                        'head':"",
+                        'text':[""],
                         'img':"Aug22" 
                     }
                 },
@@ -342,8 +381,8 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':30,'block':0,'counter':0,
                     '6':{
                         'date':'06',
-                        'head':"Chandrayaan-2 ",
-                        'text':['Vikram lander crash lands;','mission partially successful'],
+                        'head':"",
+                        'text':[""],
                         'img':"Sep6" 
                     }
                 },
@@ -351,20 +390,20 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':31,'block':-2,'counter':0,
                     '9':{
                         'date':'09',
-                        'head':"India gets first Rafale",
-                        'text':['Defence Minister Rajnath Singh received ','the first of the 36 Rafale fighter jets in Bordeaux, France'],
+                        'head':"",
+                        'text':[""],
                         'img':"Oct9" 
                     },
                     '14':{
                         'date':'14',
-                        'head':"Nobel Couple",
-                        'text':['Indian-American Abhijit Banerjee, along with Esther Duflo and Michael Kremer,','won the 2019 economics Nobel'],
+                        'head':"",
+                        'text':[""],
                         'img':"Oct14" 
                     },
                     '31':{
                         'date':'31',
-                        'head':"J&K bifurcated",
-                        'text':['Reorganisation of J&K into UTs Jammu and Kashmir,','and Ladakh comes into effect'],
+                        'head':"",
+                        'text':[""],
                         'img':"Oct31" 
                     }
                 },
@@ -372,26 +411,26 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':30,'block':-5,'counter':0,
                     '9':{
                         'date':'09',
-                        'head':"Ayodhya Verdict",
-                        'text':["SC's five-judge bench pronounces verdict on","the Ram Temple dispute"],
+                        'head':"",
+                        'text':[""],
                         'img':"Nov9" 
                     },
                     '23':{
                         'date':'23',
-                        'head':"The new Maha CM",
-                        'text':["Amid Maharashtra political turmoil,","Devendra Fadnavis sworn-in as CM "],
+                        'head':"",
+                        'text':[""],
                         'img':"Nov23" 
                     },
                     '26':{
                         'date':'26',
-                        'head':"Fadnavis resigns",
-                        'text':["Joins the list of chief ministers','who had the shortest tenures"],
+                        'head':"",
+                        'text':[""],
                         'img':"Nov26" 
                     },
                     '27':{
                         'date':'27',
-                        'head':"Hyderabad Gangrape",
-                        'text':["A 26-year-old vet is abducted,","raped and killed"],
+                        'head':"",
+                        'text':[""],
                         'img':"Nov27" 
                     }
                 },
@@ -399,20 +438,20 @@ J&K bifurcated              ==> Oct31
                     'start':1,'end':31,'block':0,'counter':0,
                     '6':{
                         'date':'06',
-                        'head':"Hyderabad encounter",
-                        'text':['Four accused in the rape and murder of a vet ','killed in police encounter'],
+                        'head':"",
+                        'text':[""],
                         'img':"Dec6" 
                     },
                     '11':{
                         'date':'11',
-                        'head':"Citizenship Amendment Bill",
-                        'text':['CAB passed by the Parliament;','protests break out in various parts of India'],
+                        'head':"",
+                        'text':[""],
                         'img':"Dec11" 
                     },
                     '18':{
                         'date':'18',
-                        'head':"Cyrus Mistry case",
-                        'text':['NCLAT restores Mistry as Executive Chairman of Tata Sons'],
+                        'head':"",
+                        'text':[""],
                         'img':"Dec18" 
                     },
                 },
@@ -591,13 +630,13 @@ J&K bifurcated              ==> Oct31
 
 
                                 ctx.save();
-                                ctx.globalAlpha = (((globalCounter/10)-1)%1)*2;
+                                ctx.globalAlpha = (((globalCounter/10)-1)%1)*8;
 
                                 
 
 
                                 ctx.beginPath(); 
-                                ctx.font = '700 24px monty';
+                                ctx.font = '700 32px monty';
                                 ctx.fillStyle="#FFF";
                                 var text = activeIndex[this.month][Math.floor(globalCounter/10)-1];
                                 ctx.fillText(text.head, 25, textAdjust)
@@ -618,9 +657,9 @@ J&K bifurcated              ==> Oct31
                                     // const element = text.text[0].substr(i*60,60);
                                     const element = text.text[i]
                                     ctx.beginPath(); 
-                                    ctx.font = '300 20px monty';
+                                    ctx.font = '300 25px monty';
                                     ctx.fillStyle="#EEE";
-                                    ctx.fillText(element, 25, textAdjust+25+(i*25))
+                                    ctx.fillText(element, 25, textAdjust+35+(i*25))
                                     ctx.closePath();
                                     
                                 }
@@ -630,7 +669,7 @@ J&K bifurcated              ==> Oct31
                             }
                             
                         }
-                        globalCounter = globalCounter +0.05;
+                        globalCounter = globalCounter +0.03;
                     }else if((Math.floor(globalCounter/10)-1)<=activeIndex[this.month]['end']){ 
                         var tindex = Math.floor(globalCounter/10) - 1 - activeIndex[month]['block'];
                         var tx = tindex%7;

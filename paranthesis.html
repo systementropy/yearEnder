@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="print"></div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            function printLine (label){
+                console.log(label)
+            }
+            function printParanthesis(n){
+                if(n == 1){
+                    // $('.print').append('<p>()</p>')
+                    return '()';
+                    
+                }else{
+                    var text = printParanthesis(n-1);
+                    
+                    if((n)%2 == 0){
+                        return printParanthesis(n-1)+'()','('+printParanthesis(n-1)+')';
+                        // console.log(text+'()');    
+                        // console.log('('+text+')');
+                    }else{
+                        // return printParanthesis(n-1);
+                        return (printParanthesis(n-1)+'()'),
+                        ('('+printParanthesis(n-1)+')'),
+                        ('()'+printParanthesis(n-1));
+                    }
+                    // return text
+                }
+            }
+            console.log((printParanthesis(4)))
+        });
+    </script>
+</body>
+</html>
