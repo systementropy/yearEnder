@@ -234,9 +234,31 @@
             transform-origin: center;
             /*! height: 100px; */
         }
+        .footer i{
+            display: block;
+            font-weight: 300;
+            line-height: 1;
+            font-size: 14px;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+        .svgContainer {
+            padding-top: 40px;
+        }
     </style>
 </head>
-<body>
+<body> 
+    <span class="texty">TEXTY</span>
     <div class="mainBody">
         <div class="title">
             <h1>BJP IN STATE ASSEMBLIES</h1>
@@ -19104,11 +19126,15 @@
             <div class="footer">
             
                 <div class="bottom">
-                    <span>Source: BJP website, news reports </span>
+                    <span>
+                        Source: BJP website, news reports
+                        <i>As of Jan 10, 2020</i>
+                    </span>
                     <span><img src="./logo.png" alt=""></span>
                 </div>
             </div>
         </div>
+        <!-- <p>lorem500</p> -->
     </div>
     <script src="./jquery.js"></script>
     <script>
@@ -19124,7 +19150,7 @@
                 ["Gujarat",182,103,["Gujrat"]],
                 ["Haryana",90,40,["Haryana"]],
                 ["Himachal Pradesh",68,44,["Himachal"]],
-                ["Jammu & Kashmir",87,0,["J_K","Laddakh"]],
+                // ["Jammu & Kashmir",87,0,["J_K","Laddakh"]],
                 ["Jharkhand",81,25,["Jharkhand"]],
                 ["Karnataka",224,117,["Karnataka"]],
                 ["Kerala",140,1,["Kerala"]],
@@ -19147,6 +19173,10 @@
                 ["Delhi",70,4,["Delhi"]],
                 ["Puducherry",30,0,[""]]
             ];
+            /*
+                [255,255,255],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],
+            */
+            let colorArray = [[220,220,220],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
             var max = [242,133,0];
             var min = [255,255,255];
             var globalCounter = 0;
@@ -19154,13 +19184,23 @@
                 let element = dataIndia[i];
                 let perc = ((element[2]*100)/element[1]);
                 
-                let red = ((perc*max[0])+((100-perc)*(min[0])))/(105);
-                let green = ((perc*max[1])+((100-perc)*(min[1])))/(105);
-                let blue = ((perc*max[2])+((100-perc)*(min[2])))/(105);
-                let color = [red,green,blue]
+                // let red = ((perc*max[0])+((100-perc)*(min[0])))/(105);
+                // let green = ((perc*max[1])+((100-perc)*(min[1])))/(105);
+                // let blue = ((perc*max[2])+((100-perc)*(min[2])))/(105);
+                let colorIndex;
+                if(perc==0){
+                    colorIndex = 0;
+                }else{
+                    colorIndex = Math.floor(perc/10)+1
+                }
+                console.log(element[0]+'==>'+colorArray[colorIndex]);
+                
+                let color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
 
                 element.push(perc);
                 element.push(color);
+                element.push(colorIndex);
+                
                 dataIndia[i]=element;
             }
             dataIndia.sort(function(a,b){
@@ -19184,15 +19224,15 @@
                     $('.bjp').html(element[2]);
                     $('.fill').css({'width':element[4]+'%'})
                     $('#'+element[3][0]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-                    if(element[0]=='Jammu & Kashmir'){
-                        $('#'+element[3][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-                    }
+                    // if(element[0]=='Jammu & Kashmir'){
+                    //     $('#'+element[3][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
+                    // }
                     
                 // }
             }
             updateColor(); 
             function animate(){
-                if(globalCounter<3100){
+                if(globalCounter<3150){
                     updateColor();
                     requestAnimationFrame(animate)
                 }
