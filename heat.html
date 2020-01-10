@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Indoor air pollution</h1>
+            <h3>Deaths in the house</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year">
+                <!-- <strong>3.8 million</strong> people die prematurely from illness attributable to the household air pollution. -->
+            </div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <span>Source: WHO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 600;
+            var canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Bar(arrayIndex, percentageValue, color, displacement, text){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.draw = function(){
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.displacement*canWid,0);
+                    ctx.rect(this.displacement*canWid,0,this.width,canHgt);
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                }
+                this.update = function(){
+                    if(this.width<this.maxWidth){
+                        this.width += this.dWidth;
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            var slideIndex;
+            var counter = 0;
+            var barArray = []
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+                barArray = [];
+                var colorArray = ['#92C24C','#C9224C','#C2924C','#C24C92','#C2492C'];
+                var total = 0;
+                var pieData = [
+                    ['ischaemic heart disease',27,'Coronary Disease'],
+                    ['pneumonia',27,'Pneumonia'],
+                    ['chronic obstructive pulmonary disease',20,'COPD'],
+                    ['stroke',18,'Stroke'],
+                    ['lung cancer',8,'Lung Cancer'],
+                ]
+                for (let i = 0; i < pieData.length; i++) {
+                    const element = pieData[i];
+                    barArray.push(new Bar(
+                        i, element[1], colorArray[i], 
+                        (total/100),
+                        element[2]
+                    ));
+                    pieData[i].push((element[1]*100)/(100-total));
+                    total = total + element[1]
+                }
+                console.log(pieData)
+                animate();
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < barArray.length; i++) {
+                    barArray[i].update();
+                    
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>
