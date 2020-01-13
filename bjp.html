@@ -162,7 +162,11 @@
             font-weight: 500;
             width: 400px;
             text-align: center;
-            
+            opacity: 0;
+            transition: all 250ms ease-in;
+        }
+        .legendStates.active{
+            opacity: 1;
         }
         .stateName{
             font-weight: 200;
@@ -223,11 +227,22 @@
             position: absolute;
             bottom: -20px;
             left: 0;
-            width: 50%;
+            width: 0%;
             height: 10px;
             background: #F28500;
             transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
-            
+            background: linear-gradient(to right, 
+                    rgb(240,240,240)    0px,
+                    rgb(255,243,228)    calc(0 * 40px),
+                    rgb(255,231,203)    calc(1 * 40px),
+                    rgb(255,214,164)    calc(2 * 40px),
+                    rgb(255,196,124)    calc(3 * 40px),
+                    rgb(255,178,85)     calc(4 * 40px),
+                    rgb(255,161,46)     calc(5 * 40px),
+                    rgb(255,143,7)      calc(6 * 40px),
+                    rgb(203,111,0)      calc(7 * 40px),
+                    rgb(183,101,0)      calc(8 * 40px)
+            );
             box-shadow: -1px 8px 7px 0px #8C6331;
             transition: all 0.3s ease;
             z-index: 1;
@@ -19176,7 +19191,7 @@
             /*
                 [255,255,255],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],
             */
-            let colorArray = [[220,220,220],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
+            let colorArray = [[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
             var max = [242,133,0];
             var min = [255,255,255];
             var globalCounter = 0;
@@ -19208,37 +19223,45 @@
             })
             console.log(dataIndia);
             var alpha; var index;
-            function updateColor(){
-                globalCounter += 1;
-                if(Math.floor(globalCounter/40) == index){
-                    alpha += 0.1;
-                }else{
-                    alpha = 0;
-                    index = Math.floor(globalCounter/40);
-                }
+            function updateColor(label){
                 
-                // for (let index = 0; index < dataIndia.length; index++) {
+                if(label == "init"){
+                    animate();
+                }else{
+                    globalCounter += 1;
+                    if(Math.floor(globalCounter/40) == index){
+                        alpha += 0.1;
+                    }else{
+                        alpha = 0;
+                        index = Math.floor(globalCounter/40);
+                    }
+                    
                     const element = dataIndia[index];
                     $('.stateName').html(element[0]);
                     $('.total').html(element[1]);
                     $('.bjp').html(element[2]);
                     $('.fill').css({'width':element[4]+'%'})
                     $('#'+element[3][0]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-                    // if(element[0]=='Jammu & Kashmir'){
-                    //     $('#'+element[3][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-                    // }
                     
-                // }
+                }
             }
-            updateColor(); 
+            setTimeout(function(){
+                updateColor("init");
+            },2000)
+            
             function animate(){
+                if(globalCounter == 1){
+                    $('.legendStates').addClass('active')
+                }
                 if(globalCounter<3150){
                     updateColor();
                     requestAnimationFrame(animate)
+                }else{
+                    updateColor("final");
                 }
                 
             }
-            animate();
+            // animate();
         });
     </script>
 </body>
