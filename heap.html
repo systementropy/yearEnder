@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let arr = [14,16,10,8,7,9,3,2,4,1];
+
+		function heapify(array,length,index){
+			// console.log(array);
+			
+			let largest = index;
+			let left = 2*index + 1;
+			let right = 2*index + 2;
+			if(array[left]>array[largest] && left<length){
+				largest = left;
+			}
+			if(array[right]>array[largest] && right<length){
+				largest = right;
+			}
+			if(largest != index){
+				let temp = array[largest];
+				array[largest] = array[index];
+				array[index] = temp;
+				heapify(array, length, largest);
+			}
+			return array;
+		}
+		function heapSort(){
+			let length = arr.length;
+			for (let i = 0; i < Math.floor(arr.length/2); i++) {
+				heapify(arr, length, i)
+			}
+			for (let j = 0; j < length; j++) {
+				heapify(arr, length - j, 0);
+				let temp = arr[0];
+				arr[0] = arr[length - j-1];
+				arr[length - j-1] = temp;
+				console.log(arr);
+			}
+		}
+		heapSort();
+		console.log(arr);
+		
+	</script>
+</body>
+</html>
