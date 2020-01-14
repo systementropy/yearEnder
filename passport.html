@@ -166,6 +166,7 @@
             text-align: center;
             opacity: 1;
             transition : all 250ms ease-in;
+            z-index: 1;
         }
         .legendStates.active{
             opacity: 1;
@@ -281,12 +282,12 @@
         }
 		#regions_div {
 			position: absolute;
-			height: 110%;
+			height: 100%;
 			width: auto;
 			left: 50%;
 			top: 50%;
-			transform: translate(-60%,-60%);
-			z-index: -1;
+			transform: translate(-63%,-60%);
+			z-index: 0;
 		}
 		.legend{
 			position: absolute;
@@ -463,13 +464,15 @@
 					};
 					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 					chart.draw(data, options);
-					init(1);
+                    setTimeout(function(){
+					    init(1);
+                    },1000);
 				}else if(label<dataComplete.length+1){
 					setTimeout(function(){
 						// console.log(dataComplete[label-1]);
 						drawRegionsMap(label-1);
 						init(label+1);
-					},1000)
+					},400)
 				}
 			}
 		});
