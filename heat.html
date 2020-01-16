@@ -106,12 +106,16 @@
         }
         #labels{
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
+            left: 18px;
             display: block;
+            opacity: 1;
+            margin: 2px auto;
         }
         #canvas{
             display: block;
             margin: auto;
+            opacity: 1;
         }
     </style>
 </head>
@@ -143,22 +147,22 @@
     <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
-            var canvas = document.getElementById("canvas");
-            var canHgt = 600;
-            var canWid = 600;
+            let canvas = document.getElementById("canvas");
+            let canHgt = 600;
+            let canWid = 600;
             canvas.style.height = canHgt+'px';
             canvas.style.width = canWid+'px';
             canvas.height = canHgt*2;
             canvas.width = canWid*2;
-            var ctx = canvas.getContext("2d");
+            let ctx = canvas.getContext("2d");
             ctx.scale(2,2);
 
-            var canvas2 = document.getElementById("labels");
+            let canvas2 = document.getElementById("labels");
             canvas2.style.height = canHgt+'px';
             canvas2.style.width = canWid+'px';
             canvas2.height = canHgt*2;
             canvas2.width = canWid*2;
-            var ctx2 = canvas2.getContext("2d");
+            let ctx2 = canvas2.getContext("2d");
             ctx2.scale(2,2);
 
             function Bar(arrayIndex, percentageValue, color, displacement, text){
@@ -188,21 +192,76 @@
                 }
                 this.update();
             }
-            var slideIndex;
-            var counter = 0;
-            var barArray = []
+
+            function Bar2(arrayIndex, percentageValue, color, displacement, text,x,y,width,height,direction){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.height = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.x = x*canWid/100;
+                this.y = y*canHgt/100;
+                this.widthM = width*canWid/100;
+                this.heightM = height*canHgt/100;
+                this.direction = direction;
+                if(this.direction){
+                    this.height = this.heightM;
+                    this.dWidth = (this.widthM*canWid)/(100*100*4);
+                }else{
+                    this.width = this.widthM;
+                    this.dHeight = (this.heightM*canHgt)/(100*100*4);
+                }
+                // this.dWidth = (this.widthM*canWid)/(100*100*10);
+                // this.maxWidth = (this.percentageValue/100)*canWid;
+                // console.log(this);
+                
+                this.draw = function(){
+                    
+                    ctx2.beginPath();
+                    ctx2.moveTo(this.x,this.y);
+                    ctx2.rect(this.x,this.y,this.width,this.height);
+                    ctx2.fill();
+                    ctx2.closePath();
+                    
+                }
+                this.update = function(){
+                    if(this.direction && this.width<this.widthM){
+                        this.width += this.dWidth;
+                    }else if(!this.direction && this.height<this.heightM){
+                        this.height += this.dHeight;
+                    }
+                    ctx2.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            let slideIndex;
+            let counter = 0;
+            let barArray = [];
+            let bar2Array = [];
+            let verticalDisplacement = 0;
+            let horizontalDisplacement = 0;
             function init(index) {
                 slideIndex = index;
                 counter = 1;
                 barArray = [];
-                var colorArray = ['#92C24C','#C9224C','#C2924C','#C24C92','#C2492C'];
-                var total = 0;
-                var pieData = [
+                let colorArray = ['#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333"];
+                let total = 0;
+                let areaLeft = 100;
+                let hLeft = 100;
+                let vLeft = 100;
+                let pieData = [
                     ['ischaemic heart disease',27,'Coronary Disease'],
-                    ['pneumonia',27,'Pneumonia'],
-                    ['chronic obstructive pulmonary disease',20,'COPD'],
-                    ['stroke',18,'Stroke'],
-                    ['lung cancer',8,'Lung Cancer'],
+                    ['pneumonia',25,'Pneumonia'],
+                    ['chronic obstructive pulmonary disease',22,'COPD'],
+                    ['stroke',11,'Stroke'],
+                    ['lol',10,'lol'],
+                    ['lung cancer',4,'Lung Cancer'],
+                    ['lung cancer',1,'Lung Cancer'],
                 ]
                 for (let i = 0; i < pieData.length; i++) {
                     const element = pieData[i];
@@ -211,10 +270,48 @@
                         (total/100),
                         element[2]
                     ));
-                    pieData[i].push((element[1]*100)/(100-total));
+                    let areaProportional
+                    let x
+                    let y
+                    let width
+                    let height
+                    if(i%2==0){
+                        
+                        console.log("move horizontally");
+                        areaProportional = (element[1]*100)/(100-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        height = vLeft;
+                        width = (element[1]*100)/vLeft;
+                        
+                        console.log("x","y","width","height","area");
+                        console.log(x,y,width,height,Math.floor(width*height/100),element[1]);
+                        
+                        hLeft -= width
+                        
+                    }else{
+                        console.log("move vertically");
+                        areaProportional = (element[1]*100)/(100-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        width = hLeft;
+                        height = (element[1]*100)/hLeft;
+                        console.log("x","y","width","height","area");
+                        console.log(x,y,width,height,Math.floor(width*height/100),element[1]);
+
+                        vLeft -= height
+                    }
+                    bar2Array.push(new Bar2(
+                        i, element[1], colorArray[i], 
+                        (total/100),
+                        element[2],
+                        x,y,width,height,
+                        i%2
+                    ));
                     total = total + element[1]
                 }
-                console.log(pieData)
+                
+                // console.log(pieData)
                 animate();
             }
             setTimeout(function () {
@@ -223,9 +320,9 @@
             function animate() {
                 ctx.clearRect(0,0,canWid, canHgt);
                 ctx2.clearRect(0,0,canWid, canHgt);
-                for (let i = 0; i < barArray.length; i++) {
+                for (let i = 0; i < bar2Array.length; i++) {
                     barArray[i].update();
-                    
+                    bar2Array[i].update();
                 }
                 requestAnimationFrame(animate);
             }
