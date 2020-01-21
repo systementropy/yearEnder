@@ -215,9 +215,6 @@
                     this.width = this.widthM;
                     this.dHeight = (this.heightM*canHgt)/(100*100*4);
                 }
-                // this.dWidth = (this.widthM*canWid)/(100*100*10);
-                // this.maxWidth = (this.percentageValue/100)*canWid;
-                // console.log(this);
                 
                 this.draw = function(){
                     
@@ -226,6 +223,7 @@
                     ctx2.rect(this.x,this.y,this.width,this.height);
                     ctx2.fill();
                     ctx2.closePath();
+                    
                     
                 }
                 this.update = function(){
@@ -251,6 +249,7 @@
                 barArray = [];
                 let colorArray = ['#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333"];
                 let total = 0;
+                let totalMax = 100;
                 let areaLeft = 100;
                 let hLeft = 100;
                 let vLeft = 100;
@@ -267,7 +266,7 @@
                     const element = pieData[i];
                     barArray.push(new Bar(
                         i, element[1], colorArray[i], 
-                        (total/100),
+                        (total/totalMax),
                         element[2]
                     ));
                     let areaProportional
@@ -276,29 +275,18 @@
                     let width
                     let height
                     if(i%2==0){
-                        
-                        console.log("move horizontally");
-                        areaProportional = (element[1]*100)/(100-total);
+                        areaProportional = (element[1]*100)/(totalMax-total);
                         x = 100-hLeft;
                         y = 100-vLeft;
                         height = vLeft;
                         width = (element[1]*100)/vLeft;
-                        
-                        console.log("x","y","width","height","area");
-                        console.log(x,y,width,height,Math.floor(width*height/100),element[1]);
-                        
                         hLeft -= width
-                        
                     }else{
-                        console.log("move vertically");
-                        areaProportional = (element[1]*100)/(100-total);
+                        areaProportional = (element[1]*100)/(totalMax-total);
                         x = 100-hLeft;
                         y = 100-vLeft;
                         width = hLeft;
                         height = (element[1]*100)/hLeft;
-                        console.log("x","y","width","height","area");
-                        console.log(x,y,width,height,Math.floor(width*height/100),element[1]);
-
                         vLeft -= height
                     }
                     bar2Array.push(new Bar2(
@@ -311,7 +299,6 @@
                     total = total + element[1]
                 }
                 
-                // console.log(pieData)
                 animate();
             }
             setTimeout(function () {
