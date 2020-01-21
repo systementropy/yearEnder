@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="xyz"></div>
+	<script>
+		let time = new Date().getTime();
+		var posts = [
+			{title: 'Lorem, ipsum dolor.',text:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit magni cum perferendis facere, incidunt laudantium cupiditate earum qui modi unde laboriosam, eius, adipisci similique numquam? Ipsam necessitatibus possimus maiores labore.' },
+			{title: 'Lorem ipsum dolor sit amet',text:'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit magni cum perferendis facere, incidunt laudantium cupiditate earum qui modi unde laboriosam, eius, adipisci similique numquam? Ipsam necessitatibus possimus maiores labore.' }
+		]
+		function getPosts (){
+			setTimeout(()=>{
+				let outPut = '';
+				for (const post of posts) {
+					outPut += `<div>
+						<h1>${post.title}</h1>
+						<p>${post.text}</p>
+					</div>`
+				}
+				let elem = document.getElementById('xyz')
+				elem.innerHTML = outPut;
+			}, Math.random()*2000)
+		}
+		// getPosts();
+		// function createPost(reqPost,callback){
+		// 	setTimeout(()=>{
+		// 		posts.push(reqPost);
+		// 		callback();
+		// 	},Math.random()*2000)
+		// }
+		// createPost(
+		// 	{title:'Ipsam necessitatibus possimus',text:'unde laboriosam, eius, adipisci similique numquam?'},
+		// 	getPosts
+		// )
+
+		function createPost(post){
+			return new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					posts.push(post)
+					let error = false;
+					// var time = new Date().getTime();
+					// if(time%3==0){
+					// 	error = true
+					// }
+					if(!error){
+						resolve();
+					}else{
+						reject('Something went wrong')
+					}
+				},Math.random()*2000)
+			})
+		}
+		// createPost({title:'Ipsam necessitatibus possimus',text:'unde laboriosam, eius, adipisci similique numquam?'})
+		// 	.then(getPosts)
+		// 	.catch(error => console.log(error));
+
+		// const promise1 = Promise.resolve('hello');
+		// const promise2 = Promise.resolve('world');
+		// const promise3 = 10;
+		// const promise4 = new Promise((resolve, reject) => setTimeout(resolve,2000,'gbbbbb'));
+		// const promise5 = fetch('https://jsonplaceholder.typicode.com/posts').then(res=>res.json());
+		// Promise.all([promise1,promise2,promise3,promise4,promise5])
+		// 	.then(values => console.log(values))
+		// 	.catch(error => console.log(error));
+		// Promise.race([promise1,promise2,promise3,promise4,promise5])
+		// 	.then(value => console.log(value))
+		// 	.catch(error => console.log(error));
+
+
+		async function init (){
+			await createPost({title:'Ipsam necessitatibus possimus',text:'unde laboriosam, eius, adipisci similique numquam?'});
+			getPosts();
+		}
+		init();
+
+		async function init2 (){
+			const resp = await fetch('https://jsonplaceholder.typicode.com/posts');
+			const data = await resp.json();
+			console.log(data);
+		}
+		init2();
+	</script>
+</body>
+</html>
