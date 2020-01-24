@@ -78,7 +78,7 @@
         .mainBody{
             border: 1px solid #999;
             height: 100vh;
-            width: 71.5vh;
+            width: 718px;
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
@@ -87,7 +87,7 @@
             width: 636px;
             height: 636px;
             position: relative;
-			
+			margin: 25px 0;
 			overflow: hidden;
         }
 		.slide{
@@ -97,7 +97,8 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			opacity: 0;
+			opacity: 1;
+			transition: all 400ms ease;
 		}
 		/* .slide1{opacity: 1;} */
 		.slide.active{opacity: 1;}
@@ -145,12 +146,50 @@
 		}
 		.legend>div>span{
 			position: absolute;
-			top: -140px;
-			font-size: 100px;
+			top: -160px;
+			box-sizing: border-box;
+			width: 100%;
+			left: 0;
+			height: auto;
+			display: block;
+			padding: 17px 0;
+			height: 135px;
+			background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));
+			transition: opacity 250ms ease-in-out;
+		}
+		.legend.reset>div>span{
+			opacity: 0;
+		}
+		.legend.active>div>span{
+			opacity: 1;
+		}
+		.legend>div>span>main{
+			position: static;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			font-size: 80px;
 			line-height: 1;
-			left: 50%;
-			transform: translateX(-50%);
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
 			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>span>metric{
+			position: static;
+			top: 75px;
+			left: 0;
+			width: 100%;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
 		}
 		.legend>div>h3{
 			line-height: 1;
@@ -173,13 +212,13 @@
 			/* width: 50%; */
 			margin: 1px;
 			box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
-			transition: all 2000ms ease;
+			transition: all 2000ms ease, background 0ms ease;
 		}
 		.then1{
 			transform: scaleY(1);
 			height: 100%;
 			transform-origin: bottom;
-			background-image: linear-gradient(to right bottom, #dc3502,#333),url('./rday/human.jpg');
+			background-image: linear-gradient(to right bottom, #dc3502,#333);
 			/* background-color: #333; */
 			background-blend-mode: multiply;
 			background-size: contain;
@@ -192,13 +231,14 @@
 		.then2{
 			width: 0;
 			background:#555;
-			background-image: linear-gradient(to right bottom, #35dc02,#333),url('./rday/human.jpg');
+			background-image: linear-gradient(to right bottom, #35dc02,#333);
 			/* background-color: #333; */
 			background-blend-mode: multiply;
 			background-size: contain;
 			background-position: center;
 			/* background-attachment: fixed; */
 			background-repeat: no-repeat;
+			align-self: flex-end;
 		}
 		.slide.active>.then1{
 			height: 40%;
@@ -210,15 +250,20 @@
 		.title h3{
 			position: absolute;
 			top: 150px;
-			left: 40%;
-			display: block;
+			left: 50%;
+			transform: translateX(-50%);
 			z-index: 1000;
 			color:#FFF;
+			/* display: inline-block; */
+			width: max-content;
+			
 			transition: all 2000ms ease;
 		}
 		.title.active h3{
 			top:48px;
 			left: 0;
+			width: max-content;
+			transform: translateX(0%);
 			color: #333;
 		}
 		.legend > div.label1{
@@ -241,110 +286,261 @@
 			opacity: 0;
 			transition: all 400ms linear;
 		}
+		.active0 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 0.7),rgba(51, 51, 51, 1)),url(./rday/life.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: multiply;
+			background-size: cover,100px 100px;
+			background-position: center;
+		}
+		.active0 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 0.7),rgba(51, 51, 51, 1)),url(./rday/life.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,100px 100px;
+			background-position: center;
+		}
+		.active1 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 0.7),rgba(51, 51, 51, 1)),url(./rday/eqq.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: color;
+			background-size: cover,150px 75px;
+			background-position: center;
+		}
+		.active1 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 0.7),rgba(51, 51, 51, 1)),url(./rday/eqq.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: soft-light;
+			background-size: cover,150px 75px;
+			background-position: center;
+		}
+		.active2 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 0.5),rgba(51, 51, 51, 0.5)),url(./rday/grain.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,40px 40px;
+			background-position: center;
+		}
+		.active2 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 0.5),rgba(51, 51, 51, 0.5)),url(./rday/grain.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,40px 40px;
+			background-position: center;
+		}
+		
+		.active3 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 0.7),rgba(51, 51, 51, 1)),url(./rday/speaker.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: multiply;
+			background-size: cover,65px 113px;
+			background-position: center;
+		}
+		.active3 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 0.7),rgba(51, 51, 51, 1)),url(./rday/speaker.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,65px 113px;
+			background-position: center;
+		}
+
+		.active4 .then1{
+			background-image: linear-gradient(to right bottom, rgba(2, 220, 166,0.7),rgba(51, 51, 51, 1)),url(./rday/water.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: color;
+			background-size: cover,200px 200px;
+			background-position: center;
+		}
+		.active4 .then2{
+			background-image: linear-gradient(to right bottom, rgba(2, 53, 220,0.7),rgba(51, 51, 51, 1)),url(./rday/water.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,200px 200px;
+			background-position: center;
+		}
+		.active5 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 1),rgba(51, 51, 51, 1)),url(./rday/movie.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: multiply;
+			background-size: cover,100px 100px;
+			background-position: center;
+		}
+		.active5 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 1),rgba(51, 51, 51, 1)),url(./rday/movie.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: soft-light;
+			background-size: cover,100px 100px;
+			background-position: center;
+		}
+		.active6 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 1),rgba(51, 51, 51, 1)),url(./rday/export.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: multiply;
+			background-size: cover,400px 200px;
+			background-position: center;
+		}
+		.active6 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 1),rgba(51, 51, 51, 1)),url(./rday/export.jpg);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: soft-light;
+			background-size: cover,400px 200px;
+			background-position: center;
+		}
+		.active7 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 1),rgba(51, 51, 51, 1)),url(./rday/rail.jpg);
+			background-repeat: no-repeat,no-repeat;
+			background-blend-mode: overlay;
+			background-size: cover,cover;
+			background-position: center;
+		}
+		.active7 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 1),rgba(51, 51, 51, 1)),url(./rday/rail.jpg);
+			background-repeat: no-repeat,no-repeat;
+			background-blend-mode: overlay;
+			background-size: cover,cover;
+			background-position: center;
+		}
+		.active8 .then1{
+			background-image: linear-gradient(to right bottom, rgba(34, 133, 4, 1),rgba(51, 51, 51, 1)),url(./rday/bed.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,400px 200px;
+			background-position: center;
+		}
+		.active8 .then2{
+			background-image: linear-gradient(to right bottom, rgba(220, 53, 2, 1),rgba(51, 51, 51, 1)),url(./rday/bed.png);
+			background-repeat: no-repeat,repeat;
+			background-blend-mode: overlay;
+			background-size: cover,400px 200px;
+			background-position: center;
+		}
+		.title h3 span{
+			font-size: 20px;
+		}
+		.texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
     </style>
 </head>
 <body>
+	<span class="texty">TEXTY</span>
     <div class="mainBody">
         <div class="title">
-            <h1><strong>INDIA</strong> THEN AND NOW</h1>
-            <h3 id="section">Life Expectancy</h3>
+            <h1>INDIA, THEN AND NOW</h1>
+            <h3 id="section"><mainText>Life Expectancy</mainText><span></span></h3>
         </div>
         <div class="graphicsContainer">
-			<!-- <div class="slide slide1">
+			<div class="slide slide1 active0">
 				<div class="then1"><p></p></div>
 				<div class="then2"><p></p></div>
 			</div>
-			<div class="slide slide2">
-				<div class="then1"><p></p></div>
-				<div class="then2"><p></p></div>
-			</div> -->
-			<div class="slide slide1"></div>
-			<div class="slide slide2"></div>
-			<div class="slide slide3"></div>
-			<div class="slide slide4"></div>
-			<div class="slide slide5"></div>
-			<div class="slide slide6"></div>
-			<div class="slide slide7"></div>
-			<div class="slide slide8"></div>
-			<div class="slide slide9"></div>
-			<div class="slide slide10"></div>
         </div>
-		<div class="legend">
+		<div class="legend active0">
 			<div class="label1">
-				<span></span>
+				<span><main>31</main><metric>yrs</metric></span>
 				<h3>tHEN</h3>
 				<p>1950</p>
 			</div>
 			<div class="label2">
-				<span></span>
+				<span><main>69</main><metric>yrs</metric></span>
 				<h3>nOW</h3>
 				<p>2019</p>
 			</div>
 		</div>
         <div class="footer">
             <div class="bottom">
-                <span>Source: WHO</span>
+                <span>Source: <text>NHP 2019, News Reports</text></span>
                 <span><img src="./logo.png" alt=""></span>
             </div>
         </div>
     </div>
+	
     <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
+			const displayData = [
+				[["Life Expectancy",""],['31','yrs'],['69','yrs'],'1950','2019',44.93,100,"NHP 2019, News Reports"],	// active0
+				[["Sex ratio",""],['946',''],['940',''],'1951','2011',100,99.37,"Census"],							// active1
+				[["Foodgrain produced",""],['50.82','mn tonnes'],['283.37','mn tonnes'],'1950','2018',17.93,100,"Agriculture Statistics at a Glance report, news reports"],	// active2
+				[["Women in Parliament",""],['24',''],['78',''],'1952','2020',30.77,100,"Lok Sabha website"],		// active3
+				[["Water Availability",""],['5177','cubic meters'],['1545','cubic meters'],'1951','2014',100,29.84,"Parliament Reply, News Reports"],						// active4
+				[["Films Produced","( *Includes regional films; )"],['241',''],['2446',''],'1950','2019',9.85,100,"Third World Film Making (book), Film Federation of India"], // active5
+				[["Exports",""],['1269','US$ million'],['27400','US$ million'],'1950-51','Dec 2019',4.63,100,"News Reports, Directorate of Economics and Statistics"],		// active6
+				[["Railway Route Length",""],['53,596','km'],['68,442','km'],'1950','2018',78.31,100,"Indian Railways Website"],												// active7
+				[["Hospital beds","( Per 10,000 people )"],['3.2',''],['0.9',''],'1950-51','2016',100,28.125,"News Reports, Directorate of Economics and Statistics"],		// active8
+			];
 			function start(counter){
-				if(counter < 10){
+				// const multiplier = 1000;
+				const multiplier = 1000;
+				if(counter < 8){
 					setTimeout(function(){
-						counter++;
-						setTimeout(()=>{
-							$('.slide'+counter).removeClass('active').addClass('reset');
-							$('.title').removeClass('active').addClass('reset');
-							$('.legend').removeClass('active').addClass('reset');
-							console.log(counter,counter,$('.slide'+counter));	
-						},5000)
-						setTimeout(()=>{
-							console.log(counter,counter,counter);
-						},7000)
-						console.log(counter);
-						if(counter==0){
-							$('.graphicsContainer').addClass('active');
-						}
-						$('.slide'+counter).addClass('active');
+						$('.slide1').addClass('active');
+						$('.then1').css({"height":displayData[counter][5]+'%'})
+						$('.then2').css({"height":displayData[counter][6]+'%'})
 						$('.title').addClass('active');
 						$('.legend').addClass('active');
-						$('.label1').children('span').text('30');
-						$('.label2').children('span').text('69');
+						$('.title>h3>maintext').text(displayData[counter][0][0]);
+						$('.title>h3>span').text(displayData[counter][0][1]);
+						$('.label1').children('span').children('main').text(displayData[counter][1][0]);
+						$('.label1').children('span').children('metric').text(displayData[counter][1][1]);
+						$('.label2').children('span').children('main').text(displayData[counter][2][0]);
+						$('.label2').children('span').children('metric').text(displayData[counter][2][1]);
+						$('.label1').children('p').text(displayData[counter][3]);
+						$('.label2').children('p').text(displayData[counter][4]);
+						if(counter<8){
+							setTimeout(()=>{
+								$('.slide1').removeClass('active').addClass('reset');
+								$('.title').removeClass('active').addClass('reset');
+								$('.legend').removeClass('active').addClass('reset');
+								$('.then1').css({"height":'100%'})
+								$('.then2').css({"height":'100%'})
+							},5*multiplier)
+							setTimeout(()=>{
+								$('.then1').css({"height":'100%'});
+								$('.then2').css({"height":'100%'});
+								$('.slide1').removeClass('reset').addClass('active'+counter).removeClass('active'+(counter-1));
+								$('.legend').removeClass('reset').addClass('active'+counter).removeClass('active'+(counter-1));
+								$('.title').removeClass('reset');
+								$('.legend').removeClass('reset');
+								$('.footer text').text(displayData[counter][7])
+								$('.title>h3>maintext').text(displayData[counter][0][0]);
+								$('.title>h3>span').text(displayData[counter][0][1]);
+								$('.label1').children('span').children('main').text(displayData[counter][1][0]);
+								$('.label1').children('span').children('metric').text(displayData[counter][1][1]);
+								$('.label2').children('span').children('main').text(displayData[counter][2][0]);
+								$('.label2').children('span').children('metric').text(displayData[counter][2][1]);
+								$('.label1').children('p').text(displayData[counter][3]);
+								$('.label2').children('p').text(displayData[counter][4]);
+							},7*multiplier);
+							setTimeout(()=>{
+								$('.slide1').addClass('active');
+								$('.title').addClass('active');
+								$('.legend').addClass('active');
+								$('.then1').css({"height":displayData[counter][5]+'%'})
+								$('.then2').css({"height":displayData[counter][6]+'%'})
+							},8*multiplier)
+							
+							if(counter==0){
+								$('.graphicsContainer').addClass('active');
+							}
+						}
+						
+						console.log(counter,displayData[counter][0]);
+						counter++;
 						start(counter);
-					}, 8000);
+					}, 10*multiplier);
 				}
 			}
 			start(0);
-            // setTimeout(()=>{
-			// 	// $('.graphicsContainer').addClass('active');
-			// 	$('.slide1').addClass('active');
-			// 	$('.title').addClass('active');
-			// 	$('.legend').addClass('active');
-			// 	$('.label1').children('span').text('30');
-			// 	$('.label2').children('span').text('69');
-			// 	setTimeout(()=>{
-			// 		// $('.graphicsContainer').removeClass('active').addClass('reset');
-			// 		$('.slide1').removeClass('active').addClass('reset');
-			// 		$('.title').removeClass('active').addClass('reset');
-			// 		$('.legend').removeClass('active').addClass('reset');
-			// 		$('.label1').children('span').text('');
-			// 		$('.label2').children('span').text('');
-			// 		// $('.secondSlide').addClass('active');
-			// 		$('.title>h3').text('Women in Parliament');
-			// 		setTimeout(()=>{
-			// 			// $('.graphicsContainer').addClass('active');
-			// 			$('.secondSlide').addClass('active');
-						
-			// 			$('.title').addClass('active');
-			// 			$('.legend').addClass('active');
-			// 			$('.label1').children('span').text('30');
-			// 			$('.label2').children('span').text('69');
-			// 		},6000);
-			// 	},5000);
-			// },1000);
         })
     </script>
 </body>
