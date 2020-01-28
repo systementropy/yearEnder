@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+			color: #EEE;
+        }
+        .title{
+            /* border-bottom: 5px solid #000; */
+            padding: 0;
+        }
+        .title h1{
+            font-size: 68px;
+			font-weight: 900;
+			line-height: 50px;
+			margin: 0;
+			margin-bottom: 0px;
+			letter-spacing: 2px;
+			color:
+			#9B1818;
+			margin-bottom: 10px;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 100vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			position: relative;
+			background: #999;
+        }
+        .graphicsContainer{
+            width: 100%;
+			height: 80%;
+			position: relative;
+			overflow: hidden;
+			/* box-shadow: 0px 0px 0px 5px
+			#999 inset,0px 0px 10000px 0px
+			#9968688A; */
+			box-sizing: border-box;
+			border: 5px solid #999;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0 0;
+            color: #555555;
+            text-transform: uppercase;
+        }
+        .calendar p{
+            margin: 0;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .calendar p.weeks{margin-bottom: 0;}
+        p.weeks span{
+            font-size: 16px;
+            flex-grow: 1;
+            padding: 5px 0;
+            outline: 1px solid #DDD;
+            width: 14.2857142857%;
+			text-align: center;
+        }
+		.calendar {
+			position: absolute;
+			width: 320px;
+			top: 155px;
+			right: 45px;
+			background: 
+			rgba(255,255,255,0.5);
+			z-index: 1;
+			overflow: hidden;
+		}
+        p.weeks span:nth-child(1),p.weeks span:nth-child(7){color: #dc3502;}
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 24px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+            z-index: -1;
+            filter: blur(0px);
+            transition: all 0.2s ease;
+        }
+        #labels.active{
+            filter: blur(5px);
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+        .Month{
+            opacity: 0;
+            letter-spacing: 10px;
+            transition: all 0s ease 0s;
+        }
+        .Month.active{
+            opacity: 1;
+            letter-spacing: 0px;
+            transition: all 1s ease 0.3s;
+        }
+        .logo{
+            width: 280px;
+            margin-bottom: 15px;
+            transform: translateX(-9px);
+        }
+        .legendStates {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            font-size: 40px;
+            line-height: 1;
+            padding: 25px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 400px;
+            text-align: center;
+            opacity: 1;
+            transition : all 250ms ease-in;
+            z-index: 1;
+        }
+        .legendStates.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 300;
+            padding: 15px 0;
+			height: 200px;
+			text-align: left;
+			opacity: 0;
+			transition: opacity 100ms ease;
+        }
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 29px;
+		}
+        .totalSeats{
+            font-weight: 300;
+        }
+        .total{
+            font-weight: 500;
+        }
+        .bjpSeats{
+            font-weight: 300;
+        }
+        .bjp{
+            font-weight: 500;
+        }
+        .internal{
+            display: flex;
+            justify-content: space-evenly;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .internal p{
+            font-size: 18px;
+            line-height: 1;
+            margin: 0;
+            font-weight: 200;
+            perspective: 100px;
+        }
+        .bar{
+            width: 2px;
+            background: #333;
+            transform: skewX(-20deg) scale(0.5);
+        }
+        .footer{
+            position: static;
+            top: 80%;
+            width: 100%;
+        }
+        .internal .fillbg{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #F5F5F6;
+            border: 2px solid #333;
+            box-shadow: 0px 0px 1px 1px #2821195E;
+            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .internal .fill{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 0%;
+            height: 10px;
+            background: #F28500;
+            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+            background: linear-gradient(to right, 
+                    rgb(240,240,240)    0px,
+                    rgb(255,243,228)    calc(0 * 40px),
+                    rgb(255,231,203)    calc(1 * 40px),
+                    rgb(255,214,164)    calc(2 * 40px),
+                    rgb(255,196,124)    calc(3 * 40px),
+                    rgb(255,178,85)     calc(4 * 40px),
+                    rgb(255,161,46)     calc(5 * 40px),
+                    rgb(255,143,7)      calc(6 * 40px),
+                    rgb(203,111,0)      calc(7 * 40px),
+                    rgb(183,101,0)      calc(8 * 40px)
+            );
+            box-shadow: -1px 8px 7px 0px #8C6331;
+            transition: all 0.3s ease;
+            z-index: 1;
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .footer i{
+            display: block;
+            font-weight: 300;
+            line-height: 1;
+            font-size: 14px;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+        .svgContainer {
+            padding-top: 40px;
+        }
+		#regions_div,#places_div {
+			position: absolute;
+			height: 110%;
+			width: auto;
+			left: 50%;
+			top: 50%;
+			transform: translate(-55%,-50%);
+			z-index: 0;
+		}
+		.legend{
+			position: absolute;
+			left: 0%;
+			top: 120px;
+			width: 180px;
+			text-align: left;
+		}
+		.legend span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(220,220,220,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legend span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 12px;
+			height: 12px;
+			box-shadow: 0px 0px 0px 3px rgba(220,220,220,0.3);
+		}
+		.legend span:nth-child(1){
+			color: #F5F5F6;
+		}
+		.legend span:nth-child(1)::before{
+			display: none;
+		}
+		.legend span.blue::before{
+			background-color: rgb(182, 173, 44);
+		}.legend span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+		.legend span i{
+			position: absolute;
+			top: 5px;
+			left: 210px;
+			height: 18px;
+			width: 0px;
+			background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3);
+			transition: all 250ms ease;
+		}
+		.legend span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: 0;
+			line-height: 16px;
+		}
+		.legend span.blue i{
+			background:
+			rgb(182, 173, 44);
+		}
+		#regions_div path{
+			stroke-width: 0;
+		}
+		#places_div path {
+			stroke-width: 1;
+			stroke: 
+			#dacfc517;
+		}
+		#year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0 0;
+            color: #555555;
+            text-transform: uppercase;
+        }
+        #year p{
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #year p.weeks{margin-bottom: 0;}
+        #year p span{
+            font-size: 16px;
+            flex-grow: 1;
+            padding: 5px 0;
+            outline: 1px solid #DDD;
+            width: 14.2857142857%;
+        }
+        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+		.calendar p.dates{
+			flex-wrap: wrap;
+			
+		}
+		.eachdate {
+			width: 14.2857142857%;
+			height: 40px;
+			box-shadow: 0px 0px 0px 1px 
+			rgba(0,0,0,0.1);
+			position: relative;
+			background: rgba(0, 0, 0, 0);
+			transition: all 250ms ease;
+		}
+		.eachdate.active{
+			background:#ffb2b2; 
+			/* background: rgba(0, 0, 0, 0.4); */
+		}
+		.eachdate::after{
+			color:
+			#333333;
+			position: absolute;
+			content: attr(date-num);
+			font-size: 12px;
+			left: 0;
+			top: 0;
+			line-height: 40px;
+			width: 100%;
+			height: auto;
+			text-align: center;
+			align-self: center;
+			border-radius: 50%;
+			background:
+			transparent;
+		}
+		svg circle{
+			stroke-width: 0;
+		}
+		.wuhan {
+			position: absolute;
+			z-index: 1;
+			width: 130px;
+			height: 175px;
+			background:
+			#DDD;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 85% 40%, 85% 100%, 70% 40%, 0% 40%);
+			top: 235px;
+			right: 110px;
+			border-radius: 2px;
+			opacity: 0;
+			transition: all 1s ease;
+		}
+		.wuhan.active {
+			opacity: 1;
+		}
+		.wuhan h2{
+			font-size: 20px;
+			text-align: center;
+			font-weight: 300;
+			margin: 0;
+			color:#333;
+			text-transform: uppercase;
+			line-height: 1;
+			margin-top: 7px;
+		}
+		.wuhan h2 span{
+			display: block;
+			font-size: 29px;
+			font-weight: 500;
+			color:rgb(182, 44, 44)
+		}
+    </style>
+</head>
+<body> 
+    <span class="texty">TEXTY</span>
+    <div class="mainBody">
+
+        <div class="title">
+            <h1>HOW FAR HAS THE CORONAVIRUS SPREAD</h1>
+            <!-- <h3>The year in news & politics</h3> -->
+
+        </div>
+		<!-- <div class="calendar">
+			<p class="weeks">
+				<span>Sun</span>
+				<span>Mon</span>
+				<span>Tue</span>
+				<span>Wed</span>
+				<span>Thu</span>
+				<span>Fri</span>
+				<span>Sat</span>
+			</p>
+			<p class="dates">
+				<span class="eachdate date1" date-num="29"></span>
+				<span class="eachdate date1" date-num="30"></span>
+				<span class="eachdate date2" date-num="31"></span>
+				<span class="eachdate date3" date-num="01"></span>
+				<span class="eachdate date4" date-num="02"></span>
+				<span class="eachdate date5" date-num="03"></span>
+				<span class="eachdate date6" date-num="04"></span>
+				<span class="eachdate date7" date-num="05"></span>
+				<span class="eachdate date8" date-num="06"></span>
+				<span class="eachdate date9" date-num="07"></span>
+				<span class="eachdate date10" date-num="08"></span>
+				<span class="eachdate date11" date-num="09"></span>
+				<span class="eachdate date12" date-num="10"></span>
+				<span class="eachdate date13" date-num="11"></span>
+				<span class="eachdate date14" date-num="12"></span>
+				<span class="eachdate date15" date-num="13"></span>
+				<span class="eachdate date16" date-num="14"></span>
+				<span class="eachdate date17" date-num="15"></span>
+				<span class="eachdate date18" date-num="16"></span>
+				<span class="eachdate date19" date-num="17"></span>
+				<span class="eachdate date20" date-num="18"></span>
+				<span class="eachdate date21" date-num="19"></span>
+				<span class="eachdate date22" date-num="20"></span>
+				<span class="eachdate date23" date-num="21"></span>
+				<span class="eachdate date24" date-num="22"></span>
+				<span class="eachdate date25" date-num="23"></span>
+				<span class="eachdate date26" date-num="24"></span>
+				<span class="eachdate date27" date-num="25"></span>
+				<span class="eachdate date28" date-num="26"></span>
+				<span class="eachdate date29" date-num="27"></span>
+				<span class="eachdate date30" date-num="28"></span>
+				<span class="eachdate date31" date-num="29"></span>
+				<span class="eachdate date32" date-num="30"></span>
+				<span class="eachdate date33" date-num="31"></span>
+				<span class="eachdate date34" date-num="01"></span>
+				
+			</p>
+		</div> -->
+        <div class="graphicsContainer">
+			<div class="legendStates">
+                <div class="stateName">
+					<span class="date"></span>
+					<span class="month"></span>,
+					<span class="year"></span>
+				</div>
+				<div class="legend">
+					<span>Fatalities</span>
+					<span class="blue">Mainland China<i data-deaths="0"></i></span>
+					<span class="red">Rest of the World<i data-deaths="0"></i></span>
+				</div>
+			</div>
+			<div id="regions_div"></div>
+			<div id="places_div"></div>
+			<div class="wuhan">
+				<h2>Origin<span>Wuhan</span></h2>
+			</div>
+		</div>
+		<div class="footer">
+            <div class="bottom">
+				<span>
+					Source: Johns Hopkins CSSE
+				</span>
+				<span><img src="./logo.png" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<script src="./jquery.js"></script>
+	<script type="text/javascript" src="./loader.js"></script>
+
+    <script>
+        $(document).ready(function(){
+			google.charts.load('current', {
+				'packages':['geochart'],
+				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
+			});
+			google.charts.setOnLoadCallback(init);
+			const codeMap ={
+				"Afghanistan":"AF","Aland Islands":"AX","Albania":"AL","Algeria":"DZ","American Samoa":"AS","Andorra":"AD","Angola":"AO","Anguilla":"AI","Antarctica":"AQ","Antigua and Barbuda":"AG","Argentina":"AR","Armenia":"AM","Aruba":"AW","Australia":"AU","Austria":"AT","Azerbaijan":"AZ","Bahamas":"BS","Bahrain":"BH","Bangladesh":"BD","Barbados":"BB","Belarus":"BY","Belgium":"BE","Belize":"BZ","Benin":"BJ","Bermuda":"BM","Bhutan":"BT","Bolivia":"BO","Bonaire, Sint Eustatius and Saba":"BQ","Bosnia and Herzegovina":"BA","Botswana":"BW","Bouvet Island":"BV","Brazil":"BR","British Indian Ocean Territory":"IO","Brunei Darussalam":"BN","Bulgaria":"BG","Burkina Faso":"BF","Burundi":"BI","Cabo Verde":"CV","Cambodia":"KH","Cameroon":"CM","Canada":"CA","Cayman Islands":"KY","Central African Republic":"CF","Chad":"TD","Chile":"CL","China":"CN","Christmas Island":"CX","Cocos Islands":"CC","Colombia":"CO","Comoros":"KM","Congo":"CG","Congo, Democratic Republic of the":"CD","Cook Islands":"CK","Costa Rica":"CR","Côte d'Ivoire/Ivory Coast":"CI","Croatia":"HR","Cuba":"CU","Curaçao":"CW","Cyprus":"CY","Czechia":"CZ","Denmark":"DK","Djibouti":"DJ","Dominica":"DM","Dominican Republic":"DO","Ecuador":"EC","Egypt":"EG","El Salvador":"SV","Equatorial Guinea":"GQ","Eritrea":"ER","Estonia":"EE","Eswatini":"SZ","Ethiopia":"ET","Falkland Islands (Malvinas)":"FK","Faroe Islands":"FO","Fiji":"FJ","Finland":"FI","France":"FR","French Guiana":"GF","French Polynesia":"PF","French Southern Territories":"TF","Gabon":"GA","Gambia":"GM","Georgia":"GE","Germany":"DE","Ghana":"GH","Gibraltar":"GI","Greece":"GR","Greenland":"GL","Grenada":"GD","Guadeloupe":"GP","Guam":"GU","Guatemala":"GT","Guernsey":"GG","Guinea":"GN","Guinea-Bissau":"GW","Guyana":"GY","Haiti":"HT","Heard Island and McDonald Islands":"HM","Holy See":"VA","Honduras":"HN","Hong Kong":"HK","Hungary":"HU","Iceland":"IS","India":"IN","Indonesia":"ID","Iran (Islamic Republic of)":"IR","Iraq":"IQ","Ireland":"IE","Isle of Man":"IM","Israel":"IL","Italy":"IT","Jamaica":"JM","Japan":"JP","Jersey":"JE","Jordan":"JO","Kazakhstan":"KZ","Kenya":"KE","Kiribati":"KI","Korea (Democratic People's Republic of)":"KP","Korea, Republic of":"KR","Kuwait":"KW","Kyrgyzstan":"KG","Lao People's Democratic Republic":"LA","Latvia":"LV","Lebanon":"LB","Lesotho":"LS","Liberia":"LR","Libya":"LY","Liechtenstein":"LI","Lithuania":"LT","Luxembourg":"LU","Macao":"MO","Madagascar":"MG","Malawi":"MW","Malaysia":"MY","Maldives":"MV","Mali":"ML","Malta":"MT","Marshall Islands":"MH","Martinique":"MQ","Mauritania":"MR","Mauritius":"MU","Mayotte":"YT","Mexico":"MX","Micronesia (Federated States of)":"FM","Moldova, Republic of":"MD","Monaco":"MC","Mongolia":"MN","Montenegro":"ME","Montserrat":"MS","Morocco":"MA","Mozambique":"MZ","Myanmar":"MM","Namibia":"NA","Nauru":"NR","Nepal":"NP","Netherlands":"NL","New Caledonia":"NC","New Zealand":"NZ","Nicaragua":"NI","Niger":"NE","Nigeria":"NG","Niue":"NU","Norfolk Island":"NF","North Macedonia":"MK","Northern Mariana Islands":"MP","Norway":"NO","Oman":"OM","Pakistan":"PK","Palau":"PW","Palestine, State of":"PS","Panama":"PA","Papua New Guinea":"PG","Paraguay":"PY","Peru":"PE","Philippines":"PH","Pitcairn":"PN","Poland":"PL","Portugal":"PT","Puerto Rico":"PR","Qatar":"QA","Reunion":"RE","Romania":"RO","Russian Federation":"RU","Rwanda":"RW","Saint Barthélemy":"BL","Saint Helena, Ascension and Tristan da Cunha":"SH","Saint Kitts and Nevis":"KN","Saint Lucia":"LC","Saint Martin (French part)":"MF","Saint Pierre and Miquelon":"PM","Saint Vincent and the Grenadines":"VC","Samoa":"WS","San Marino":"SM","Sao Tome and Principe":"ST","Saudi Arabia":"SA","Senegal":"SN","Serbia":"RS","Seychelles":"SC","Sierra Leone":"SL","Singapore":"SG","Sint Maarten (Dutch part)":"SX","Slovakia":"SK","Slovenia":"SI","Solomon Islands":"SB","Somalia":"SO","South Africa":"ZA","South Georgia and the South Sandwich Islands":"GS","South Sudan":"SS","Spain":"ES","Sri Lanka":"LK","Sudan":"SD","Suriname":"SR","Svalbard and Jan Mayen":"SJ","Sweden":"SE","Switzerland":"CH","Syrian Arab Republic":"SY","Taiwan, Province of China":"TW","Tajikistan":"TJ","Tanzania, United Republic of":"TZ","Thailand":"TH","Timor-Leste":"TL","Togo":"TG","Tokelau":"TK","Tonga":"TO","Trinidad and Tobago":"TT","Tunisia":"TN","Turkey":"TR","Turkmenistan":"TM","Turks and Caicos Islands":"TC","Tuvalu":"TV","Uganda":"UG","Ukraine":"UA","United Arab Emirates":"AE","United Kingdom of Great Britain and Northern Ireland":"GB","United States Minor Outlying Islands":"UM","United States of America":"US","Uruguay":"UY","Uzbekistan":"UZ","Vanuatu":"VU","Venezuela (Bolivarian Republic of)":"VE","Viet Nam":"VN","Virgin Islands (British)":"VG","Virgin Islands (U.S.)":"VI","Wallis and Futuna":"WF","Western Sahara":"EH","Yemen":"YE","Zambia":"ZM","Zimbabwe":"ZW"
+			} ;
+			let databyDate = [
+				{
+					'date':[31, 'Dec', 2019],
+					'china':1,
+					'world':0,
+					'countries':[
+						["CN",10]
+					],'places':[
+						[30.592992, 114.306225,1]
+					]
+				},{
+					'date':[18, 'Jan', 2020],
+					'china':10,
+					'world':0,
+					'countries':[
+						["KR",1],["JP",1],["TH",1]
+					],'places':[
+						[30.592992, 114.306225,10]
+					]
+				},{
+					'date':[23, 'Jan', 2020],
+					'china':12,
+					'world':0,
+					'countries':[
+						["US",1]
+					],
+					'places':[]
+				},{
+					'date':[27, 'Jan', 2020],
+					'china':80,
+					'world':0,
+					'countries':[["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]],
+					'places':[]
+				},{
+					'date':[28, 'Jan', 2020],
+					'china':106,
+					'world':0,
+					'countries':[["KH",1],["DE",1],["CI",1],["LK",1]],
+					'places':[]
+				}
+			]
+
+			let data;
+			let options;
+			let chart;
+			let counterCountry = 0; 
+
+			let dataPlace;
+			let optionsPlace;
+			let chartPlace;
+			let counterPlace = 0; 
+			
+			function drawRegionsMap(counter) {
+				if(databyDate[counter]){
+					$('.wuhan').addClass('active');
+					$('.stateName').addClass('active');
+					for (let i = 0; i < databyDate[counter]['countries'].length; i++) {
+						const element = databyDate[counter]['countries'][i];
+						data.addRow([element[0],element[1]]);	
+					}
+					chart.draw(data, options);	
+					for (let i = 0; i < databyDate[counter]['places'].length; i++) {
+						const element = databyDate[counter]['places'][i];
+						dataPlace.addRow([element[0],element[1],element[2]]);	
+					}
+					chartPlace.draw(dataPlace, optionsPlace);
+					$('.blue').children('i').attr("data-deaths",databyDate[counter]['china']).css({'width':databyDate[counter]['china']+'px'});
+					$('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':databyDate[counter]['world']+'px'});
+					// $('.date').text(databyDate[counter]['date'][0])
+					$('.date').animate({
+						Counter: databyDate[counter]['date'][0]
+					}, {
+						duration: 400,
+						easing: 'swing',
+						step: function (now) {
+							if(now<10){
+								$(this).text('0'+Math.ceil(now));
+							}else{
+								$(this).text(Math.ceil(now));
+							}
+							
+						}
+					});
+					
+					$('.month').text(databyDate[counter]['date'][1])
+					$('.year').text(databyDate[counter]['date'][2])
+
+				}
+				
+			}
+			function init(label){
+				
+				if(!label){
+					data = new google.visualization.DataTable();
+					data.addColumn('string', 'Country');
+					data.addColumn('number', 'Value');
+					options = {
+						domain: 'IN',
+						legend: 'none',
+						backgroundColor: '#383838',
+						datalessRegionColor: '#181818',
+						colorAxis: {
+							values: [1,10],
+							colors: ['#8c2828','#8c2828']
+						}
+					};
+					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
+
+					dataPlace = new google.visualization.DataTable();
+					dataPlace.addColumn('number', 'Lat');                                
+					dataPlace.addColumn('number', 'Long');
+					dataPlace.addColumn('number', 'Value'); 
+					optionsPlace = {
+						domain: 'IN',
+						legend: 'none',
+						backgroundColor: 'transparent',
+						datalessRegionColor: 'transparent',
+						displayMode: 'markers',
+						colorAxis: {
+							values: [1,10],
+							colors: ['#5bc0de','#bb2124']
+						},
+						sizeAxis: {minValue: 1, maxValue:10,minSize:10,  maxSize: 10}
+					};
+					chartPlace = new google.visualization.GeoChart(document.getElementById('places_div'));
+					chartPlace.draw(dataPlace, optionsPlace);
+
+					chartPlace.draw(dataPlace, optionsPlace);	
+
+                    setTimeout(function(){
+					    init(1);
+                    },1000);
+				}else if(label<=databyDate.length){
+					setTimeout(function(){
+						drawRegionsMap(label-1);
+						if(databyDate[label-1]){
+							setTimeout(()=>{
+								console.log('stop');
+								init(label+1);
+							},1000)
+						}else{
+							console.log('stop');
+							init(label+1);
+						}
+						
+					},1000)
+				}
+			}
+		});
+	</script>
+		
+</body>
+</html>
