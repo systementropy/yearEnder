@@ -418,50 +418,67 @@
 				["Who introduced the 'Super-rich Tax'?","Arun Jaitley","P. Chidambaram","Yashwant Sinha","Mammohan Singh",1],
 				["Who among the following never held the office of union finance minister?","Pranab Mukherjee","Nitin Gadkari","V.P. Singh","J.L. Nehru",1],
 			];
+			const fps = 60;
+			let globalCounter = 0;
+			function animate() {
+				if(globalCounter<displayData.length*60*100){
+					start(globalCounter)
+					requestAnimationFrame(animate);
+				}
+                
+            }
+			animate();
 			const multiplier = 1000;
 			function start(counter){
-				if(counter < displayData.length){
-					setTimeout(function(){
-						$('.counterElt').text(counter)
-						$('.slide1').addClass('active');
-						$('.question').text(displayData[counter][0]);
-						$('.opt0').text(displayData[counter][1]);
-						$('.opt1').text(displayData[counter][2]);
-						$('.opt2').text(displayData[counter][3]);
-						$('.opt3').text(displayData[counter][4]);
-						console.log(displayData[counter][0]+displayData[counter][0]);
-						if(counter<displayData.length){
-							setTimeout(()=>{
-								$('.opt'+displayData[counter][5]).addClass('active');
-								// $('.counterElt').text(10-5);
-							},5*multiplier);
-							
-							setTimeout(()=>{
-								$('.slide1').removeClass('reset').addClass('active'+counter).removeClass('active'+(counter-1));
-								// $('.counterElt').text(10-7);
-							},7*multiplier);;
-							setTimeout(()=>{
-								$('.slide1').addClass('active');
-								// $('.counterElt').text(10-8);
-							},8*multiplier);
-							setTimeout(()=>{
-								$('.opt0').removeClass('active')
-								$('.opt1').removeClass('active')
-								$('.opt2').removeClass('active')
-								$('.opt3').removeClass('active')
-								$('.slide1').removeClass('active').addClass('reset');
-								// $('.counterElt').text(10-5);
-							},9*multiplier);
-							if(counter==0){
-								$('.graphicsContainer').addClass('active');
-							}
-						}
-						
-						console.log(counter,displayData[counter][0]);
-						counter++;
-						start(counter);
-					}, 10*multiplier);
+				
+				if(globalCounter%fps==0){
+					let secs  = counter/fps;
+					console.log(secs);
+					$('.counterElt').text(secs)
 				}
+				globalCounter+=1;
+				// if(counter < displayData.length){
+				// 	setTimeout(function(){
+				// 		$('.counterElt').text(counter)
+				// 		$('.slide1').addClass('active');
+				// 		$('.question').text(displayData[counter][0]);
+				// 		$('.opt0').text(displayData[counter][1]);
+				// 		$('.opt1').text(displayData[counter][2]);
+				// 		$('.opt2').text(displayData[counter][3]);
+				// 		$('.opt3').text(displayData[counter][4]);
+				// 		console.log(displayData[counter][0]+displayData[counter][0]);
+				// 		if(counter<displayData.length){
+				// 			setTimeout(()=>{
+				// 				$('.opt'+displayData[counter][5]).addClass('active');
+				// 				// $('.counterElt').text(10-5);
+				// 			},5*multiplier);
+							
+				// 			setTimeout(()=>{
+				// 				$('.slide1').removeClass('reset').addClass('active'+counter).removeClass('active'+(counter-1));
+				// 				// $('.counterElt').text(10-7);
+				// 			},7*multiplier);;
+				// 			setTimeout(()=>{
+				// 				$('.slide1').addClass('active');
+				// 				// $('.counterElt').text(10-8);
+				// 			},8*multiplier);
+				// 			setTimeout(()=>{
+				// 				$('.opt0').removeClass('active')
+				// 				$('.opt1').removeClass('active')
+				// 				$('.opt2').removeClass('active')
+				// 				$('.opt3').removeClass('active')
+				// 				$('.slide1').removeClass('active').addClass('reset');
+				// 				// $('.counterElt').text(10-5);
+				// 			},9*multiplier);
+				// 			if(counter==0){
+				// 				$('.graphicsContainer').addClass('active');
+				// 			}
+				// 		}
+						
+				// 		console.log(counter,displayData[counter][0]);
+				// 		counter++;
+				// 		start(counter);
+				// 	}, 10*multiplier);
+				// }
 			}
 			start(0);
         })
