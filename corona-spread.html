@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			background: #999;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+			z-index: 1;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+			z-index: -1;
+			background: #383838;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>Virus of Corona</h1>
+            <h3>Total confirmed cases</h3>
+        </div>
+        <div class="graphicsContainer">
+            <!-- <div id="year"><b>1 in 26</b> children <strong>died</strong> before reaching age five <b>in 2018</b>, compared to 1 in 11 in 1990</div> -->
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            <div class="bottom">
+                <span>Source: WHO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            const canvas = document.getElementById("canvas");
+            const canHgt = 636;
+            const canWid = 636;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            const ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000'
+            const canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            const ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Circle(radiusStart, radiusEnd, index, label,text, perc, color, startAngle, endAngle,name){
+                
+
+                this.draw = function(){
+                    ctx.save();
+                    ctx.beginPath();
+                    
+                    ctx.closePath();
+                    ctx.restore();
+                        
+                }
+                this.update = function(){
+                    this.draw();
+                }
+                this.update();
+            }
+			const colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+            let slideIndex;
+            let counter = 0;
+            let circleArray = [];
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+				circleArray = [];
+				let total = 0;
+				const dailyData = [
+					[278,4,4],				// 20
+					[326,6,4],				// 21
+					[547,8,4],				// 22
+					[639,14,5],				// 23
+					[916,25,5],				// 24
+					[2000,40,5],			// 25
+					[2700,57,5],			// 26
+					[4400,64,14],			// 27
+					[6057,87,18]			// 28
+				]
+				const widthStep = canWid/dailyData.length;
+				const heightFactor = 6200;
+				const heightStep = canHgt/heightFactor;
+
+				for (let i = 0; i < dailyData.length; i++) {
+					ctx.beginPath();
+					ctx.fillStyle = '#a87103';
+					ctx.rect((widthStep*i)+30,5+(canHgt*(1-(dailyData[i][2]/20))),10,-5+(canHgt*(dailyData[i][2]/20)));
+					ctx.fillText(dailyData[i][2],(widthStep*i)+30,(canHgt*(1-(dailyData[i][2]/20))));
+					ctx.fill();
+					ctx.closePath();
+
+					if(i>0){
+						ctx.beginPath();
+						ctx.strokeStyle = '#E60000';
+						ctx.moveTo((widthStep*(i-1))+35,-5+(canHgt*(1-(dailyData[i-1][0]/heightFactor))));
+						ctx.lineTo((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][0]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#5bc0de';
+						ctx.moveTo((widthStep*(i-1))+35,-5+(canHgt*(1-(dailyData[i-1][1]/heightFactor))));
+						ctx.lineTo((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][1]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+					}
+					ctx.beginPath();
+					ctx.fillStyle = '#E60000';
+					ctx.arc((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][0]/heightFactor))),5,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#5bc0de';
+					ctx.arc((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][1]/heightFactor))),5,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+
+					
+				}
+				
+				console.log('here1');
+				// animate();
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+				
+                ctx.clearRect(0,0,canWid, canHgt);
+                // ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < circleArray.length; i++) {
+                    circleArray[i].update();
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>
