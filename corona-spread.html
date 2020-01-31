@@ -62,10 +62,11 @@
             padding: 0;
         }
         .title h1{
-            font-size: 46px;
+            font-size: 52px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
+            text-transform: uppercase;
         }
         .title h3{
             font-size: 35px;
@@ -76,7 +77,7 @@
         .mainBody{
             border: 1px solid #999;
             height: 100vh;
-            width: 71.5vh;
+            width: 718px;
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
@@ -116,19 +117,186 @@
         #canvas{
             display: block;
             margin: auto;
+            background: #383838;
+        }
+        .legendStat{
+			position: absolute;
+			left: 0%;
+			top: 120px;
+			width: 180px;
+			text-align: left;
+		}
+		.legendStat span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(220,220,220,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+            border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #F5F5F6;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #5bc0de;
+		}
+        .legendStat span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+        .legendStat span.yellow::before{background: #a87103}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 210px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -5px;
+            line-height: 30px;
+            font-size: 24px;
+            color: rgba(220,220,220,1);
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+        .legendContainer {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            font-size: 40px;
+            line-height: 1;
+            padding: 25px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            transition : all 250ms ease-in;
+            z-index: 1;
+        }
+        .legendContainer.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 300;
+            padding: 15px 0;
+			height: 200px;
+			text-align: left;
+			opacity: 0;
+            color: #F5F5F6;
+			transition: opacity 100ms ease;
+        }
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 29px;
+		}
+        .bottomDates{
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            height: 20px;
+            padding: 10px 0 20px;
+        }
+        .bottomDates>span {
+            margin: -35px auto 0;
+            width: 19px;
+            transform: translateX(0px) rotate(-0deg);
+            flex-grow: 1;
+            text-align: center;
+            opacity: 0;
+            transition: all 250ms ease,transform 250ms ease 100ms;
+        }
+        .bottomDates>span.active {
+            transform: translateX(0px) rotate(-45deg);
+            margin: 0 auto 0;
+            opacity: 1;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            color: #000;   
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
         }
     </style>
 </head>
 <body>
     <div class="mainBody">
+        <span class="texty">TEXTY</span>
         <div class="title">
-            <h1>Virus of Corona</h1>
-            <h3>Total confirmed cases</h3>
+            <h1>Corona Virus Cases</h1>
         </div>
         <div class="graphicsContainer">
-            <!-- <div id="year"><b>1 in 26</b> children <strong>died</strong> before reaching age five <b>in 2018</b>, compared to 1 in 11 in 1990</div> -->
+            <div class="legendContainer">
+                <div class="stateName">
+					<span class="date">20</span>
+					<span class="month">Jan</span>,
+					<span class="year">2020</span>
+				</div>
+				<div class="legendStat">
+					<span>Confirmed Cases</span>
+                    <span class="yellow">No of Countries<i data-deaths="0"></i></span>
+					<span class="red">Mainland China<i data-deaths="0"></i></span>
+					<span class="blue">Rest of the World<i data-deaths="0"></i></span>
+                    
+				</div>
+			</div>
             <canvas id="canvas"></canvas>
-            <canvas id="labels"></canvas>
+        </div>
+        <div class="bottomDates">
+            <span class="counter20">20</span>
+            <span class="counter21">21</span>
+            <span class="counter22">22</span>
+            <span class="counter23">23</span>
+            <span class="counter24">24</span>
+            <span class="counter25">25</span>
+            <span class="counter26">26</span>
+            <span class="counter27">27</span>
+            <span class="counter28">28</span>
+            <span class="counter29">29</span>
+            <span class="counter30">30</span>
         </div>
         <div class="footer">
             <div class="bottom">
@@ -155,108 +323,84 @@
             ctx.scale(2,2);
 			ctx.lineWidth = 2;
 			ctx.strokeColor = '#000'
-            const canvas2 = document.getElementById("labels");
-            canvas2.style.height = canHgt+'px';
-            canvas2.style.width = canWid+'px';
-            canvas2.height = canHgt*2;
-            canvas2.width = canWid*2;
-            const ctx2 = canvas2.getContext("2d");
-            ctx2.scale(2,2);
-
-            function Circle(radiusStart, radiusEnd, index, label,text, perc, color, startAngle, endAngle,name){
-                
-
-                this.draw = function(){
-                    ctx.save();
-                    ctx.beginPath();
-                    
-                    ctx.closePath();
-                    ctx.restore();
-                        
-                }
-                this.update = function(){
-                    this.draw();
-                }
-                this.update();
-            }
+           
 			const colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
             let slideIndex;
             let counter = 0;
             let circleArray = [];
-            function init(index) {
-                slideIndex = index;
-                counter = 1;
-				circleArray = [];
-				let total = 0;
-				const dailyData = [
-					[278,4,4],				// 20
-					[326,6,4],				// 21
-					[547,8,4],				// 22
-					[639,14,5],				// 23
-					[916,25,5],				// 24
-					[2000,40,5],			// 25
-					[2700,57,5],			// 26
-					[4400,64,14],			// 27
-					[6057,87,18]			// 28
-				]
-				const widthStep = canWid/dailyData.length;
-				const heightFactor = 6200;
-				const heightStep = canHgt/heightFactor;
-
-				for (let i = 0; i < dailyData.length; i++) {
-					ctx.beginPath();
+            const dailyData = [
+                [278,4,4],				// 20
+                [326,6,4],				// 21
+                [547,8,4],				// 22
+                [639,14,5],				// 23
+                [916,25,5],				// 24
+                [2000,40,5],			// 25
+                [2700,57,5],			// 26
+                [4400,64,14],			// 27
+                [6057,87,18],			// 28
+                [7700,105,20],			// 28
+                [9658,118,23]			// 28
+            ];
+            const widthStep = canWid/dailyData.length;
+            const heightFactor = 10000;
+            const heightStep = canHgt/heightFactor;
+            
+            function makeGraph(counter){
+                if(counter<dailyData.length){
+                    $('.legendContainer').addClass('active')
+                    $('.date').text(20+counter)
+                    $('.stateName').addClass('active')
+                    $('.yellow').children('i').attr("data-deaths",dailyData[counter][2])
+                    if(dailyData[counter][0]>1000){
+                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData[counter][0]/1000).toFixed(1)+'K')
+                    }else{
+                        $('.red').children('i').attr("data-deaths",dailyData[counter][0])
+                    }
+                    
+                    $('.blue').children('i').attr("data-deaths",dailyData[counter][1])
+                    $('.counter'+(20+counter)).addClass('active')
+                    ctx.beginPath();
 					ctx.fillStyle = '#a87103';
-					ctx.rect((widthStep*i)+30,5+(canHgt*(1-(dailyData[i][2]/20))),10,-5+(canHgt*(dailyData[i][2]/20)));
-					ctx.fillText(dailyData[i][2],(widthStep*i)+30,(canHgt*(1-(dailyData[i][2]/20))));
+					ctx.rect((widthStep*counter)+30,5+(canHgt*(1-(dailyData[counter][2]/25))),10,-5+(canHgt*(dailyData[counter][2]/25)));
+					ctx.fillText(dailyData[counter][2],(widthStep*counter)+30,(canHgt*(1-(dailyData[counter][2]/25))));
 					ctx.fill();
 					ctx.closePath();
 
-					if(i>0){
+					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E60000';
-						ctx.moveTo((widthStep*(i-1))+35,-5+(canHgt*(1-(dailyData[i-1][0]/heightFactor))));
-						ctx.lineTo((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][0]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][0]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 
 						ctx.beginPath();
 						ctx.strokeStyle = '#5bc0de';
-						ctx.moveTo((widthStep*(i-1))+35,-5+(canHgt*(1-(dailyData[i-1][1]/heightFactor))));
-						ctx.lineTo((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][1]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 					}
 					ctx.beginPath();
 					ctx.fillStyle = '#E60000';
-					ctx.arc((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][0]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))),5,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
 
 					ctx.beginPath();
 					ctx.fillStyle = '#5bc0de';
-					ctx.arc((widthStep*i)+35,-5+(canHgt*(1-(dailyData[i][1]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))),5,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
-
-
-					
-				}
-				
-				console.log('here1');
-				// animate();
+                    setTimeout(()=>{
+                        makeGraph(counter+1)
+                    },2000)
+                    
+                }
             }
             setTimeout(function () {
-                init(1);
+                makeGraph(0);
             }, 1000)
-            function animate() {
-				
-                ctx.clearRect(0,0,canWid, canHgt);
-                // ctx2.clearRect(0,0,canWid, canHgt);
-                for (let i = 0; i < circleArray.length; i++) {
-                    circleArray[i].update();
-                }
-                requestAnimationFrame(animate);
-            }
             
         })
     </script>
