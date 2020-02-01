@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 71.5vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+			background: linear-gradient(#A8E6CE,#DCEDC2,#FFD3B5,#D57D68,#FF8C94,#9DE0AD,#FFAAA6,#45ADA8,#547980,#92C24C,#C9224C,#C2924C,#C24C92,#C2492C,"#999","#333",#92C24C,#C9224C,#C2924C,#C24C92,#C2492C,"#999","#333",#92C24C,#C9224C,#C2924C,#C24C92,#C2492C,"#999","#333",#92C24C,#C9224C,#C2924C,#C24C92,#C2492C,"#999","#333",#92C24C,#C9224C,#C2924C,#C24C92,#C2492C);
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: -2px;
+            left: 18px;
+            display: block;
+            opacity: 1;
+            margin: 2px auto;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+            opacity: 1;
+        }
+		.floatingLabels {
+			position: absolute;
+			bottom: 0;
+			left: 18px;
+			height: 600px;
+			width: 600px;
+			z-index: 1;
+			opacity: 0.8;
+		}
+		.floatingLabels>.label{
+			position: absolute;
+			height: auto;
+			width: max-content;
+			box-sizing: border-box;
+			border: 1px solid #555;
+			background: #999;
+			height: auto;
+			transform: translate(-100%,-100%);
+			padding: 0;
+			left: -1000px;
+			top: -1000px;
+		}
+		.floatingLabels > .label h3 {
+			margin: 0;
+			font-weight: 500;
+			padding: 5px;
+			background: #FFF;
+			color: #383838;
+			font-size: 26px;
+		}
+		.floatingLabels > .label p {
+			margin: 0;
+			color: #000;
+			padding: 5px;
+			mix-blend-mode: darken;
+		}
+		.floatingLabels > .label h3 span {
+			font-size: 0.7em;
+			font-weight: 300;
+		}
+		.floatingLabels > .label.label6{
+			transform: translate(44px,-74px)
+		}
+		.floatingLabels > .label.label7{
+			transform: translate(-1px,-60px)
+		}
+		.floatingLabels > .label.label8{
+			transform: translate(-130px,-89px)
+		}
+		.floatingLabels > .label.label1{
+			transform: translate(-65%,-200px);
+		}
+		.floatingLabels > .label.label2{
+			transform:  translate(35px,-89px);
+		}
+		.floatingLabels > .label.label3{
+			transform: translate(-114%,-50%)
+		}
+        .floatingLabels > .label.label4{
+			transform: translate(-30px,-75px)
+		}
+		.floatingLabels > .label.label5{
+			transform: translate(-95%, -222%)
+		}
+		.floatingLabels > .label.label9{
+			transform: translate(-155px,75px)
+		}
+		.floatingLabels > .label.label11{
+			transform: translate(1px, 78px)
+		}
+		.floatingLabels > .label.label12{
+			transform: translate(40px,77px)
+		}
+		.floatingLabels > .label.label10{
+			transform:translate(5px)
+		}
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+            <h1>BUDGET ALLOCATIONS</h1>
+            <h3>Total allocations: Rs 30,42,230 crore</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div id="year">
+                <!-- <strong>3.8 million</strong> people die prematurely from illness attributable to the household air pollution. -->
+            </div>
+			<div class="floatingLabels">
+				<div class="label label1">
+					<h3>3.6L<span>cr on</span></h3>
+					<p>Jal Jivan Mission</p>
+				</div>
+				<div class="label label2">
+					<h3>2.83L<span>cr on</span></h3>
+					<p>Agri and rural development</p>
+				</div>
+				<div class="label label3">
+					<h3>1.7L<span>cr on</span></h3>
+					<p>Transportation</p>
+				</div>
+				<div class="label label4">
+					<h3>69K<span>cr on</span></h3>
+					<p>Healthcare</p>
+				</div>
+				<div class="label label5">
+					<h3>99.3K<span>cr on</span></h3>
+					<p>Education</p>
+				</div>
+				<div class="label label6">
+					<h3>1.23L<span>cr on</span></h3>
+					<p>Rural development<br/>Panchayati Raj</p>
+				</div>
+				<div class="label label7">
+					<h3>12.3K<span>cr on</span></h3>
+					<p>Swachh Bharat<br/>Mission</p>
+				</div>
+				<div class="label label8">
+					<h3>28.6K<span>cr on</span></h3>
+					<p>women-centric<br/>programmes.</p>
+				</div>
+				<div class="label label9">
+					<h3>53.7K<span>cr on</span></h3>
+					<p>Scheduled Tribes</p>
+				</div>
+				<div class="label label10">
+					<h3>2.5K<span>cr on</span></h3>
+					<p>tourism promotion</p>
+				</div>
+				<div class="label label11">
+					<h3>4.4K<span>cr on</span></h3>
+					<p>clean air</p>
+				</div>
+				<div class="label label12">
+					<h3>3.36L<span>cr on</span></h3>
+					<p>Others</p>
+				</div>
+			</div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+        </div>
+        <div class="footer">
+            
+            <div class="bottom">
+                <!-- <span>Source: WHO</span> -->
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            let canvas = document.getElementById("canvas");
+            let canHgt = 600;
+            let canWid = 600;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            let ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            let canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            let ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Bar(arrayIndex, percentageValue, color, displacement, text){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.draw = function(){
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.displacement*canWid,0);
+                    ctx.rect(this.displacement*canWid,0,this.width,canHgt);
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                }
+                this.update = function(){
+                    if(this.width<this.maxWidth){
+                        this.width += this.dWidth;
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+
+            function Bar2(arrayIndex, percentageValue, color, displacement, text,x,y,width,height,direction){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.height = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.x = x*canWid/100;
+                this.y = y*canHgt/100;
+                this.widthM = width*canWid/100;
+                this.heightM = height*canHgt/100;
+                this.direction = direction;
+                if(this.direction){
+                    this.height = this.heightM;
+                    this.dWidth = (this.widthM*canWid)/(100*100*4);
+                }else{
+                    this.width = this.widthM;
+                    this.dHeight = (this.heightM*canHgt)/(100*100*4);
+                }
+                
+                this.draw = function(){
+					// if(this.arrayIndex<5){
+					// 	$('.label'+(this.arrayIndex+1)).css({
+					// 		'top':	this.y,
+					// 		'left':	this.x,
+					// 		'background': this.color
+					// 	});	
+					// }else{
+						$('.label'+(this.arrayIndex+1)).css({
+							'top':	this.y+(this.height/2),
+							'left':	this.x+(this.width/2),
+							'background': this.color
+						});
+					// }
+                    
+                    ctx2.beginPath();
+                    ctx2.moveTo(this.x,this.y);
+                    ctx2.rect(this.x,this.y,this.width,this.height);
+                    ctx2.fill();
+					// ctx2.stroke();
+                    ctx2.closePath();
+                    
+                    
+                }
+                this.update = function(){
+                    if(this.direction && this.width<this.widthM){
+                        this.width += this.dWidth;
+                    }else if(!this.direction && this.height<this.heightM){
+                        this.height += this.dHeight;
+                    }
+                    ctx2.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            let slideIndex;
+            let counter = 0;
+            let barArray = [];
+            let bar2Array = [];
+            let verticalDisplacement = 0;
+            let horizontalDisplacement = 0;
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+                barArray = [];
+                let colorArray = ['#A8E6CE','#DCEDC2','#FFD3B5','#D57D68','#FF8C94','#9DE0AD','#FFAAA6','#45ADA8','#547980','#92C24C','#C9224C','#999','#C24C92','#C2492C',"#999","#333",'#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333",'#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333",'#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333",'#92C24C','#C9224C','#C2924C','#C24C92','#C2492C',"#999","#333"];
+                let total = 0;
+				const absoluteMax = 1542230;
+                let totalMax = 100;
+                let areaLeft = 100;
+                let hLeft = 100;
+                let vLeft = 100;
+                let pieData = [
+					["for Jal Jivan Mission",360000],
+					["Agri and rural development",283000],
+					["Transportation",170000],
+					["Healthcare",69000],
+					["Education",99300],
+					["Rural development Panchayati Raj",123000],
+					["for Swachh Bharat Mission",12300],
+					["for women-centric programmes.",28600],
+					["for Scheduled Tribes",53700],
+					["for tourism promotion",2500],
+					["for clean air",4400],
+					["Others", 336430]	
+                ]
+				var counter = 0;
+				for (let i = 0; i < pieData.length; i++) {
+					pieData[i][1]=(pieData[i][1]/absoluteMax)*100;
+					counter+=pieData[i][1];
+				}
+				console.log(pieData,((100-counter)*absoluteMax)/100)
+                for (let i = 0; i < pieData.length; i++) {
+                    const element = pieData[i];
+                    let areaProportional
+                    let x
+                    let y
+                    let width
+                    let height
+                    if(i%2==0){
+                        areaProportional = (element[1]*100)/(totalMax-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        height = vLeft;
+                        width = (element[1]*100)/vLeft;
+                        hLeft -= width
+                    }else{
+                        areaProportional = (element[1]*100)/(totalMax-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        width = hLeft;
+                        height = (element[1]*100)/hLeft;
+                        vLeft -= height
+                    }
+                    bar2Array.push(new Bar2(
+                        i, element[1], colorArray[i], 
+                        (total/100),
+                        element[2],
+                        x,y,width,height,
+                        i%2
+                    ));
+					
+					console.log(areaProportional,totalMax-total)
+                    total = total + element[1];
+                }
+                
+                animate();
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < bar2Array.length; i++) {
+                    bar2Array[i].update();
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>
