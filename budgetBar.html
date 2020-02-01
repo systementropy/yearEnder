@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+			position: relative;
+			height: auto;
+			text-align: left;
+			padding-bottom: 5px;
+        }
+        .title h1{
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 718px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			position: relative;
+			overflow: hidden;
+        }
+        .graphicsContainer{
+            width: 636px;
+            height: 636px;
+            position: relative;
+			margin: 25px 0 10px;
+			/* overflow: hidden; */
+			background-repeat: no-repeat;
+			z-index: 0;
+        }
+		.imgCont{
+			height: 100px;
+			background-image: url('./Extra/budget2020.png');
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			margin-bottom: 20px;
+			position: static;
+			z-index: 100;
+			width: 175px;
+			top: 75px;
+			right: 20px;
+			float: left;
+			margin: 0;
+		}
+		.graphicsContainer::after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			/* background: rgba(220, 220, 220, 0.7) */
+		}
+		.slide{
+			display: flex;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			transition: all 400ms ease;
+			z-index: 1;
+		}
+		/* .slide1{opacity: 1;} */
+		.slide.active{opacity: 1;}
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 21px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+		.legend{
+			display: flex;
+			text-align: center;
+			margin: 0 0 25px;
+		}
+		.legend:after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.legend>div{
+			float: left;
+			width: 50%;
+			position: relative;
+		}
+		.legend>div>span{
+			position: absolute;
+			top: -160px;
+			box-sizing: border-box;
+			width: 100%;
+			left: 0;
+			height: auto;
+			display: block;
+			padding: 17px 0;
+			height: 135px;
+			background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));
+			transition: opacity 250ms ease-in-out;
+		}
+		.legend.reset>div>span{
+			opacity: 0;
+		}
+		.legend.active>div>span{
+			opacity: 1;
+		}
+		.legend>div>span>main{
+			position: static;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			font-size: 80px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>span>metric{
+			position: static;
+			top: 75px;
+			left: 0;
+			width: 100%;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>h3{
+			line-height: 1;
+			margin: 0;
+			font-size: 32px;
+			text-transform: uppercase;
+			font-weight: 400;
+		}
+		.legend>div>p{
+			line-height: 1;
+			margin: 0;
+		}
+		.legend>div>p::before{
+			content: '( ';
+		}
+		.legend>div>p::after{
+			content: ' )';
+		}
+		.slide>div{
+			/* width: 50%; */
+			margin: 1px;
+			/*! box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3); */
+			transition: all 2000ms ease, background 0ms ease;
+		}
+		.then1{
+			transform: scaleY(1);
+			height: 100%;
+			transform-origin: bottom;
+			/* background-image: linear-gradient(to right bottom, rgb(255, 255, 255),rgb(226, 226, 226)),url('./Extra/budget2020.png');
+			background-color: #333;
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed;
+			background-repeat: no-repeat; */
+			flex-grow: 1;
+			align-self: flex-end;
+		}
+		.then2{
+			width: 0;
+			background:#555;
+			background-image: linear-gradient(to right bottom, #35dc02,#333);
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed; */
+			background-repeat: no-repeat;
+			align-self: flex-end;
+		}
+		.slide.active>.then2{
+			width: 50%;
+		}
+		.title h3{
+			position: static;
+			opacity: 0;
+			transform: translateX(-100%);
+			z-index: 1000;
+			color:#000;
+			width: 100%;
+			transition: all 1000ms ease,opacity 1000ms ease 500ms;
+		}
+		.title h3.active{
+			opacity: 1;
+			transform: translateX(0%);
+			color: #333;
+		}
+		.legend > div.label1{
+			flex-grow: 1;
+			transition: all 2000ms ease;
+		}
+		.legend > div.label2{
+			width: 0;
+			opacity: 0;
+			height: 48px;
+			overflow: hidden;
+			transition: all 2000ms ease;
+		}
+		.legend.active .label2{
+			width: 50%;
+			overflow: visible;
+			opacity: 1;
+		}
+		.slide.reset{
+			opacity: 0;
+			transition: all 400ms linear;
+		}
+		
+		.title h3 span{
+			font-size: 20px;
+		}
+		.question{
+			max-width: 80%;
+			text-align: center;
+			margin: 0px auto;
+			height: auto;
+			padding: 50px 0 50px;
+			opacity: 0;
+			transform: translateY(80px);
+			transition: opacity 400ms ease 600ms,transform 800ms ease 400ms;
+			font-weight: 300;
+			font-size: 42px;
+			line-height: 1.3;
+			letter-spacing: -1px;
+		}
+		.question.active{
+			transform: translateY(0px);
+			opacity: 1;
+		}
+		.texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+		.list{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			width: 634px;
+			height: 634px;
+		}
+		.list span {
+			width: 0;
+			height: 100%;
+			padding: 0px;
+			background: #EEE;
+			font-size: 20px;
+			font-weight: normal;
+			letter-spacing: -1px;
+			line-height: 1;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			opacity: 0;
+			transform-origin: bottom;
+			align-self: flex-end;
+			transition: all 400ms ease,transform 800ms ease;
+			
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0),inset 0px 0px 2px 0px rgba(0,0,0,0.3);
+		}
+		.list span:nth-child(2n){
+			transform: translateX(100%);
+			background: #555;
+		}
+		.list span:nth-child(2n+1){
+			transform: translateX(-100%);
+			background: #EEE;
+		}
+		.list span:nth-child(1){background: #C2924C77;z-index: 1;}
+		.list span:nth-child(2){background: #C24C9277;z-index: 2;}
+		.list span:nth-child(3){background: #92C24C;z-index: 3;}
+		.list span:nth-child(4){background: #C9224C;z-index: 4;}
+		.list span:nth-child(5){background: #C2492C;z-index: 5;}
+
+		.list.active span:nth-child(2n){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.list.active span:nth-child(2n+1){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		
+		.list span.active{
+			font-weight: 500;
+			color: #FFF;
+			flex-grow: 1;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5),0px 0px 4px 0px rgba(0,0,0,0.3);
+		}
+		.list span.opt5.active {
+			position: absolute;
+			width: 20%;
+			right: 0;
+			z-index: -15;
+			background: transparent !important;
+			box-shadow: 0px -31px 0px 0px rgb(0, 0, 0),0px 0px 0px 0px rgba(0,0,0,0.3) !important;
+		}
+		.list span.opt5::after{top: 2px}
+		.list span::before{
+			content: attr(data-year);
+			position: absolute;
+			left: 0;
+			width: 100%;
+			bottom: 20px;
+			z-index: 1;
+			color: #000;
+			text-align: center;
+		}
+		.list span::after{
+			content: attr(data-disp);
+			position: absolute;
+			left: 0;
+			width: 64%;
+			margin: 0 18%;
+			top: -20px;
+			z-index: 1;
+			color: #000;
+			text-align: center;
+			
+		}
+		/* .list span.active::before{
+			opacity: 0;
+			transition: all 250ms ease-in;
+			transform: scaleX(1);
+		} */
+		@keyframes gradient {
+			0% {background-position: 0% 50%;}
+			50% {background-position: 100% 50%;}
+			100% {background-position: 0% 50%;}
+		}
+		.slide{
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.slide.active{
+			opacity: 1;
+		}
+		.defineText {
+			position: absolute;
+			z-index: 1;
+			font-size: 24px;
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.defineText.active{
+			opacity: 1;
+		}
+
+    </style>
+</head>
+<body>
+	<span class="texty">TEXTY</span>
+    <div class="mainBody">
+		
+        <div class="title">
+			<div class="imgCont"></div>
+            <h1>HOW IS THE ECONOMY DOING</h1>
+			<h3>GDP GROWTH RATE</h3>
+        </div>
+		<div class="defineText">(The difference between total revenue and total expenditure of the government)</div>
+        <div class="graphicsContainer">
+			<div class="slide slide1">
+				<div class="then1">
+					<!-- <span class="counterElt">1</span> -->
+					<div class="list">
+						<span class='opt0'></span>
+						<span class='opt1'></span>
+						<span class='opt2'></span>
+						<span class='opt3'></span>
+						<span class='opt4'></span>
+						<span class='opt5'></span>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="footer">
+			<!-- <i>*Revised Estimates, **Budget Estimates;</i> -->
+            <div class="bottom">
+				<span>Source: PIB</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+	<!-- 
+
+
+	 -->
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+			const displayData = [
+				[["REVENUE FROM DIRECT TAXES",8,' lakh crore ₹'],['2013-14',6.38],['2018-19',11.37]],
+				// [["FOREX RESERVES",0.2,'bn USD','US $ billion'],['2016-17',370.0],['2017-18',424.5],['2018-19*',412.9],['2019-20**',461.2]],
+				// [["FISCAL DEFICIT",20,'%'],['2016-17',3.5],['2017-18',3.5],['2018-19*',3.4],['2019-20**',3.3]],
+				// [["INDUSTRIAL GROWTH",10,'%'],['2017-18',5.9],['2018-19*',6.9],['2019-20',2.5]],
+			];
+			const fps = 30;
+			const eachQuestionTimer = 16;
+			let globalCounter = 0;
+			function animate() {
+				if(globalCounter<displayData.length*eachQuestionTimer*fps){
+					start(globalCounter)
+					requestAnimationFrame(animate);
+				}
+            }
+			
+			const multiplier = 1000;
+			function start(counter){
+				let questionNum = Math.floor(globalCounter/(eachQuestionTimer*fps))
+				if(globalCounter%fps==0){
+					let secs  = (counter/fps)-(questionNum*eachQuestionTimer);
+					let dataConst = displayData[questionNum][0];
+					switch (secs) {
+						case 0:
+							$('.title>h3')
+								.addClass('active')
+								.text(dataConst[0])
+							$('.slide').addClass('active')
+							if(questionNum === 2){
+								$('.defineText').addClass('active')
+							}
+							break;
+						case 1:
+							$('.list').addClass('active');
+							break;
+						case 2:
+							$('.list').children(".opt0")
+								.attr('data-year',displayData[questionNum][1][0])
+								.attr('data-disp',displayData[questionNum][1][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][1][1])*dataConst[1])+'%'});
+							break;
+						case 3:
+							$('.list').children(".opt1")
+								.attr('data-year',displayData[questionNum][2][0])
+								.attr('data-disp',displayData[questionNum][2][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][2][1])*dataConst[1])+'%'});
+							break;
+						case 4:
+							// $('.list').children(".opt2")
+							// 	.attr('data-year',displayData[questionNum][3][0])
+							// 	.attr('data-disp',displayData[questionNum][3][1]+dataConst[2])
+							// 	.addClass('active')
+							// 	.css({'height':((displayData[questionNum][3][1])*dataConst[1])+'%'});
+							break;
+						case 5:
+							if(displayData[questionNum][4]){
+								$('.list').children(".opt3")
+								.attr('data-year',displayData[questionNum][4][0])
+								.attr('data-disp',displayData[questionNum][4][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][4][1])*dataConst[1])+'%'});
+							}
+							
+							break;
+						case 6:
+							if(displayData[questionNum][5]){
+								$('.list').children(".opt4")
+								.attr('data-year',displayData[questionNum][5][0])
+								.attr('data-disp',displayData[questionNum][5][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][5][1])*dataConst[1])+'%'});
+							}
+							if(displayData[questionNum][6]){
+								$('.list').children(".opt5")
+								.attr('data-year',displayData[questionNum][6][0])
+								.attr('data-disp',displayData[questionNum][6][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][6][1])*dataConst[1])+'%'});
+							}
+							
+							break;
+						case 7:
+							break;
+						case 8:
+							break;
+						case 9:
+							break;
+						case 10:
+							break;
+						case 11:
+							break;
+						case 12:
+							break;
+						case 13:
+							break;
+						case 14:
+							break;
+						case 15:
+							if((questionNum+1)<displayData.length){
+								$('.title>h3')
+									.removeClass('active')
+									.text('')
+								$('.slide').removeClass('active')
+								$('.list').removeClass('active');
+								$('.defineText').removeClass('active')
+								$(".opt1").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt2").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt3").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt4").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt5").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+							}
+					}
+				}
+				globalCounter+=1;
+			}
+			setTimeout(()=>{
+				animate();
+			},1000)
+			
+        })
+    </script>
+</body>
+</html>

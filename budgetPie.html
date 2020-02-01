@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+			position: relative;
+			height: auto;
+			text-align: left;
+			padding-bottom: 5px;
+        }
+        .title h1{
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 24.5px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 718px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			position: relative;
+			overflow: hidden;
+        }
+        .graphicsContainer{
+            width: 636px;
+            height: auto;
+            position: relative;
+			margin: 0;
+			/* overflow: hidden; */
+			background-repeat: no-repeat;
+			z-index: 0;
+        }
+		.imgCont{
+			height: 100px;
+			background-image: url('./Extra/budget2020.png');
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			margin-bottom: 20px;
+			position: static;
+			z-index: 100;
+			width: 150px;
+			top: 75px;
+			right: 20px;
+			float: left;
+			margin: 0;
+		}
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+			/* background: #FF0,url(./rday/ruppee.png);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 580px 580px;
+			background-blend-mode: multiply; */
+        }
+		.title h3{
+			position: static;
+			opacity: 0;
+			transform: translateX(-100%);
+			z-index: 1000;
+			color:#000;
+			width: 100%;
+			transition: all 1000ms ease,opacity 1000ms ease 500ms;
+		}
+		.title h3.active{
+			opacity: 1;
+			transform: translateX(0%);
+			color: #333;
+		}
+		.floatingLabels {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 636px;
+			width: 636px;
+		}
+		.floatingLabels>.label{
+			position: absolute;
+			height: auto;
+			width: max-content;
+			box-sizing: border-box;
+			border: 2px solid #000;
+			background: #999;
+			height: auto;
+			transform: translate(-100%,-100%);
+			padding: 0;
+			left: -1000px;
+			top: -1000px;
+		}
+		.floatingLabels > .label h3 {
+			margin: 0;
+			font-weight: 500;
+			padding: 5px;
+			background: #FFF;
+			color: #383838;
+			font-size: 26px;
+		}
+		.floatingLabels > .label p {
+			margin: 0;
+			color: #000;
+			padding: 5px;
+			mix-blend-mode: darken;
+		}
+		.floatingLabels > .label h3 span {
+			font-size: 0.7em;
+			font-weight: 300;
+		}
+		.floatingLabels > .label.label8{
+			transform: translate(-3%,-100%);
+		}
+		.floatingLabels > .label.label1{
+			transform: translate(-3%,-100%);
+		}
+		.floatingLabels > .label.label2{
+			transform: translate(0%,0%);
+		}
+		.floatingLabels > .label.label3{
+			transform: translate(0%,0%);
+		}
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <div class="title">
+			<div class="imgCont"></div>
+            <h1>HOW IS THE ECONOMY DOING</h1>
+			<h3>WHERE INDIA GETS ITS MONEY FROM?</h3>
+        </div>
+        <div class="graphicsContainer">
+			<div id="year">For every <strong>1 Rs</strong> that the govt earns</div>
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+			<div class="floatingLabels">
+				<div class="label label1">
+					<h3>3<span>p from</span></h3>
+					<p>Non-debt <br/>capital receipts</p>
+				</div>
+				<div class="label label2">
+					<h3>9<span>p from</span></h3>
+					<p>Non-tax revenue</p>
+				</div>
+				<div class="label label3">
+					<h3>19<span>p from</span></h3>
+					<p>GST and other taxes</p>
+				</div>
+				<div class="label label4">
+					<h3>16<span>p from</span></h3>
+					<p>Income tax</p>
+				</div>
+				<div class="label label5">
+					<h3>8<span>p from</span></h3>
+					<p>Excise duties</p>
+				</div>
+				<div class="label label6">
+					<h3>4<span>p from</span></h3>
+					<p>Customs</p>
+				</div>
+				<div class="label label7">
+					<h3>20<span>p from</span></h3>
+					<p>Borrowings and liabilities</p>
+				</div>
+				<div class="label label8">
+					<h3>21<span>p from</span></h3>
+					<p>Corporation tax</p>
+				</div>
+			</div>
+        </div>
+        <div class="footer">
+            <div class="bottom">
+                <span>Source: PIB</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var canvas = document.getElementById("canvas");
+            var canHgt = 636;
+            var canWid = 636;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            var ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            var canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            var ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Circle(radiusStart, radiusEnd, index, label,text, perc, color, startAngle, endAngle,name){
+                this.radius = radiusStart;
+                this.radiusEnd = radiusEnd;
+                this.name = name;
+                this.color = color;
+                this.index = index;
+                this.label = label;
+                this.text = text;
+                this.perc = perc;
+                this.dRad = 1;
+                // this.color = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+                this.startAngle = startAngle;
+                this.endAngle = startAngle;
+                this.finalAngle = endAngle;
+                this.dAngle = 1/80;
+
+                this.draw = function(){
+                    ctx.beginPath();
+                    ctx.fillStyle = this.color;
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.fill();
+                    ctx.closePath();
+
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(canWid/2, canHgt/2);
+                    ctx.arc(canWid/2, canHgt/2, this.radius, this.startAngle, this.endAngle);
+                    ctx.clip();
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.restore();
+                    if(counter>0){
+                        ctx2.save();
+                        ctx2.beginPath();
+                        ctx2.translate(
+							(canWid/2)+this.radius*Math.cos((this.endAngle+this.startAngle)/2),
+                            (canHgt/2)+this.radius*Math.sin((this.endAngle+this.startAngle)/2),
+                        );
+						
+						if(counter == 1){
+							$('.label'+(this.index+1))	
+						}
+						$('.label'+(this.index+1)).css({
+							'top':	(canHgt/2)+this.radius*Math.sin((this.endAngle+this.startAngle)/2),
+							'left':	(canWid/2)+this.radius*Math.cos((this.endAngle+this.startAngle)/2),
+							'background': this.color
+						});
+                        // ctx2.font = '600 18px monty';
+                        // ctx2.fillText( this.name,0,0,100);
+                        // ctx2.fillStyle = "#333";
+                        // ctx2.font = '400 32px monty';
+                        // ctx2.fillText( this.perc+'%', 0,30,);
+                        ctx2.closePath();
+                        ctx2.restore();
+                    }
+                        
+                        
+                }
+                this.update = function(){
+
+                    if(this.finalAngle>this.endAngle){
+                        this.endAngle += this.dAngle;
+                    }
+
+
+                    if(this.radiusEnd>this.radius){
+                        this.radius += this.dRad;
+                    }else{
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+            var slideIndex;
+            var counter = 0;
+            var circleArray = []
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+				circleArray = [];
+				var colorArray = ['#A8E6CE','#DCEDC2','#FFD3B5','#FFAAA6','#FF8C94','#9DE0AD','#45ADA8','#547980'];
+				var total = 0;
+				var pieData = [
+					['Non-debt capital receipts',3,'Non-debt capital receipts'],
+					['Non-tax revenue',9,'Non-tax revenue'],
+					['GST and other taxes',19,'GST and other taxes'],
+					['Income tax',16,'Income tax'],
+					['Excise duties',8,'Excise duties'],
+					['Customs',4,'Customs'],
+					['Borrowings and liabilities',20,'Borrowings and liabilities'],
+					['Corporation tax',21,'Corporation tax'],
+				]
+				for (let i = 0; i < pieData.length; i++) {
+					const element = pieData[i];
+					circleArray.push(new Circle(
+						100,200, i, element[1], element[0], element[1], colorArray[i], 
+						(total/100)*2*Math.PI, 
+						((total+element[1])/100)*2*Math.PI,
+						element[2]
+					));
+					total = total + element[1]
+
+				}
+				console.log(circleArray)
+				animate();
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < circleArray.length; i++) {
+                    circleArray[i].update();
+                    
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+    </script>
+</body>
+</html>
