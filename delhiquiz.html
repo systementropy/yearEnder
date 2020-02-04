@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+			position: relative;
+			height: auto;
+			text-align: center;
+			padding-bottom: 5px;
+        }
+        .title h1{
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 718px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .graphicsContainer{
+            width: 636px;
+            height: 636px;
+            position: relative;
+			margin: 25px 0 10px;
+			overflow: hidden;
+			/* background: url('./Extra/budget2020.png'); */
+			
+			/* background-attachment: fixed; */
+			background-repeat: no-repeat;
+			z-index: 0;
+        }
+		.imgCont{
+			height: 40px;
+			background-image: url('./Logos/delhi2020.png');
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			margin-bottom: 20px;
+		}
+		.graphicsContainer::after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			/* background: rgba(220, 220, 220, 0.7) */
+		}
+		.slide{
+			display: flex;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			width: 100%;
+			height: auto;
+			opacity: 1;
+			transition: all 400ms ease;
+			z-index: 1;
+		}
+		/* .slide1{opacity: 1;} */
+		.slide.active{opacity: 1;}
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: center;
+        }
+        .bottom img{
+            height: 21px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+		.legend{
+			display: flex;
+			text-align: center;
+			margin: 0 0 25px;
+		}
+		.legend:after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.legend>div{
+			float: left;
+			width: 50%;
+			position: relative;
+		}
+		.legend>div>span{
+			position: absolute;
+			top: -160px;
+			box-sizing: border-box;
+			width: 100%;
+			left: 0;
+			height: auto;
+			display: block;
+			padding: 17px 0;
+			height: 135px;
+			background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));
+			transition: opacity 250ms ease-in-out;
+		}
+		.legend.reset>div>span{
+			opacity: 0;
+		}
+		.legend.active>div>span{
+			opacity: 1;
+		}
+		.legend>div>span>main{
+			position: static;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			font-size: 80px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>span>metric{
+			position: static;
+			top: 75px;
+			left: 0;
+			width: 100%;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>h3{
+			line-height: 1;
+			margin: 0;
+			font-size: 32px;
+			text-transform: uppercase;
+			font-weight: 400;
+		}
+		.legend>div>p{
+			line-height: 1;
+			margin: 0;
+		}
+		.legend>div>p::before{
+			content: '( ';
+		}
+		.legend>div>p::after{
+			content: ' )';
+		}
+		.slide>div{
+			/* width: 50%; */
+			margin: 1px;
+			/*! box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3); */
+			transition: all 2000ms ease, background 0ms ease;
+		}
+		.then1{
+			transform: scaleY(1);
+			height: 100%;
+			transform-origin: bottom;
+			/* background-image: linear-gradient(to right bottom, rgb(255, 255, 255),rgb(226, 226, 226)),url('./Extra/budget2020.png');
+			background-color: #333;
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed;
+			background-repeat: no-repeat; */
+			flex-grow: 1;
+			align-self: flex-end;
+		}
+		.then2{
+			width: 0;
+			background:#555;
+			background-image: linear-gradient(to right bottom, #35dc02,#333);
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed; */
+			background-repeat: no-repeat;
+			align-self: flex-end;
+		}
+		.slide.active>.then2{
+			width: 50%;
+		}
+		.title h3{
+			position: absolute;
+			top: 150px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 1000;
+			color:#FFF;
+			/* display: inline-block; */
+			width: max-content;
+			
+			transition: all 2000ms ease;
+		}
+		.title.active h3{
+			top:48px;
+			left: 0;
+			width: max-content;
+			transform: translateX(0%);
+			color: #333;
+		}
+		.legend > div.label1{
+			flex-grow: 1;
+			transition: all 2000ms ease;
+		}
+		.legend > div.label2{
+			width: 0;
+			opacity: 0;
+			height: 48px;
+			overflow: hidden;
+			transition: all 2000ms ease;
+		}
+		.legend.active .label2{
+			width: 50%;
+			overflow: visible;
+			opacity: 1;
+		}
+		.slide.reset{
+			opacity: 0;
+			transition: all 400ms linear;
+		}
+		
+		.title h3 span{
+			font-size: 20px;
+		}
+		.question{
+			max-width: 80%;
+			text-align: center;
+			margin: 0px auto;
+			height: auto;
+			padding: 50px 0 50px;
+			opacity: 0;
+			transform: translateY(80px);
+			transition: opacity 400ms ease 600ms,transform 800ms ease 400ms;
+			font-weight: 300;
+			font-size: 42px;
+			line-height: 1.3;
+			letter-spacing: -1px;
+		}
+		.question.active{
+			transform: translateY(0px);
+			opacity: 1;
+		}
+		.texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+		.list{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+		.list span {
+			width: 40%;
+			padding: 15px;
+			background: #EEE;
+			font-size: 20px;
+			font-weight: normal;
+			letter-spacing: -1px;
+			line-height: 1;
+			margin: 10px auto;
+			box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.3);
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			opacity: 0;
+			transition: opacity 400ms ease,transform 800ms ease;
+		}
+		.list span:nth-child(2n){
+			transform: translateX(100%);
+		}
+		.list span:nth-child(2n+1){
+			transform: translateX(-100%);
+		}
+		.list.active span:nth-child(2n){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.list.active span:nth-child(2n+1){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.list span.active{
+			font-weight: 500;
+			color: #FFF;
+		}
+		.list span::before{
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: -1;
+			height: 100%;
+			width: 100%;
+			background: linear-gradient(to bottom right, #1A6E5F,rgb(26, 86, 110));
+			transform: scaleX(0);
+			transform-origin: left;
+			
+		}
+		.list span.active::before{
+			transition: all 250ms ease-in;
+			transform: scaleX(1);
+		}
+		@keyframes gradient {
+			0% {background-position: 0% 50%;}
+			50% {background-position: 100% 50%;}
+			100% {background-position: 0% 50%;}
+		}
+		.counterElt{
+			font-size: 72px;
+			position: absolute;
+			bottom: -120px;
+			left: 50%;
+			z-index: 10;
+			background: #838383;
+			line-height: 100px;
+			width: 100px;
+			text-align: center;
+			border-radius: 50%;
+			font-weight: 200;
+			box-sizing: border-box;
+			/*! border: 2px solid #23a6d5; */
+			color: #FFF;
+			height: 100px;
+			opacity: 0;
+			transition: all ease-in;
+			transform: translateX(-50%);
+			letter-spacing: -5px;
+		}
+		.counterElt.active{
+			opacity: 0.7;
+		}
+		.counterElt:after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 100%;
+			width: 100%;
+			height: 100%;
+			background: #383838;
+			clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+			border-radius: 50%;
+			overflow: hidden;
+			/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+			/* animation: loading 2s linear; */
+			animation-duration: 2s;
+			animation-iteration-count: infinite;
+			opacity: 0;
+		}
+		@keyframes loading {
+			0% {
+    clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+  }
+  25% {
+    clip-path: polygon(100% 60%, 44% 48%, 100% 40%);
+  }
+  50% {
+    clip-path: polygon(100% 50%, 44% 48%, 100% 50%);
+  }
+  75% {
+    clip-path: polygon(100% 59%, 44% 48%, 100% 35%);
+  }
+  100% {
+    clip-path: polygon(100% 74%, 44% 48%, 100% 21%);
+  }
+		}
+		.slide{
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.slide.active{
+			opacity: 1;
+		}
+    </style>
+</head>
+<body>
+	<span class="texty">TEXTY</span>
+    <div class="mainBody">
+		<div class="imgCont"></div>
+        <div class="title">
+            <h1>THE ELECTION QUIZ</h1>
+        </div>
+        <div class="graphicsContainer">
+			<div class="slide slide1">
+				<div class="then1">
+					<span class="counterElt">1</span>
+					<h1 class="question">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur, harum.</h1>
+					<div class="list">
+						<span class="opt0">Lorem, ipsum.</span>
+						<span class="opt1">Lorem, ipsum.</span>
+						<span class="opt2">Lorem, ipsum.</span>
+						<span class="opt3">Lorem, ipsum.</span>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="footer">
+            <div class="bottom">
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+	<!-- 
+
+
+	 -->
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+			const displayData = [
+				// ["Who was the first CM of Delhi?","Brahm Prakash","Madan Lal Khurana","Sushma Swaraj","Sheila Dixit",0],
+				// ["For how many seats is the Delhi legislative assembly election held?",90,80,70,69,2],
+				// ["Who was the first woman CM of Delhi?","Sushma Swaraj","Sheila Dixit","Indira Gandhi","Sarojini Naidu",0],
+				// ["To which political party does Delhi CM Arvind Kejriwal belong?","AAP","SAD","BJP","INC",0],
+				["Polling date for Delhi Assembly Elections 2020 is…","8 February","9 February","12 February","11 February",0],
+				
+			];
+			const fps = 60;
+			const eachQuestionTimer = 16;
+			let globalCounter = 0;
+			function animate() {
+				if(globalCounter<displayData.length*eachQuestionTimer*fps){
+					start(globalCounter)
+					requestAnimationFrame(animate);
+				}
+                
+            }
+			animate();
+			const multiplier = 1000;
+			function start(counter){
+				let questionNum = Math.floor(globalCounter/(eachQuestionTimer*fps))
+				if(globalCounter%fps==0){
+					let secs  = (counter/fps)-(questionNum*eachQuestionTimer);
+					console.log(secs,questionNum);
+					switch (secs) {
+						case 0:
+							$('.counterElt').text('')
+							$('.question').text(displayData[questionNum][0])
+							$('.opt0').text(displayData[questionNum][1]);
+							$('.opt1').text(displayData[questionNum][2]);
+							$('.opt2').text(displayData[questionNum][3]);
+							$('.opt3').text(displayData[questionNum][4]);
+							$('.slide').addClass('active')
+							break;
+						case 1:
+							$('.question').addClass('active')
+							break;
+						case 2:
+							$('.list').addClass('active');
+							$('.counterElt').addClass('active')
+							break;
+						case 3:
+							// $('.counterElt').removeClass('load').text(13-secs)
+							$('.counterElt').text(13-secs)
+							break;
+						case 4:
+							$('.counterElt').text(13-secs)
+							break;
+						case 5:
+							$('.counterElt').text(13-secs)
+							break;
+						case 6:
+							$('.counterElt').text(13-secs)
+							break;
+						case 7:
+							$('.counterElt').text(13-secs)
+							break;
+						case 8:
+							$('.counterElt').text(13-secs)
+							break;
+						case 9:
+							$('.counterElt').text(13-secs)
+							break;
+						case 10:
+							$('.counterElt').text(13-secs)
+							break;
+						case 11:
+							$('.counterElt').text(13-secs)
+							break;
+						case 12:
+							$('.counterElt').text(13-secs)
+							break;
+						case 13:
+							$('.counterElt').text('0')
+							$('.opt'+displayData[questionNum][5]).addClass('active');
+							break;
+						case 14:
+							break;
+						case 15:
+							if((questionNum+1)<displayData.length){
+								$('.counterElt').removeClass('active')
+								$('.slide').removeClass('active')
+								$('.question').removeClass('active')
+								$('.list').removeClass('active');
+								$('.opt'+displayData[questionNum][5]).removeClass('active');
+							}
+					}
+				}
+				globalCounter+=1;
+			}
+			start(0);
+        })
+    </script>
+</body>
+</html>

@@ -363,10 +363,10 @@
 			background-color: rgb(182, 44, 44);
 		}
 		.legend span.active.red::before{
-			background-color: rgb(44, 44, 182);
+			background-color: rgb(223, 165, 55);
 		}
 		.legend span.active.red i.active{
-			background-color: rgb(44, 44, 182);
+			background-color: rgb(223, 165, 55);
 		}
 		.legend span i{
 			position: absolute;
@@ -545,28 +545,72 @@
 			height: 400px;
 			top: 220px;
 			border-radius: 10px;
-			border: 5px solid rgb(44, 44, 182);
+			border: 5px solid rgb(223, 165, 55);
 			font-weight: 300;
 			font-size: 21px;
 			box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.5);
 			transition: all 1000ms ease;
 			height: 0;
 			opacity: 0;
-			overflow: hidden;
+			/* overflow: hidden; */
 			display: flex;
+			flex-wrap: wrap;
 		}
 		.countriesList.active {
 			height: 400px;
 			opacity: 1;
 		}
+		.countriesList.active::before{
+			content: '';
+			position: absolute;
+			z-index: 100;
+			border: transparent;
+			width: 0; 
+			height: 0; 
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-bottom: 16px solid rgb(223, 165, 55);
+			top: -21px;
+			left: 23%;
+		}
 		.countriesList div{
 			display: flex;
 			flex-direction: column;
-			outline: 1px solid #999;
+			justify-content: center;
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
 			flex-grow: 1;
+			color: #333;
+			padding: 15px;
 		}
 		.countriesList div h4{
 			margin: 0;
+			color: #555555;
+			font-weight: 500;
+			font-size: 25px;
+			text-shadow: 1px 1px 1px rgba(59, 48, 187, 0.3);
+		}
+		.countriesList div p{
+			margin: 0;
+		}
+		/* [country-code]::before{
+			content: '';
+			position: absolute;
+			transform: translateX(-25px);
+			background-image: url(https://www.countryflags.io/in/flat/16.png);
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+		}	 */
+		.countriesList div.india{
+			/* background: linear-gradient(to bottom, #FF9933,#FFFFFF,#138808), url(https://www.countryflags.io/in/flat/16.png);
+			background-position: center;
+			background-repeat: repeat;
+			background-size: 201% 200%;
+			background-blend-mode: multiply;
+			color: #FFF; */
+		}
+		.countriesList div.india h4{
+			/* color: #FFF; */
 		}
     </style>
 </head>
@@ -575,7 +619,7 @@
     <div class="mainBody">
 
         <div class="title">
-            <h1>HOW FAR HAS THE CORONAVIRUS SPREAD</h1>
+            <h1>CORONAVIRUS MAP</h1>
             <!-- <h3>The year in news & politics</h3> -->
 
         </div>
@@ -595,55 +639,59 @@
 				<div class="countriesList">
 					<div>
 						<h4>20</h4>
-						<span>Japan</span>
+						<p>Japan</p>
 					</div>
 					<div>
 						<h4>19</h4>
-						<span>Thailand</span>
+						<p>Thailand</p>
 					</div>
 					<div>
 						<h4>18</h4>
-						<span>Singapore</span>
+						<p>Singapore</p>
 					</div>
 					<div>
 						<h4>15</h4>
-						<span>Hong Kong, South Korea</span>
+						<p><span country-code="IN">Hong Kong</span>,<br/><span country-code="IN">South Korea</span></p>
 					</div>
 					<div>
 						<h4>12</h4>
-						<span>Australia</span>
+						<p>Australia, Germany</p>
 					</div>
 					<div>
 						<h4>11</h4>
-						<span>US</span>
+						<p>USA</p>
 					</div>
 					<div>
 						<h4>10</h4>
-						<span>Taiwan, Germany</span>
+						<p><span country-code="IN">Taiwan</span>,<br/><span country-code="IN">Macau</span></p>
 					</div>
 					<div>
 						<h4>8</h4>
-						<span>Macau, Malaysia</span>
+						<p><span country-code="IN">Vietnam</span>,<br/><span country-code="IN">Malaysia</span></p>
 					</div>
 					<div>
 						<h4>6</h4>
-						<span>France, Vietnam</span>
+						<p><span country-code="IN">France</span></p>
 					</div>
 					<div>
 						<h4>5</h4>
-						<span>UAE</span>
+						<p>UAE</p>
 					</div>
 					<div>
 						<h4>4</h4>
-						<span>Canada</span>
+						<p>Canada</p>
+					</div>
+					<div class="india">
+						<h4>3</h4>
+						<p>India</p>
 					</div>
 					<div>
 						<h4>2</h4>
-						<span>Italy, Russia, Philippines, India, UK</span>
+						<p>Italy, Russia, Philippines, UK</p>
 					</div>
 					<div>
 						<h4>1</h4>
-						<span>Nepal, Cambodia, Spain, Finland, Sweden, Sri Lanka</span>
+						<p>Nepal, Cambodia, Spain, Finland, Sweden, Sri Lanka</p>
 					</div>
 				</div>
 			</div>
@@ -652,9 +700,9 @@
 
 			</div>
 			<div id="places_div"></div>
-			<div class="wuhan">
+			<!-- <div class="wuhan">
 				<h2>Origin<span>Wuhan</span></h2>
-			</div>
+			</div> -->
 		</div>
 		<div class="footer">
             <div class="bottom">
@@ -729,17 +777,15 @@
 					'world':1,
 					'countries':[["RU",2],["GB",2],["ES",1],["SE",1]],
 					'places':[]
+				},{
+					'date':[4, 'Feb', 2020],
+					'china':425,
+					'world':2,
+					'countries':[],
+					'places':[]
 				}
 			]
-			const countries = [
-["China",17222],
-["South Korea",15],["Japan",20],["Thailand",19],["Taiwan",10],
-["USA",11],
-["Australia",12],["France",6],["Malaysia",8],["Nepal",1],["Singapore",18],["Vietnam",6],["HK",15],["Macau",8],["Canada",4],
-["Cambodia",1],["Germany",10],["Sri Lanka",1],
-["India",2],["Finland",1],["UAE",5],
-["Italy",2],["Philippines",2],
-["Russia",2],["UK",2],["Spain",1],["Sweden",1]];
+
 			let data;
 			let options;
 			let chart;
@@ -826,7 +872,7 @@
 
                     setTimeout(function(){
 					    init(1);
-                    },200);
+                    },2000);
 				}else if(label<=databyDate.length){
 					setTimeout(function(){
 						drawRegionsMap(label-1);
@@ -836,12 +882,12 @@
 						}else{
 							init(label+1);
 						}
-					},200)
+					},2000)
 				}else{
 					setTimeout(function(){
 						$('.legendLabel').text('Confirmed Cases');
-						$('.blue').addClass('active').children('i').addClass('active').attr("data-deaths",17222);
-						$('.red').addClass('active').children('i').addClass('active').attr("data-deaths",183).css({'width':'3px'});
+						$('.blue').addClass('active').children('i').addClass('active').attr("data-deaths", 20624 );
+						$('.red').addClass('active').children('i').addClass('active').attr("data-deaths",190).css({'width':'3px'});
 						$('.countriesList').addClass('active');
 					},2000);
 				}
@@ -854,14 +900,15 @@
 
 <!-- 
 
+
 ["China",17222],
 ["Thailand",19],
 ["Hong Kong",15],
 ["Japan",20	],
-["Singapore",18 ],
+["Singapore",18],
 ["Australia",12],
 ["Taiwan",10],
-["Malaysia",8 ],
+["Malaysia",8],
 ["Macau",8],
 ["South Korea",15],
 ["USA",11],
@@ -881,4 +928,9 @@
 ["UK",2],
 [Spain,1],
 [Sweden,1]
+
+20 <5
+
  -->
+
+ 
