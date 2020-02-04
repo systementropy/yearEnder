@@ -342,7 +342,7 @@
 			position: relative;
 		}
 		.legend span::before{
-			content: '';
+			/* content: ''; */
 			position: absolute;
 			top: 8px;
 			right: -25px;
@@ -358,9 +358,11 @@
 		}
 		.legend span.blue::before{
 			background-color: rgb(182, 173, 44);
+			background: rgb(182, 44, 44);
 		}
 		.legend span.red::before{
 			background-color: rgb(182, 44, 44);
+			background:rgb(44, 182, 173);
 		}
 		.legend span.active.red::before{
 			background-color: rgb(223, 165, 55);
@@ -371,13 +373,11 @@
 		.legend span i{
 			position: absolute;
 			top: 5px;
-			left: 210px;
+			left: 196px;
 			height: 18px;
 			width: 0px;
-			background:
-			rgb(182, 44, 44);
-			box-shadow: 0px 0px 2px 1px
-			rgba(255,0,0,0.3);
+			background:rgb(223, 165, 55);
+			box-shadow: 0px 0px 2px 1px rgba(223, 165, 55,0.3);
 			transition: all 250ms ease;
 		}
 		.legend span i::after{
@@ -389,7 +389,8 @@
 			line-height: 16px;
 		}
 		.legend span.blue i{
-			background:rgb(182, 173, 44);
+			background: rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px rgba(182, 44, 44,0.3);
 		}
 		.legend span.active.blue::before{
 			background:rgb(44, 182, 173);
@@ -549,7 +550,7 @@
 			font-weight: 300;
 			font-size: 21px;
 			box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.5);
-			transition: all 1000ms ease;
+			transition: all 400ms ease-in-out;
 			height: 0;
 			opacity: 0;
 			/* overflow: hidden; */
@@ -581,36 +582,39 @@
 			flex-grow: 1;
 			color: #333;
 			padding: 15px;
+			opacity: 0;
+			transition: all 400ms ease-in-out 800ms;
+		}
+		.countriesList.active div{
+			opacity: 1;
 		}
 		.countriesList div h4{
 			margin: 0;
 			color: #555555;
 			font-weight: 500;
 			font-size: 25px;
-			text-shadow: 1px 1px 1px rgba(59, 48, 187, 0.3);
+			text-shadow: 1px 1px 1px rgba(223, 165, 55, 0.3);
+			letter-spacing: 5px;
+			transform: scale(0);
+			opacity: 0;
+			text-align: center;
+			width: 100%;
+			transition: all 400ms ease 1000ms,opacity 250ms ease 1000ms;
+		}
+		.countriesList.active div h4{
+			transform: scale(1);
+			letter-spacing: 0px;
+			opacity: 1;
 		}
 		.countriesList div p{
 			margin: 0;
+			opacity: 0;
+			transform: translateY(20px);
+			transition: all 400ms ease-in-out 1200ms;
 		}
-		/* [country-code]::before{
-			content: '';
-			position: absolute;
-			transform: translateX(-25px);
-			background-image: url(https://www.countryflags.io/in/flat/16.png);
-			width: 16px;
-			height: 16px;
-			border-radius: 50%;
-		}	 */
-		.countriesList div.india{
-			/* background: linear-gradient(to bottom, #FF9933,#FFFFFF,#138808), url(https://www.countryflags.io/in/flat/16.png);
-			background-position: center;
-			background-repeat: repeat;
-			background-size: 201% 200%;
-			background-blend-mode: multiply;
-			color: #FFF; */
-		}
-		.countriesList div.india h4{
-			/* color: #FFF; */
+		.countriesList.active div p{
+			opacity: 1;
+			transform: translateY(0px);
 		}
     </style>
 </head>
@@ -632,7 +636,7 @@
 					<span class="year"></span>
 				</div>
 				<div class="legend">
-					<span class="legendLabel">Fatalities</span>
+					<span class="legendLabel">Confirmed Cases</span>
 					<span class="blue">Mainland China<i data-deaths="0"></i></span>
 					<span class="red">Rest of the World<i data-deaths="0"></i></span>
 				</div>
@@ -696,13 +700,7 @@
 				</div>
 			</div>
 			<div id="regions_div"></div>
-			<div class="labelContainer">
-
-			</div>
 			<div id="places_div"></div>
-			<!-- <div class="wuhan">
-				<h2>Origin<span>Wuhan</span></h2>
-			</div> -->
 		</div>
 		<div class="footer">
             <div class="bottom">
@@ -734,53 +732,53 @@
 						[30.592992, 114.306225,1]
 					]
 				},{
-					'date':[18, 'Jan', 2020],
-					'china':10,
-					'world':0,
+					'date':[20, 'Jan', 2020],
+					'china':278,
+					'world':4,
 					'countries':[["KR",15],["JP",20],["TH",19],["TW",10]],
 					'places':[
 						[30.592992, 114.306225,10]
 					]
 				},{
 					'date':[23, 'Jan', 2020],
-					'china':12,
-					'world':0,
+					'china':639,
+					'world':14,
 					'countries':[["US",11]],
 					'places':[]
 				},{
 					'date':[27, 'Jan', 2020],
-					'china':80,
-					'world':0,
+					'china':4400,
+					'world':64,
 					'countries':[["AU",12],["FR",6],["MY",8],["NP",1],["SG",18],["VN",6],["HK",15],["MO",8],["CA",4]],
 					'places':[]
 				},{
 					'date':[28, 'Jan', 2020],
-					'china':106,
-					'world':0,
+					'china':6000,
+					'world':87,
 					'countries':[["KH",1],["DE",10],["LK",1]],
 					'places':[]
 				},{
 					'date':[30, 'Jan', 2020],
-					'china':170,
-					'world':0,
+					'china':9700,
+					'world':118,
 					'countries':[["IN",2],["FI",1],["AE",5]],
 					'places':[]
 				},{
 					'date':[31, 'Jan', 2020],
-					'china':213,
-					'world':0,
+					'china':11200,
+					'world':153,
 					'countries':[["IT",2],["PH",2]],
 					'places':[]
 				},{
 					'date':[3, 'Feb', 2020],
-					'china':362,
-					'world':1,
+					'china':19700,
+					'world':188,
 					'countries':[["RU",2],["GB",2],["ES",1],["SE",1]],
 					'places':[]
 				},{
 					'date':[4, 'Feb', 2020],
-					'china':425,
-					'world':2,
+					'china':20659,
+					'world':192,
 					'countries':[],
 					'places':[]
 				}
@@ -807,8 +805,12 @@
 					}
 					chart.draw(data, options);	
 					// chartPlace.draw(dataPlace, optionsPlace);
-					$('.blue').children('i').attr("data-deaths",databyDate[counter]['china']).css({'width':databyDate[counter]['china']+'px'});
-					$('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':databyDate[counter]['world']+'px'});
+					let chinaCount = databyDate[counter]['china'];
+					if(chinaCount>1000){
+						chinaCount = parseFloat(chinaCount/1000).toFixed(1)+'K'
+					}
+					$('.blue').children('i').attr("data-deaths",chinaCount).css({'width':(databyDate[counter]['china']/50)+'px'});
+					$('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':(databyDate[counter]['world']/50)+'px'});
 					$('.date').animate({
 						Counter: databyDate[counter]['date'][0]
 					}, {
@@ -885,9 +887,6 @@
 					},2000)
 				}else{
 					setTimeout(function(){
-						$('.legendLabel').text('Confirmed Cases');
-						$('.blue').addClass('active').children('i').addClass('active').attr("data-deaths", 20624 );
-						$('.red').addClass('active').children('i').addClass('active').attr("data-deaths",190).css({'width':'3px'});
 						$('.countriesList').addClass('active');
 					},2000);
 				}
