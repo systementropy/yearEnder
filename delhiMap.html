@@ -60,6 +60,13 @@
         .title{
             border-bottom: 5px solid #000;
             padding: 0;
+            position: relative;
+        }
+        .title img{
+            position: absolute;
+            right: 0;
+            top: 3px;
+            height: 39px;
         }
         .title h1{
             font-size: 42px;
@@ -86,6 +93,16 @@
             width: auto;
             height: auto;
             position: relative;
+            /* transform: translateY(-150px); */
+        }
+        .graphicsContainer::after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 50%;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0),rgba(255,255,255,1));
         }
         #year{
             font-size: 34px;
@@ -152,18 +169,35 @@
             transform: translateX(-9px);
         }
         .legendStates {
-            position: absolute;
+            position: fixed;
             top: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 40px;
             line-height: 1;
-            padding: 25px 0;
+            padding: 0px 0;
             box-sizing: border-box;
             font-weight: 500;
-            width: 400px;
+            width: 600px;
+            height: 250px;
             text-align: center;
             opacity: 0;
-            transition: all 250ms ease-in;
+            background: rgba(221, 221, 221, 0.8);
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            transition: all 100ms ease-in;
+        }
+        .legendStates::after{
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: var(--arrow-left);
+            width: 20px;
+            height: 50px;
+            clip-path: polygon(0 0, 100% 0%, 50% 100%);
+            background: linear-gradient(to bottom, rgba(225, 225, 225, 1), rgba(180, 180, 180, 1));
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+            transition: all 100ms ease;
         }
         .legendStates.active{
             opacity: 1;
@@ -198,14 +232,26 @@
             font-weight: 200;
             perspective: 100px;
         }
-        .bar{
+        .legendStates>div>div{
+            flex-grow: 1;
+            width: 33%;
+        }
+        .legendStates div span{
+            font-size: 24px;
+            margin: 10px 20px;
+            line-height: 24px;
+            display: block;
+            /* height: 80px; */
+            justify-self: flex-end;
+        }
+        .legendStates div.bar{
             width: 2px;
             background: #333;
             transform: skewX(-20deg) scale(0.5);
         }
         .footer{
             position: absolute;
-            top: 80%;
+            top: 70%;
             width: 100%;
         }
         .internal .fillbg{
@@ -249,6 +295,27 @@
             transform-origin: center;
             /*! height: 100px; */
         }
+        .imgCont{
+            width: 64px;
+            height: 64px;
+            background-image: url('./Extra/delhi2020Candidates.png');
+            background-position: 8% 24%;
+            background-size: 450px;
+            margin: 5px auto;
+            border-radius: 50%;
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+            background-repeat: no-repeat;
+            transition: all 250ms ease;
+        }
+        .aapParty .imgCont{
+            background-position: 54% 42%;
+        }
+        .bjpParty .imgCont{
+            background-position: 54% 59%;
+        }
+        .congParty .imgCont{
+            background-position: 54% 76%;
+        }
         .footer i{
             display: block;
             font-weight: 300;
@@ -268,20 +335,50 @@
             100% {transform: translateX(100px);}
         }
         .svgContainer {
-            padding-top: 40px;
+            padding-top: 0px;
         }
-		#U05A040{
-			fill : #FF0000;
+        .svgContainer svg{
+            max-width: 90%;
+            max-height: 100%;
+        }
+		.svgContainer path{
+			fill : #F5F5F6;
+            stroke :rgba(0, 0, 0, 0.1);
 		}
+        .aapParty .imgCont.aap0{background-position: 8% 93%;; opacity: 1;}
+        .aapParty .imgCont.aap1{background-position: 8% 24%; opacity: 1;}
+        .aapParty .imgCont.aap2{background-position: 8% 58%; opacity: 1;}
+        .aapParty .imgCont.aap3{background-position: 8% 41%; opacity: 1;}
+        .aapParty .imgCont.aap4{background-position: 8% 7%; opacity: 1;}
+        .aapParty .imgCont.aap5{background-position: 8% 76%; opacity: 1;}
+        .aapParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 54% 42%;
+        }
+        .bjpParty .imgCont.bjp0{background-position: 31% 94%;opacity: 1;}
+        .bjpParty .imgCont.bjp1{background-position: 31% 59%;opacity: 1;}
+        .bjpParty .imgCont.bjp2{background-position: 31% 41%;opacity: 1;}
+        .bjpParty .imgCont.bjp3{background-position: 31% 24%;opacity: 1;}
+        .bjpParty .imgCont.bjp4{background-position: 31% 7%;opacity: 1;}
+        .bjpParty .imgCont.bjp5{background-position: 31% 76%;opacity: 1;}
+        .bjpParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 54% 59%;
+        }
+        .congParty .imgCont.cong0{background-position: 54% 7%;opacity: 1;}
+        .congParty .imgCont.cong1{background-position: 54% 24%;opacity: 1;}
+        .congParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 54% 76%;
+        }
     </style>
 </head>
 <body> 
     <span class="texty">TEXTY</span>
     <div class="mainBody">
         <div class="title">
-            <h1>BJP IN STATE ASSEMBLIES</h1>
-            <!-- <h3>The year in news & politics</h3> -->
-
+            <h1>KEY CONTESTS</h1>
+            <img src="./Logos/delhi2020.png" alt="">
         </div>
         <div class="graphicsContainer">
             <div class="svgContainer">
@@ -365,24 +462,23 @@
             <div class="legendStates">
                 <div class="stateName"></div>
                 <div class="internal">
-                    <div class="bjpSeats"><span class="bjp"></span><p>BJP MLAs</p></div>
-                    <div class="bar"></div>
-                    <div class="totalSeats"><span class="total"></span><p>Assembly Seats</p></div>
-                    <div class="fill"></div>
-                    <div class="fillbg"></div>
+                    <div class="aapParty"><p>(AAP)</p><div class="imgCont"></div><span class="aap"></span></div>
+                    <div class="bjpParty"><p>(BJP)</p><div class="imgCont"></div><span class="bjp"></span></div>
+                    <div class="congParty"><p>(INC)</p><div class="imgCont"></div><span class="cong"></span></div>
+                    <!-- <div class="fill"></div>
+                    <div class="fillbg"></div> -->
                 </div>
             </div>
             <div class="footer">
-            
                 <div class="bottom">
-                    <span>
-                        Source: BJP website, news reports
-                        <i>As of Jan 10, 2020</i>
-                    </span>
+                    <!-- <span>
+                        <img src="./Logos/delhi2020.png" alt="">
+                    </span> -->
                     <span><img src="./logo.png" alt=""></span>
                 </div>
             </div>
         </div>
+        
         <!-- <p>lorem500</p> -->
     </div>
     <script src="./jquery.js"></script>
@@ -390,66 +486,27 @@
         $(document).ready(function(){
             var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
             var dataIndia = [
-                ["Andhra Pradesh",175,0,["Andhra"]],
-                ["Arunachal Pradesh",60,41,["Arunachal"]],
-                ["Assam",126,61,["Assam"]],
-                ["Bihar",243,54,["Bihar"]],
-                ["Chhattisgarh",90,14,["Chhatisgarh"]],
-                ["Goa",40,27,["Goa"]],
-                ["Gujarat",182,103,["Gujrat"]],
-                ["Haryana",90,40,["Haryana"]],
-                ["Himachal Pradesh",68,44,["Himachal"]],
-                // ["Jammu & Kashmir",87,0,["J_K","Laddakh"]],
-                ["Jharkhand",81,25,["Jharkhand"]],
-                ["Karnataka",224,117,["Karnataka"]],
-                ["Kerala",140,1,["Kerala"]],
-                ["Madhya Pradesh",230,107,["MP"]],
-                ["Maharashtra",288,105,["Maharashtra"]],
-                ["Manipur",60,22,["Manipur"]],
-                ["Meghalaya",60,2,["Meghayala"]],
-                ["Mizoram",40,1,["Mizoram"]],
-                ["Nagaland",60,12,["Nagaland"]],
-                ["Odisha",147,23,["Orissa"]],
-                ["Punjab",117,2,["Punjab"]],
-                ["Rajasthan",200,72,["Rajasthan"]],
-                ["Sikkim",32,12,["Sikkim"]],
-                ["Tamil Nadu",234,0,["Tamilnadu"]],
-                ["Telangana",119,1,["Telangana"]],
-                ["Tripura",60,33,["Tripura"]],
-                ["Uttar Pradesh",403,302,["UP"]],
-                ["Uttarakhand",70,56,["UK"]],
-                ["West Bengal",294,2,["WB"]],
-                ["Delhi",70,4,["Delhi"]],
-                ["Puducherry",30,0,[""]]
+                ["Chandni Chowk","U05A020",["Parlad Singh Sawhney","AAP","aap0"],["Suman Kumar Gupta","BJP","bjp0"],["Alka Lamba","Cong","cong0"]],
+                ["Hari Nagar","U05A028",["Rajkumari Dhillon","AAP","inactive"],["Tajinder Pal Bagga","BJP","inactive"],["Surender Setia","Cong","inactive"]],
+                ["Rajinder Nagar","U05A039",["Raghav Chadha","AAP","inactive"],["RP Singh","BJP","inactive"],["Rocky Tuseed","Cong","inactive"]],
+                ["New Delhi","U05A040",["Arvind Kejriwal","AAP","aap1"],["Sunil Yadav","BJP","bjp1"],["Romesh Sabharwal","Cong","inactive"]],
+                ["Malviya Nagar","U05A043",["Somnath Bharti","AAP","aap2"],["Sailender Monti","BJP","bjp2"],["Neetu Verma","Cong","inactive"]],
+                ["Kalkaji","U05A051",["Atishi","AAP","aap3"],["Dharam Veer Singh","BJP","bjp3"],["Shivani Chopra","Cong","inactive"]],
+                ["Okhla","U05A054",["Amanatullah Khan","AAP","inactive"],["Braham Singh","BJP","inactive"],["Parvez Hashmi","Cong","inactive"]],
+                ["Patparganj","U05A057",["Manish Sisodia","AAP","aap4"],["Ravi Negi","BJP","bjp4"],["Laxman Rawat","Cong","inactive"]],
+                ["Gandhi Nagar","U05A061",["Naveen Choudhary","AAP","aap5"],["Anil Vajpai","BJP","bjp5"],["Arvinder Lovely","Cong","cong1"]],
+                ["Babarpur","U05A067",["Gopal Rai","AAP","inactive"],["Naresh Gaur","BJP","inactive"],["Anveeksha Tripathi Jain","Cong","inactive"]],
+                ["Seelampur","U05A065",["Abdul Rehman","AAP","inactive"],["Kaushal Mishra","BJP","inactive"],["Mateen Ahmed","Cong","inactive"]],
             ];
-            /*
-                [255,255,255],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],
-            */
-            let colorArray = [[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
+            
+            let colorArray = [[76, 191, 198],[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
             var max = [242,133,0];
             var min = [255,255,255];
             var globalCounter = 0;
             for (let i = 0; i < dataIndia.length; i++) {
                 let element = dataIndia[i];
-                let perc = ((element[2]*100)/element[1]);
-                
-                // let red = ((perc*max[0])+((100-perc)*(min[0])))/(105);
-                // let green = ((perc*max[1])+((100-perc)*(min[1])))/(105);
-                // let blue = ((perc*max[2])+((100-perc)*(min[2])))/(105);
-                let colorIndex;
-                if(perc==0){
-                    colorIndex = 0;
-                }else{
-                    colorIndex = Math.floor(perc/10)+1
-                }
-                console.log(element[0]+'==>'+colorArray[colorIndex]);
-                
-                let color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
-
-                element.push(perc);
+                let color = [colorArray[0][0],colorArray[0][1],colorArray[0][2]]
                 element.push(color);
-                element.push(colorIndex);
-                
                 dataIndia[i]=element;
             }
             dataIndia.sort(function(a,b){
@@ -457,26 +514,43 @@
             })
             console.log(dataIndia);
             var alpha; var index;
+            const secsForEach = 2;
+            const fps = 60; 
             function updateColor(label){
-                
                 if(label == "init"){
                     animate();
-                }else{
+                }else if(((globalCounter/(fps*secsForEach))<dataIndia.length) && label!=='final'){
                     globalCounter += 1;
-                    if(Math.floor(globalCounter/40) == index){
+                    if(Math.floor(globalCounter/(fps*secsForEach)) == index){
                         alpha += 0.1;
                     }else{
                         alpha = 0;
-                        index = Math.floor(globalCounter/40);
+                        index = Math.floor(globalCounter/(fps*secsForEach));
                     }
-                    
                     const element = dataIndia[index];
+                    if(dataIndia[index-1]){
+                        $('#'+dataIndia[index-1][1]).css({'fill':'#F5F5F6'})
+                        $('.aapParty').children('.imgCont').removeClass(dataIndia[index-1][2][2])
+                        $('.bjpParty').children('.imgCont').removeClass(dataIndia[index-1][3][2])
+                        $('.congParty').children('.imgCont').removeClass(dataIndia[index-1][4][2])
+                    }
+                    let position = $('#'+element[1]).position();
+                    let offset = ($(window).innerWidth() - 692)/2
+                    position.left = position.left - offset -40;
+                    $('.legendStates').attr("style","--arrow-left:"+(position.left)+"px").css({
+                        'top':((position.top)-300)+'px'
+                    })
                     $('.stateName').html(element[0]);
-                    $('.total').html(element[1]);
-                    $('.bjp').html(element[2]);
+                    $('.aap').html(element[2][0]);
+                    $('.aapParty').children('.imgCont').addClass(element[2][2])
+                    $('.bjp').html(element[3][0]);
+                    $('.bjpParty').children('.imgCont').addClass(element[3][2])
+                    $('.cong').html(element[4][0]);
+                    $('.congParty').children('.imgCont').addClass(element[4][2])
                     $('.fill').css({'width':element[4]+'%'})
-                    $('#'+element[3][0]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-                    
+                    $('#'+element[1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})  
+                }else{
+                    console.log(globalCounter);
                 }
             }
             setTimeout(function(){
@@ -485,17 +559,17 @@
             
             function animate(){
                 if(globalCounter == 1){
-                    $('.legendStates').addClass('active')
+                    $('.legendStates').addClass('active');
                 }
-                if(globalCounter<3150){
-                    updateColor();
+                if(globalCounter<(dataIndia.length*secsForEach*fps)-1){
+                    updateColor(globalCounter);
                     requestAnimationFrame(animate)
                 }else{
                     updateColor("final");
                 }
                 
             }
-            // animate();
+            
         });
     </script>
 </body>
