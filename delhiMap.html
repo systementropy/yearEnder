@@ -295,27 +295,7 @@
             transform-origin: center;
             /*! height: 100px; */
         }
-        .imgCont{
-            width: 64px;
-            height: 64px;
-            background-image: url('./Extra/delhi2020Candidates.png');
-            background-position: 8% 24%;
-            background-size: 450px;
-            margin: 5px auto;
-            border-radius: 50%;
-            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-            background-repeat: no-repeat;
-            transition: all 250ms ease;
-        }
-        .aapParty .imgCont{
-            background-position: 54% 42%;
-        }
-        .bjpParty .imgCont{
-            background-position: 54% 59%;
-        }
-        .congParty .imgCont{
-            background-position: 54% 76%;
-        }
+        
         .footer i{
             display: block;
             font-weight: 300;
@@ -345,6 +325,27 @@
 			fill : #F5F5F6;
             stroke :rgba(0, 0, 0, 0.1);
 		}
+        .imgCont{
+            width: 64px;
+            height: 64px;
+            background-image: url("./Extra/candidates_grid.png");
+            background-position: 8% 24%;
+            background-size: 275px;
+            margin: 5px auto;
+            border-radius: 50%;
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+            background-repeat: no-repeat;
+            transition: all 250ms ease;
+        }
+        .aapParty .imgCont{
+            background-position: 54% 42%;
+        }
+        .bjpParty .imgCont{
+            background-position: 54% 59%;
+        }
+        .congParty .imgCont{
+            background-position: 54% 76%;
+        }
         .aapParty .imgCont.aap0{background-position: 8% 93%;; opacity: 1;}
         .aapParty .imgCont.aap1{background-position: 8% 24%; opacity: 1;}
         .aapParty .imgCont.aap2{background-position: 8% 58%; opacity: 1;}
@@ -353,23 +354,23 @@
         .aapParty .imgCont.aap5{background-position: 8% 76%; opacity: 1;}
         .aapParty .imgCont.inactive{
             opacity: 0.6;
-            background-position: 54% 42%;
+            background-position: 11% 1%;
         }
-        .bjpParty .imgCont.bjp0{background-position: 31% 94%;opacity: 1;}
-        .bjpParty .imgCont.bjp1{background-position: 31% 59%;opacity: 1;}
-        .bjpParty .imgCont.bjp2{background-position: 31% 41%;opacity: 1;}
-        .bjpParty .imgCont.bjp3{background-position: 31% 24%;opacity: 1;}
-        .bjpParty .imgCont.bjp4{background-position: 31% 7%;opacity: 1;}
-        .bjpParty .imgCont.bjp5{background-position: 31% 76%;opacity: 1;}
+        .bjpParty .imgCont.bjp0{background-position: 50% 94%;opacity: 1;}
+        .bjpParty .imgCont.bjp1{background-position: 50% 59%;opacity: 1;}
+        .bjpParty .imgCont.bjp2{background-position: 50% 41%;opacity: 1;}
+        .bjpParty .imgCont.bjp3{background-position: 50% 24%;opacity: 1;}
+        .bjpParty .imgCont.bjp4{background-position: 50% 7%;opacity: 1;}
+        .bjpParty .imgCont.bjp5{background-position: 50% 76%;opacity: 1;}
         .bjpParty .imgCont.inactive{
             opacity: 0.6;
-            background-position: 54% 59%;
+            background-position: 50% 1%;
         }
-        .congParty .imgCont.cong0{background-position: 54% 7%;opacity: 1;}
-        .congParty .imgCont.cong1{background-position: 54% 24%;opacity: 1;}
+        .congParty .imgCont.cong0{background-position: 89% 7%;opacity: 1;}
+        .congParty .imgCont.cong1{background-position: 89% 24%;opacity: 1;}
         .congParty .imgCont.inactive{
             opacity: 0.6;
-            background-position: 54% 76%;
+            background-position: 89% 1%;
         }
     </style>
 </head>
@@ -484,7 +485,11 @@
     <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
-            var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
+            const imgArray = [
+                [["Arvind Kejriwal",""],["Manish Sisodia",""],["Rakhi Bidlan",""],["Satyendar Jain",""],["Shoaib Iqbal",""],["Kailash Gahlot",""],["Raghav Chadha",""],["Somnath Bharti",""],["Saurabh Bharadwaj",""],["Atishi",""],["Amanatullah Khan",""],["Gopal Rai",""]],
+                [["Vijender Gupta",""],["Kapil Mishra",""],["Tajinder Pal Bagga",""],["Om Prakash Sharma",""]],
+                [["Alka Lamba",""],["Haroon Yusuf",""],["Adarsh Shastri",""],["Arvinder Lovely",""]],
+            ];
             var dataIndia = [
                 ["Chandni Chowk","U05A020",["Parlad Singh Sawhney","AAP","aap0"],["Suman Kumar Gupta","BJP","bjp0"],["Alka Lamba","Cong","cong0"]],
                 ["Hari Nagar","U05A028",["Rajkumari Dhillon","AAP","inactive"],["Tajinder Pal Bagga","BJP","inactive"],["Surender Setia","Cong","inactive"]],
@@ -514,7 +519,7 @@
             })
             console.log(dataIndia);
             var alpha; var index;
-            const secsForEach = 2;
+            const secsForEach = 1;
             const fps = 60; 
             function updateColor(label){
                 if(label == "init"){
