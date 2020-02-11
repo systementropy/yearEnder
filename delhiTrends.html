@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+            position: relative;
+        }
+        .title img{
+            position: absolute;
+            right: 0;
+            top: 3px;
+            height: 39px;
+        }
+        .title h1{
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 692px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+			border-bottom: 1px dashed #999;
+            /* transform: translateY(-150px); */
+        }
+        .graphicsContainer::after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 50%;
+            bottom: 0;
+            /* background: linear-gradient(to bottom, rgba(255,255,255,0),rgba(255,255,255,1)); */
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0 0;
+            color: #555555;
+            text-transform: uppercase;
+        }
+        #year p{
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #year p.weeks{margin-bottom: 0;}
+        #year p span{
+            font-size: 16px;
+            flex-grow: 1;
+            padding: 5px 0;
+            outline: 1px solid #DDD;
+            width: 14.2857142857%;
+        }
+        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 24px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+            z-index: -1;
+            filter: blur(0px);
+            transition: all 0.2s ease;
+        }
+        #labels.active{
+            filter: blur(5px);
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+        .Month{
+            opacity: 0;
+            letter-spacing: 10px;
+            transition: all 0s ease 0s;
+        }
+        .Month.active{
+            opacity: 1;
+            letter-spacing: 0px;
+            transition: all 1s ease 0.3s;
+        }
+        .logo{
+            width: 280px;
+            margin-bottom: 15px;
+            transform: translateX(-9px);
+        }
+        .legendStates {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            line-height: 1;
+            padding: 0px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 600px;
+            height: 250px;
+            text-align: center;
+            opacity: 0;
+            background: rgba(221, 221, 221, 0.8);
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            transition: all 100ms ease-in;
+        }
+        .legendStates::after{
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: var(--arrow-left);
+            width: 20px;
+            height: 50px;
+            clip-path: polygon(0 0, 100% 0%, 50% 100%);
+            background: linear-gradient(to bottom, rgba(225, 225, 225, 1), rgba(180, 180, 180, 1));
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+            transition: all 100ms ease;
+        }
+        .legendStates.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 200;
+            padding: 15px 0;
+        }
+        .totalSeats{
+            font-weight: 300;
+        }
+        .total{
+            font-weight: 500;
+        }
+        .bjpSeats{
+            font-weight: 300;
+        }
+        .bjp{
+            font-weight: 500;
+        }
+        .internal{
+            display: flex;
+            justify-content: space-evenly;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .internal p{
+            font-size: 18px;
+            line-height: 1;
+            margin: 0;
+            font-weight: 200;
+            perspective: 100px;
+        }
+        .legendStates>div>div{
+            flex-grow: 1;
+            width: 33%;
+        }
+        .legendStates div span{
+            font-size: 24px;
+            margin: 10px 20px;
+            line-height: 24px;
+            display: block;
+            /* height: 80px; */
+            justify-self: flex-end;
+        }
+        .legendStates div.bar{
+            width: 2px;
+            background: #333;
+            transform: skewX(-20deg) scale(0.5);
+        }
+        .footer{
+            position: static;
+            top: 80%;
+            width: 100%;
+			margin-top: 15px;
+        }
+        .internal .fillbg{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #F5F5F6;
+            border: 2px solid #333;
+            box-shadow: 0px 0px 1px 1px #2821195E;
+            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .internal .fill{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 0%;
+            height: 10px;
+            background: #F28500;
+            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+            background: linear-gradient(to right, 
+                    rgb(240,240,240)    0px,
+                    rgb(255,243,228)    calc(0 * 40px),
+                    rgb(255,231,203)    calc(1 * 40px),
+                    rgb(255,214,164)    calc(2 * 40px),
+                    rgb(255,196,124)    calc(3 * 40px),
+                    rgb(255,178,85)     calc(4 * 40px),
+                    rgb(255,161,46)     calc(5 * 40px),
+                    rgb(255,143,7)      calc(6 * 40px),
+                    rgb(203,111,0)      calc(7 * 40px),
+                    rgb(183,101,0)      calc(8 * 40px)
+            );
+            box-shadow: -1px 8px 7px 0px #8C6331;
+            transition: all 0.3s ease;
+            z-index: 1;
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        
+        .footer i{
+            display: block;
+            font-weight: 300;
+            line-height: 1;
+            font-size: 14px;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+        .svgContainer {
+            padding-top: 0px;
+        }
+        .svgContainer svg{
+            max-width: 90%;
+            max-height: 100%;
+        }
+		.svgContainer path{
+			fill : #F5F5F6;
+            stroke :rgba(0, 0, 0, 0.1);
+		}
+        .imgCont{
+            width: 64px;
+            height: 64px;
+            background-image: url("./Extra/candidates_grid.png");
+            background-position: 8% 24%;
+            background-size: 275px;
+            margin: 5px auto;
+            border-radius: 50%;
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+            background-repeat: no-repeat;
+            transition: all 250ms ease;
+        }
+        .aapParty .imgCont{
+            background-position: 54% 42%;
+        }
+        .bjpParty .imgCont{
+            background-position: 54% 59%;
+        }
+        .congParty .imgCont{
+            background-position: 54% 76%;
+        }
+        .aapParty .imgCont.aap0{background-position: 8% 93%;; opacity: 1;}
+        .aapParty .imgCont.aap1{background-position: 8% 24%; opacity: 1;}
+        .aapParty .imgCont.aap2{background-position: 8% 58%; opacity: 1;}
+        .aapParty .imgCont.aap3{background-position: 8% 41%; opacity: 1;}
+        .aapParty .imgCont.aap4{background-position: 8% 7%; opacity: 1;}
+        .aapParty .imgCont.aap5{background-position: 8% 76%; opacity: 1;}
+        .aapParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 11% 1%;
+        }
+        .bjpParty .imgCont.bjp0{background-position: 50% 94%;opacity: 1;}
+        .bjpParty .imgCont.bjp1{background-position: 50% 59%;opacity: 1;}
+        .bjpParty .imgCont.bjp2{background-position: 50% 41%;opacity: 1;}
+        .bjpParty .imgCont.bjp3{background-position: 50% 24%;opacity: 1;}
+        .bjpParty .imgCont.bjp4{background-position: 50% 7%;opacity: 1;}
+        .bjpParty .imgCont.bjp5{background-position: 50% 76%;opacity: 1;}
+        .bjpParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 50% 1%;
+        }
+        .congParty .imgCont.cong0{background-position: 89% 7%;opacity: 1;}
+        .congParty .imgCont.cong1{background-position: 89% 24%;opacity: 1;}
+        .congParty .imgCont.inactive{
+            opacity: 0.6;
+            background-position: 89% 1%;
+        }
+		.displayContainer {
+			position: absolute;
+			z-index: 100;
+			width: 100%;
+			height: 610px;
+			padding: 40px 10px 10px 10px;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+		}
+		.displayContainer>div{
+			display: flex;
+			justify-content: space-evenly;
+		}
+		.displayContainer>div>div{
+			width: 15%;
+			min-height: 1px;
+			line-height: 1;
+			text-align: center;
+			line-height: 50px;
+			text-transform: uppercase;
+			height: 0%;
+			-webkit-align-self: baseline;
+			-moz-align-self: self-end;
+			align-self: flex-end;
+			transition: all 2s ease 500ms;
+		}
+		.displayContainer > div.bottoms > div{
+			min-height: 60px;
+            position: relative;
+		}
+		.displayContainer>div:nth-child(1){
+			flex-grow: 1;
+		}
+		.displayContainer > div.bottoms{
+            height: 62px;
+            opacity: 0.9;
+        }
+        .displayContainer > div.bottoms > div img{
+            max-width: 100%;
+            max-height: 100%;
+            filter: invert();
+        }
+		.aapBar,.aapLab{background: #001736;position: relative;}
+		.aapBar::after{
+			content: attr(data-num);
+			position: absolute;
+			top: -60px;
+			width: 100%;
+			text-align: center;
+			color: 333;
+			font-size: 32px;
+			left: 0;
+		}
+		.bjpBar,.bjpLab{background: #F97D09;position: relative;}
+		.bjpBar::after{
+			content: attr(data-num);
+			position: absolute;
+			top: -60px;
+			width: 100%;
+			text-align: center;
+			color: 333;
+			font-size: 32px;
+			left: 0;
+		}
+		.congBar,.congLab{background: #4A90CC;position: relative;}
+		.congBar::after{
+			content: attr(data-num);
+			position: absolute;
+			top: -60px;
+			width: 100%;
+			text-align: center;
+			color: 333;
+			font-size: 32px;
+			left: 0;
+		}
+        .displayContainer > div.bottoms > div span{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            mix-blend-mode: difference;
+            font-size: 16px;
+            top: 74%;
+            line-height: 1;
+            z-index: 100;
+            color:#c1ddbb;
+        }
+        .clock {
+            border-radius: 100%;
+            background: transparent;
+            font-family: "Montserrat";
+            border: 5px solid #333;
+            box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 1000;
+            right: 40px;
+            transform: scale(0.5);
+            top: 16%;
+            transform-origin: right;
+        }
+
+        .wrap {
+            overflow: hidden;
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 100%;
+        }
+
+        .minute,.hour {
+            position: absolute;
+            height: 100px;
+            width: 6px;
+            margin: auto;
+            top: -27%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #555;
+            transform-origin: bottom center;
+            transform: rotate(0deg);
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+			transition: all 250ms ease;
+        }
+		.minute{
+			/* transition: all 0ms ease; */
+		}
+        .minute {
+            position: absolute;
+            height: 130px;
+            width: 4px;
+            top: -38%;
+            left: 0;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .second {
+            position: absolute;
+            height: 90px;
+            width: 5px;
+            margin: auto;
+            top: -26%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border-radius: 4px;
+            background: #FF4B3E;
+            transform-origin: bottom center;
+            transform: rotate(180deg);
+            z-index: 1;
+        }
+
+        .dot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 100px;
+            background: #F5F5F6;
+            border: 2px solid #1b1b1b;
+            border-radius: 100px;
+            margin: auto;
+            z-index: 1;
+        }
+        
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 30px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+			z-index: -1;
+			background: #383838;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+            background: transparent;
+        }
+        .legendStat{
+			position: absolute;
+			left: 0%;
+			top: 20px;
+			width: 80px;
+			text-align: left;
+		}
+		.legendStat span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(25,25,25,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+            border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #555;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #4A90CC;
+		}
+        .legendStat span.red::before{
+			background-color: #F97D09;
+		}
+        .legendStat span.yellow::before{background: #001736}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 110px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			#F97D09;
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -5px;
+            line-height: 30px;
+            font-size: 24px;
+            color: rgba(25,25,25,1);
+		}
+		.legendStat span.blue i{
+			background: #4A90CC;
+		}
+        .legendContainer {
+            position: absolute;
+            top: 0;
+            left: 0px;
+            font-size: 40px;
+            line-height: 1;
+            padding: 25px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            transition : all 250ms ease-in;
+            z-index: 1;
+        }
+        .legendContainer.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 300;
+            padding: 15px 0;
+			height: 200px;
+			text-align: left;
+			opacity: 0;
+            color: #333;
+			transition: opacity 100ms ease;
+        }
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 29px;
+		}
+        .bottomDates{
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            height: 20px;
+            padding: 10px 0 20px;
+        }
+        .bottomDates>span {
+            margin: -35px auto 0;
+            width: 19px;
+            transform: translateX(0px) rotate(-0deg);
+            flex-grow: 1;
+            text-align: center;
+            opacity: 0;
+            transition: all 250ms ease,transform 250ms ease 100ms;
+        }
+        .bottomDates>span.active {
+            transform: translateX(0px) rotate(-45deg);
+            margin: 0 auto 0;
+            opacity: 1;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            color: #000;   
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <span class="texty">TEXTY</span>
+        <div class="title">
+            <h1>LEADS</h1>
+            <img src="./Logos/delhi2020.png" alt="">
+        </div>
+		<div class="clock">
+            <div class="wrap">
+                <span class="hour"></span>
+                <span class="minute"></span>
+                <span class="second"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <div class="graphicsContainer">
+            <div class="legendContainer">
+                <!-- <div class="stateName">
+					<span class="date">20</span>
+					<span class="month">Jan</span>,
+					<span class="year">2020</span>
+				</div> -->
+				<div class="legendStat">
+					<span></span>
+                    <span class="yellow">AAP<i data-deaths="0"></i></span>
+					<span class="red">BJP<i data-deaths="0"></i></span>
+					<span class="blue">CONG<i data-deaths="0"></i></span>
+                    
+				</div>
+			</div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="bottomDates">
+            <span class="counter20">09:00</span>
+            <span class="counter21">09:30</span>
+            <span class="counter22">10:00</span>
+            <span class="counter23">10:30</span>
+            <span class="counter24">11:00</span>
+            <span class="counter25">11:30</span>
+            <span class="counter26">12:00</span>
+            <span class="counter27">12:30</span>
+            <span class="counter28">01:00</span>
+            <!-- <span class="counter29">01:30</span>
+            <span class="counter30">02:00</span> -->
+        </div>
+        <div class="footer">
+            <div class="bottom">
+                <span>Source: WHO</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+        <div style="display: none;">
+            <img src="./plate.jpg" id="1" >
+            <img src="./onion.jpg" id="2" >
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            const canvas = document.getElementById("canvas");
+            const canHgt = 610;
+            const canWid = 610;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            const ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000'
+           
+			const colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+            let slideIndex;
+            let counter = 0;
+            let circleArray = [];
+            const dailyData = [
+                [44,16,0,9,00],				// 0900
+                [42,21,0,9.5,30],				// 0930
+                [45,22,0,10,00],				// 1000
+                [50,20,0,10.5,30],				// 1030
+                [51,19,0,11,00],				// 1100
+                [48,22,0,11.5,30],			// 1130
+                [56,14,0,12,00],			// 1200
+                [57,13,0,12.5,30],			// 1230
+                [56,14,0,13,00],			// 0100
+                // [0,0,0],			// 0130
+                // [0,0,0]			// 0200
+            ];
+            const widthStep = canWid/dailyData.length;
+            const heightFactor = 60;
+            const heightStep = canHgt/heightFactor;
+            
+            function makeGraph(counter){
+                if(counter<dailyData.length){
+                    $('.legendContainer').addClass('active')
+                    $('.yellow').children('i').attr("data-deaths",dailyData[counter][0])
+                    if(dailyData[counter][1]>1000){
+                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData[counter][1]/1000).toFixed(1)+'K')
+                    }else{
+                        $('.red').children('i').attr("data-deaths",dailyData[counter][1])
+                    }
+                    
+                    $('.blue').children('i').attr("data-deaths",dailyData[counter][2])
+                    $('.counter'+(20+counter)).addClass('active');
+
+                    clock(dailyData[counter][3],counter*30);
+
+					if(counter>0){
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#001736';
+						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][0]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#F97D09';
+						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#4A90CC';
+						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][2]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][2]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+					}
+					ctx.beginPath();
+					ctx.fillStyle = '#001736';
+					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))),5,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#F97D09';
+					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))),5,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#4A90CC';
+					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][2]/heightFactor))),5,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+                    setTimeout(()=>{
+                        makeGraph(counter+1)
+                    },1000)
+                    
+                }
+            }
+            setTimeout(function () {
+                makeGraph(0);
+            }, 1000)
+            var inc = 1000;
+            clock(09,00);
+
+            function clock(hr,min) {
+                const date = new Date();
+                const hours = parseFloat(hr);
+                const minutes = parseInt(min);
+                const seconds = date.getSeconds();
+                // console.log(hr,min)
+                const hour = hours * 30;
+                const minute = minutes * 6;
+                const second = seconds * 6;
+
+                document.querySelector('.hour').style.transform = `rotate(${hour}deg)`
+                document.querySelector('.minute').style.transform = `rotate(${minute}deg)`
+                document.querySelector('.second').style.transform = `rotate(${second}deg)`
+            }
+
+            setInterval(clock, inc);
+        })
+    </script>
+</body>
+</html>
