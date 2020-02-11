@@ -88,6 +88,7 @@
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
+            position: relative;
         }
         .graphicsContainer{
             width: auto;
@@ -400,15 +401,22 @@
 			transition: all 2s ease 500ms;
 		}
 		.displayContainer > div.bottoms > div{
-			min-height: 50px;
+			min-height: 60px;
+            position: relative;
 		}
 		.displayContainer>div:nth-child(1){
 			flex-grow: 1;
 		}
-		.bars>div{
-			/* background: #999; */
-		}
-		.aapBar{background: #56A1D6;position: relative;}
+		.displayContainer > div.bottoms{
+            height: 62px;
+            opacity: 0.9;
+        }
+        .displayContainer > div.bottoms > div img{
+            max-width: 100%;
+            max-height: 100%;
+            filter: invert();
+        }
+		.aapBar,.aapLab{background: #001736;position: relative;}
 		.aapBar::after{
 			content: attr(data-num);
 			position: absolute;
@@ -419,7 +427,7 @@
 			font-size: 32px;
 			left: 0;
 		}
-		.bjpBar{background: #FF7500;position: relative;}
+		.bjpBar,.bjpLab{background: #F97D09;position: relative;}
 		.bjpBar::after{
 			content: attr(data-num);
 			position: absolute;
@@ -430,7 +438,7 @@
 			font-size: 32px;
 			left: 0;
 		}
-		.congBar{background: #007461;position: relative;}
+		.congBar,.congLab{background: #4A90CC;position: relative;}
 		.congBar::after{
 			content: attr(data-num);
 			position: absolute;
@@ -441,14 +449,115 @@
 			font-size: 32px;
 			left: 0;
 		}
+        .displayContainer > div.bottoms > div span{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            mix-blend-mode: difference;
+            font-size: 16px;
+            top: 74%;
+            line-height: 1;
+            z-index: 100;
+            color:#c1ddbb;
+        }
+        .clock {
+            border-radius: 100%;
+            background: #555;
+            font-family: "Montserrat";
+            border: 5px solid white;
+            box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 1000;
+            right: 40px;
+            transform: scale(0.4);
+            top: 0;
+            transform-origin: right;
+        }
+
+        .wrap {
+            overflow: hidden;
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 100%;
+        }
+
+            .minute,
+        .hour {
+            position: absolute;
+            height: 100px;
+            width: 6px;
+            margin: auto;
+            top: -27%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #F5F5F6;
+            transform-origin: bottom center;
+            transform: rotate(0deg);
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .minute {
+            position: absolute;
+            height: 130px;
+            width: 4px;
+            top: -38%;
+            left: 0;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .second {
+            position: absolute;
+            height: 90px;
+            width: 5px;
+            margin: auto;
+            top: -26%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border-radius: 4px;
+            background: #FF4B3E;
+            transform-origin: bottom center;
+            transform: rotate(180deg);
+            z-index: 1;
+        }
+
+        .dot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 100px;
+            background: #000;
+            border: 2px solid #1b1b1b;
+            border-radius: 100px;
+            margin: auto;
+            z-index: 1;
+        }
+        
     </style>
 </head>
 <body> 
     <span class="texty">TEXTY</span>
     <div class="mainBody">
         <div class="title">
-            <h1>EXIT POLLS</h1>
+            <h1>LEADS</h1>
             <img src="./Logos/delhi2020.png" alt="">
+        </div>
+        <!-- <canvas></canvas> -->
+        <div class="clock">
+            <div class="wrap">
+                <span class="hour"></span>
+                <span class="minute"></span>
+                <span class="second"></span>
+                <span class="dot"></span>
+            </div>
         </div>
         <div class="graphicsContainer">
 			<div class="displayContainer">
@@ -458,9 +567,9 @@
 					<div class="congBar"></div>
 				</div>
 				<div class="bottoms">
-					<div class="aapLab">aap</div>
-					<div class="bjpLab">bjp</div>
-					<div class="congLab">cong</div>
+					<div class="aapLab"><img src="./Extra/AAP.png" alt="" srcset=""> <span>aap</span></div>
+					<div class="bjpLab"><img src="./Extra/BJP.png" alt="" srcset=""> <span>bjp</span></div>
+					<div class="congLab"><img src="./Extra/CONG.png" alt="" srcset="">    <span>cong</span></div>
 				</div>
 			</div>
             <div class="svgContainer">
@@ -554,7 +663,7 @@
             <div class="footer">
                 <div class="bottom">
                     <span>
-                        Source : IPSOS Survey
+                        Source : News Reports
                     </span>
                     <span><img src="./logo.png" alt=""></span>
                 </div>
@@ -586,19 +695,8 @@
             ];
             
             let colorArray = [[76, 191, 198],[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
-            var max = [242,133,0];
-            var min = [255,255,255];
             var globalCounter = 0;
-            for (let i = 0; i < dataIndia.length; i++) {
-                let element = dataIndia[i];
-                let color = [colorArray[0][0],colorArray[0][1],colorArray[0][2]]
-                element.push(color);
-                dataIndia[i]=element;
-            }
-            dataIndia.sort(function(a,b){
-                return a[4]-b[4]
-            })
-            console.log(dataIndia);
+
             var alpha; var index;
             const secsForEach = 1;
             const fps = 60; 
@@ -607,9 +705,9 @@
                     animate();
                 }else if(((globalCounter/(fps*secsForEach))<dataIndia.length) && label!=='final'){
                     globalCounter += 1;
-					$('.aapBar').css({'height':((44/50)*100)+'%'}).attr("data-num",44)
-					$('.bjpBar').css({'height':((26/50)*100)+'%'}).attr("data-num",26)
-					$('.congBar').css({'height':((0/50)*100)+'%'}).attr("data-num",0)
+					$('.aapBar').css({'height':((48/55)*100)+'%'}).attr("data-num",48)
+					$('.bjpBar').css({'height':((22/55)*100)+'%'}).attr("data-num",22)
+					$('.congBar').css({'height':((0/55)*100)+'%'}).attr("data-num",0)
                 }else{
                     console.log(globalCounter);
                 }
@@ -630,7 +728,26 @@
                 }
                 
             }
-            
+            var inc = 1000;
+            clock(11,30);
+
+            function clock(hr,min) {
+                const date = new Date();
+                const hours = parseInt(hr);
+                const minutes = parseInt(min);
+                const seconds = date.getSeconds();
+                console.log(hours)
+                const hour = hours * 30;
+                const minute = minutes * 6;
+                const second = seconds * 6;
+
+                document.querySelector('.hour').style.transform = `rotate(${hour}deg)`
+                document.querySelector('.minute').style.transform = `rotate(${minute}deg)`
+                document.querySelector('.second').style.transform = `rotate(${second}deg)`
+            }
+
+            setInterval(clock, inc);
+ 
         });
     </script>
 </body>
