@@ -132,7 +132,7 @@ body,html{
         #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
         .bottom{
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
         .bottom img{
             height: 24px;
@@ -555,10 +555,10 @@ body,html{
         }
         .bottom{
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
         }
         .bottom img{
-            height: 30px;
+            height: 20px;
         }
         .bottom{
             line-height: 30px;
@@ -759,13 +759,15 @@ body,html{
             <span class="counter25">11:30</span>
             <span class="counter26">12:00</span>
             <span class="counter27">12:30</span>
-            <span class="counter28">01:00</span>
-            <!-- <span class="counter29">01:30</span>
-            <span class="counter30">02:00</span> -->
+            <span class="counter28">13:00</span>
+            <span class="counter29">13:30</span>
+            <span class="counter30">14:00</span>
+            <span class="counter31">14:30</span>
+            <span class="counter32">15:00</span>
         </div>
         <div class="footer">
             <div class="bottom">
-                <span>Source: WHO</span>
+                <!-- <span>Source: WHO</span> -->
                 <span><img src="./logo.png" alt=""></span>
             </div>
         </div>
@@ -803,11 +805,13 @@ body,html{
                 [56,14,0,12,00],			// 1200
                 [57,13,0,12.5,30],			// 1230
                 [56,14,0,13,00],			// 0100
-                // [0,0,0],			// 0130
-                // [0,0,0]			// 0200
+                [56,14,0,13.5,30],			// 0130
+                [59,11,0,14,00]	,		// 0200
+                [61,09,0,14.5,30],			// 0230
+                [62,08,0,15,00],			// 0300
             ];
             const widthStep = canWid/dailyData.length;
-            const heightFactor = 60;
+            const heightFactor = 70;
             const heightStep = canHgt/heightFactor;
             
             function makeGraph(counter){
