@@ -73,6 +73,7 @@
             font-weight: 900;
             line-height: 1;
             margin: 0;
+            color: #999;
         }
         .title h3{
             font-size: 35px;
@@ -170,7 +171,7 @@
         }
         .legendStates {
             position: fixed;
-            top: 0;
+            top: 100px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 40px;
@@ -179,16 +180,16 @@
             box-sizing: border-box;
             font-weight: 500;
             width: 600px;
-            height: 250px;
+            height: auto;
             text-align: center;
             opacity: 0;
-            background: rgba(221, 221, 221, 0.8);
-            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+            /* background: rgba(221, 221, 221, 0.8);
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3); */
             border-radius: 10px;
             transition: all 100ms ease-in;
         }
         .legendStates::after{
-            content: '';
+            /* content: ''; */
             position: absolute;
             top: 100%;
             left: var(--arrow-left);
@@ -206,94 +207,8 @@
             font-weight: 200;
             padding: 15px 0;
         }
-        .totalSeats{
-            font-weight: 300;
-        }
-        .total{
-            font-weight: 500;
-        }
-        .bjpSeats{
-            font-weight: 300;
-        }
-        .bjp{
-            font-weight: 500;
-        }
-        .internal{
-            display: flex;
-            justify-content: space-evenly;
-            position: relative;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-        .internal p{
-            font-size: 18px;
-            line-height: 1;
-            margin: 0;
-            font-weight: 200;
-            perspective: 100px;
-        }
-        .legendStates>div>div{
-            flex-grow: 1;
-            width: 33%;
-        }
-        .legendStates div span{
-            font-size: 24px;
-            margin: 10px 20px;
-            line-height: 24px;
-            display: block;
-            /* height: 80px; */
-            justify-self: flex-end;
-        }
-        .legendStates div.bar{
-            width: 2px;
-            background: #333;
-            transform: skewX(-20deg) scale(0.5);
-        }
-        .footer{
-            position: absolute;
-            top: 70%;
-            width: 100%;
-        }
-        .internal .fillbg{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: #F5F5F6;
-            border: 2px solid #333;
-            box-shadow: 0px 0px 1px 1px #2821195E;
-            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .internal .fill{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 0%;
-            height: 10px;
-            background: #F28500;
-            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
-            background: linear-gradient(to right, 
-                    rgb(240,240,240)    0px,
-                    rgb(255,243,228)    calc(0 * 40px),
-                    rgb(255,231,203)    calc(1 * 40px),
-                    rgb(255,214,164)    calc(2 * 40px),
-                    rgb(255,196,124)    calc(3 * 40px),
-                    rgb(255,178,85)     calc(4 * 40px),
-                    rgb(255,161,46)     calc(5 * 40px),
-                    rgb(255,143,7)      calc(6 * 40px),
-                    rgb(203,111,0)      calc(7 * 40px),
-                    rgb(183,101,0)      calc(8 * 40px)
-            );
-            box-shadow: -1px 8px 7px 0px #8C6331;
-            transition: all 0.3s ease;
-            z-index: 1;
-            transform-origin: center;
-            /*! height: 100px; */
+        .legendStates div .colorMap span{
+            --color-var: attr(data-color)
         }
         
         .footer i{
@@ -322,59 +237,41 @@
             max-height: 100%;
         }
 		.svgContainer path{
-			fill : #001736;
+			fill : #EEE;
             stroke :rgba(0, 0, 0, 0.1);
 		}
-
-		#U05A013,#U05A069,#U05A059{
-			fill : #F97D09;
-		}
-        .imgCont{
-            width: 64px;
-            height: 64px;
-            background-image: url("./Extra/candidates_grid.png");
-            background-position: 8% 24%;
-            background-size: 275px;
-            margin: 5px auto;
-            border-radius: 50%;
-            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-            background-repeat: no-repeat;
-            transition: all 250ms ease;
+        .stateName {
+            display: flex;
+            /* justify-content: space-between; */
         }
-        .aapParty .imgCont{
-            background-position: 54% 42%;
+        .colorMap {
+            margin: 0;
+            position: relative;
+            font-size: 14px;
+            display: none;
+            margin-right: 25px;
         }
-        .bjpParty .imgCont{
-            background-position: 54% 59%;
+        .colorMap i{
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            display: inline-block;
         }
-        .congParty .imgCont{
-            background-position: 54% 76%;
+        .yearName {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            margin: 0;
+            font-size: 41px;
+            top: 40px;
+            color: 
+            #555;
         }
-        .aapParty .imgCont.aap0{background-position: 8% 93%;; opacity: 1;}
-        .aapParty .imgCont.aap1{background-position: 8% 24%; opacity: 1;}
-        .aapParty .imgCont.aap2{background-position: 8% 58%; opacity: 1;}
-        .aapParty .imgCont.aap3{background-position: 8% 41%; opacity: 1;}
-        .aapParty .imgCont.aap4{background-position: 8% 7%; opacity: 1;}
-        .aapParty .imgCont.aap5{background-position: 8% 76%; opacity: 1;}
-        .aapParty .imgCont.inactive{
-            opacity: 0.6;
-            background-position: 11% 1%;
+        .title h1 span {
+            color: #001355;
         }
-        .bjpParty .imgCont.bjp0{background-position: 50% 94%;opacity: 1;}
-        .bjpParty .imgCont.bjp1{background-position: 50% 59%;opacity: 1;}
-        .bjpParty .imgCont.bjp2{background-position: 50% 41%;opacity: 1;}
-        .bjpParty .imgCont.bjp3{background-position: 50% 24%;opacity: 1;}
-        .bjpParty .imgCont.bjp4{background-position: 50% 7%;opacity: 1;}
-        .bjpParty .imgCont.bjp5{background-position: 50% 76%;opacity: 1;}
-        .bjpParty .imgCont.inactive{
-            opacity: 0.6;
-            background-position: 50% 1%;
-        }
-        .congParty .imgCont.cong0{background-position: 89% 7%;opacity: 1;}
-        .congParty .imgCont.cong1{background-position: 89% 24%;opacity: 1;}
-        .congParty .imgCont.inactive{
-            opacity: 0.6;
-            background-position: 89% 1%;
+        .footer{
+            position: relative;top: -150px;
         }
     </style>
 </head>
@@ -382,7 +279,7 @@
     <span class="texty">TEXTY</span>
     <div class="mainBody">
         <div class="title">
-            <h1>KEY CONTESTS</h1>
+            <h1><span>AAP</span>KI DELHI</h1>
             <img src="./Logos/delhi2020.png" alt="">
         </div>
         <div class="graphicsContainer">
@@ -465,62 +362,114 @@
 
 			</div>
             <div class="legendStates">
-                <div class="stateName"></div>
-                <div class="internal">
-                    <div class="aapParty"><p>(AAP)</p><div class="imgCont"></div><span class="aap"></span></div>
-                    <div class="bjpParty"><p>(BJP)</p><div class="imgCont"></div><span class="bjp"></span></div>
-                    <div class="congParty"><p>(INC)</p><div class="imgCont"></div><span class="cong"></span></div>
-                    <!-- <div class="fill"></div>
-                    <div class="fillbg"></div> -->
+                <h1 class="yearName"></h1>
+                <div class="stateName">
+                    <p id="001355" class="colorMap" ><i style="background-color: #001355"></i><span>AAP</span></p>
+                    <p id="F97D09" class="colorMap" ><i style="background-color: #F97D09"></i><span>BJP</span></p>
+                    <p id="4A90CC" class="colorMap" ><i style="background-color: #4A90CC"></i><span>INC</span></p>
+                    <p id="C24C92" class="colorMap" ><i style="background-color: #C24C92"></i><span>JDU</span></p>
+                    <p id="C2492C" class="colorMap" ><i style="background-color: #C2492C"></i><span>BSP</span></p>
+                    <p id="999" class="colorMap" ><i style="background-color: #999"></i><span>SAD</span></p>
+                    <p id="a87103" class="colorMap" ><i style="background-color: #a87103"></i><span>IND</span></p>
+                    <p id="92C24C" class="colorMap" ><i style="background-color: #92C24C"></i><span>LJP</span></p>
                 </div>
             </div>
             <div class="footer">
-                <div class="bottom">
-                    <!-- <span>
-                        <img src="./Logos/delhi2020.png" alt="">
-                    </span> -->
+                <div class="bottom">      
                     <span><img src="./logo.png" alt=""></span>
                 </div>
             </div>
         </div>
-        
-        <!-- <p>lorem500</p> -->
     </div>
     <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
-            const imgArray = [
-                [["Arvind Kejriwal",""],["Manish Sisodia",""],["Rakhi Bidlan",""],["Satyendar Jain",""],["Shoaib Iqbal",""],["Kailash Gahlot",""],["Raghav Chadha",""],["Somnath Bharti",""],["Saurabh Bharadwaj",""],["Atishi",""],["Amanatullah Khan",""],["Gopal Rai",""]],
-                [["Vijender Gupta",""],["Kapil Mishra",""],["Tajinder Pal Bagga",""],["Om Prakash Sharma",""]],
-                [["Alka Lamba",""],["Haroon Yusuf",""],["Adarsh Shastri",""],["Arvinder Lovely",""]],
-            ];
-            var dataIndia = [
-                // ["Chandni Chowk","U05A020",["Parlad Singh Sawhney","AAP","aap0"],["Suman Kumar Gupta","BJP","bjp0"],["Alka Lamba","Cong","cong0"]],
-                // ["Hari Nagar","U05A028",["Rajkumari Dhillon","AAP","inactive"],["Tajinder Pal Bagga","BJP","inactive"],["Surender Setia","Cong","inactive"]],
-                // ["Rajinder Nagar","U05A039",["Raghav Chadha","AAP","inactive"],["RP Singh","BJP","inactive"],["Rocky Tuseed","Cong","inactive"]],
-                // ["New Delhi","U05A040",["Arvind Kejriwal","AAP","aap1"],["Sunil Yadav","BJP","bjp1"],["Romesh Sabharwal","Cong","inactive"]],
-                // ["Malviya Nagar","U05A043",["Somnath Bharti","AAP","aap2"],["Sailender Monti","BJP","bjp2"],["Neetu Verma","Cong","inactive"]],
-                // ["Kalkaji","U05A051",["Atishi","AAP","aap3"],["Dharam Veer Singh","BJP","bjp3"],["Shivani Chopra","Cong","inactive"]],
-                // ["Okhla","U05A054",["Amanatullah Khan","AAP","inactive"],["Braham Singh","BJP","inactive"],["Parvez Hashmi","Cong","inactive"]],
-                // ["Patparganj","U05A057",["Manish Sisodia","AAP","aap4"],["Ravi Negi","BJP","bjp4"],["Laxman Rawat","Cong","inactive"]],
-                // ["Gandhi Nagar","U05A061",["Naveen Choudhary","AAP","aap5"],["Anil Vajpai","BJP","bjp5"],["Arvinder Lovely","Cong","cong1"]],
-                // ["Babarpur","U05A067",["Gopal Rai","AAP","inactive"],["Naresh Gaur","BJP","inactive"],["Anveeksha Tripathi Jain","Cong","inactive"]],
-                // ["Seelampur","U05A065",["Abdul Rehman","AAP","inactive"],["Kaushal Mishra","BJP","inactive"],["Mateen Ahmed","Cong","inactive"]],
-            ];
+            const dataElection =  [
+                ["U05A001","Narela","AAP","AAP","BJP","INC"],
+                ["U05A002","Burari","AAP","AAP","AAP","BJP"],
+                ["U05A003","Timarpur","AAP","AAP","AAP","INC"],
+                ["U05A004","Adarsh Nagar","AAP","AAP","BJP","INC"],
+                ["U05A005","Badli","AAP","AAP","INC","INC"],
+                ["U05A006","Rithala","AAP","AAP","BJP","BJP"],
+                ["U05A007","Bawana","AAP","AAP","BJP","INC"],
+                ["U05A008","Mundka","AAP","AAP","IND","BJP"],
+                ["U05A009","Kirari","AAP","AAP","BJP","BJP"],
+                ["U05A010","Sultanpur Majra","AAP","AAP","INC","INC"],
+                ["U05A011","Nangloi Jat","AAP","AAP","BJP","INC"],
+                ["U05A012","Mangolpuri","AAP","AAP","AAP","INC"],
+                ["U05A013","Rohini","BJP","BJP","AAP","BJP"],
+                ["U05A014","Shalimar Bagh","AAP","AAP","AAP","BJP"],
+                ["U05A015","Shakur Basti","AAP","AAP","AAP","BJP"],
+                ["U05A016","Tri Nagar","AAP","AAP","BJP","INC"],
+                ["U05A017","Wazirpur","AAP","AAP","BJP","INC"],
+                ["U05A018","Model Town","AAP","AAP","AAP","INC"],
+                ["U05A019","Sadar Bazar","AAP","AAP","AAP","INC"],
+                ["U05A020","Chandni Chowk","AAP","AAP","INC","INC"],
+                ["U05A021","Matia Mahal","AAP","AAP","JDU","LJP"],
+                ["U05A022","Ballimaran","AAP","AAP","INC","INC"],
+                ["U05A023","Karol Bagh","AAP","AAP","AAP","BJP"],
+                ["U05A024","Patel Nagar","AAP","AAP","AAP","INC"],
+                ["U05A025","Moti Nagar","AAP","AAP","BJP","BJP"],
+                ["U05A026","Madipur","AAP","AAP","AAP","INC"],
+                ["U05A027","Rajouri Garden","AAP","AAP","SAD","INC"],
+                ["U05A028","Hari Nagar","AAP","AAP","AAP","BJP"],
+                ["U05A029","Tilak Nagar","AAP","AAP","AAP","BJP"],
+                ["U05A030","Janakpuri","AAP","AAP","BJP","BJP"],
+                ["U05A031","Vikaspuri","AAP","AAP","AAP","INC"],
+                ["U05A032","Uttam Nagar","AAP","AAP","BJP","INC"],
+                ["U05A033","Dwarka","AAP","AAP","BJP","INC"],
+                ["U05A034","Matiala","AAP","AAP","BJP","INC"],
+                ["U05A035","Najafgarh","AAP","AAP","BJP","IND"],
+                ["U05A036","Bijwasan","AAP","AAP","BJP","BJP"],
+                ["U05A037","Palam","AAP","AAP","BJP","BJP"],
+                ["U05A038","Delhi Cantt","AAP","AAP","AAP","BJP"],
+                ["U05A039","Rajinder Nagar","AAP","AAP","BJP","INC"],
+                ["U05A040","New Delhi","AAP","AAP","AAP","INC"],
+                ["U05A041","Jangpura","AAP","AAP","AAP","INC"],
+                ["U05A042","Kasturba Nagar","AAP","AAP","AAP","INC"],
+                ["U05A043","Malviya Nagar","AAP","AAP","AAP","INC"],
+                ["U05A044","RK Puram","AAP","AAP","BJP","INC"],
+                ["U05A045","Mehrauli","AAP","AAP","BJP","INC"],
+                ["U05A046","Chhatarpur","AAP","AAP","BJP","INC"],
+                ["U05A047","Deoli","AAP","AAP","AAP","INC"],
+                ["U05A048","Ambedkar Nagar","AAP","AAP","AAP","INC"],
+                ["U05A049","Sangam Vihar","AAP","AAP","AAP","BJP"],
+                ["U05A050","Greater Kailash","AAP","AAP","AAP","BJP"],
+                ["U05A051","Kalkaji","AAP","AAP","BJP","INC"],
+                ["U05A052","Tughlakabad","AAP","AAP","BJP","BJP"],
+                ["U05A053","Badarpur","BJP","AAP","BJP","BSP"],
+                ["U05A054","Okhla","AAP","AAP","INC","INC"],
+                ["U05A055","Trilokpuri","AAP","AAP","AAP","BJP"],
+                ["U05A056","Kondli","AAP","AAP","AAP","INC"],
+                ["U05A057","Patparganj","AAP","AAP","AAP","INC"],
+                ["U05A058","Laxmi Nagar","BJP","AAP","AAP","INC"],
+                ["U05A059","Vishwas Nagar","BJP","BJP","BJP","INC"],
+                ["U05A060","Krishna Nagar","AAP","AAP","BJP","BJP"],
+                ["U05A061","Gandhi Nagar","BJP","AAP","INC","INC"],
+                ["U05A062","Shahdara","AAP","AAP","BJP","INC"],
+                ["U05A063","Seemapuri","AAP","AAP","AAP","INC"],
+                ["U05A064","Rohtas Nagar","BJP","AAP","BJP","INC"],
+                ["U05A065","Seelampur","AAP","AAP","INC","INC"],
+                ["U05A066","Ghonda","BJP","AAP","BJP","BJP"],
+                ["U05A067","Babarpur","AAP","AAP","BJP","BJP"],
+                ["U05A068","Gokalpur","AAP","AAP","BJP","BSP"],
+                ["U05A069","Mustafabad","AAP","BJP","INC","INC"],
+                ["U05A070","Karawal Nagar","BJP","AAP","BJP","BJP"]
+            ]
             
-            let colorArray = [[76, 191, 198],[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
+            let colorMap = {'AAP':'#001355','BJP':'#F97D09','INC':'#4A90CC','JDU':'#C24C92','BSP':'#C2492C','SAD':'#999','IND':'#a87103','LJP':'#92C24C'};
+            
             var max = [242,133,0];
             var min = [255,255,255];
             var globalCounter = 0;
-            
-            console.log(dataIndia);
+            let year = 5;
             var alpha; var index;
             const secsForEach = 1;
-            const fps = 10; 
+            const fps = 5; 
             function updateColor(label){
                 if(label == "init"){
                     animate();
-                }else if(((globalCounter/(fps*secsForEach))<71) && label!=='final'){
+                }else if(((globalCounter/(fps*secsForEach))<dataElection.length) && label!=='final'){
                     globalCounter += 1;
                     if(Math.floor(globalCounter/(fps*secsForEach)) == index){
                         alpha += 0.1;
@@ -528,21 +477,29 @@
                         alpha = 0;
                         index = Math.floor(globalCounter/(fps*secsForEach));
                     }
-					if(index<10){
-						if(index-1){
-							$('#U05A00'+(index-1)).css({'fill':'rgba(100,100,100,0.3)'});
-						}
-						$('#U05A00'+index).css({'fill':'rgba(255,255,255,0.3)'});
-					}else{
-						if(index-1 && index !=10){
-							$('#U05A0'+(index-1)).css({'fill':'rgba(100,100,100,0.3)'});
-						}else{
-							$('#U05A00'+(index-1)).css({'fill':'rgba(100,100,100,0.3)'});
-						}
-						$('#U05A0'+index).css({'fill':'rgba(255,255,255,0.3)'});
-					}
+					
+                    if(colorMap[dataElection[index][year]]){
+                        $(colorMap[dataElection[index][year]]).show();
+                        $('#'+dataElection[index][0]).css({'fill':colorMap[dataElection[index][year]],'opacity':1})
+                    }else{
+                        console.log(dataElection[index][year]);
+                        $('#'+dataElection[index][0]).css({'fill':colorMap['Others']})
+                    }
                 }else{
-                    console.log(globalCounter);
+                    if(year>2){
+                        
+                        console.log('here');
+                        setTimeout(()=>{
+                            $('.stateName p').hide();
+                            $('.svgContainer path').css({'opacity':'0.5'});
+                            year -= 1
+                            globalCounter = 0;
+                            animate();
+                        },2000)
+                        
+                    }
+
+                    
                 }
             }
             setTimeout(function(){
@@ -551,9 +508,18 @@
             
             function animate(){
                 if(globalCounter == 1){
-                    // $('.legendStates').addClass('active');
+                    $('.legendStates').addClass('active');
+                    if(year == 5){
+                        $('.yearName').text('2008')
+                    }else if(year == 4){
+                        $('.yearName').text('2013')
+                    }else if(year == 3){
+                        $('.yearName').text('2015')
+                    }else if(year == 2){
+                        $('.yearName').text('2020')
+                    }
                 }
-                if(globalCounter<(71*secsForEach*fps)-1){
+                if(globalCounter<(dataElection.length*secsForEach*fps)-1){
                     updateColor(globalCounter);
                     requestAnimationFrame(animate)
                 }else{
