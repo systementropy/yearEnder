@@ -641,62 +641,22 @@
 					<span class="red">Rest of the World<i data-deaths="0"></i></span>
 				</div>
 				<div class="countriesList">
-					<div>
-						<h4>20</h4>
-						<p>Japan</p>
-					</div>
-					<div>
-						<h4>19</h4>
-						<p>Thailand</p>
-					</div>
-					<div>
-						<h4>18</h4>
-						<p>Singapore</p>
-					</div>
-					<div>
-						<h4>15</h4>
-						<p><span country-code="IN">Hong Kong</span>,<br/><span country-code="IN">South Korea</span></p>
-					</div>
-					<div>
-						<h4>12</h4>
-						<p>Australia, Germany</p>
-					</div>
-					<div>
-						<h4>11</h4>
-						<p>USA</p>
-					</div>
-					<div>
-						<h4>10</h4>
-						<p><span country-code="IN">Taiwan</span>,<br/><span country-code="IN">Macau</span></p>
-					</div>
-					<div>
-						<h4>8</h4>
-						<p><span country-code="IN">Vietnam</span>,<br/><span country-code="IN">Malaysia</span></p>
-					</div>
-					<div>
-						<h4>6</h4>
-						<p><span country-code="IN">France</span></p>
-					</div>
-					<div>
-						<h4>5</h4>
-						<p>UAE</p>
-					</div>
-					<div>
-						<h4>4</h4>
-						<p>Canada</p>
-					</div>
-					<div class="india">
-						<h4>3</h4>
-						<p>India</p>
-					</div>
-					<div>
-						<h4>2</h4>
-						<p>Italy, Russia, Philippines, UK</p>
-					</div>
-					<div>
-						<h4>1</h4>
-						<p>Nepal, Cambodia, Spain, Finland, Sweden, Sri Lanka</p>
-					</div>
+					<div><h4>175</h4><p>Diamond Princess</p></div>
+					<div><h4>50</h4><p>Hong Kong</p></div>
+					<div><h4>47</h4><p>Singapore</p></div>
+					<div><h4>33</h4><p>Thailand</p></div>
+					<div><h4>28</h4><p>South Korea, Japan</p></div>
+					<div><h4>18</h4><p>Malaysia, Taiwan</p></div>
+					<div><h4>16</h4><p>Germany</p></div>
+					<div><h4>15</h4><p>Australia, Vietnam</p></div>
+					<div><h4>13</h4><p>US</p></div>
+					<div><h4>11</h4><p>France</p></div>
+					<div><h4>10</h4><p>Macau</p></div>
+					<div><h4>8</h4><p>UAE ,UK</p></div>
+					<div><h4>7</h4><p>Canada</p></div>
+					<div><h4>3</h4><p>Italy, Philippines, India</p></div>
+					<div><h4>2</h4><p>Russia, Spain	</p></div>
+					<div><h4>1</h4><p>Nepal, Cambodia, Belgium, Finland, Sweden, Sri Lanka</p></div>
 				</div>
 			</div>
 			<div id="regions_div"></div>
@@ -781,6 +741,12 @@
 					'world':192,
 					'countries':[],
 					'places':[]
+				},{
+					'date':[12, 'Feb', 2020],
+					'china':44685,
+					'world':519,
+					'countries':[["BE",1]],
+					'places':[]
 				}
 			]
 
@@ -809,8 +775,8 @@
 					if(chinaCount>1000){
 						chinaCount = parseFloat(chinaCount/1000).toFixed(1)+'K'
 					}
-					$('.blue').children('i').attr("data-deaths",chinaCount).css({'width':(databyDate[counter]['china']/50)+'px'});
-					$('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':(databyDate[counter]['world']/50)+'px'});
+					$('.blue').children('i').attr("data-deaths",chinaCount).css({'width':(databyDate[counter]['china']/100)+'px'});
+					$('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':(databyDate[counter]['world']/100)+'px'});
 					$('.date').animate({
 						Counter: databyDate[counter]['date'][0]
 					}, {
@@ -888,7 +854,7 @@
 				}else{
 					setTimeout(function(){
 						$('.countriesList').addClass('active');
-					},2000);
+					},4000);
 				}
 			}
 		});
@@ -900,35 +866,23 @@
 <!-- 
 
 
-["China",17222],
-["Thailand",19],
-["Hong Kong",15],
-["Japan",20	],
-["Singapore",18],
-["Australia",12],
-["Taiwan",10],
-["Malaysia",8],
-["Macau",8],
-["South Korea",15],
-["USA",11],
-["France",6],
-["Germany",10],
-["UAE",5],
-["Canada",4],
-["Italy",2],
-["Vietnam",6],
-["Cambodia",1],
-["Finland",1],
-["India",2],
-["Nepal",1],
-["Philippines",2],
-["Sri Lanka",1],
-["Russia",2],
-["UK",2],
-[Spain,1],
-[Sweden,1]
-
-20 <5
+Mainland China											44685
+Others													175
+Hong Kong												50
+Singapore												47
+Thailand												33
+South Korea, Japan										28
+Malaysia, Taiwan										18
+Germany													16
+Australia, Vietnam										15
+US														13
+France													11
+Macau													10
+UAE ,UK													8
+Canada													7
+Italy, Philippines, India								3
+Russia, Spain											2
+Nepal, Cambodia, Belgium, Finland, Sweden, Sri Lanka	1
 
  -->
 
