@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: 'monty';
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: 'monty';
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 39px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .title h3{
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 718px;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			background: #F5F5F6;
+        }
+        .graphicsContainer{
+            width: auto;
+            height: auto;
+            position: relative;
+			z-index: 1;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+			position: relative;
+			top: -30px;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 20px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+			z-index: -1;
+			background: #383838;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+            background: #F5F5F6;
+        }
+        .legendStat{
+			position: absolute;
+			left: 0%;
+			top: 120px;
+			width: 180px;
+			text-align: left;
+		}
+		.legendStat span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(220,220,220,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+            border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #F5F5F6;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #5bc0de;
+		}
+        .legendStat span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+        .legendStat span.yellow::before{background: #a87103}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 210px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -5px;
+            line-height: 30px;
+            font-size: 24px;
+            color: rgba(220,220,220,1);
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+        .legendContainer {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            font-size: 40px;
+            line-height: 1;
+            padding: 25px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 400px;
+            text-align: center;
+            opacity: 0;
+            transition : all 250ms ease-in;
+            z-index: 1;
+        }
+        .legendContainer.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 300;
+            padding: 15px 0;
+			height: 200px;
+			text-align: left;
+			opacity: 0;
+            color: #F5F5F6;
+			transition: opacity 100ms ease;
+        }
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 29px;
+		}
+        .bottomDates{
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            height: 20px;
+            padding: 10px 0 20px;
+			z-index: 1000;
+			position: relative;
+        }
+        .bottomDates>span {
+			font-weight: 500;
+			text-transform: uppercase;
+            margin: -35px auto 0;
+            width: 19px;
+            transform: translateX(0px) rotate(-0deg);
+            flex-grow: 1;
+            text-align: center;
+            opacity: 0;
+            transition: all 250ms ease,transform 250ms ease 100ms;
+			white-space: nowrap;
+			color: #383838;
+        }
+        .bottomDates>span.active {
+            transform: translateX(4px) rotate(-90deg);
+            margin: 0 auto 0;
+            opacity: 1;
+			text-indent: 60px;
+			color: #959595;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            color: #000;   
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+		.usa ,.ind {
+			position: absolute;
+			z-index: 1;
+			width: 180px;
+			height: 150px;
+			background:	#ffb2b2;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 55px, 85% 55px, 85% 100%, 75% 55px, 0% 55px);
+			top: 4px;
+			right: -207px;
+			border-radius: 2px;
+			opacity: 0.7 !important;
+			transition: all 1s ease;
+		}
+		.ind{
+			top: 6px;
+			right: 10px;
+			height: 225px;
+			background: #f2c09b;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 55px, 85% 55px, 85% 100%, 80% 55px, 0% 55px);
+		}
+		.usa.active ,.ind.active {
+			opacity: 0.7;
+		}
+		.usa h2,.ind h2{
+			font-size: 18px;
+			text-align: center;
+			font-weight: 300;
+			margin: 0;
+			color:#333;
+			text-transform: uppercase;
+			line-height: 1;
+			margin-top: 7px;
+		}
+		.usa h2 span,.ind h2 span{
+			display: block;
+			font-size: 21px;
+			font-weight: 500;
+			color:rgb(182, 44, 44)
+		}
+		.hidden{
+			display: none;
+		}
+    </style>
+</head>
+<body>
+    <div class="mainBody">
+        <span class="texty">TEXTY</span>
+        <div class="title">
+            <h1>How tall is Donald trump</h1>
+			<h3>A comparison with some of his predecessors</h3>
+        </div>
+        <div class="graphicsContainer">
+            <div class="legendContainer">
+				<div class="usa"><h2>Avg height <span>US (male)</span></h2></div>
+				<!-- <div class="ind"><h2>Avg height <span>(India)</span></h2></div> -->
+			</div>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="bottomDates">
+            <span class="counter20">Abraham Lincoln</span>
+            <span class="counter21">Donald Trump</span>
+            <span class="counter22">Bill Clinton</span>
+            <span class="counter23">George H.W. Bush</span>
+            <span class="counter24">Franklin D. Roosevelt</span>
+            <span class="counter25">Barack Obama</span>
+            <span class="counter26">George W. Bush</span>
+            <span class="counter27">Jimmy Carter</span>
+            <span class="counter28">John F. Kennedy</span>
+            <span class="counter29">Ronald Reagan</span>
+            <span class="counter30">James Madison</span>
+        </div>
+		<div class="hidden">
+			<img src="USA/0.png" alt="" id="1">
+			<img src="USA/1.png" alt="" id="2">
+			<img src="USA/2.png" alt="" id="3">
+			<img src="USA/3.png" alt="" id="4">
+			<img src="USA/4.png" alt="" id="5">
+			<img src="USA/5.png" alt="" id="6">
+			<img src="USA/6.png" alt="" id="7">
+			<img src="USA/7.png" alt="" id="8">
+			<img src="USA/8.png" alt="" id="9">
+			<img src="USA/9.png" alt="" id="10">
+			<img src="USA/10.png" alt="" id="11">
+		</div>
+        <div class="footer">
+            <div class="bottom">
+                <span>Source: POTUS website</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            const canvas = document.getElementById("canvas");
+            const canHgt = 636;
+            const canWid = 636;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            const ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000'
+           
+			const colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+            let slideIndex;
+            let counter = 0;
+            let circleArray = [];
+            const dailyData = [
+                [193,"6'4''"],				// 20
+                [191,"6'3''"],				// 21
+                [188,"6'2''"],				// 22
+                [188,"6'2''"],				// 23
+                [188,"6'2''"],				// 24
+                [185,"6'1''"],			// 25
+                [182,"5'11.5''"],			// 26
+                [177,"5'9.5''"],			// 27
+                [185,"6'1''"],			// JFK
+                [185,"6'1''"],			// Reagan
+                [163,"5'4''"]			// 28
+            ];
+            const widthStep = canWid/dailyData.length;
+            const heightFactor = 150;
+            const heightStep = canHgt/heightFactor;
+            
+			ctx.font = '300 18px monty';
+			
+            function makeGraph(counter){
+                if(counter<dailyData.length){
+                    
+                    $('.date').text(20+counter)
+                    $('.stateName').addClass('active')
+                    $('.yellow').children('i').attr("data-deaths",dailyData[counter][0])
+                    $('.counter'+(20+counter)).addClass('active');
+					let bgImage = document.getElementById(counter+1);
+					
+					console.log(bgImage)
+                    ctx.beginPath();
+					ctx.fillStyle = '#002868';
+					ctx.rect((widthStep*counter)+7,5+(canHgt*(1-((dailyData[counter][0]-60)/(heightFactor)))),50,-5+(canHgt*((dailyData[counter][0]-60)/(heightFactor))));
+					ctx.fill();
+					ctx.closePath();
+					ctx.beginPath();
+					ctx.fillStyle = '#bf0a30';
+					ctx.fillText(dailyData[counter][1],(widthStep*counter)+10,(canHgt*(1-((dailyData[counter][0]-60)/heightFactor))));
+					// ctx.fillText(dailyData[counter][1],(widthStep*counter)+5,(canHgt*(1-(dailyData[counter][0]/heightFactor))));
+					ctx.fill();
+					ctx.closePath();
+					ctx.beginPath();
+					ctx.moveTo((widthStep*counter)+10,(canHgt*(1-((dailyData[counter][0]-60)/heightFactor))));
+					ctx.drawImage(bgImage, 0, 0, bgImage.width, bgImage.height, (widthStep*counter)+5,(canHgt*(1-((dailyData[counter][0]-60)/heightFactor)))+10, 55, 55);
+					ctx.closePath();
+                    setTimeout(()=>{
+                        makeGraph(counter+1)
+                    },1000)
+                    
+                }
+            }
+            setTimeout(function () {
+				$('.legendContainer').addClass('active')
+				ctx.beginPath();
+				ctx.strokeStyle = '#a87103';
+				ctx.moveTo(0,5+(canHgt*(1-((175.26-60)/heightFactor))));
+				ctx.lineTo(canWid,5+(canHgt*(1-((175.26-60)/heightFactor))));
+				ctx.stroke();
+				ctx.closePath();
+				ctx.beginPath();
+				ctx.strokeStyle = '#a87103';
+				ctx.moveTo(canWid,5+(canHgt*(1-((175.26-60)/heightFactor))));
+				ctx.fillText("5'9''",canWid-40,5+(canHgt*(1-((175.26-60)/heightFactor))))
+				ctx.stroke();
+				ctx.closePath();
+                setTimeout(()=>{
+					makeGraph(0);
+				},1000)
+            }, 1000)
+            
+        })
+    </script>
+</body>
+</html>
