@@ -241,12 +241,16 @@
             flex-grow: 1;
             text-align: center;
             opacity: 0;
+            top: 0px;
+            position: relative;
             transition: all 250ms ease,transform 250ms ease 100ms;
         }
         .bottomDates>span.active {
-            transform: translateX(0px) rotate(-45deg);
+            transform: translateX(-7px) rotate(-60deg);
             margin: 0 auto 0;
             opacity: 1;
+            top: 10px;
+            position: relative;
         }
         .texty{
             position: fixed;
@@ -276,7 +280,7 @@
 					<span class="year">2020</span>
 				</div>
 				<div class="legendStat">
-					<span>Confirmed Cases</span>
+					<span>Death toll</span>
                     <span class="yellow">No of Countries<i data-deaths="0"></i></span>
 					<span class="red">Mainland China<i data-deaths="0"></i></span>
 					<span class="blue">Rest of the World<i data-deaths="0"></i></span>
@@ -286,17 +290,40 @@
             <canvas id="canvas"></canvas>
         </div>
         <div class="bottomDates">
-            <span class="counter20">20</span>
-            <span class="counter21">21</span>
-            <span class="counter22">22</span>
-            <span class="counter23">23</span>
-            <span class="counter24">24</span>
-            <span class="counter25">25</span>
-            <span class="counter26">26</span>
-            <span class="counter27">27</span>
-            <span class="counter28">28</span>
-            <span class="counter29">29</span>
-            <span class="counter30">30</span>
+            
+            <span class="counter20">01/22</span>
+            <span class="counter21">01/23</span>
+            <span class="counter22">01/24</span>
+            <span class="counter23">01/25</span>
+            <span class="counter24">01/26</span>
+            <span class="counter25">01/27</span>
+            <span class="counter26">01/28</span>
+            <span class="counter27">01/29</span>
+            <span class="counter28">01/30</span>
+            <span class="counter29">01/31</span>
+            <span class="counter30">02/01</span>
+            <span class="counter31">02/02</span>
+            <span class="counter32">02/03</span>
+            <span class="counter33">02/04</span>
+            <span class="counter34">02/05</span>
+            <span class="counter35">02/06</span>
+            <span class="counter36">02/07</span>
+            <span class="counter37">02/08</span>
+            <span class="counter38">02/09</span>
+            <span class="counter39">02/10</span>
+            <span class="counter40">02/11</span>
+            <span class="counter41">02/12</span>
+            <span class="counter42">02/13</span>
+            <span class="counter43">02/14</span>
+            <span class="counter44">02/15</span>
+            <span class="counter45">02/16</span>
+            <span class="counter46">02/17</span>
+            <span class="counter47">02/18</span>
+            <span class="counter48">02/19</span>
+            <span class="counter49">02/20</span>
+            <span class="counter50">02/21</span>
+            <span class="counter51">02/22</span>
+            <span class="counter52">02/23</span>
         </div>
         <div class="footer">
             <div class="bottom">
@@ -329,72 +356,77 @@
             let counter = 0;
             let circleArray = [];
             const dailyData = [
-                [278,4,4],				// 20
-                [326,6,4],				// 21
-                [547,8,4],				// 22
-                [639,14,5],				// 23
-                [916,25,5],				// 24
-                [2000,40,5],			// 25
-                [2700,57,5],			// 26
-                [4400,64,14],			// 27
-                [6057,87,18],			// 28
-                [7700,105,20],			// 28
-                [9658,118,23]			// 28
+                [17,18,26,42,56,82,131,133,171,213,259,361,425,490,562,632,717,804,904,1011,1111,1116,1368,1520,1662,1765,1863,2002,2114,2236,2236,2441,2443],
+                [0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,3,3,4,5,5,5,8,11,15,17,26],
+                [6,9,10,12,15,18,18,20,22,26,27,27,27,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,30,30,32,32,32],
+                [[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23]]
             ];
-            const widthStep = canWid/dailyData.length;
-            const heightFactor = 10000;
+            const widthStep = canWid/dailyData[0].length;
+            const heightFactor = 2500;
             const heightStep = canHgt/heightFactor;
-            
+            // [17,18,26,42,56,82,131,133,171,213,259,361,425,490,562,632,717,804,904,1011,1111,1116,1368,1520,1662,1765,1863,2002,2114,2236,2236,2441,2443]
+            // [0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,3,3,4,5,5,5,8,11,15,17,26]
+
             function makeGraph(counter){
-                if(counter<dailyData.length){
+                if(counter<dailyData[0].length){
                     $('.legendContainer').addClass('active')
-                    $('.date').text(20+counter)
-                    $('.stateName').addClass('active')
-                    $('.yellow').children('i').attr("data-deaths",dailyData[counter][2])
-                    if(dailyData[counter][0]>1000){
-                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData[counter][0]/1000).toFixed(1)+'K')
+                    if(dailyData[3][counter][1]>9){
+                        $('.date').text(dailyData[3][counter][1])
                     }else{
-                        $('.red').children('i').attr("data-deaths",dailyData[counter][0])
+                        $('.date').text('0'+dailyData[3][counter][1])
+                    }
+                    if(dailyData[3][counter][0] == 2){
+                        $('.month').text('Feb')
+                    }
+                    $('.stateName').addClass('active')
+                    $('.yellow').children('i').attr("data-deaths",dailyData[2][counter])
+                    if(dailyData[0][counter]>1000){
+                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData[0][counter]/1000).toFixed(1)+'K')
+                    }else{
+                        $('.red').children('i').attr("data-deaths",dailyData[0][counter])
                     }
                     
-                    $('.blue').children('i').attr("data-deaths",dailyData[counter][1])
-                    $('.counter'+(20+counter)).addClass('active')
+                    $('.blue').children('i').attr("data-deaths",dailyData[1][counter])
+                    if(counter%7==0){
+                        $('.counter'+(20+counter)).addClass('active')
+                    }
+                    
                     ctx.beginPath();
-					ctx.fillStyle = '#a87103';
-					ctx.rect((widthStep*counter)+30,5+(canHgt*(1-(dailyData[counter][2]/25))),10,-5+(canHgt*(dailyData[counter][2]/25)));
-					ctx.fillText(dailyData[counter][2],(widthStep*counter)+30,(canHgt*(1-(dailyData[counter][2]/25))));
+					ctx.fillStyle = '#a8710377';
+					ctx.rect((widthStep*counter)+10,5+(canHgt*(1-(dailyData[2][counter]/50))),8,-5+(canHgt*(dailyData[2][counter]/50)));
+					ctx.fillText(dailyData[2][counter],(widthStep*counter)+10,(canHgt*(1-(dailyData[2][counter]/50))));
 					ctx.fill();
 					ctx.closePath();
 
 					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E60000';
-						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][0]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+15,-5+(canHgt*(1-(dailyData[0][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+15,-5+(canHgt*(1-(dailyData[0][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 
 						ctx.beginPath();
 						ctx.strokeStyle = '#5bc0de';
-						ctx.moveTo((widthStep*(counter-1))+35,-5+(canHgt*(1-(dailyData[counter-1][1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+15,-5+(canHgt*(1-(dailyData[1][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+15,-5+(canHgt*(1-(dailyData[1][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 					}
 					ctx.beginPath();
 					ctx.fillStyle = '#E60000';
-					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][0]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+15,-5+(canHgt*(1-(dailyData[0][counter]/heightFactor))),5,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
 
 					ctx.beginPath();
 					ctx.fillStyle = '#5bc0de';
-					ctx.arc((widthStep*counter)+35,-5+(canHgt*(1-(dailyData[counter][1]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+15,-5+(canHgt*(1-(dailyData[1][counter]/heightFactor))),5,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
                     setTimeout(()=>{
                         makeGraph(counter+1)
-                    },2000)
+                    },400)
                     
                 }
             }
