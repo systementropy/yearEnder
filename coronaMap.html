@@ -744,6 +744,16 @@
 					'world':519,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",10]],
 					'places':[]
+				},{
+					'date':[24, 'Feb', 2020],
+					'china':77150,
+					'world':2210,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",10],["LB",10],["IL",10],["EG",10]],
+				},{
+					'date':[27, 'Feb', 2020],
+					'china':77150,
+					'world':2210,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",10],["KW",10],["IQ",10],["OM",10],["HR",10],["PK",10],["AT",10],["AF",10],["NO",10],["DZ",10],["GE",10],["MK",10],["CH",10],["BR",10],["RO",10],["GR",10]],
 				}
 			]
 
@@ -769,25 +779,6 @@
 					chart.draw(data, options);	
 					// chartPlace.draw(dataPlace, optionsPlace);
 					let chinaCount = databyDate[counter]['china'];
-					// if(chinaCount>1000){
-					// 	chinaCount = parseFloat(chinaCount/1000).toFixed(1)+'K'
-					// }
-					// $('.blue').children('i').attr("data-deaths",chinaCount).css({'width':(databyDate[counter]['china']/100)+'px'});
-					// $('.red').children('i').attr("data-deaths",databyDate[counter]['world']).css({'width':(databyDate[counter]['world']/100)+'px'});
-					// $('.date').animate({
-					// 	Counter: databyDate[counter]['date'][0]
-					// }, {
-					// 	duration: 400,
-					// 	easing: 'swing',
-					// 	step: function (now) {
-					// 		if(now<10){
-					// 			$(this).text('0'+Math.ceil(now));
-					// 		}else{
-					// 			$(this).text(Math.ceil(now));
-					// 		}
-							
-					// 	}
-					// });
 					$('.date').text(databyDate[counter]['date'][0])
 					$('.month').text(databyDate[counter]['date'][1])
 					$('.year').text(databyDate[counter]['date'][2])
@@ -808,32 +799,13 @@
 						datalessRegionColor: '#181818',
 						colorAxis: {
 							values: [1,10],
-							colors: ['#ae6868','#8c2828']
+							colors: ['#702020','#a35252']
 						}
 					};
 					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 					chart.draw(data, options);
 
-					dataPlace = new google.visualization.DataTable();
-					dataPlace.addColumn('number', 'Lat');                                
-					dataPlace.addColumn('number', 'Long');
-					dataPlace.addColumn('number', 'Value'); 
-					optionsPlace = {
-						domain: 'IN',
-						legend: 'none',
-						backgroundColor: 'transparent',
-						datalessRegionColor: 'transparent',
-						displayMode: 'markers',
-						colorAxis: {
-							values: [1,10],
-							colors: ['#5bc0de','#bb2124']
-						},
-						sizeAxis: {minValue: 1, maxValue:500,minSize:2,  maxSize: 10}
-					};
-					chartPlace = new google.visualization.GeoChart(document.getElementById('places_div'));
-					chartPlace.draw(dataPlace, optionsPlace);
-
-					chartPlace.draw(dataPlace, optionsPlace);	
+					
 
                     setTimeout(function(){
 					    init(1);
@@ -862,24 +834,34 @@
 
 <!-- 
 
+78497		==>			China
+1595		==>			South Korea
+705			==>			Others
+453			==>			Italy
+189			==>			Japan
+139			==>			Iran
+93			==>			Singapore
+91			==>			Hong Kong
+60			==>			US
+40			==>			Thailand
+33			==>			Bahrain
+32			==>			Taiwan
+27			==>			Germany
+26			==>			Kuwait
+23			==>			Australia
+22			==>			Malaysia
+18			==>			France
+16			==>			Vietnam
+13			==>			Spain, UAE, UK
+11			==>			Canada
+10			==>			Macau
+5			==>			Iraq
+4			==>			Oman
+3			==>			Philippines, Croatia, India
+2			==>			Israel, Russia, Lebanon, Finland, Sweden, Pakistan, Austria
+1			==>			Afghanistan, Nepal, Cambodia, Norway, Algeria, Belgium, Georgia, North Macedonia, Switzerland, Brazil, Romania, Egypt, Greece, Sri Lanka
 
-Mainland China											44685
-Others													175
-Hong Kong												50
-Singapore												47
-Thailand												33
-South Korea, Japan										28
-Malaysia, Taiwan										18
-Germany													16
-Australia, Vietnam										15
-US														13
-France													11
-Macau													10
-UAE ,UK													8
-Canada													7
-Italy, Philippines, India								3
-Russia, Spain											2
-Nepal, Cambodia, Belgium, Finland, Sweden, Sri Lanka	1
+
 
  -->
 
