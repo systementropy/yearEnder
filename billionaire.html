@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+
         @font-face {
             font-family: monty;
             src: url(./Montserrat/Montserrat-Thin.ttf);
@@ -56,96 +57,97 @@
             padding: 0;
             font-family: monty;
             font-weight: 400;
-			color: #EEE;
         }
         .title{
-            /* border-bottom: 5px solid #000; */
+            border-bottom: 5px solid #000;
             padding: 0;
+			position: relative;
+			height: 112px;
+			text-align: left;
+			padding-bottom: 5px;
         }
         .title h1{
-            font-size: 55px;
-			font-weight: 900;
-			line-height: 50px;
-			margin: 0;
-			margin-bottom: 0px;
-			letter-spacing: 2px;
-			color:
-			#9B1818;
-			margin-bottom: 10px;
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
         }
         .title h3{
             font-size: 35px;
             font-weight: 300;
             line-height: 1;
             margin: 0;
-            text-transform: uppercase;
         }
         .mainBody{
             border: 1px solid #999;
             height: 100vh;
-            width: 100vh;
+            width: 718px;
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
 			position: relative;
-			/* background-image: #999, url("./Extra/973.jpg"); */
-			background-image: linear-gradient(#999,#333),url(./Extra/973.jpg);
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: cover;
-			background-blend-mode: multiply;
+			overflow: hidden;
         }
         .graphicsContainer{
-            width: 100%;
-			height: 80%;
-			position: relative;
-			overflow: hidden;
-			/* box-shadow: 0px 0px 0px 5px
-			#999 inset,0px 0px 10000px 0px
-			#9968688A; */
-			box-sizing: border-box;
-			border: 5px solid #999;
+            width: 632px;
+            height: 636px;
+            position: relative;
+			margin: 25px 0 10px;
+			/* overflow: hidden; */
+			background-repeat: no-repeat;
+			z-index: 0;
         }
+		.imgCont{
+			height: 120px;
+			background-image: url('./Extra/budget2020.png');
+			background-color: #333;
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			margin-bottom: 20px;
+			position: absolute;
+			z-index: 100;
+			width: 175px;
+			top: 75px;
+			right: 20px;
+		}
+		.graphicsContainer::after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			/* background: rgba(220, 220, 220, 0.7) */
+		}
+		.slide{
+			display: flex;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			transition: all 400ms ease;
+			z-index: 1;
+		}
+		/* .slide1{opacity: 1;} */
+		.slide.active{opacity: 1;}
         #year{
             font-size: 34px;
             font-weight: 400;
             margin: auto;
             text-align: center;
-            padding: 15px 0 0;
+            padding: 15px 0;
             color: #555555;
-            text-transform: uppercase;
         }
-        .calendar p{
-            margin: 0;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        .calendar p.weeks{margin-bottom: 0;}
-        p.weeks span{
-            font-size: 16px;
-            flex-grow: 1;
-            padding: 5px 0;
-            outline: 1px solid #DDD;
-            width: 14.2857142857%;
-			text-align: center;
-        }
-		.calendar {
-			position: absolute;
-			width: 320px;
-			top: 155px;
-			right: 45px;
-			background: 
-			rgba(255,255,255,0.5);
-			z-index: 1;
-			overflow: hidden;
-		}
-        p.weeks span:nth-child(1),p.weeks span:nth-child(7){color: #dc3502;}
         .bottom{
             display: flex;
             justify-content: space-between;
         }
         .bottom img{
-            height: 24px;
+            height: 21px;
         }
         .bottom{
             line-height: 30px;
@@ -154,678 +156,510 @@
             position: absolute;
             bottom: 0;
             display: block;
-            z-index: -1;
-            filter: blur(0px);
-            transition: all 0.2s ease;
-        }
-        #labels.active{
-            filter: blur(5px);
         }
         #canvas{
             display: block;
             margin: auto;
         }
-        .Month{
-            opacity: 0;
-            letter-spacing: 10px;
-            transition: all 0s ease 0s;
-        }
-        .Month.active{
-            opacity: 1;
-            letter-spacing: 0px;
-            transition: all 1s ease 0.3s;
-        }
-        .logo{
-            width: 280px;
-            margin-bottom: 15px;
-            transform: translateX(-9px);
-        }
-        .legendStates {
-            position: absolute;
-            bottom: 0;
-            left: 40px;
-            font-size: 40px;
-            line-height: 1;
-            padding: 25px 0;
-            box-sizing: border-box;
-            font-weight: 500;
-            width: 400px;
-            text-align: center;
-            opacity: 1;
-            transition : all 250ms ease-in;
-            z-index: 10;
-        }
-        .legendStates.active{
-            opacity: 1;
-        }
-        .stateName{
-            font-weight: 300;
-            padding: 15px 0;
+		.legend{
+			display: flex;
+			text-align: center;
+			margin: 0 0 25px;
+		}
+		.legend:after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.legend>div{
+			float: left;
+			width: 50%;
+			position: relative;
+		}
+		.legend>div>span{
+			position: absolute;
+			top: -160px;
+			box-sizing: border-box;
+			width: 100%;
+			left: 0;
 			height: auto;
-			text-align: left;
+			display: block;
+			padding: 17px 0;
+			height: 135px;
+			background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));
+			transition: opacity 250ms ease-in-out;
+		}
+		.legend.reset>div>span{
 			opacity: 0;
-			transition: opacity 100ms ease;
-        }
-		.stateName.active{
+		}
+		.legend.active>div>span{
 			opacity: 1;
 		}
-		.stateName.blue{
-			color: #2277cc
+		.legend>div>span>main{
+			position: static;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			font-size: 80px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
 		}
-		.stateName.orange{
-			color: #cc7722
+		.legend>div>span>metric{
+			position: static;
+			top: 75px;
+			left: 0;
+			width: 100%;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
 		}
-		.date {
-			font-size: 100px;
+		.legend>div>h3{
+			line-height: 1;
+			margin: 0;
+			font-size: 32px;
+			text-transform: uppercase;
 			font-weight: 400;
 		}
-		.year {
-			font-weight: 200;
-			font-size: 50px;
+		.legend>div>p{
+			line-height: 1;
+			margin: 0;
 		}
-		.month{
-			font-size: 50px;
+		.legend>div>p::before{
+			content: '( ';
 		}
-        .totalSeats{
-            font-weight: 300;
-        }
-        .total{
-            font-weight: 500;
-        }
-        .bjpSeats{
-            font-weight: 300;
-        }
-        .bjp{
-            font-weight: 500;
-        }
-        .internal{
-            display: flex;
-            justify-content: space-evenly;
-            position: relative;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-        .internal p{
-            font-size: 18px;
-            line-height: 1;
-            margin: 0;
-            font-weight: 200;
-            perspective: 100px;
-        }
-        .bar{
-            width: 2px;
-            background: #333;
-            transform: skewX(-20deg) scale(0.5);
-        }
-        .footer{
-            position: static;
-            top: 80%;
-            width: 100%;
-        }
-        .internal .fillbg{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: #F5F5F6;
-            border: 2px solid #333;
-            box-shadow: 0px 0px 1px 1px #2821195E;
-            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .internal .fill{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 0%;
-            height: 10px;
-            background: #F28500;
-            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
-            background: linear-gradient(to right, 
-                    rgb(240,240,240)    0px,
-                    rgb(255,243,228)    calc(0 * 40px),
-                    rgb(255,231,203)    calc(1 * 40px),
-                    rgb(255,214,164)    calc(2 * 40px),
-                    rgb(255,196,124)    calc(3 * 40px),
-                    rgb(255,178,85)     calc(4 * 40px),
-                    rgb(255,161,46)     calc(5 * 40px),
-                    rgb(255,143,7)      calc(6 * 40px),
-                    rgb(203,111,0)      calc(7 * 40px),
-                    rgb(183,101,0)      calc(8 * 40px)
-            );
-            box-shadow: -1px 8px 7px 0px #8C6331;
-            transition: all 0.3s ease;
-            z-index: 1;
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .footer i{
-            display: block;
-            font-weight: 300;
-            line-height: 1;
-            font-size: 14px;
-        }
-        .texty{
+		.legend>div>p::after{
+			content: ' )';
+		}
+		.slide>div{
+			/* width: 50%; */
+			margin: 1px;
+			/*! box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3); */
+			transition: all 2000ms ease, background 0ms ease;
+		}
+		.then1{
+			transform: scaleY(1);
+			height: 100%;
+			transform-origin: bottom;
+			/* background-image: linear-gradient(to right bottom, rgb(255, 255, 255),rgb(226, 226, 226)),url('./Extra/budget2020.png');
+			background-color: #333;
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed;
+			background-repeat: no-repeat; */
+			flex-grow: 1;
+			align-self: flex-end;
+		}
+		.then2{
+			width: 0;
+			background:#555;
+			background-image: linear-gradient(to right bottom, #35dc02,#333);
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed; */
+			background-repeat: no-repeat;
+			align-self: flex-end;
+		}
+		.slide.active>.then2{
+			width: 50%;
+		}
+		.title h3{
+			position: static;
+			opacity: 0;
+			transform: translateX(-100%);
+			z-index: 1000;
+			color:#000;
+			width: 100%;
+			transition: all 1000ms ease,opacity 1000ms ease 500ms;
+		}
+		.title h3.active{
+			opacity: 1;
+			transform: translateX(0%);
+			color: #333;
+		}
+		.legend > div.label1{
+			flex-grow: 1;
+			transition: all 2000ms ease;
+		}
+		.legend > div.label2{
+			width: 0;
+			opacity: 0;
+			height: 48px;
+			overflow: hidden;
+			transition: all 2000ms ease;
+		}
+		.legend.active .label2{
+			width: 50%;
+			overflow: visible;
+			opacity: 1;
+		}
+		.slide.reset{
+			opacity: 0;
+			transition: all 400ms linear;
+		}
+		
+		.title h3 span{
+			font-size: 20px;
+		}
+		.question{
+			max-width: 80%;
+			text-align: center;
+			margin: 0px auto;
+			height: auto;
+			padding: 50px 0 50px;
+			opacity: 0;
+			transform: translateY(80px);
+			transition: opacity 400ms ease 600ms,transform 800ms ease 400ms;
+			font-weight: 300;
+			font-size: 42px;
+			line-height: 1.3;
+			letter-spacing: -1px;
+		}
+		.question.active{
+			transform: translateY(0px);
+			opacity: 1;
+		}
+		.texty{
             position: fixed;
             top:0;
             left: 0;
             font-size: 3vh;
-			color: #000000;
             animation: aniTr 1s infinite alternate;
+            
         }
         @keyframes aniTr {
             0% {transform: translateX(0);}
             100% {transform: translateX(100px);}
         }
-        .svgContainer {
-            padding-top: 40px;
-        }
-		#regions_div,#places_div {
-			position: absolute;
-			height: 110%;
-			width: auto;
-			left: 50%;
-			top: 50%;
-			transform: translate(-55%,-50%);
-			z-index: 0;
-		}
-		.legend{
-			position: absolute;
-			left: 0%;
-			top: 120px;
-			width: 180px;
-			text-align: left;
-		}
-		.legend span {
-			display: block;
-			line-height: 30px;
-			font-size: 20px;
-			color: 
-			rgba(220,220,220,0.8);
-			width: 100%;
-			position: relative;
-		}
-		.legend span::before{
-			/* content: ''; */
-			position: absolute;
-			top: 8px;
-			right: -25px;
-			width: 12px;
-			height: 12px;
-			box-shadow: 0px 0px 0px 3px rgba(220,220,220,0.3);
-		}
-		.legend span:nth-child(1){
-			color: #F5F5F6;
-		}
-		.legend span:nth-child(1)::before{
-			display: none;
-		}
-		.legend span.blue::before{
-			background-color: rgb(182, 173, 44);
-			background: rgb(182, 44, 44);
-		}
-		.legend span.red::before{
-			background-color: rgb(182, 44, 44);
-			background:rgb(44, 182, 173);
-		}
-		.legend span.active.red::before{
-			background-color: rgb(223, 165, 55);
-		}
-		.legend span.active.red i.active{
-			background-color: rgb(223, 165, 55);
-		}
-		.legend span i{
-			position: absolute;
-			top: 5px;
-			left: 196px;
-			height: 18px;
-			width: 0px;
-			background:rgb(223, 165, 55);
-			box-shadow: 0px 0px 2px 1px rgba(223, 165, 55,0.3);
-			transition: all 250ms ease;
-		}
-		.legend span i::after{
-			position: absolute;
-			left: calc(100% + 15px);
-			content: attr(data-deaths);
-			font-style: normal;
-			top: 0;
-			line-height: 16px;
-		}
-		.legend span.blue i{
-			background: rgb(182, 44, 44);
-			box-shadow: 0px 0px 2px 1px rgba(182, 44, 44,0.3);
-		}
-		.legend span.active.blue::before{
-			background:rgb(44, 182, 173);
-		}
-		.legend span.blue i.active{
-			background:rgb(44, 182, 173);
-		}
-		#regions_div path{
-			stroke-width: 0;
-		}
-		#places_div path {
-			stroke-width: 1;
-			stroke: 
-			#dacfc517;
-		}
-		#year{
-            font-size: 34px;
-            font-weight: 400;
-            margin: auto;
-            text-align: center;
-            padding: 15px 0 0;
-            color: #555555;
-            text-transform: uppercase;
-        }
-        #year p{
-            margin: 0 auto;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        #year p.weeks{margin-bottom: 0;}
-        #year p span{
-            font-size: 16px;
-            flex-grow: 1;
-            padding: 5px 0;
-            outline: 1px solid #DDD;
-            width: 14.2857142857%;
-        }
-        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
-		.calendar p.dates{
+		.list{
+			display: flex;
 			flex-wrap: wrap;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 100%;
+		}
+		.list span {
+			width: 0;
+			height: 100%;
+			padding: 0px;
+			background: #EEE;
+			font-size: 20px;
+			font-weight: normal;
+			letter-spacing: -1px;
+			line-height: 1;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			opacity: 0;
+			transform-origin: bottom;
+			align-self: flex-end;
+			transition: all 400ms ease,transform 800ms ease;
+			
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0),0px 0px 20px 0px rgba(0,0,0,0);
+		}
+		.list span:nth-child(2n){
+			transform: translateX(100%);
+			background: #555;
+		}
+		.list span:nth-child(2n+1){
+			transform: translateX(-100%);
+			background: #EEE;
+		}
+		.list span:nth-child(1){background: #92C24C77;z-index: 1;}
+		.list span:nth-child(2){background: #C9224C77;z-index: 2;}
+		.list span:nth-child(3){background: #C2924C77;z-index: 3;}
+		.list span:nth-child(4){background: #C24C9277;z-index: 4;}
+		.list span:nth-child(5){background: #C2492C77;z-index: 5;}
+		.list span:nth-child(6){background: #92C24C77;z-index: 1;}
+		.list span:nth-child(7){background: #C9224C77;z-index: 2;}
+		.list span:nth-child(8){background: #C2924C77;z-index: 3;}
+		.list.active span:nth-child(2n){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.list.active span:nth-child(2n+1){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		
+		.list span.active{
+			font-weight: 500;
+			color: #FFF;
+			flex-grow: 1;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2);
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.list span.active i{
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			background: #EEE;
+		}
+		.list span::before{
+			content: attr(data-year);
+			position: absolute;
+			left: 0;
+			width: 100%;
+			bottom: 20px;
+			z-index: 1;
+			color: #000;
+			text-align: left;
+			transform-origin: left;
+			width: max-content;
+			transform: rotate(-90deg) translateX(-10px) translateY(35px);
+		}
+		.list span::after{
+			content: attr(data-disp);
+			position: absolute;
+			left: 0;
+			width: 64%;
+			margin: 0 18%;
+			top: -20px;
+			z-index: 1;
+			color: #000;
+			text-align: center;
 			
 		}
-		.eachdate {
-			width: 14.2857142857%;
-			height: 40px;
-			box-shadow: 0px 0px 0px 1px 
-			rgba(0,0,0,0.1);
-			position: relative;
-			background: rgba(0, 0, 0, 0);
-			transition: all 250ms ease;
-		}
-		.eachdate.active{
-			background:#ffb2b2; 
-			/* background: rgba(0, 0, 0, 0.4); */
-		}
-		.eachdate::after{
-			color:
-			#333333;
-			position: absolute;
-			content: attr(date-num);
-			font-size: 12px;
-			left: 0;
-			top: 0;
-			line-height: 40px;
-			width: 100%;
-			height: auto;
-			text-align: center;
-			align-self: center;
-			border-radius: 50%;
-			background:
-			transparent;
-		}
-		svg circle{
-			stroke-width: 0;
-			opacity: 1 ;
-		}
-		.wuhan {
-			position: absolute;
-			z-index: 1;
-			width: 130px;
-			height: 175px;
-			background:
-			#DDD;
-			clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 85% 40%, 85% 100%, 70% 40%, 0% 40%);
-			top: 235px;
-			right: 110px;
-			border-radius: 2px;
+		/* .list span.active::before{
 			opacity: 0;
-			transition: all 1s ease;
+			transition: all 250ms ease-in;
+			transform: scaleX(1);
+		} */
+		@keyframes gradient {
+			0% {background-position: 0% 50%;}
+			50% {background-position: 100% 50%;}
+			100% {background-position: 0% 50%;}
 		}
-		.wuhan.active {
-			opacity: 1;
-		}
-		.wuhan h2{
-			font-size: 20px;
-			text-align: center;
-			font-weight: 300;
-			margin: 0;
-			color:#333;
-			text-transform: uppercase;
-			line-height: 1;
-			margin-top: 7px;
-		}
-		.wuhan h2 span{
-			display: block;
-			font-size: 29px;
-			font-weight: 500;
-			color:rgb(182, 44, 44)
-		}
-		.labelContainer{	
-			position: absolute;
-			height: 801px;
-			width: 1283px;
-			left: 50%;
-			top: 50%;
-			transform: translate(-55%,-50%);
-			z-index: 10;
-		}
-		.labelContainer span{
-			height: 13px;
-			width: auto;
-			top: 434.79113273888186px;
-			left: 999.2479842318957px;
-			background: #FFF;
-			position: absolute;
-			z-index: 1000;
-			padding: 5px 8px;
-			background:#EEE;
-			text-align: center;
-			opacity: 0.8;
-			color:#333;
-			font-size: 14px;
-			line-height: 14px;
-			transform: translate(-50%,-50%);
-		}
-		.labelContainer span p {
-			margin: 0;
-		}
-		.labelContainer span p:nth-child(1) {
-			position: absolute;
-			top: -20px;
-			left: 50%;
-			transform: translateX(-50%);
-			color: #FFF;
-			font-size: 24px;
-		}
-		.countriesList {
-			padding: 0;
-			position: absolute;
-			width: 800px;
-			background: rgba(223, 223, 223, 0.8);
-			z-index: 1000;
-			height: 400px;
-			top: 220px;
-			border-radius: 10px;
-			border: 5px solid rgb(223, 165, 55);
-			font-weight: 300;
-			font-size: 21px;
-			box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.5);
-			transition: all 400ms ease-in-out;
-			height: 0;
+		.slide{
 			opacity: 0;
-			/* overflow: hidden; */
-			display: flex;
-			flex-wrap: wrap;
-		}
-		.countriesList.active {
-			height: 400px;
-			opacity: 1;
-		}
-		.countriesList.active::before{
-			content: '';
-			position: absolute;
-			z-index: 100;
-			border: transparent;
-			width: 0; 
-			height: 0; 
-			border-left: 8px solid transparent;
-			border-right: 8px solid transparent;
-			border-bottom: 16px solid rgb(223, 165, 55);
-			top: -21px;
-			left: 23%;
-		}
-		.countriesList div{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
-			flex-grow: 1;
-			color: #333;
-			padding: 15px;
-			opacity: 0;
-			transition: all 400ms ease-in-out 800ms;
-		}
-		.countriesList.active div{
-			opacity: 1;
-		}
-		.countriesList div h4{
-			margin: 0;
-			color: #555555;
-			font-weight: 500;
-			font-size: 25px;
-			text-shadow: 1px 1px 1px rgba(223, 165, 55, 0.3);
-			letter-spacing: 5px;
-			transform: scale(0);
-			opacity: 0;
-			text-align: center;
-			width: 100%;
-			transition: all 400ms ease 1000ms,opacity 250ms ease 1000ms;
-		}
-		.countriesList.active div h4{
-			transform: scale(1);
-			letter-spacing: 0px;
-			opacity: 1;
-		}
-		.countriesList div p{
-			margin: 0;
-			opacity: 0;
-			transform: translateY(20px);
-			transition: all 400ms ease-in-out 1200ms;
-		}
-		.countriesList.active div p{
-			opacity: 1;
-			transform: translateY(0px);
-		}
-		.barContainer{
-			position: absolute;
-			height: 110%;
-			width: 1283px;
-			left: 50%;
-			top: 50%;
-			transform: translate(-55%,-50%);
-			z-index: 1;
-		}
-		.barContainer span{
-			position: absolute;
-			background: transparent;
-			width: 40px;
-			height: 0;
-			transform: translateY(-100%) translateX(-20px);
-			box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3);
-			background-image: linear-gradient(#85bb65,#9E4B84),url('./Extra/dollar.png');
-			background-size: 70px 100%;
-			background-repeat: no-repeat;
-			background-position: center;
-			background-blend-mode: color;
 			transition: all 400ms ease;
 		}
-		.barContainer span:nth-child(4){
-			transform: translateY(-100%) translateX(-25px);
+		.slide.active{
+			opacity: 1;
+		}
+		.defineText {
+			position: absolute;
+			z-index: 1;
+			font-size: 24px;
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.defineText.active{
+			opacity: 1;
 		}
     </style>
 </head>
-<body> 
-    <span class="texty">TEXTY</span>
+<body>
+	<span class="texty">TEXTY</span>
     <div class="mainBody">
-
         <div class="title">
             <h1>CITIES WHERE THE WORLD’S BILLIONAIRES LIVE</h1>
-            <!-- <h3>The year in news & politics</h3> -->
-
+			<h3>GDP GROWTH RATE</h3>
         </div>
-		
+		<div class="defineText">(The difference between total revenue and total expenditure of the government)</div>
         <div class="graphicsContainer">
-			<div class="legendStates">
-                <div class="stateName">
-					<span class="date"></span>
-					<span class="month"></span>,
-					<span class="year"></span>
+			<div class="slide slide1">
+				<div class="then1">
+					<!-- <span class="counterElt">1</span> -->
+					<div class="list">
+						<span class='opt0'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt1'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt2'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt3'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt4'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt5'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt6'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt7'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+						<span class='opt8'>
+							<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+						</span>
+					</div>
 				</div>
 			</div>
-			<div class="barContainer">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div id="regions_div"></div>
-			<div id="places_div"></div>
-		</div>
-		<div class="footer">
+        </div>
+        <div class="footer">
+			<i>*Revised Estimates, **Budget Estimates;</i>
             <div class="bottom">
-				<span>
-					Source: Hurun Rich List 2020
-				</span>
-				<span><img src="./logo.png" alt=""></span>
-			</div>
-		</div>
-	</div>
-	<script src="./jquery.js"></script>
-	<script type="text/javascript" src="./loader.js"></script>
+				<span>Source: Economic Survey 2020</span>
+                <span><img src="./logo.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+	<!-- 
 
+
+	 -->
+    <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
-			google.charts.load('current', {
-				'packages':['geochart'],
-				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
-			});
-			google.charts.setOnLoadCallback(init);
-			
-			let databyDate = [
-				["Beijing",110,39.9143291,116.3870033],
-				["New York",98,40.713544,-74.0148357],
-				["Shanghai",83,31.2246325,121.196571],
-				["Hong Kong",76,22.3529913,113.9876162],
-				["Shenzhen",75,22.5554167,113.913795],
-				["London",74,51.5287718,-0.24168],
-				["Moscow",72,55.5815245,36.8251438],
-				["Bangkok",56,13.7248936,100.4930267],
-				["Mumbai",50,19.0825223,72.7411022],
-				["Guangzhou",45,23.1259819,112.9476603]
-			]
-
-			let data;
-			let options;
-			let chart;
-			let counterCountry = 0; 
-
-			let dataPlace;
-			let optionsPlace;
-			let chartPlace;
-			let counterPlace = 0; 
-			
-			function drawRegionsMap(counter) {
-				if(databyDate[counter]){
-					$('.wuhan').addClass('active');
-					$('.stateName').addClass('active');
-					data.addRow([databyDate[counter][2],databyDate[counter][3],databyDate[counter][1]]);	
-					chart.draw(data, options);	
+			const displayData = [
+				[["",0.8,''],["Beijing",110],["New York",98],["Shanghai",83],["Hong Kong",76],["Shenzhen",75],["London",74],["Moscow",72],["Bangkok",56],["Mumbai",50],["Guangzhou",45]]
+			];
+			const fps = 30;
+			const eachQuestionTimer = 16;
+			let globalCounter = 0;
+			function animate() {
+				if(globalCounter<displayData.length*eachQuestionTimer*fps){
+					start(globalCounter)
+					requestAnimationFrame(animate);
 				}
-				
-			}
-			function init(label){
-				
-				if(!label){
-					data = new google.visualization.DataTable();
-					data.addColumn('number', 'Lat');                                
-					data.addColumn('number', 'Long');
-					data.addColumn('number', 'Value'); 
-					options = {
-						domain: 'IN',
-						legend: 'none',
-						backgroundColor: 'transparent',
-						datalessRegionColor: '#555',
-						colorAxis: {
-							values: [0,110],
-							colors: ['#702020','#a35252']
-						},
-						sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
-						displayMode: 'markers',
-					};
-					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-					chart.draw(data, options);
-
-					
-
-                    setTimeout(function(){
-					    init(1);
-                    },1000);
-				}else if(label<=databyDate.length){
-					setTimeout(function(){
-						drawRegionsMap(label-1);
-						if(databyDate[label-1]){
-								console.log('stop');
-								init(label+1);
-						}else{
-							init(label+1);
-						}
-					},1000)
-				}else{
-					$('svg circle').each(function(i){
-						console.log(i)
-						const circle = $(this);
-						const x = circle.attr("cx")
-						const y = circle.attr("cy")
-						const r = circle.attr("r")
-						// $('.barContainer').append("<span style='top:"+y+"px; left:"+x+"px; height:"+(r*4)+"px;'></span>")
-						$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px', height:(r)+'px'})
-					})
-					// setTimeout(function(){
-					// 	$('.countriesList').addClass('active');
-					// },4000);
+            }
+			
+			const multiplier = 1000;
+			function start(counter){
+				let questionNum = Math.floor(globalCounter/(eachQuestionTimer*fps))
+				if(globalCounter%fps==0){
+					let secs  = (counter/fps)-(questionNum*eachQuestionTimer);
+					let dataConst = displayData[questionNum][0];
+					switch (secs) {
+						case 0:
+							$('.title>h3')
+								.addClass('active')
+								.text(dataConst[0])
+							$('.slide').addClass('active')
+							if(questionNum === 2){
+								$('.defineText').addClass('active')
+							}
+							break;
+						case 1:
+							$('.list').addClass('active');
+							break;
+						case 2:
+							$('.list').children(".opt0")
+								.attr('data-year',displayData[questionNum][1][0])
+								.attr('data-disp',displayData[questionNum][1][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][1][1])*dataConst[1])+'%'});
+							break;
+						case 3:
+							$('.list').children(".opt1")
+								.attr('data-year',displayData[questionNum][2][0])
+								.attr('data-disp',displayData[questionNum][2][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][2][1])*dataConst[1])+'%'});
+							break;
+						case 4:
+							$('.list').children(".opt2")
+								.attr('data-year',displayData[questionNum][3][0])
+								.attr('data-disp',displayData[questionNum][3][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][3][1])*dataConst[1])+'%'});
+							break;
+						case 5:
+							if(displayData[questionNum][4]){
+								$('.list').children(".opt3")
+								.attr('data-year',displayData[questionNum][4][0])
+								.attr('data-disp',displayData[questionNum][4][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][4][1])*dataConst[1])+'%'});
+							}
+							
+							break;
+						case 6:
+							if(displayData[questionNum][5]){
+								$('.list').children(".opt4")
+								.attr('data-year',displayData[questionNum][5][0])
+								.attr('data-disp',displayData[questionNum][5][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][5][1])*dataConst[1])+'%'});
+							}
+							break;
+						case 7:
+							if(displayData[questionNum][6]){
+								$('.list').children(".opt5")
+								.attr('data-year',displayData[questionNum][6][0])
+								.attr('data-disp',displayData[questionNum][6][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][6][1])*dataConst[1])+'%'});
+							}
+							break;
+						case 8:
+							if(displayData[questionNum][7]){
+								$('.list').children(".opt6")
+								.attr('data-year',displayData[questionNum][7][0])
+								.attr('data-disp',displayData[questionNum][7][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][7][1])*dataConst[1])+'%'});
+							}
+							break;
+						case 9:
+							if(displayData[questionNum][8]){
+								$('.list').children(".opt7")
+								.attr('data-year',displayData[questionNum][8][0])
+								.attr('data-disp',displayData[questionNum][8][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][8][1])*dataConst[1])+'%'});
+							}
+							break;
+						case 10:
+							if(displayData[questionNum][9]){
+								$('.list').children(".opt8")
+								.attr('data-year',displayData[questionNum][9][0])
+								.attr('data-disp',displayData[questionNum][9][1]+dataConst[2])
+								.addClass('active')
+								.css({'height':((displayData[questionNum][9][1])*dataConst[1])+'%'});
+							}
+							break;
+						case 11:
+							break;
+						case 12:
+							break;
+						case 13:
+							break;
+						case 14:
+							break;
+						case 15:
+							if((questionNum+1)<displayData.length){
+								$('.title>h3')
+									.removeClass('active')
+									.text('')
+								$('.slide').removeClass('active')
+								$('.list').removeClass('active');
+								$('.defineText').removeClass('active')
+								$(".opt1").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt2").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt3").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt4").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt5").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+							}
+					}
 				}
+				globalCounter+=1;
 			}
-		});
-	</script>
-		
+			setTimeout(()=>{
+				animate();
+			},1000)
+			
+        })
+    </script>
 </body>
 </html>
-
-<!-- 
-
-78497		==>			China
-1595		==>			South Korea
-705			==>			Others
-453			==>			Italy
-189			==>			Japan
-139			==>			Iran
-93			==>			Singapore
-91			==>			Hong Kong
-60			==>			US
-40			==>			Thailand
-33			==>			Bahrain
-32			==>			Taiwan
-27			==>			Germany
-26			==>			Kuwait
-23			==>			Australia
-22			==>			Malaysia
-18			==>			France
-16			==>			Vietnam
-13			==>			Spain, UAE, UK
-11			==>			Canada
-10			==>			Macau
-5			==>			Iraq
-4			==>			Oman
-3			==>			Philippines, Croatia, India
-2			==>			Israel, Russia, Lebanon, Finland, Sweden, Pakistan, Austria
-1			==>			Afghanistan, Nepal, Cambodia, Norway, Algeria, Belgium, Georgia, North Macedonia, Switzerland, Brazil, Romania, Egypt, Greece, Sri Lanka
-
-
-
- -->
-
- 
