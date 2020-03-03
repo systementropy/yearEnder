@@ -63,15 +63,15 @@
             padding: 0;
         }
         .title h1{
-            font-size: 68px;
+            font-size: 71px;
 			font-weight: 900;
 			line-height: 50px;
 			margin: 0;
 			margin-bottom: 0px;
 			letter-spacing: 2px;
-			color:
-			#9B1818;
+			color:#9B1818;
 			margin-bottom: 10px;
+			text-transform: uppercase;
         }
         .title h3{
             font-size: 35px;
@@ -343,6 +343,7 @@
 			width: 100%;
 			text-shadow: 0px 0px 1px;
 			position: relative;
+			white-space: pre;
 		}
 		.legend span::before{
 			/* content: ''; */
@@ -620,6 +621,12 @@
 			opacity: 1;
 			transform: translateY(0px);
 		}
+		.legendLabel span {
+			display: inline;
+			margin-left: 22px;
+			font-weight: 300;
+			font-size: 21px;
+		}
     </style>
 </head>
 <body> 
@@ -627,7 +634,7 @@
     <div class="mainBody">
 
         <div class="title">
-            <h1>COVID-19 MAP</h1>
+            <h1>Coronavirus Cases</h1>
             <!-- <h3>The year in news & politics</h3> -->
 
         </div>
@@ -640,30 +647,50 @@
 					<span class="year"></span>
 				</div>
 				<div class="legend">
-					<span class="legendLabel">Confirmed Cases</span>
+					<span class="legendLabel">Confirmed Cases<span></span></span>
 					<span class="blue">Mainland China<i data-deaths="0"></i></span>
 					<span class="red">Rest of the World<i data-deaths="0"></i></span>
 				</div>
 				<div class="countriesList">
-					<!-- <div><h4>175</h4><p>Diamond Princess</p></div> -->
-					<div><h4>763</h4><p>South Korea</p></div>
-					<div><h4>691</h4><p>Others</p></div>
-					<div><h4>157</h4><p>Italy</p></div>
-					<div><h4>147</h4><p>Japan</p></div>
-					<div><h4>89</h4><p>Singapore</p></div>
-					<div><h4>74</h4><p>Hong Kong</p></div>
-					<div><h4>43</h4><p>Iran</p></div>
-					<div><h4>35</h4><p>Thailand, US</p></div>
-					<div><h4>28</h4><p>Taiwan</p></div>
-					<div><h4>22</h4><p>Australia, Malaysia</p></div>
-					<div><h4>16</h4><p>Germany, Vietnam</p></div>
-					<div><h4>13</h4><p>UAE</p></div>
-					<div><h4>12</h4><p>France</p></div>
-					<div><h4>10</h4><p>Macau</p></div>
-					<div><h4>9</h4><p>Canada, UK</p></div>
-					<div><h4>3</h4><p>Philippines, India</p></div>
-					<div><h4>2</h4><p>Russia, Spain</p></div>
-					<div><h4>1</h4><p>Lebanon, Nepal, Cambodia, Israel, Belgium,<br/>Finland, Sweden, Egypt, Sri Lanka</p></div>
+					<div><h4>4,812</h4><p>South Korea</p></div>
+					<div><h4>2,036</h4><p>Italy</p></div>
+					<div><h4>1,501</h4><p>Iran</p></div>
+					<div><h4>706</h4><p><i>Diamond Priness</i></i></p></div>
+					<div><h4>274</h4><p>Japan</p></div>
+					<div><h4>191</h4><p>France</p></div>
+					<div><h4>165</h4><p>Germany</p></div>
+					<div><h4>120</h4><p>Spain</p></div>
+					<div><h4>108</h4><p>Singapore</p></div>
+					<div><h4>105</h4><p>US</p></div>
+					<div><h4>100</h4><p>Hong Kong</p></div>
+					<div><h4>56</h4><p>Kuwait</p></div>
+					<div><h4>49</h4><p>Bahrain</p></div>
+					<div><h4>43</h4><p>Thailand</p></div>
+					<div><h4>42</h4><p>Switzerland</p></div>
+					<div><h4>41</h4><p>Taiwan</p></div>
+					<div><h4>40</h4><p>UK</p></div>
+					<div><h4>31</h4><p>Australia</p></div>
+					<div><h4>29</h4><p>Malaysia</p></div>
+					<div><h4>27</h4><p>Canada</p></div>
+					<div><h4>26</h4><p>Iraq</p></div>
+					<div><h4>25</h4><p>Norway</p></div>
+					<div><h4>21</h4><p>UAE</p></div>
+					<!-- <div><h4>18</h4><p>Netherlands, Austria</p></div>
+					<div><h4>16</h4><p>Vietnam</p></div>
+					<div><h4>15</h4><p>Sweden</p></div>
+					<div><h4>13</h4><p>Lebanon</p></div>
+					<div><h4>12</h4><p>Israel</p></div>
+					<div><h4>10</h4><p>Macau</p></div> -->
+					<div><h4>01 - 20</h4><p>Rest (51 Countries) </p></div>
+					<!-- <div><h4>9</h4><p>Iceland</p></div>
+					<div><h4>8</h4><p>Belgium, San Marino</p></div>
+					<div><h4>7</h4><p>Qatar, Croatia, Greece</p></div>
+					<div><h4>6</h4><p>Ecuador, Oman, Finland</p></div>
+					<div><h4>5</h4><p>Algeria, Pakistan, Mexico, India</p></div>
+					<div><h4>4</h4><p>Czech Republic, Denmark</p></div>
+					<div><h4>3</h4><p>Georgia, Philippines, Russia, Romania, Azerbaijan</p></div>
+					<div><h4>2</h4><p>Indonesia, Brazil, Portugal, Egypt</p></div>
+					<div><h4>1</h4><p>Afghanistan, Nepal, Lithuania, Cambodia, Andorra, Saudi Arabia, Ireland, Nigeria, Senegal, Armenia, Dominican Republic, Estonia, North Macedonia, Morocco, Luxembourg, Monaco, Belarus, New Zealand, Latvia, Sri Lanka</p></div> -->
 				</div>
 			</div>
 			<div id="regions_div"></div>
@@ -691,56 +718,88 @@
 			
 			
 			let databyDate = [
-				{
+{
 					'date':[31, 'Dec', 2019],
 					'china':1,
 					'world':0,
 					'countries':[["CN",10]],
+					'places':[
+						[30.592992, 114.306225,1]
+					]
 				},{
 					'date':[20, 'Jan', 2020],
 					'china':278,
 					'world':4,
 					'countries':[["CN",1],["KR",10],["JP",10],["TH",10],["TW",10]],
+					'places':[
+						[30.592992, 114.306225,10]
+					]
 				},{
 					'date':[23, 'Jan', 2020],
 					'china':639,
 					'world':14,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",10]],
+					'places':[]
 				},{
 					'date':[27, 'Jan', 2020],
 					'china':4400,
 					'world':64,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",10],["FR",10],["MY",10],["NP",10],["SG",10],["VN",10],["HK",10],["MO",10],["CA",10]],
+					'places':[]
 				},{
 					'date':[28, 'Jan', 2020],
 					'china':6000,
 					'world':87,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",10],["DE",10],["LK",10]],
+					'places':[]
 				},{
 					'date':[30, 'Jan', 2020],
 					'china':9700,
 					'world':118,
-					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",10],["FI",10],["AE",10]],
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]["KH",1],["DE",1],["LK",1],["IN",10],["FI",10],["AE",10]],
+					'places':[]
 				},{
 					'date':[31, 'Jan', 2020],
 					'china':11200,
 					'world':153,
-					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",10],["PH",10]],
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",10],["PH",10]],
+					'places':[]
 				},{
 					'date':[3, 'Feb', 2020],
 					'china':19700,
 					'world':188,
-					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",10],["GB",10],["ES",10],["SE",10]],
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",10],["GB",10],["ES",10],["SE",10]],
+					'places':[]
 				},{
 					'date':[12, 'Feb', 2020],
 					'china':44685,
 					'world':519,
-					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",10]],
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1]["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",10]],
+					'places':[]
 				},{
 					'date':[24, 'Feb', 2020],
 					'china':77150,
 					'world':2210,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",10],["LB",10],["IL",10],["EG",10]],
+				},{
+					'date':[27, 'Feb', 2020],
+					'china':77150,
+					'world':4300,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",10],["KW",10],["IQ",10],["OM",10],["HR",10],["PK",10],["AT",10],["AF",10],["NO",10],["DZ",10],["GE",10],["MK",10],["CH",10],["BR",10],["RO",10],["GR",10]],
+				},{
+					'date':[03, 'Mar', 2020],
+					'china':80151,
+					'world':10785,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",1],["KW",1],["IQ",1],["OM",1],["HR",1],["PK",1],["AT",1],["AF",1],["NO",1],["DZ",1],["GE",1],["MK",1],["CH",1],["BR",1],["RO",1],["GR",1],
+					["IS",10],["SM",10],["QA",10],["EC",10],["MX",10],["CZ",10],["DK",10],["AZ",10],["ID",10],["PT",10],["LT",10],["AD",10],["SA",10],["IE",10],["NG",10],["SN",10],["AM",10],["DO",10],["EE",10],["MA",10],["LU",10],["MC",10],["BY",10],["NZ",10],["LV",10],
+					],
+				},{
+					'date':[03, 'Mar', 2020],
+					'china':80151,
+					'world':10785,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",1],["KW",1],["IQ",1],["OM",1],["HR",1],["PK",1],["AT",1],["AF",1],["NO",1],["DZ",1],["GE",1],["MK",1],["CH",1],["BR",1],["RO",1],["GR",1],
+					["IS",1],["SM",1],["QA",1],["EC",1],["MX",1],["CZ",1],["DK",1],["AZ",1],["ID",1],["PT",1],["LT",1],["AD",1],["SA",1],["IE",1],["NG",1],["SN",1],["AM",1],["DO",1],["EE",1],["MA",1],["LU",1],["MC",1],["BY",1],["NZ",1],["LV",1],
+					],
 				}
 			]
 
@@ -771,6 +830,7 @@
 					if(worldCount>1000){
 						worldCount = parseFloat(worldCount/1000).toFixed(1)+'K'
 					}
+					$('.legendLabel').children('span').text('(Countries : '+databyDate[counter]['countries'].length+')');
 					$('.blue').children('i').attr("data-deaths",chinaCount).css({'width':(databyDate[counter]['china']/150)+'px'});
 					$('.red').children('i').attr("data-deaths",worldCount).css({'width':(databyDate[counter]['world']/150)+'px'});
 					$('.date').animate({
@@ -826,7 +886,7 @@
 						}else{
 							init(label+1);
 						}
-					},1500)
+					},1000)
 				}else{
 					setTimeout(function(){
 						$('.countriesList').addClass('active');
@@ -841,25 +901,45 @@
 
 <!-- 
 
-77150	China
-763		South Korea
-691		Others
-157		Italy
-147		Japan
-89		Singapore
-74		Hong Kong
-43		Iran
-35		Thailand, US
-28		Taiwan
-22		Australia, Malaysia
-16		Germany, Vietnam
-13		UAE
-12		France
-10		Macau
-9		Canada, UK
-3		Philippines, India
-2		Russia, Spain
-1		Lebanon, Nepal, Cambodia, Israel, Belgium, Finland, Sweden, Egypt, Sri Lanka
+80151		China
+4812		South Korea
+2036		Italy
+1501		Iran
+706			Others
+274			Japan
+191			France
+165			Germany
+120			Spain
+108			Singapore
+105			US
+100			Hong Kong
+56			Kuwait
+49			Bahrain
+43			Thailand
+42			Switzerland
+41			Taiwan
+40			UK
+31			Australia
+29			Malaysia
+27			Canada
+26			Iraq
+25			Norway
+21			UAE
+18			Netherlands, Austria
+16			Vietnam
+15			Sweden
+13			Lebanon
+12			Israel
+10			Macau
+9			Iceland
+8			Belgium, San Marino
+7			Qatar, Croatia, Greece
+6			Ecuador, Oman, Finland
+5			Algeria, Pakistan, Mexico, India
+4			Czech Republic, Denmark
+3			Georgia, Philippines, Russia, Romania, Azerbaijan
+2			Indonesia, Brazil, Portugal, Egypt
+1			Afghanistan, Nepal, Lithuania, Cambodia, Andorra, Saudi Arabia, Ireland, Nigeria, Senegal, Armenia, Dominican Republic, Estonia, North Macedonia, Morocco, Luxembourg, Monaco, Belarus, New Zealand, Latvia, Sri Lanka
  -->
 
  
