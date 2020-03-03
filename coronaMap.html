@@ -91,8 +91,8 @@
 			background: #999;
         }
         .graphicsContainer{
-            width: 100%;
-			height: 80%;
+            width: 770px;
+			height: 600px;
 			position: relative;
 			overflow: hidden;
 			/* box-shadow: 0px 0px 0px 5px
@@ -100,6 +100,7 @@
 			#9968688A; */
 			box-sizing: border-box;
 			border: 5px solid #999;
+			background: #383838;
         }
         #year{
             font-size: 34px;
@@ -255,7 +256,7 @@
         .footer{
             position: static;
             top: 80%;
-            width: 100%;
+            width: 770px;
         }
         .internal .fillbg{
             content: " ";
@@ -321,12 +322,13 @@
         }
 		#regions_div,#places_div {
 			position: absolute;
-			height: 110%;
-			width: auto;
+			height: auto;
+			width: 900px;
 			left: 50%;
 			top: 50%;
-			transform: translate(-55%,-50%);
+			transform: translate(-60%,-50%);
 			z-index: 0;
+			background: #383838;
 		}
 		.legend{
 			position: absolute;
@@ -638,29 +640,6 @@
 					<span class="month"></span>,
 					<span class="year"></span>
 				</div>
-				<!-- <div class="legend">
-					<span class="legendLabel">Confirmed Cases</span>
-					<span class="blue">Mainland China<i data-deaths="0"></i></span>
-					<span class="red">Rest of the World<i data-deaths="0"></i></span>
-				</div> -->
-				<div class="countriesList">
-					<div><h4>175</h4><p>Diamond Princess</p></div>
-					<div><h4>50</h4><p>Hong Kong</p></div>
-					<div><h4>47</h4><p>Singapore</p></div>
-					<div><h4>33</h4><p>Thailand</p></div>
-					<div><h4>28</h4><p>South Korea, Japan</p></div>
-					<div><h4>18</h4><p>Malaysia, Taiwan</p></div>
-					<div><h4>16</h4><p>Germany</p></div>
-					<div><h4>15</h4><p>Australia, Vietnam</p></div>
-					<div><h4>13</h4><p>US</p></div>
-					<div><h4>11</h4><p>France</p></div>
-					<div><h4>10</h4><p>Macau</p></div>
-					<div><h4>8</h4><p>UAE ,UK</p></div>
-					<div><h4>7</h4><p>Canada</p></div>
-					<div><h4>3</h4><p>Italy, Philippines, India</p></div>
-					<div><h4>2</h4><p>Russia, Spain	</p></div>
-					<div><h4>1</h4><p>Nepal, Cambodia, Belgium, Finland, Sweden, Sri Lanka</p></div>
-				</div>
 			</div>
 			<div id="regions_div"></div>
 			<div id="places_div"></div>
@@ -752,16 +731,28 @@
 				},{
 					'date':[27, 'Feb', 2020],
 					'china':77150,
-					'world':2210,
+					'world':4300,
 					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",10],["KW",10],["IQ",10],["OM",10],["HR",10],["PK",10],["AT",10],["AF",10],["NO",10],["DZ",10],["GE",10],["MK",10],["CH",10],["BR",10],["RO",10],["GR",10]],
+				},{
+					'date':[03, 'Mar', 2020],
+					'china':80151,
+					'world':10785,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",1],["KW",1],["IQ",1],["OM",1],["HR",1],["PK",1],["AT",1],["AF",1],["NO",1],["DZ",1],["GE",1],["MK",1],["CH",1],["BR",1],["RO",1],["GR",1],
+					["IS",10],["SM",10],["QA",10],["EC",10],["MX",10],["CZ",10],["DK",10],["AZ",10],["ID",10],["PT",10],["LT",10],["AD",10],["SA",10],["IE",10],["NG",10],["SN",10],["AM",10],["DO",10],["EE",10],["MA",10],["LU",10],["MC",10],["BY",10],["NZ",10],["LV",10],
+					],
+				},{
+					'date':[03, 'Mar', 2020],
+					'china':80151,
+					'world':10785,
+					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",1],["KW",1],["IQ",1],["OM",1],["HR",1],["PK",1],["AT",1],["AF",1],["NO",1],["DZ",1],["GE",1],["MK",1],["CH",1],["BR",1],["RO",1],["GR",1],
+					["IS",1],["SM",1],["QA",1],["EC",1],["MX",1],["CZ",1],["DK",1],["AZ",1],["ID",1],["PT",1],["LT",1],["AD",1],["SA",1],["IE",1],["NG",1],["SN",1],["AM",1],["DO",1],["EE",1],["MA",1],["LU",1],["MC",1],["BY",1],["NZ",1],["LV",1],
+					],
 				}
 			]
-
 			let data;
 			let options;
 			let chart;
 			let counterCountry = 0; 
-
 			let dataPlace;
 			let optionsPlace;
 			let chartPlace;
@@ -819,7 +810,7 @@
 						}else{
 							init(label+1);
 						}
-					},2000)
+					},1000)
 				}else{
 					// setTimeout(function(){
 					// 	$('.countriesList').addClass('active');
@@ -833,35 +824,45 @@
 </html>
 
 <!-- 
-
-78497		==>			China
-1595		==>			South Korea
-705			==>			Others
-453			==>			Italy
-189			==>			Japan
-139			==>			Iran
-93			==>			Singapore
-91			==>			Hong Kong
-60			==>			US
-40			==>			Thailand
-33			==>			Bahrain
-32			==>			Taiwan
-27			==>			Germany
-26			==>			Kuwait
-23			==>			Australia
-22			==>			Malaysia
-18			==>			France
-16			==>			Vietnam
-13			==>			Spain, UAE, UK
-11			==>			Canada
-10			==>			Macau
-5			==>			Iraq
-4			==>			Oman
-3			==>			Philippines, Croatia, India
-2			==>			Israel, Russia, Lebanon, Finland, Sweden, Pakistan, Austria
-1			==>			Afghanistan, Nepal, Cambodia, Norway, Algeria, Belgium, Georgia, North Macedonia, Switzerland, Brazil, Romania, Egypt, Greece, Sri Lanka
-
-
+80151		China
+4812		South Korea
+2036		Italy
+1501		Iran
+706			Others
+274			Japan
+191			France
+165			Germany
+120			Spain
+108			Singapore
+105			US
+100			Hong Kong
+56			Kuwait
+49			Bahrain
+43			Thailand
+42			Switzerland
+41			Taiwan
+40			UK
+31			Australia
+29			Malaysia
+27			Canada
+26			Iraq
+25			Norway
+21			UAE
+18			Netherlands, Austria
+16			Vietnam
+15			Sweden
+13			Lebanon
+12			Israel
+10			Macau
+9			Iceland
+8			Belgium, San Marino
+7			Qatar, Croatia, Greece
+6			Ecuador, Oman, Finland
+5			Algeria, Pakistan, Mexico, India
+4			Czech Republic, Denmark
+3			Georgia, Philippines, Russia, Romania, Azerbaijan
+2			Indonesia, Brazil, Portugal, Egypt
+1			Afghanistan, Nepal, Lithuania, Cambodia, Andorra, Saudi Arabia, Ireland, Nigeria, Senegal, Armenia, Dominican Republic, Estonia, North Macedonia, Morocco, Luxembourg, Monaco, Belarus, New Zealand, Latvia, Sri Lanka
 
  -->
 
