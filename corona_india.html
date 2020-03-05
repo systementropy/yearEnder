@@ -69,7 +69,7 @@
 			margin: 0;
 			margin-bottom: 0px;
 			letter-spacing: 2px;
-			color:#9B1818;
+			color:#E50000;
 			margin-bottom: 10px;
 			text-transform: uppercase;
         }
@@ -642,17 +642,45 @@
 			background: transparent;
 			width: auto;
 			height: auto;
-			transform: translateY(-50%) translateX(-50%);
-			/* box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.3); */
+			transform: translateY(-50%) translateX(40px);
+			box-shadow: 0px 0px 3px 2px rgba(230,0,0,0.5);
 			/* background-image: linear-gradient(#85bb65,#9E4B84),url('./Extra/dollar.png'); */
+			padding: 5px;
+			display: inline-block;
+			width: 112px;
+			text-align: center;
 			background-size: 70px 100%;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-blend-mode: color;
 			transition: all 400ms ease;
 		}
-		.barContainer span:nth-child(4){
-			transform: translateY(-100%) translateX(-25px);
+		.barContainer span::after{
+			content: '';
+			position: absolute;
+			z-index: 100;
+			border: transparent;
+			width: 0; 
+			height: 0; 
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+			border-right: 8px solid rgba(230,0,0,0.5);
+			top: 7px;
+			left: -9px;
+		}
+		.barContainer span:nth-child(1){
+			transform: translateY(-50%) translateX(50px);
+		}
+		.barContainer span:nth-child(4),.barContainer span:nth-child(3),.barContainer span:nth-child(5){
+			transform: translateY(-50%) translateX(-120px);
+		}
+		.barContainer span:nth-child(4)::after,.barContainer span:nth-child(3)::after,.barContainer span:nth-child(5)::after{
+			border: transparent;
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+			border-left: 8px solid rgba(230,0,0,0.5);
+			left: auto;
+			right: -9px;
 		}
     </style>
 </head>
@@ -670,7 +698,7 @@
 			<div class="legendStates">
                 <div class="stateName">
 					<span class="date"></span>
-					<span class="month"></span>,
+					<span class="month"></span>
 					<span class="year"></span>
 				</div>
 			</div>
@@ -709,15 +737,17 @@
 			google.charts.setOnLoadCallback(init);
 			
 			let databyDate = [
-				["Jaipur",26.8851935,75.7205181,10,2],
-				["New Delhi",28.6468935,76.9531801,10,16],
+				
+				["New Delhi",28.6468935,76.9531801,10,17],
 				["Agra",27.1761571,77.9099732,10,6],
+				["Jaipur",26.8851935,75.7205181,10,2],
 				["Hyderabad",17.4122998,78.2679615,10,1],
 				["Thrissur",10.5113799,76.1532105,1,1],
 				["Alappuzha",9.501035,76.3070864,1,1],
 				["Kasargod",12.500021,74.9664969,1,1],
 			]
-
+			const caseArr = [2,16,6,1,1,1,1]
+			
 			let data;
 			let options;
 			let chart;
@@ -755,7 +785,7 @@
 						datalessRegionColor: '#333',
 						colorAxis: {
 							values: [0,10],
-							colors: ['#52a352','#F00']
+							colors: ['#52a352','#E50000']
 						},
 						sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
 						displayMode: 'markers',
@@ -783,18 +813,21 @@
 						}else{
 							init(label+1);
 						}
-					},400)
+					},200)
 				}else{
-					$('svg circle').each(function(i){	
-						const circle = $(this);
-						const x = circle.attr("cx")
-						const y = circle.attr("cy")
-						const r = circle.attr("r")
-						console.log(circle)
-						// chart.setSelection([{row: i}]);
-						chart.setSelection([1])
-						$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
-					})
+					var rArray = [];
+					setTimeout(function(){
+						$('svg circle').each(function(i){	
+							const circle = $(this);
+							const x = circle.attr("cx")
+							const y = circle.attr("cy")
+							const r = circle.attr("r")
+							console.log(circle,i)
+							// chart.setSelection([{row: i}]);
+							chart.setSelection([1])
+							$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
+						})
+					},1000);
 				}
 			}
 		});
