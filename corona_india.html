@@ -331,6 +331,9 @@
 			left: 50%;
 			top: 50%;
 			transform: translate(-50%,-50%);
+			z-index: 1;
+		}
+		#places_div{
 			z-index: 0;
 		}
 		.legend{
@@ -412,9 +415,9 @@
 			fill-opacity: 0.8;
 		}
 		#places_div path {
-			stroke-width: 1;
+			/* stroke-width: 1;
 			stroke: 
-			#dacfc517;
+			#dacfc517; */
 		}
 		#year{
             font-size: 34px;
@@ -715,6 +718,10 @@
 		.legends>div:nth-child(2) i{
 			background: #52a352;
 		}
+		path[fill='#333333'] {
+			fill:transparent;
+			display: none !important;
+		}
     </style>
 </head>
 <body> 
@@ -774,8 +781,7 @@
 			google.charts.setOnLoadCallback(init);
 			
 			let databyDate = [
-				
-				["New Delhi",28.6468935,76.9531801,10,19],
+				["NCR",28.6468935,76.9531801,10,19],
 				["Agra",27.1761571,77.9099732,10,6],
 				["Jaipur",26.8851935,75.7205181,10,2],
 				["Hyderabad",17.4122998,78.2679615,10,1],
@@ -820,6 +826,7 @@
 						legend: 'none',
 						backgroundColor: 'transparent',
 						datalessRegionColor: '#333',
+						resolution: 'provinces',
 						colorAxis: {
 							values: [0,10],
 							colors: ['#52a352','#E50000']
@@ -832,6 +839,30 @@
 					};
 					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 					chart.draw(data, options);
+
+					dataPlace = new google.visualization.DataTable();
+					dataPlace.addColumn('string', 'Country');
+					dataPlace.addColumn('number', 'Value');
+					dataPlace.addRow(["IN",0])
+					optionsPlace = {
+						domain: 'IN',
+						region: 'IN',
+						legend: 'none',
+						backgroundColor: 'transparent',
+						datalessRegionColor: '#333333',
+						// resolution: 'provinces',
+						colorAxis: {
+							values: [0,10],
+							colors: ['#555','#E50000']
+						},
+						sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
+						displayMode: 'regions',
+						tooltip: {
+							trigger: 'selection'
+						}
+					};
+					chartPlace = new google.visualization.GeoChart(document.getElementById('places_div'));
+					chartPlace.draw(dataPlace, optionsPlace);
 					google.visualization.events.addListener(chart, 'select', function () {
 						var selection = chart.getSelection();
 						console.log(selection)
