@@ -682,6 +682,15 @@
 			left: auto;
 			right: -9px;
 		}
+		.barContainer span:nth-child(5),.barContainer span:nth-child(6),.barContainer span:nth-child(7){
+			box-shadow: 0px 0px 3px 2px rgba(0,230,0,0.5);
+		}
+		.barContainer span:nth-child(6)::after,.barContainer span:nth-child(7)::after{
+			border-right: 8px solid rgba(0,230,0,0.5);
+		}
+		.barContainer span:nth-child(5)::after{
+			border-left: 8px solid rgba(0,230,0,0.5);
+		}
 		.legends{
 			padding: 15px;
 			z-index: 10000;
@@ -727,7 +736,7 @@
 				</div>
 			</div> -->
 			<div class="legends">
-				<div><i></i><span>Existing Cases (26)</span></div>
+				<div><i></i><span>Existing Cases (28)</span></div>
 				<div><i></i><span>Recovered Cases (03)</span></div>
 			</div>
 			<div class="barContainer">
@@ -766,7 +775,7 @@
 			
 			let databyDate = [
 				
-				["New Delhi",28.6468935,76.9531801,10,17],
+				["New Delhi",28.6468935,76.9531801,10,19],
 				["Agra",27.1761571,77.9099732,10,6],
 				["Jaipur",26.8851935,75.7205181,10,2],
 				["Hyderabad",17.4122998,78.2679615,10,1],
