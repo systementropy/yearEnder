@@ -97,7 +97,7 @@
         }
         .graphicsContainer{
             width: 100%;
-			height: 80%;
+			height: 90%;
 			position: relative;
 			overflow: hidden;
 			/* box-shadow: 0px 0px 0px 5px
@@ -479,7 +479,7 @@
 		}
 		svg circle{
 			stroke-width: 0;
-			opacity: 1 ;
+			opacity: 0.8;
 		}
 		.wuhan {
 			position: absolute;
@@ -633,7 +633,7 @@
 		.barContainer{
 			position: absolute;
 			height: 110%;
-			width: 1283px;
+			width: 1158px;
 			left: 50%;
 			top: 50%;
 			transform: translate(-50%,-50%);
@@ -648,9 +648,9 @@
 			transform: translateY(-50%) translateX(40px);
 			box-shadow: 0px 0px 3px 2px rgba(230,0,0,0.5);
 			/* background-image: linear-gradient(#85bb65,#9E4B84),url('./Extra/dollar.png'); */
-			padding: 5px;
+			padding: 2px 5px;
 			display: inline-block;
-			width: 112px;
+			min-width: 100px;
 			text-align: center;
 			background-size: 70px 100%;
 			background-repeat: no-repeat;
@@ -663,36 +663,62 @@
 			position: absolute;
 			z-index: 100;
 			border: transparent;
-			width: 0; 
-			height: 0; 
-			border-top: 8px solid transparent;
-			border-bottom: 8px solid transparent;
-			border-right: 8px solid rgba(230,0,0,0.5);
-			top: 7px;
-			left: -9px;
+			width: 0;
+			height: 0;
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-right: 10px solid rgba(230,0,0,0.5);
+			top: 2px;
+			left: -11px;
 		}
 		.barContainer span:nth-child(1){
 			transform: translateY(-50%) translateX(50px);
 		}
-		.barContainer span:nth-child(4),.barContainer span:nth-child(3),.barContainer span:nth-child(5){
+		.barContainer span:nth-child(4),.barContainer span:nth-child(3),.barContainer span:nth-child(10),.barContainer span:nth-child(11),.barContainer span:nth-child(12){
 			transform: translateY(-50%) translateX(-120px);
 		}
-		.barContainer span:nth-child(4)::after,.barContainer span:nth-child(3)::after,.barContainer span:nth-child(5)::after{
+		.barContainer span:nth-child(4)::after,.barContainer span:nth-child(3)::after,.barContainer span:nth-child(10)::after,.barContainer span:nth-child(11)::after,.barContainer span:nth-child(12)::after{
 			border: transparent;
-			border-top: 8px solid transparent;
-			border-bottom: 8px solid transparent;
-			border-left: 8px solid rgba(230,0,0,0.5);
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-left: 10px solid rgba(230,0,0,0.5);
 			left: auto;
-			right: -9px;
+			right: -11px;
 		}
-		.barContainer span:nth-child(5),.barContainer span:nth-child(6),.barContainer span:nth-child(7){
+		.barContainer span:nth-child(10),.barContainer span:nth-child(11),.barContainer span:nth-child(12){
 			box-shadow: 0px 0px 3px 2px rgba(0,230,0,0.5);
 		}
-		.barContainer span:nth-child(6)::after,.barContainer span:nth-child(7)::after{
-			border-right: 8px solid rgba(0,230,0,0.5);
+		.barContainer span:nth-child(10)::after,.barContainer span:nth-child(11)::after,.barContainer span:nth-child(12)::after{
+			border-left: 10px solid rgba(0,230,0,0.5);
 		}
-		.barContainer span:nth-child(5)::after{
+		/* .barContainer span:nth-child(10)::after{
 			border-left: 8px solid rgba(0,230,0,0.5);
+		} */
+		.barContainer span:nth-child(9){
+			margin-top: 40px;
+		}
+		.barContainer span:nth-child(9)::after{
+			top: -11px;
+			left: -9px;
+			transform: rotate(45deg);
+		}
+		.barContainer span:nth-child(11){
+			margin-top: 20px;
+			margin-left: 10px;
+		}
+		.barContainer span:nth-child(11)::after{
+			top: -11px;
+			right: -9px;
+			transform: rotate(-45deg);
+		}
+		.barContainer span:nth-child(8){
+			margin-top: -20px;
+			margin-left: -9px
+		}
+		.barContainer span:nth-child(8)::after{
+			top: 17px;
+			left: -8px;
+			transform: rotate(-45deg);
 		}
 		.legends{
 			padding: 15px;
@@ -743,10 +769,16 @@
 				</div>
 			</div> -->
 			<div class="legends">
-				<div><i></i><span>Existing Cases (28)</span></div>
+				<div><i></i><span>Existing Cases (40)</span></div>
 				<div><i></i><span>Recovered Cases (03)</span></div>
 			</div>
 			<div class="barContainer">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
 				<span></span>
 				<span></span>
 				<span></span>
@@ -782,12 +814,18 @@
 			
 			let databyDate = [
 				["NCR",28.6468935,76.9531801,10,19],
-				["Agra",27.1761571,77.9099732,10,6],
+				["Agra",27.1761571,77.9099732,10,8],
 				["Jaipur",26.8851935,75.7205181,10,2],
+				["Ladakh",34.1458829,75.6029285,10,2],
+				["Jammu",32.7358015,74.8523768,10,1],
 				["Hyderabad",17.4122998,78.2679615,10,1],
+				["Kancheepuram",12.8184557,79.6859038,10,1],
+				["Ernakulam",9.9708673,76.2382529,10,1],
+				["Pathanamthitta",9.2603283,76.7430419,10,5],
 				["Thrissur",10.5113799,76.1532105,1,1],
 				["Alappuzha",9.501035,76.3070864,1,1],
 				["Kasargod",12.500021,74.9664969,1,1],
+				
 			]
 			const caseArr = [2,16,6,1,1,1,1]
 			
@@ -807,9 +845,18 @@
 					$('.stateName').addClass('active');
 					data.addRow([databyDate[counter][1],databyDate[counter][2],databyDate[counter][3],databyDate[counter][4],JSON.stringify(databyDate[counter])]);	
 					chart.draw(data, options);
-
 				}
-				
+				setTimeout(()=>{
+					console.log()
+					const circle = $('svg circle').eq(counter)
+					const x = circle.attr("cx")
+					const y = circle.attr("cy")
+					const r = circle.attr("r")
+					console.log(circle,counter)
+					// chart.setSelection([{row: i}]);
+					chart.setSelection([1])
+					$('.barContainer').children('span').eq(counter).css({top:y+'px', left:x+'px'}).text(databyDate[counter][0]+' : '+databyDate[counter][4])
+				},0)
 			}
 			function init(label){
 				
@@ -831,7 +878,7 @@
 							values: [0,10],
 							colors: ['#52a352','#E50000']
 						},
-						sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
+						sizeAxis: { minValue: 0, maxValue: 110, minSize: 2, maxSize: 50 },
 						displayMode: 'markers',
 						tooltip: {
 							trigger: 'selection'
@@ -881,21 +928,21 @@
 						}else{
 							init(label+1);
 						}
-					},200)
+					},400)
 				}else{
 					var rArray = [];
-					setTimeout(function(){
-						$('svg circle').each(function(i){	
-							const circle = $(this);
-							const x = circle.attr("cx")
-							const y = circle.attr("cy")
-							const r = circle.attr("r")
-							console.log(circle,i)
-							// chart.setSelection([{row: i}]);
-							chart.setSelection([1])
-							$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
-						})
-					},1000);
+					// setTimeout(function(){
+					// 	$('svg circle').each(function(i){	
+					// 		const circle = $(this);
+					// 		const x = circle.attr("cx")
+					// 		const y = circle.attr("cy")
+					// 		const r = circle.attr("r")
+					// 		console.log(circle,i)
+					// 		// chart.setSelection([{row: i}]);
+					// 		chart.setSelection([1])
+					// 		$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
+					// 	})
+					// },1000);
 				}
 			}
 		});

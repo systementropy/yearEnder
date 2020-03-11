@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Thin.ttf);
-            font-weight: 100;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
-            font-weight: 200;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Light.ttf);
-            font-weight: 300;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Regular.ttf);
-            font-weight: 400;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Medium.ttf);
-            font-weight: 500;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-SemiBold.ttf);
-            font-weight: 600;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Bold.ttf);
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
-            font-weight: 800;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Black.ttf);
-            font-weight: 900;
-        }
-        body,html{
-            margin : 0;
-            padding: 0;
-            font-family: monty;
-            font-weight: 400;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
 			color: #EEE;
-        }
-        .title{
-            /* border-bottom: 5px solid #000; */
-            padding: 0;
-        }
-        .title h1{
-            font-size: 68px;
+		}
+		.title{
+			/* border-bottom: 5px solid #000; */
+			padding: 0;
+		}
+		.title h1{
+			font-size: 68px;
 			font-weight: 900;
 			line-height: 50px;
 			margin: 0;
@@ -72,26 +72,27 @@
 			color:
 			#9B1818;
 			margin-bottom: 10px;
-        }
-        .title h3{
-            font-size: 35px;
-            font-weight: 300;
-            line-height: 1;
-            margin: 0;
-            text-transform: uppercase;
-        }
-        .mainBody{
-            border: 1px solid #999;
-            height: 100vh;
-            width: 100vh;
-            margin: 0 auto;
-            padding: 40px;
-            box-sizing: border-box;
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.mainBody{
+			border: 1px solid #999;
+			height: 100vh;
+			min-width: 100vh;
+			width: 850px;
+			margin: 0 auto;
+			padding: 40px;
+			box-sizing: border-box;
 			position: relative;
 			background: #999;
-        }
-        .graphicsContainer{
-            width: 770px;
+		}
+		.graphicsContainer{
+			width: 770px;
 			height: 600px;
 			position: relative;
 			overflow: hidden;
@@ -101,30 +102,30 @@
 			box-sizing: border-box;
 			border: 5px solid #999;
 			background: #383838;
-        }
-        #year{
-            font-size: 34px;
-            font-weight: 400;
-            margin: auto;
-            text-align: center;
-            padding: 15px 0 0;
-            color: #555555;
-            text-transform: uppercase;
-        }
-        .calendar p{
-            margin: 0;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        .calendar p.weeks{margin-bottom: 0;}
-        p.weeks span{
-            font-size: 16px;
-            flex-grow: 1;
-            padding: 5px 0;
-            outline: 1px solid #DDD;
-            width: 14.2857142857%;
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
 			text-align: center;
-        }
+			padding: 15px 0 0;
+			color: #555555;
+			text-transform: uppercase;
+		}
+		.calendar p{
+			margin: 0;
+			display: flex;
+			justify-content: space-evenly;
+		}
+		.calendar p.weeks{margin-bottom: 0;}
+		p.weeks span{
+			font-size: 16px;
+			flex-grow: 1;
+			padding: 5px 0;
+			outline: 1px solid #DDD;
+			width: 14.2857142857%;
+			text-align: center;
+		}
 		.calendar {
 			position: absolute;
 			width: 320px;
@@ -135,73 +136,73 @@
 			z-index: 1;
 			overflow: hidden;
 		}
-        p.weeks span:nth-child(1),p.weeks span:nth-child(7){color: #dc3502;}
-        .bottom{
-            display: flex;
-            justify-content: space-between;
-        }
-        .bottom img{
-            height: 24px;
-        }
-        .bottom{
-            line-height: 30px;
-        }
-        #labels{
-            position: absolute;
-            bottom: 0;
-            display: block;
-            z-index: -1;
-            filter: blur(0px);
-            transition: all 0.2s ease;
-        }
-        #labels.active{
-            filter: blur(5px);
-        }
-        #canvas{
-            display: block;
-            margin: auto;
-        }
-        .Month{
-            opacity: 0;
-            letter-spacing: 10px;
-            transition: all 0s ease 0s;
-        }
-        .Month.active{
-            opacity: 1;
-            letter-spacing: 0px;
-            transition: all 1s ease 0.3s;
-        }
-        .logo{
-            width: 280px;
-            margin-bottom: 15px;
-            transform: translateX(-9px);
-        }
-        .legendStates {
-            position: absolute;
-            bottom: 0;
-            left: 40px;
-            font-size: 40px;
-            line-height: 1;
-            padding: 25px 0;
-            box-sizing: border-box;
-            font-weight: 500;
-            width: 400px;
-            text-align: center;
-            opacity: 1;
-            transition : all 250ms ease-in;
-            z-index: 10;
-        }
-        .legendStates.active{
-            opacity: 1;
-        }
-        .stateName{
-            font-weight: 300;
-            padding: 15px 0;
+		p.weeks span:nth-child(1),p.weeks span:nth-child(7){color: #dc3502;}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+		}
+		.bottom img{
+			height: 24px;
+		}
+		.bottom{
+			line-height: 30px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			filter: blur(0px);
+			transition: all 0.2s ease;
+		}
+		#labels.active{
+			filter: blur(5px);
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+		}
+		.Month{
+			opacity: 0;
+			letter-spacing: 10px;
+			transition: all 0s ease 0s;
+		}
+		.Month.active{
+			opacity: 1;
+			letter-spacing: 0px;
+			transition: all 1s ease 0.3s;
+		}
+		.logo{
+			width: 280px;
+			margin-bottom: 15px;
+			transform: translateX(-9px);
+		}
+		.legendStates {
+			position: absolute;
+			bottom: 0;
+			left: 40px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 25px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 400px;
+			text-align: center;
+			opacity: 1;
+			transition : all 250ms ease-in;
+			z-index: 10;
+		}
+		.legendStates.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 300;
+			padding: 15px 0;
 			height: auto;
 			text-align: left;
 			opacity: 0;
 			transition: opacity 100ms ease;
-        }
+		}
 		.stateName.active{
 			opacity: 1;
 		}
@@ -222,104 +223,104 @@
 		.month{
 			font-size: 50px;
 		}
-        .totalSeats{
-            font-weight: 300;
-        }
-        .total{
-            font-weight: 500;
-        }
-        .bjpSeats{
-            font-weight: 300;
-        }
-        .bjp{
-            font-weight: 500;
-        }
-        .internal{
-            display: flex;
-            justify-content: space-evenly;
-            position: relative;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-        .internal p{
-            font-size: 18px;
-            line-height: 1;
-            margin: 0;
-            font-weight: 200;
-            perspective: 100px;
-        }
-        .bar{
-            width: 2px;
-            background: #333;
-            transform: skewX(-20deg) scale(0.5);
-        }
-        .footer{
-            position: static;
-            top: 80%;
-            width: 770px;
-        }
-        .internal .fillbg{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: #F5F5F6;
-            border: 2px solid #333;
-            box-shadow: 0px 0px 1px 1px #2821195E;
-            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .internal .fill{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 0%;
-            height: 10px;
-            background: #F28500;
-            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
-            background: linear-gradient(to right, 
-                    rgb(240,240,240)    0px,
-                    rgb(255,243,228)    calc(0 * 40px),
-                    rgb(255,231,203)    calc(1 * 40px),
-                    rgb(255,214,164)    calc(2 * 40px),
-                    rgb(255,196,124)    calc(3 * 40px),
-                    rgb(255,178,85)     calc(4 * 40px),
-                    rgb(255,161,46)     calc(5 * 40px),
-                    rgb(255,143,7)      calc(6 * 40px),
-                    rgb(203,111,0)      calc(7 * 40px),
-                    rgb(183,101,0)      calc(8 * 40px)
-            );
-            box-shadow: -1px 8px 7px 0px #8C6331;
-            transition: all 0.3s ease;
-            z-index: 1;
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .footer i{
-            display: block;
-            font-weight: 300;
-            line-height: 1;
-            font-size: 14px;
-        }
-        .texty{
-            position: fixed;
-            top:0;
-            left: 0;
-            font-size: 3vh;
+		.totalSeats{
+			font-weight: 300;
+		}
+		.total{
+			font-weight: 500;
+		}
+		.bjpSeats{
+			font-weight: 300;
+		}
+		.bjp{
+			font-weight: 500;
+		}
+		.internal{
+			display: flex;
+			justify-content: space-evenly;
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+		.internal p{
+			font-size: 18px;
+			line-height: 1;
+			margin: 0;
+			font-weight: 200;
+			perspective: 100px;
+		}
+		.bar{
+			width: 2px;
+			background: #333;
+			transform: skewX(-20deg) scale(0.5);
+		}
+		.footer{
+			position: static;
+			top: 80%;
+			width: 770px;
+		}
+		.internal .fillbg{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 100%;
+			height: 10px;
+			background: #F5F5F6;
+			border: 2px solid #333;
+			box-shadow: 0px 0px 1px 1px #2821195E;
+			transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		.internal .fill{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 0%;
+			height: 10px;
+			background: #F28500;
+			transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+			background: linear-gradient(to right, 
+					rgb(240,240,240)	0px,
+					rgb(255,243,228)	calc(0 * 40px),
+					rgb(255,231,203)	calc(1 * 40px),
+					rgb(255,214,164)	calc(2 * 40px),
+					rgb(255,196,124)	calc(3 * 40px),
+					rgb(255,178,85)	 calc(4 * 40px),
+					rgb(255,161,46)	 calc(5 * 40px),
+					rgb(255,143,7)	  calc(6 * 40px),
+					rgb(203,111,0)	  calc(7 * 40px),
+					rgb(183,101,0)	  calc(8 * 40px)
+			);
+			box-shadow: -1px 8px 7px 0px #8C6331;
+			transition: all 0.3s ease;
+			z-index: 1;
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		.footer i{
+			display: block;
+			font-weight: 300;
+			line-height: 1;
+			font-size: 14px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
 			color: #000000;
-            animation: aniTr 1s infinite alternate;
-        }
-        @keyframes aniTr {
-            0% {transform: translateX(0);}
-            100% {transform: translateX(100px);}
-        }
-        .svgContainer {
-            padding-top: 40px;
-        }
+			animation: aniTr 1s infinite alternate;
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.svgContainer {
+			padding-top: 40px;
+		}
 		#regions_div,#places_div {
 			position: absolute;
 			height: auto;
@@ -412,29 +413,29 @@
 			#dacfc517;
 		}
 		#year{
-            font-size: 34px;
-            font-weight: 400;
-            margin: auto;
-            text-align: center;
-            padding: 15px 0 0;
-            color: #555555;
-            text-transform: uppercase;
-        }
-        #year p{
-            margin: 0 auto;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        #year p.weeks{margin-bottom: 0;}
-        #year p span{
-            font-size: 16px;
-            flex-grow: 1;
-            padding: 5px 0;
-            outline: 1px solid #DDD;
-            width: 14.2857142857%;
-        }
-        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0 0;
+			color: #555555;
+			text-transform: uppercase;
+		}
+		#year p{
+			margin: 0 auto;
+			margin-bottom: 15px;
+			display: flex;
+			justify-content: space-evenly;
+		}
+		#year p.weeks{margin-bottom: 0;}
+		#year p span{
+			font-size: 16px;
+			flex-grow: 1;
+			padding: 5px 0;
+			outline: 1px solid #DDD;
+			width: 14.2857142857%;
+		}
+		#year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
 		.calendar p.dates{
 			flex-wrap: wrap;
 			
@@ -621,21 +622,21 @@
 			opacity: 1;
 			transform: translateY(0px);
 		}
-    </style>
+	</style>
 </head>
 <body> 
-    <span class="texty">TEXTY</span>
-    <div class="mainBody">
+	<span class="texty">TEXTY</span>
+	<div class="mainBody">
 
-        <div class="title">
-            <h1>CORONAVIRUS MAP</h1>
-            <!-- <h3>The year in news & politics</h3> -->
+		<div class="title">
+			<h1>CORONAVIRUS MAP</h1>
+			<!-- <h3>The year in news & politics</h3> -->
 
-        </div>
+		</div>
 		
-        <div class="graphicsContainer">
+		<div class="graphicsContainer">
 			<div class="legendStates">
-                <div class="stateName">
+				<div class="stateName">
 					<span class="date"></span>
 					<span class="month"></span>,
 					<span class="year"></span>
@@ -645,7 +646,7 @@
 			<div id="places_div"></div>
 		</div>
 		<div class="footer">
-            <div class="bottom">
+			<div class="bottom">
 				<span>
 					Source: Johns Hopkins CSSE
 				</span>
@@ -656,8 +657,8 @@
 	<script src="./jquery.js"></script>
 	<script type="text/javascript" src="./loader.js"></script>
 
-    <script>
-        $(document).ready(function(){
+	<script>
+		$(document).ready(function(){
 			google.charts.load('current', {
 				'packages':['geochart'],
 				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
@@ -741,14 +742,29 @@
 					["IS",10],["SM",10],["QA",10],["EC",10],["MX",10],["CZ",10],["DK",10],["AZ",10],["ID",10],["PT",10],["LT",10],["AD",10],["SA",10],["IE",10],["NG",10],["SN",10],["AM",10],["DO",10],["EE",10],["MA",10],["LU",10],["MC",10],["BY",10],["NZ",10],["LV",10],
 					],
 				},{
-					'date':[03, 'Mar', 2020],
-					'china':80151,
-					'world':10785,
-					'countries':[["CN",1],["KR",1],["JP",1],["TH",1],["TW",1],["US",1],["AU",1],["FR",1],["MY",1],["NP",1],["SG",1],["VN",1],["HK",1],["MO",1],["CA",1],["KH",1],["DE",1],["LK",1],["IN",1],["FI",1],["AE",1],["IT",1],["PH",1],["RU",1],["GB",1],["ES",1],["SE",1],["BE",1],["IR",1],["LB",1],["IL",1],["EG",1],["BH",1],["KW",1],["IQ",1],["OM",1],["HR",1],["PK",1],["AT",1],["AF",1],["NO",1],["DZ",1],["GE",1],["MK",1],["CH",1],["BR",1],["RO",1],["GR",1],
-					["IS",1],["SM",1],["QA",1],["EC",1],["MX",1],["CZ",1],["DK",1],["AZ",1],["ID",1],["PT",1],["LT",1],["AD",1],["SA",1],["IE",1],["NG",1],["SN",1],["AM",1],["DO",1],["EE",1],["MA",1],["LU",1],["MC",1],["BY",1],["NZ",1],["LV",1],
-					],
+					'date':[05, 'Mar', 2020],
+					'china':80410,
+					'world':15015,
+					'countries':[
+						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",10],["HU",10],["AR",10],["SI",10],["LI",10],["FO",10],["GI",10],["CL",10],["JO",10],["PL",10],["TN",10]
+					]
+				},{
+					'date':[09, 'Mar', 2020],
+					'china':80410,
+					'world':15015,
+					'countries':[
+						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",10],["IE",10],["PE",10],["GF",10],["CR",10],["BG",10],["MV",10],["BA",10],["BD",10],["SK",10],["ZA",10],["MT",10],["CM",10],["MQ",10],["TG",10],["MD",10],["CO",10],["BT",10],["PY",10],["RS",10]
+					]
+				},{
+					'date':[09, 'Mar', 2020],
+					'china':80410,
+					'world':15015,
+					'countries':[
+						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",1],["IE",1],["PE",1],["GF",1],["CR",1],["BG",1],["MV",1],["BA",1],["BD",1],["SK",1],["ZA",1],["MT",1],["CM",1],["MQ",1],["TG",1],["MD",1],["CO",1],["BT",1],["PY",1],["RS",1]
+					]
 				}
 			]
+			
 			let data;
 			let options;
 			let chart;
@@ -798,9 +814,9 @@
 
 					
 
-                    setTimeout(function(){
-					    init(1);
-                    },2000);
+					setTimeout(function(){
+					  init(1);
+					},2000);
 				}else if(label<=databyDate.length){
 					setTimeout(function(){
 						drawRegionsMap(label-1);
@@ -824,45 +840,110 @@
 </html>
 
 <!-- 
-80151		China
-4812		South Korea
-2036		Italy
-1501		Iran
+
+China, South Korea, Italy, Iran, France, Germany, Others, Spain, US, Japan, Switzerland, UK, Netherlands, Sweden, Belgium, Norway, Singapore, Hong Kong, Austria, Malaysia, Bahrain, Australia, Greece, Canada, Kuwait, Iraq, Thailand, Iceland, Egypt, UAE, Taiwan, India, Israel, San Marino, Denmark, Lebanon, Czech Republic, Vietnam, Portugal, Finland, Palestine, Republic of Ireland, Ireland, Brazil, Algeria, Russia, Slovenia, Oman, Romania, Qatar, Ecuador, Georgia, Argentina, Croatia, Saudi Arabia, Poland, Macau, Philippines, Estonia, Azerbaijan, Chile, Hungary, Mexico, Pakistan, Peru, Indonesia, Belarus, French Guiana, New Zealand, Dominican Republic, Costa Rica, Afghanistan, Bulgaria, Maldives, Senegal, Bosnia and Herzegovina, Saint Barthelemy, North Macedonia, Bangladesh, Slovakia, South Africa, Luxembourg, Malta, Cambodia, Cameroon, Faroe Islands, Morocco, Tunisia, Martinique, Latvia, Lithuania, Monaco, Togo, Armenia, Ukraine, Vatican City, Liechtenstein, Andorra, Gibraltar, Nigeria, Moldova, Colombia, Bhutan, Nepal, Jordan, Paraguay, Serbia, Sri Lanka
+
+China, South Korea, Italy, Iran, Others, Japan, France, Germany, Spain, US, Singapore, Hong Kong, Switzerland, UK, Norway, Kuwait, Bahrain, Australia, Malaysia, Thailand, Taiwan, Netherlands, Sweden, Iraq, Canada, Austria, UAE, India, Iceland, Belgium, San Marino, Vietnam, Oman, Israel, Lebanon, Algeria, Macau, Ecuador, Denmark, Croatia, Greece, Czech Republic, Qatar, Finland, Romania, Ireland, Belarus, Pakistan, Portugal, Mexico, Senegal, Brazil, Saint Barthelemy, New Zealand, Azerbaijan, Russia, Georgia, Philippines, Saudi Arabia, Indonesia, Hungary, Estonia, Egypt, Lithuania, Cambodia, Argentina, Slovenia, North Macedonia, Monaco, Afghanistan, Armenia, Dominican Republic, Ukraine, Liechtenstein, Faroe Islands, Luxembourg, Andorra, Gibraltar, Nigeria, Chile, Morocco, Nepal, Jordan, Poland, Latvia, Tunisia, Sri Lanka
+80735		China
+7382		South Korea
+7375		Italy
+6566		Iran
+1209		France
+1040		Germany
+696			Others
+673			Spain
+554			US
+502			Japan
+337			Switzerland
+273			UK
+265			Netherlands
+203			Sweden
+200			Belgium
+176			Norway
+150			Singapore
+114			Hong Kong
+104			Austria
+99			Malaysia
+85			Bahrain
+76			Australia
+73			Greece
+64			Canada, Kuwait
+60			Iraq
+50			Thailand, Iceland
+49			Egypt
+45			United Arab Emirates, Taiwan
+39			India, Israel
+36			San Marino
+35			Denmark
+32			Lebanon
+31			Czech Republic
+30			Vietnam, Portugal
+23			Finland
+22			Palestine
+21			Republic of Ireland, Ireland
+20			Brazil
+19			Algeria
+17			Russia
+16			Slovenia, Oman
+15			Romania, Qatar
+14			Ecuador
+13			Georgia
+12			Argentina, Croatia
+11			Saudi Arabia, Poland
+10			Macau, Philippines, Estonia
+9			 Azerbaijan
+8			 Chile
+7			 Hungary, Mexico
+6			 Pakistan, Peru, Indonesia, Belarus
+5			 French Guiana, New Zealand, Dominican Republic, Costa Rica
+4			 Afghanistan, Bulgaria, Maldives, Senegal
+3			 Bosnia and Herzegovina, Saint Barthelemy, North Macedonia, Bangladesh, Slovakia, South Africa, Luxembourg, Malta
+2			 Cambodia, Cameroon, Faroe Islands, Morocco, Tunisia, Martinique, Latvia
+1			 Lithuania, Monaco, Togo, Armenia, Ukraine, Vatican City, Liechtenstein, Andorra, Gibraltar, Nigeria, Moldova, Colombia, Bhutan, Nepal, Jordan, Paraguay, Serbia, Sri Lanka
+
+China, South Korea, Italy, Iran, Others, Japan, France, Germany, Spain, US, Singapore, Hong Kong, Switzerland, UK, Norway, Kuwait, Bahrain, Australia, Malaysia, Thailand, Taiwan, Netherlands, Sweden, Iraq, Canada, Austria, UAE, India, Iceland, Belgium, San Marino, Vietnam, Oman, Israel, Lebanon, Algeria, Macau, Ecuador, Denmark, Croatia, Greece, Czech Republic, Qatar, Finland, Romania, Ireland, Belarus, Pakistan, Portugal, Mexico, Senegal, Brazil, Saint Barthelemy, New Zealand, Azerbaijan, Russia, Georgia, Philippines, Saudi Arabia, Indonesia, Hungary, Estonia, Egypt, Lithuania, Cambodia, Argentina, Slovenia, North Macedonia, Monaco, Afghanistan, Armenia, Dominican Republic, Ukraine, Liechtenstein, Faroe Islands, Luxembourg, Andorra, Gibraltar, Nigeria, Chile, Morocco, Nepal, Jordan, Poland, Latvia, Tunisia, Sri Lanka
+80410		China
+5766		South Korea
+3089		Italy
+2922		Iran
 706			Others
-274			Japan
-191			France
-165			Germany
-120			Spain
-108			Singapore
-105			US
-100			Hong Kong
-56			Kuwait
-49			Bahrain
-43			Thailand
-42			Switzerland
-41			Taiwan
-40			UK
-31			Australia
-29			Malaysia
-27			Canada
-26			Iraq
-25			Norway
-21			UAE
-18			Netherlands, Austria
-16			Vietnam
-15			Sweden
+331			Japan
+285			France
+262			Germany
+222			Spain
+159			US
+110			Singapore
+105			Hong Kong
+90			Switzerland
+85			UK
+56			Norway, Kuwait
+52			Bahrain, Australia
+50			Malaysia
+47			Thailand
+42			Taiwan
+38			Netherlands
+35			Sweden, Iraq
+34			Canada
+29			Austria
+28			UAE, India
+26			Iceland
+23			Belgium
+16			San Marino, Vietnam
+15			Oman, Israel
 13			Lebanon
-12			Israel
-10			Macau
-9			Iceland
-8			Belgium, San Marino
-7			Qatar, Croatia, Greece
-6			Ecuador, Oman, Finland
-5			Algeria, Pakistan, Mexico, India
-4			Czech Republic, Denmark
-3			Georgia, Philippines, Russia, Romania, Azerbaijan
-2			Indonesia, Brazil, Portugal, Egypt
-1			Afghanistan, Nepal, Lithuania, Cambodia, Andorra, Saudi Arabia, Ireland, Nigeria, Senegal, Armenia, Dominican Republic, Estonia, North Macedonia, Morocco, Luxembourg, Monaco, Belarus, New Zealand, Latvia, Sri Lanka
+12			Algeria
+10			Macau, Ecuador, Denmark, Croatia
+9			Greece
+8			Czech Republic, Qatar
+7			Finland
+6			Romania, Ireland, Belarus
+5			Pakistan, Portugal
+5			Mexico
+4			Senegal
+4			Brazil
+3			Saint Barthelemy, New Zealand, Azerbaijan, Russia, Georgia, Philippines
+2			Saudi Arabia, Indonesia, Hungary, Estonia, Egypt
+1			Lithuania, Cambodia, Argentina, Slovenia, North Macedonia, Monaco, Afghanistan, Armenia, Dominican Republic, Ukraine, Liechtenstein, Faroe Islands, Luxembourg, Andorra, Gibraltar, Nigeria, Chile, Morocco, Nepal, Jordan, Poland, Latvia, Tunisia, Sri Lanka
 
  -->
 
