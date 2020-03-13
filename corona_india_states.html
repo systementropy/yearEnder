@@ -222,7 +222,7 @@
         }
         .footer{
             position: absolute;
-            top: 80%;
+            top: 85%;
             width: 100%;
         }
         .internal .fillbg{
@@ -293,7 +293,16 @@
 			left: -71px;
 			height: 1000px;
         }
-
+        
+        .stateName.total,.internal.total{
+            position: relative;
+            top: 340px;
+            opacity: 0;
+            transition: all 250ms ease;
+        }
+        .stateName.total.active,.internal.total.active{
+            opacity: 1;
+        }
     </style>
 </head>
 <body> 
@@ -19153,11 +19162,19 @@
 
             </div>
             <div class="legendStates">
-                <div class="stateName"></div>
+                <div class="stateName statewise"></div>
                 <div class="internal">
-                    <div class="bjpSeats"><span class="bjp"></span><p>Active</p></div>
+                    <div class="bjpSeats statewise"><span class="bjp statewise"></span><p>Confirmed</p></div>
+                    <div class="bar statewise"></div>
+                    <div class="totalSeats statewise"><span class="total statewise"></span><p>Recovered</p></div>
+                    <div class="fill statewise"></div>
+                    <div class="fillbg statewise"></div>
+                </div>
+                <div class="stateName total">Total Cases</div>
+                <div class="internal total">
+                    <div class="bjpSeats"><span class="bjp">73</span><p>Confirmed</p></div>
                     <div class="bar"></div>
-                    <div class="totalSeats"><span class="total"></span><p>Recovered</p></div>
+                    <div class="totalSeats"><span class="total">3</span><p>Recovered</p></div>
                     <div class="fill"></div>
                     <div class="fillbg"></div>
                 </div>
@@ -19165,7 +19182,7 @@
             <div class="footer">
             
                 <div class="bottom">
-                    <span>Source: Johns Hopkins CSSE; News Reports</span>
+                    <span>Source: News Reports</span>
                 	<span><img src="./logo_gray.png" alt=""></span>
                 </div>
             </div>
@@ -19179,15 +19196,17 @@
             var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
             var dataIndia = [
 				["Jammu & Kashmir",1,0,["J_K"]],
-				["Laddakh",2,0,["Laddakh"]],
-				["Rajasthan",17,0,["Rajasthan"]],
-				["Delhi",4,0,["Delhi"]],
-				["Maharashtra",5,0,["Maharashtra"]],
-				["UP",8,0,["UP"]],
+				["Ladakh",3,0,["Laddakh"]],
+                ["Punjab",1,0,["Punjab"]],
+                ["Haryana",14,0,["Haryana"]],
+                ["Delhi",6,0,["Delhi"]],
+                ["UP",11,0,["UP"]],
+				["Rajasthan",3,0,["Rajasthan"]],
+				["Maharashtra",11,0,["Maharashtra"]],
+                ["Telangana",1,0,["Telangana"]],
 				["Karnataka",4,0,["Karnataka"]],
-				["Kerala",14,3,["Kerala"]],
+				["Kerala",17,3,["Kerala"]],
 				["Tamil Nadu",1,0,["Tamilnadu"]],
-				["Telangana",1,0,["Telangana"]],
             ];
             /*
                 [255,255,255],[255,249,242],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],
@@ -19229,6 +19248,8 @@
             function updateColor(label){
                 if(label == "init"){
                     animate();
+                }else if(label == "final"){
+                    $('.total').addClass('active');
                 }else{
                     globalCounter += 1;
                     if(Math.floor(globalCounter/msecForEach) == index){
@@ -19239,10 +19260,10 @@
                     }
                     
                     const element = dataIndia[index];
-                    $('.stateName').html(element[0]);
-                    $('.total').html(element[2]);
-                    $('.bjp').html(element[1]);
-                    $('.fill').css({'width':element[4]+'%'})
+                    $('.stateName.statewise').html(element[0]);
+                    $('.total.statewise').html((element[2]).toString());
+                    $('.bjp.statewise').html(element[1]);
+                    // $('.fill').css({'width':element[4]+'%'})
                     $('#'+element[3][0]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
                 }
             }
