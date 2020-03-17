@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
+			color: #333333;
+			box-sizing: border-box;
+		}
+		.title{
+			/* border-bottom: 5px solid #000; */
+			padding: 0;
+		}
+		.title h1{
+			font-size: 62px;
+			font-weight: 900;
+			line-height: 50px;
+			margin: 0;
+			margin-bottom: 0px;
+			letter-spacing: 2px;
+			color: #000000;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.mainBody{
+			/* border: 1px solid #999; */
+			height: 100vh;
+			width: 1100px;
+			/* width: 850px; */
+			margin: 0 auto;
+			padding: 40px;
+			box-sizing: border-box;
+			position: relative;
+			background: linear-gradient(to bottom, #999999 150px,rgba(0,0,0,0) 200px);
+			overflow: hidden;
+		}
+		.graphicsContainer{
+			/* width: 770px; */
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			overflow: hidden;
+			/* box-shadow: 0px 0px 0px 5px
+			#999 inset,0px 0px 10000px 0px
+			#9968688A; */
+			box-sizing: border-box;
+			border: none;
+			background: #999;
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0 0;
+			color: #555555;
+			text-transform: uppercase;
+		}
+		.calendar p{
+			margin: 0;
+			display: flex;
+			justify-content: space-evenly;
+		}
+		.calendar p.weeks{margin-bottom: 0;}
+		p.weeks span{
+			font-size: 16px;
+			flex-grow: 1;
+			padding: 5px 0;
+			outline: 1px solid #DDD;
+			width: 14.2857142857%;
+			text-align: center;
+		}
+		.calendar {
+			position: absolute;
+			width: 320px;
+			top: 155px;
+			right: 45px;
+			background: 
+			rgba(255,255,255,0.5);
+			z-index: 1;
+			overflow: hidden;
+		}
+		p.weeks span:nth-child(1),p.weeks span:nth-child(7){color: #dc3502;}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+		}
+		.bottom img{
+			height: 24px;
+		}
+		.bottom{
+			line-height: 30px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			filter: blur(0px);
+			transition: all 0.2s ease;
+		}
+		#labels.active{
+			filter: blur(5px);
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+		}
+		.Month{
+			opacity: 0;
+			letter-spacing: 10px;
+			transition: all 0s ease 0s;
+		}
+		.Month.active{
+			opacity: 1;
+			letter-spacing: 0px;
+			transition: all 1s ease 0.3s;
+		}
+		.logo{
+			width: 280px;
+			margin-bottom: 15px;
+			transform: translateX(-9px);
+		}
+		.legendStates {
+			position: absolute;
+			bottom: 0;
+			left: 40px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 25px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 400px;
+			text-align: center;
+			opacity: 1;
+			transition : all 250ms ease-in;
+			z-index: 10;
+		}
+		.legendStates.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 300;
+			padding: 15px 0;
+			height: auto;
+			text-align: left;
+			opacity: 0;
+			transition: opacity 100ms ease;
+		}
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.date {
+			font-size: 100px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 50px;
+		}
+		.month{
+			font-size: 50px;
+		}
+		.totalSeats{
+			font-weight: 300;
+		}
+		.total{
+			font-weight: 500;
+		}
+		.bjpSeats{
+			font-weight: 300;
+		}
+		.bjp{
+			font-weight: 500;
+		}
+		.internal{
+			display: flex;
+			justify-content: space-evenly;
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+		.internal p{
+			font-size: 18px;
+			line-height: 1;
+			margin: 0;
+			font-weight: 200;
+			perspective: 100px;
+		}
+		.bar{
+			width: 2px;
+			background: #333;
+			transform: skewX(-20deg) scale(0.5);
+		}
+		.footer{
+			position: absolute;
+			bottom: 2%;
+			width: 100%;
+			left: 0;
+			padding: 0 40px;
+			box-sizing: border-box;
+		}
+		.internal .fillbg{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 100%;
+			height: 10px;
+			background: #F5F5F6;
+			border: 2px solid #333;
+			box-shadow: 0px 0px 1px 1px #2821195E;
+			transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		.internal .fill{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 0%;
+			height: 10px;
+			background: #F28500;
+			transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+			background: linear-gradient(to right, 
+					rgb(240,240,240)	0px,
+					rgb(255,243,228)	calc(0 * 40px),
+					rgb(255,231,203)	calc(1 * 40px),
+					rgb(255,214,164)	calc(2 * 40px),
+					rgb(255,196,124)	calc(3 * 40px),
+					rgb(255,178,85)	 calc(4 * 40px),
+					rgb(255,161,46)	 calc(5 * 40px),
+					rgb(255,143,7)	  calc(6 * 40px),
+					rgb(203,111,0)	  calc(7 * 40px),
+					rgb(183,101,0)	  calc(8 * 40px)
+			);
+			box-shadow: -1px 8px 7px 0px #8C6331;
+			transition: all 0.3s ease;
+			z-index: 1;
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		.footer i{
+			display: block;
+			font-weight: 300;
+			line-height: 1;
+			font-size: 14px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
+			color: #000000;
+			animation: aniTr 1s infinite alternate;
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.svgContainer {
+			padding-top: 40px;
+		}
+		#regions_div,#places_div {
+			position: absolute;
+			/* height: auto;
+			width: 900px; */
+			height: 100%;
+			width: auto;
+			left: 50%;
+			top: 50%;
+			transform: translate(-55%,-50%);
+			z-index: 0;
+			background: #383838;
+		}
+		.legend{
+			position: absolute;
+			left: 40px;
+			bottom: 120px;
+			width: auto;
+			text-align: left;
+			z-index: 10;
+		}
+		.legend span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(220,220,220,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legend span::before{
+			/* content: ''; */
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 12px;
+			height: 12px;
+			box-shadow: 0px 0px 0px 3px rgba(220,220,220,0.3);
+		}
+		.legend span:nth-child(1){
+			color: #F5F5F6;
+		}
+		.legend span:nth-child(1)::before{
+			display: none;
+		}
+		.legend span.blue::before{
+			background-color: rgb(182, 173, 44);
+			background: rgb(182, 44, 44);
+		}
+		.legend span.red::before{
+			background-color: rgb(182, 44, 44);
+			background:rgb(44, 182, 173);
+		}
+		.legend span.active.red::before{
+			background-color: rgb(223, 165, 55);
+		}
+		.legend span.active.red i.active{
+			background-color: rgb(223, 165, 55);
+		}
+		.legend span i{
+			position: absolute;
+			top: 5px;
+			left: 196px;
+			height: 18px;
+			width: 0px;
+			background:rgb(223, 165, 55);
+			box-shadow: 0px 0px 2px 1px rgba(223, 165, 55,0.3);
+			transition: all 250ms ease;
+		}
+		.legend span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: 0;
+			line-height: 16px;
+		}
+		.legend span.blue i{
+			background: rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px rgba(182, 44, 44,0.3);
+		}
+		.legend span.active.blue::before{
+			background:rgb(44, 182, 173);
+		}
+		.legend span.blue i.active{
+			background:rgb(44, 182, 173);
+		}
+		#regions_div path{
+			stroke-width: 0;
+		}
+		#places_div path {
+			stroke-width: 1;
+			stroke: 
+			#dacfc517;
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0 0;
+			color: #555555;
+			text-transform: uppercase;
+		}
+		#year p{
+			margin: 0 auto;
+			margin-bottom: 15px;
+			display: flex;
+			justify-content: space-evenly;
+		}
+		#year p.weeks{margin-bottom: 0;}
+		#year p span{
+			font-size: 16px;
+			flex-grow: 1;
+			padding: 5px 0;
+			outline: 1px solid #DDD;
+			width: 14.2857142857%;
+		}
+		#year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+		.calendar p.dates{
+			flex-wrap: wrap;
+			
+		}
+		.eachdate {
+			width: 14.2857142857%;
+			height: 40px;
+			box-shadow: 0px 0px 0px 1px 
+			rgba(0,0,0,0.1);
+			position: relative;
+			background: rgba(0, 0, 0, 0);
+			transition: all 250ms ease;
+		}
+		.eachdate.active{
+			background:#ffb2b2; 
+			/* background: rgba(0, 0, 0, 0.4); */
+		}
+		.eachdate::after{
+			color:
+			#333333;
+			position: absolute;
+			content: attr(date-num);
+			font-size: 12px;
+			left: 0;
+			top: 0;
+			line-height: 40px;
+			width: 100%;
+			height: auto;
+			text-align: center;
+			align-self: center;
+			border-radius: 50%;
+			background:
+			transparent;
+		}
+		svg circle{
+			stroke-width: 0;
+		}
+		.wuhan {
+			position: absolute;
+			z-index: 1;
+			width: 130px;
+			height: 175px;
+			background:
+			#DDD;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 85% 40%, 85% 100%, 70% 40%, 0% 40%);
+			top: 235px;
+			right: 110px;
+			border-radius: 2px;
+			opacity: 0;
+			transition: all 1s ease;
+		}
+		.wuhan.active {
+			opacity: 1;
+		}
+		.wuhan h2{
+			font-size: 20px;
+			text-align: center;
+			font-weight: 300;
+			margin: 0;
+			color:#333;
+			text-transform: uppercase;
+			line-height: 1;
+			margin-top: 7px;
+		}
+		.wuhan h2 span{
+			display: block;
+			font-size: 29px;
+			font-weight: 500;
+			color:rgb(182, 44, 44)
+		}
+		.labelContainer{	
+			position: absolute;
+			height: 801px;
+			width: 1283px;
+			left: 50%;
+			top: 50%;
+			transform: translate(-55%,-50%);
+			z-index: 10;
+		}
+		.labelContainer span{
+			height: 13px;
+			width: auto;
+			top: 434.79113273888186px;
+			left: 999.2479842318957px;
+			background: #FFF;
+			position: absolute;
+			z-index: 1000;
+			padding: 5px 8px;
+			background:#EEE;
+			text-align: center;
+			opacity: 0.8;
+			color:#333;
+			font-size: 14px;
+			line-height: 14px;
+			transform: translate(-50%,-50%);
+		}
+		.labelContainer span p {
+			margin: 0;
+		}
+		.labelContainer span p:nth-child(1) {
+			position: absolute;
+			top: -20px;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #FFF;
+			font-size: 24px;
+		}
+		.countriesList {
+			padding: 0;
+			position: absolute;
+			width: 800px;
+			background: rgba(223, 223, 223, 0.8);
+			z-index: 1000;
+			height: 400px;
+			top: 220px;
+			border-radius: 10px;
+			border: 5px solid rgb(223, 165, 55);
+			font-weight: 300;
+			font-size: 21px;
+			box-shadow: 1px 1px 2px 2px rgba(255,255,255,0.5);
+			transition: all 400ms ease-in-out;
+			height: 0;
+			opacity: 0;
+			/* overflow: hidden; */
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.countriesList.active {
+			height: 400px;
+			opacity: 1;
+		}
+		.countriesList.active::before{
+			content: '';
+			position: absolute;
+			z-index: 100;
+			border: transparent;
+			width: 0; 
+			height: 0; 
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-bottom: 16px solid rgb(223, 165, 55);
+			top: -21px;
+			left: 23%;
+		}
+		.countriesList div{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
+			flex-grow: 1;
+			color: #333;
+			padding: 15px;
+			opacity: 0;
+			transition: all 400ms ease-in-out 800ms;
+		}
+		.countriesList.active div{
+			opacity: 1;
+		}
+		.countriesList div h4{
+			margin: 0;
+			color: #555555;
+			font-weight: 500;
+			font-size: 25px;
+			text-shadow: 1px 1px 1px rgba(223, 165, 55, 0.3);
+			letter-spacing: 5px;
+			transform: scale(0);
+			opacity: 0;
+			text-align: center;
+			width: 100%;
+			transition: all 400ms ease 1000ms,opacity 250ms ease 1000ms;
+		}
+		.countriesList.active div h4{
+			transform: scale(1);
+			letter-spacing: 0px;
+			opacity: 1;
+		}
+		.countriesList div p{
+			margin: 0;
+			opacity: 0;
+			transform: translateY(20px);
+			transition: all 400ms ease-in-out 1200ms;
+		}
+		.countriesList.active div p{
+			opacity: 1;
+			transform: translateY(0px);
+		}
+		span.yellow {
+			box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+			background: #CC4C02;
+			padding: 5px 15px;
+			width: auto;
+			height: 0;
+			opacity: 0;
+			transform: translateY(100px);
+			transition: all 250ms ease;
+		}
+		span.red {
+			box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+			height: 0;
+			opacity: 0;
+			transform: translateY(100px);
+			background: #702020;
+			padding: 5px 15px;
+			width: auto;
+			transition: all 250ms ease;
+		}
+		span.blue {
+			box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+			height: 0;
+			opacity: 0;
+			transform: translateY(100px);
+			background: #a07629;
+			padding: 5px 15px;
+			width: auto;
+			transition: all 250ms ease;
+		}
+		span.yellow.active, span.red.active, span.blue.active{
+			height: auto;
+			opacity: 1;
+			box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.3);
+			transform: translateY(0px);
+		}
+		.footer span i {
+			font-size: 20px;
+			font-weight: 500;
+			font-style: italic;
+			text-transform: none;
+			position: relative;
+			top: -65px;
+		}
+		.footer span i::before{
+			content: '(';
+		}
+		.footer span i::after{
+			content: ")";
+		}
+
+	</style>
+</head>
+<body> 
+	<span class="texty">TEXTY</span>
+	<div class="mainBody">
+
+		<div class="title">
+			<h1>Travel Risk Assessment</h1>
+			<h3>Countries according to the status of novel coronavirus transmission</h3>
+
+		</div>
+		
+		<div class="graphicsContainer">
+			<div class="legend legendStat">
+				<span class="yellow">Ongoing community transmission</span>
+				<span class="red">Widespread ongoing transmission</span>
+				<span class="blue">Limited community transmission</span>
+			</div>
+			<div id="regions_div"></div>
+			<div id="places_div"></div>
+		</div>
+		<div class="footer">
+			<div class="bottom">
+				<span>
+					Source: CDC
+					<i>As on March 17th, 2020</i>
+				</span>
+				<span><img src="./logo.png" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<script src="./jquery.js"></script>
+	<script type="text/javascript" src="./loader.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			google.charts.load('current', {
+				'packages':['geochart'],
+				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
+			});
+			google.charts.setOnLoadCallback(init);
+			
+			let databyDate = [
+			{
+				'date':[23, 'Jan', 2020],
+				'china':639,
+				'world':14,
+				'countries':[["KR",10]],
+				'places':[]
+			},{
+					'date':[31, 'Dec', 2019],
+					'china':1,
+					'world':0,
+					'countries':[["CN",1],["IR",1],["GB",1],["IE",1],["AT",1],["BE",1],["CZ",1],["DK",1],["EE",1],["FI",1],["FR",1],["DE",1],["GR",1],["HU",1],["IS",1],["IT",1],["LV",1],["LI",1],["LT",1],["LU",1],["MT",1],["NL",1],["NO",1],["PO",1],["PT",1],["SK",1],["SI",1],["ES",1],["SE",1],["CH",1],["MC",1],["SM",1],["VA",1]],
+				}
+			]
+			let data;
+			let options;
+			let chart;
+			let counterCountry = 0; 
+			let dataPlace;
+			let optionsPlace;
+			let chartPlace;
+			let counterPlace = 0; 
+			
+			function drawRegionsMap(counter) {
+				if(databyDate[counter]){
+					$('.wuhan').addClass('active');
+					$('.stateName').addClass('active');
+					if(counter == 0){
+						$('.yellow').addClass('active')
+					}else{
+						$('.red').addClass('active')
+					}
+					for (let i = 0; i < databyDate[counter]['countries'].length; i++) {
+						const element = databyDate[counter]['countries'][i];
+						data.addRow([element[0],element[1]]);	
+						// dataPlace.addRow([antiMap[element[0]],element[1]]);	
+					}
+					chart.draw(data, options);
+				}
+				
+			}
+			function init(label){
+				
+				if(!label){
+					data = new google.visualization.DataTable();
+					data.addColumn('string', 'Country');
+					data.addColumn('number', 'Value');
+					options = {
+						domain: 'IN',
+						legend: 'none',
+						backgroundColor: '#999',
+						// datalessRegionColor: '#FEB42E',
+						datalessRegionColor: '181818',
+						colorAxis: {
+							values: [1,10],
+							colors: ['#702020','#CC4C02']
+						}
+					};
+					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
+
+					
+
+					setTimeout(function(){
+					  init(1);
+					},2000);
+				}else if(label<=databyDate.length){
+					setTimeout(function(){
+						drawRegionsMap(label-1);
+						if(databyDate[label-1]){
+								console.log('stop');
+								init(label+1);
+						}else{
+							
+							init(label+1);
+						}
+					},1000)
+				}else{
+					setTimeout(function(){
+						$('.blue').addClass('active')
+						options.datalessRegionColor = '#a07629';
+						chart.draw(data, options);
+					},2000);
+					// setTimeout(function(){
+					// 	$('.countriesList').addClass('active');
+					// },4000);
+				}
+			}
+		});
+	</script>
+		
+</body>
+</html>
+
+<!-- 
+China, Italy, Iran, South Korea, Spain, Germany, France, US, Switzerland, Denmark, United Kingdom, Norway, Netherlands, Sweden, Belgium, Austria, Japan, Malaysia, Qatar, Canada, Greece, Australia, Czechia, Israel, Portugal, Finland, Singapore, Slovenia, Bahrain, Brazil, Iceland, Estonia, Philippines, Romania, Ireland, Egypt, Poland, Iraq, Saudi Arabia, Indonesia, Thailand, India, Kuwait, San Marino, Lebanon, United Arab Emirates, Luxembourg, Chile, Peru, Russia, Slovakia, South Africa, Taiwan, Vietnam, Pakistan, Bulgaria, Brunei, Croatia, Algeria, Serbia, Argentina, Panama, Mexico, Albania, Ecuador, Costa Rica, Colombia, Georgia, Cyprus, Hungary, Latvia, Morocco, Belarus, Armenia, Bosnia and Herzegovina, Senegal, Azerbaijan, Moldova, Oman, Malta, Tunisia, Turkey, Sri Lanka, Venezuela, Afghanistan, North Macedonia, Maldives, Lithuania, Jordan, Dominican Republic, Bolivia, Jamaica, Martinique, Kazakhstan, New Zealand, Cambodia, Burkina Faso, Reunion, Paraguay, Ghana, Bangladesh, Rwanda, Ethiopia, Cameroon, Uruguay, Cuba, Liechtenstein, Guyana, Guam, Kenya, Ukraine, Seychelles, Guadeloupe, Honduras, Aruba, Monaco, Jersey, Saint Lucia, Andorra, Nigeria, Namibia, Kosovo, Congo (Kinshasa), Trinidad and Tobago, Guatemala, Guinea, Gabon, Congo (Brazzaville), Saint Vincent and the Grenadines, Mongolia, Republic of the Congo, Togo, Central African Republic, Cayman Islands, The Bahamas, Guernsey, Uzbekistan, Antigua and Barbuda, Eswatini, Bhutan, Sudan, Nepal, Suriname, Holy See, Cote d'Ivoire, Mauritania, Equatorial Guinea
+
+
+China, Italy, Iran, Republic of Korea, France, Spain, Germany, US, Switzerland, Japan, Norway, Denmark, Netherlands, Sweden, United Kingdom, Belgium, Qatar, Austria, Bahrain, Singapore, Malaysia, Australia, Canada, Israel, Greece, Czechia, Iceland, United Arab Emirates, Kuwait, Iraq, India, San Marino, Lebanon, Egypt, Finland, Portugal, Thailand, Slovenia, Brazil, Philippines, Taiwan, Romania, Saudi Arabia, Ireland, Vietnam, Indonesia, Poland, Georgia, Chile, Costa Rica, Russia, Algeria, Argentina, Pakistan, Croatia, Oman, Ecuador, Estonia, Albania, Hungary, Peru, South Africa, Mexico, Serbia, Azerbaijan, Brunei, Slovakia, Latvia, Colombia, Belarus, Maldives, Panama, Bosnia and Herzegovina, North Macedonia, Afghanistan, Bulgaria, Luxembourg, Tunisia, Morocco, Cyprus, Malta, French Guiana, New Zealand, Dominican Republic, Paraguay, Senegal, Lithuania, Cambodia, Bangladesh, Cuba, Moldova, Martinique, Bolivia, Cameroon, Burkina Faso, Jamaica, Nigeria, Honduras, Sri Lanka, Monaco, Turkey, Mongolia, Togo, Armenia, Ukraine, Liechtenstein, Andorra, Reunion, Bhutan, Nepal, Congo, Holy See, Cote d'Ivoire, Jordan, Guyana
+81,020					China
+24,747					Italy
+13,938					Iran
+8,162					Korea, South
+7,844					Spain
+5,813					Germany
+5,437					France
+3,774					US
+2,200					Switzerland
+1,739					Denmark
+1,395					United Kingdom
+1,256					Norway
+1,136					Netherlands
+1,032					Sweden
+886						Belgium
+860						Austria
+839						Japan
+696						Cruise Ship
+428						Malaysia
+401						Qatar
+339						Canada
+331						Greece
+297						Australia
+293						Czechia
+251						Israel
+245						Portugal
+244						Finland
+226						Singapore
+219						Slovenia
+214						Bahrain
+200						Brazil
+180						Iceland
+171						Estonia
+140						Philippines
+139						Romania
+129						Ireland
+126						Egypt
+125						Poland
+124						Iraq
+118						Saudi Arabia
+117						Indonesia
+114						Thailand
+113						India
+112						Kuwait
+109						San Marino
+99						Lebanon
+98						United Arab Emirates
+77						Luxembourg
+75						Chile
+71						Peru
+63						Russia
+61						Slovakia
+61						South Africa
+59						Taiwan
+56						Vietnam
+53						Pakistan
+51						Bulgaria
+50						Brunei
+49						Croatia
+48						Algeria
+48						Serbia
+46						Argentina
+43						Panama
+43						Mexico
+42						Albania
+37						Ecuador
+35						Costa Rica
+34						Colombia
+33						Georgia
+33						Cyprus
+32						Hungary
+30						Latvia
+28						Morocco
+27						Belarus
+26						Armenia
+24						Bosnia and Herzegovina
+24						Senegal
+23						Azerbaijan
+23						Moldova
+22						Oman
+21						Malta
+20						Tunisia
+18						Turkey
+18						Sri Lanka
+17						Venezuela
+16						Afghanistan
+14						North Macedonia
+13						Maldives
+12						Lithuania
+12						Jordan
+11						Dominican Republic
+10						Bolivia
+10						Jamaica
+10						Martinique
+9						Kazakhstan
+8						New Zealand
+7						Cambodia
+7						Burkina Faso
+7						Reunion
+7						Paraguay
+6						Ghana
+5						Bangladesh
+5						Rwanda
+4						Ethiopia
+4						Cameroon
+4						Uruguay
+4						Cuba
+4						Liechtenstein
+4						Guyana
+3						Guam
+3						Kenya
+3						Ukraine
+3						Seychelles
+3						Guadeloupe
+3						Honduras
+2						Aruba
+2						Monaco
+2						Jersey
+2						Saint Lucia
+2						Andorra
+2						Nigeria
+2						Namibia
+2						Kosovo
+2						Congo (Kinshasa)
+2						Trinidad and Tobago
+1						Guatemala
+1						Guinea
+1						Gabon
+1						Congo (Brazzaville)
+1						Saint Vincent and the Grenadines
+1						Mongolia
+1						Republic of the Congo
+1						Togo
+1						Central African Republic
+1						Cayman Islands
+1						The Bahamas
+1						Guernsey
+1						Uzbekistan
+1						Antigua and Barbuda
+1						Eswatini
+1						Bhutan
+1						Sudan
+1						Nepal
+1						Suriname
+1						Holy See
+1						Cote d'Ivoire
+1						Mauritania
+1						Equatorial Guinea
+ -->
+
+ 
