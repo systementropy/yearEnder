@@ -56,29 +56,28 @@
 			padding: 0;
 			font-family: monty;
 			font-weight: 400;
-			color: #F5F5F6;
-			/* [255, 246, 0],[255, 191, 17],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5] */
-			background-image: linear-gradient( 
+			color: #333333;
+			/* background-image: linear-gradient( 
 				rgba(255, 246, 0, 1) 0% 5%,
-				rgba(255, 191, 17, 1) 5% 10%,
-				rgba(255, 195, 2, 1) 10% 15%,
-				rgba(255, 210, 65, 1) 15% 20%,
-				rgba(255, 171, 63, 1) 20% 25%,
-				rgba(255, 143, 0, 1) 25% 30%,
-				rgba(255, 132, 63, 1) 30% 35%,
-				rgba(255, 91, 0, 1) 35% 40%,
-				rgba(255, 67, 67, 1) 40% 45%,
-				rgba(255, 5, 5, 1 ) 50% 55%,
-				rgb(225, 95, 0, 1) 55% 60%,
-				rgb(218, 78, 0, 1) 60% 65%,
-				rgb(221, 65, 0, 1) 65% 70%,
-				rgb(226, 57, 0, 1) 70% 75%,
-				rgb(237, 51, 0, 1) 75% 80%,
-				rgb(248, 46, 0, 1) 80% 85%
-			),  url(./Extra/covid.png);
+				rgba(255, 210, 65, 1) 5% 10%,
+				rgba(255, 191, 17, 1) 10% 15%,
+				rgba(255, 171, 63, 1) 15% 20%,
+				rgba(255, 143, 0, 1) 20% 25%,
+				rgba(255, 132, 63, 1) 25% 30%,
+				rgba(255, 91, 0, 1) 30% 35%,
+				rgba(255, 67, 67, 1) 35% 40%,
+				rgba(255, 5, 5, 1 ) 40% 45%,
+				rgb(225, 95, 0, 1) 45% 50%,
+				rgb(218, 78, 0, 1) 50% 55%,
+				rgb(221, 65, 0, 1) 55% 60%,
+				rgb(226, 57, 0, 1) 60% 65%,
+				rgb(237, 51, 0, 1) 65% 70%,
+				rgb(248, 46, 0, 1) 70% 75%,
+				rgb(255, 0, 0, 1) 75% 80%
+			),  url(./Extra/covid.png); */
 		}
 		.title{
-			border-bottom: 5px solid #999;
+			border-bottom: 5px solid #333;
 			padding: 0;
 		}
 		.title h1{
@@ -106,13 +105,13 @@
 			margin: 0 auto;
 			padding: 40px;
 			box-sizing: border-box;
-			background: #999;
+			/* background: #999; */
 			background-position-x: 0%;
 			background-position-y: 0%;
 			background-repeat: repeat;
 			background-image: none;
 			background-size: auto;
-			background-image: linear-gradient( rgba(255, 246, 0, 1.0), rgba(255, 187, 0, 0.747), rgba(255, 195, 2, 1.0), rgba(255, 195, 2, 0.5), rgba(255, 143, 0, 1.0), rgba(255, 143, 0, 0.5), rgba(255, 91, 0, 1.0), rgba(255, 91, 0, 0.5), rgba(255, 5, 5, 1.0), rgba(255, 5, 5, 0.5)),  url(./Extra/covid.png);
+			/* background-image: linear-gradient( rgba(255, 246, 0, 1.0), rgba(255, 187, 0, 0.747), rgba(255, 195, 2, 1.0), rgba(255, 195, 2, 0.5), rgba(255, 143, 0, 1.0), rgba(255, 143, 0, 0.5), rgba(255, 91, 0, 1.0), rgba(255, 91, 0, 0.5), rgba(255, 5, 5, 1.0), rgba(255, 5, 5, 0.5)),  url(./Extra/covid.png); */
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
@@ -19213,9 +19212,9 @@
 				</div>
 				<div class="stateName total">Total Cases</div>
 				<div class="internal total">
-					<div class="bjpSeats"><span class="confirmed">126</span><p>Confirmed</p></div>
+					<div class="bjpSeats"><span class="confirmed">147</span><p>Confirmed</p></div>
 					<div class="bar"></div>
-					<div class="totalSeats"><span class="recovered">13</span><p>Recovered</p></div>
+					<div class="totalSeats"><span class="recovered">14</span><p>Recovered</p></div>
 					<div class="bar"></div>
 					<div class="totalSeats"><span class="deaths">3</span><p>Deaths</p></div>
 				</div>
@@ -19225,7 +19224,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: News Reports<i>As on March 17th, 2020</i></span>
+				<span>Source: News Reports<i>As on March 18th, 2020</i></span>
 				<span><img src="./logo_gray.png" alt=""></span>
 			</div>
 		</div>
@@ -19238,39 +19237,41 @@
 			var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
 			var dataIndia = [
 				["Jammu & Kashmir",3,0,0,["J_K"]],
-				["Ladakh",4,0,0,["Laddakh"]],
+				["Ladakh",8,0,0,["Laddakh"]],
 				["Punjab",1,0,0,["Punjab"]],
-				["Haryana",15,0,0,["Haryana"]],
-				["Delhi",7,2,1,["Delhi"]],
+				["Haryana",16,0,0,["Haryana"]],
+				["Delhi",10,2,1,["Delhi"]],
 				["Uttarakhand",1,0,0,["UK"]],
-				["UP",13,4,0,["UP"]],
+				["UP",16,5,0,["UP"]],
 				["Odisha",1,0,0,["Orissa"]], 
 				["Rajasthan",4,3,0,["Rajasthan"]],
-				["Maharashtra",39,0,1,["Maharashtra"]],
+				["Maharashtra",41,0,1,["Maharashtra"]],
 				["Andhra Pradesh",1,0,0,["Andhra"]],
-				["Telangana",4,1,0,["Telangana"]],
-				["Karnataka",8,0,1,["Karnataka"]],
-				["Kerala",24,3,0,["Kerala"]],
+				["Telangana",5,1,0,["Telangana"]],
+				["Karnataka",11,0,1,["Karnataka"]],
+				["Kerala",27,3,0,["Kerala"]],
 				["Tamil Nadu",1,0,0,["Tamilnadu"]],
+				["West Bengal",1,0,0,["WB"]]
 			];
 			/*
-S. No.	Name of State 	Confirmed	Foreign	Cured	Death
-1		AP				1			0		0		0
-2		Delhi			7			0		2		1
-3		Haryana			1			14		0		0
-4		Karnataka		8			0		0		1
-5		Kerala			22			2		3		0
-6		Maharashtra		36			3		0		1
-7		Odisha			1			0		0		0
-8		Punjab			1			0		0		0
-9		Rajasthan		2			2		3		0
-10		Tamil Nadu		1			0		0		0
-11		Telengana		4			0		1		0
-12		J&K				3			0		0		0
-13		Ladakh			4			0		0		0
-14		UP				12			1		4		0
-15		Uttarakhand		1			0		0		0
-Total 	India			104			22		13		3	
+S. No.	Name of State 	Confirmed	Foreign	Cured		Death
+1		Andhra Pradesh	1			0		0			0
+2		Delhi			9			1		2			1
+3		Haryana			2			14		0			0
+4		Karnataka		11			0		0			1
+5		Kerala			25			2		3			0
+6		Maharashtra		38			3		0			1
+7		Odisha			1			0		0			0
+8		Punjab			1			0		0			0
+9		Rajasthan		2			2		3			0
+10		Tamil Nadu		1			0		0			0
+11		Telengana		3			2		1			0
+12		J&K				3			0		0			0
+13		Ladakh			8			0		0			0
+14		Uttar Pradesh	15			1		5			0
+15		Uttarakhand		1			0		0			0
+16		West Bengal		1			0		0			0
+Total	India			122			25		14			3
 
 3	4	1	15	7	1	13	1	4	39	1	4	8	24	1
 1	3 	4	7 	8 	13 	15 24 	39
@@ -19295,6 +19296,16 @@ Total 	India			104			22		13		3
 				}else if(perc>20 && perc <= 30){
 					colorIndex = (4*2)-1
 				}else if(perc>30 && perc <= 40){
+					colorIndex = (5*2)-1
+				}else if(perc>40 && perc <= 50){
+					colorIndex = (5*2)-1
+				}else if(perc>50 && perc <= 60){
+					colorIndex = (5*2)-1
+				}else if(perc>60 && perc <= 70){
+					colorIndex = (5*2)-1
+				}else if(perc>70 && perc <= 80){
+					colorIndex = (5*2)-1
+				}else if(perc>80 && perc <= 90){
 					colorIndex = (5*2)-1
 				}
 				console.log(element[0]+'==>'+colorArray[colorIndex]);

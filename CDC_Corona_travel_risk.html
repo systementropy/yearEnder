@@ -64,7 +64,7 @@
 			padding: 0;
 		}
 		.title h1{
-			font-size: 62px;
+			font-size: 51px;
 			font-weight: 900;
 			line-height: 50px;
 			margin: 0;
@@ -75,11 +75,23 @@
 			text-transform: uppercase;
 		}
 		.title h3{
-			font-size: 35px;
 			font-weight: 300;
 			line-height: 1;
 			margin: 0;
 			text-transform: uppercase;
+			font-size: 30px;
+			float: left;
+			position: relative;
+			margin-left: 324px;
+		}
+		.title h3::before {
+			content: '849.4 MN';
+			font-size: 68px;
+			font-weight: 200;
+			color: #702020;
+			position: absolute;
+			left: -328px;
+			top: -4px;
 		}
 		.mainBody{
 			/* border: 1px solid #999; */
@@ -90,7 +102,7 @@
 			padding: 40px;
 			box-sizing: border-box;
 			position: relative;
-			background: linear-gradient(to bottom, #999999 150px,rgba(0,0,0,0) 200px);
+			background: linear-gradient(to bottom, #999999 170px,rgba(0,0,0,0) 250px);
 			overflow: hidden;
 		}
 		.graphicsContainer{
@@ -676,7 +688,8 @@
 			font-style: italic;
 			text-transform: none;
 			position: relative;
-			top: -65px;
+			top: -27px;
+			left: 400px;
 		}
 		.footer span i::before{
 			content: '(';
@@ -692,16 +705,16 @@
 	<div class="mainBody">
 
 		<div class="title">
-			<h1>Travel Risk Assessment</h1>
-			<h3>Countries according to the status of novel coronavirus transmission</h3>
+			<h1>CORONAVIRUS SCHOOL CLOSURES</h1>
+			<h3> children and youth affected due to nationwide school closures</h3>
 
 		</div>
 		
 		<div class="graphicsContainer">
 			<div class="legend legendStat">
-				<span class="yellow">Ongoing community transmission</span>
-				<span class="red">Widespread ongoing transmission</span>
-				<span class="blue">Limited community transmission</span>
+				<span class="yellow">Localised school closure</span>
+				<span class="red">Nationwide closure</span>
+				<!-- <span class="blue">Limited community transmission</span> -->
 			</div>
 			<div id="regions_div"></div>
 			<div id="places_div"></div>
@@ -709,8 +722,8 @@
 		<div class="footer">
 			<div class="bottom">
 				<span>
-					Source: CDC
-					<i>As on March 17th, 2020</i>
+					Source: UNICEF
+					<i>As on March 18th, 2020</i>
 				</span>
 				<span><img src="./logo.png" alt=""></span>
 			</div>
@@ -726,19 +739,19 @@
 				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
 			});
 			google.charts.setOnLoadCallback(init);
-			
+//Spain,, Sri Lanka,, Sudan,, Switzerland,, Syrian Arab Republic,, Thailand*,, Trinidad and Tobago,, Tunisia,, Turkey,, Ukraine,, United Arab Emirates,, Uzbekistan,, Venezuela*,, Yemen,, Zambia*,, 
 			let databyDate = [
 			{
 				'date':[23, 'Jan', 2020],
 				'china':639,
 				'world':14,
-				'countries':[["KR",10]],
+				'countries':[["RU",10],["GR",10],["IN",10],["PH",10],["VN",10],["GB",10],["BR",10],	["BO",10],["US",10],["CA",10],["BT",10]],
 				'places':[]
 			},{
 					'date':[31, 'Dec', 2019],
 					'china':1,
 					'world':0,
-					'countries':[["CN",1],["IR",1],["GB",1],["IE",1],["AT",1],["BE",1],["CZ",1],["DK",1],["EE",1],["FI",1],["FR",1],["DE",1],["GR",1],["HU",1],["IS",1],["IT",1],["LV",1],["LI",1],["LT",1],["LU",1],["MT",1],["NL",1],["NO",1],["PO",1],["PT",1],["SK",1],["SI",1],["ES",1],["SE",1],["CH",1],["MC",1],["SM",1],["VA",1]],
+					'countries':[["AF",1],["AL",1],["DZ",1],["AR",1],["AM",1],["AT",1],["AZ",1],["BH",1],["BE",1],["BO",1],["BA",1],["BG",1],["BF",1],["KH",1],["KY",1],["CL",1],["CN",1],["HK",1],["MO",1],["CO",1],["CR",1],["CI",1],["HR",1],["CY",1],["CZ",1],["KR",1],["KP",1],["DK",1],["EC",1],["EG",1],["SV",1],["GQ",1],["EE",1],["ET",1],["FR",1],["GA",1],["GE",1],["DE",1],["GH",1],["GR",1],["GD",1],["GT",1],["HN",1],["HU",1],["IS",1],["IE",1],["ID",1],["IR",1],["IQ",1],["IT",1],["IL",1],["JM",1],["JP",1],["JO",1],["KZ",1],["KE",1],["KW",1],["KG",1],["LV",1],["LB",1],["LY",1],["LT",1],["LU",1],["MY",1],["MR",1],["MX",1],["MN",1],["ME",1],["MA",1],["NA",1],["NL",1],["NK",1],["NO",1],["PK",1],["PS",1],["PA",1],["PY",1],["PE",1],["PL",1],["PT",1],["QA",1],["MD",1],["RO",1],["RW",1],["LC",1],["SA",1],["SN",1],["RS",1],["SK",1],["SI",1],["ZA",1],["ES",1],["LK",1],["SD",1],["CH",1],["SY",1],["TH",1],["TT",1],["TN",1],["TR",1],["UA",1],["AE",1],["UZ",1],["VE",1],["YE",1],["ZM",1]],
 				}
 			]
 			let data;
@@ -805,11 +818,11 @@
 						}
 					},1000)
 				}else{
-					setTimeout(function(){
-						$('.blue').addClass('active')
-						options.datalessRegionColor = '#a07629';
-						chart.draw(data, options);
-					},2000);
+					// setTimeout(function(){
+					// 	$('.blue').addClass('active')
+					// 	options.datalessRegionColor = '#a07629';
+					// 	chart.draw(data, options);
+					// },2000);
 					// setTimeout(function(){
 					// 	$('.countriesList').addClass('active');
 					// },4000);
