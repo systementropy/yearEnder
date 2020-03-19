@@ -173,7 +173,7 @@
         .legendStat span.green::before{
 			background-color: rgb(44, 182, 44);
 		}
-        .legendStat span.yellow::before{background: #a87103}
+        .legendStat span.yellow::before{background: #96a803}
 		.legendStat span i{
 			position: absolute;
 			top: 5px;
@@ -275,10 +275,10 @@
         .bottomDates>span.counter20.active::after{
             left: 5px;
         }
-        .bottomDates>span.counter69.active{
+        .bottomDates>span.counter76.active{
             transform: translateX(-25px);
         }
-        .bottomDates>span.counter69.active::after{
+        .bottomDates>span.counter76.active::after{
             left: 30px;
         }
         .bottomDates > span.active::after{
@@ -320,7 +320,7 @@
 				</div>
 				<div class="legendStat">
 					<span>Confirmed Cases</span>
-                    <span class="yellow">Countries Affected<i data-deaths="0"></i></span>
+                    <span class="yellow">Deaths<i data-deaths="0"></i></span>
 					<span class="red">Mainland China<i data-deaths="0"></i></span>
 					<span class="blue">Rest of the World<i data-deaths="0"></i></span>
                     <span class="green">Recovered<i data-deaths="0"></i></span>
@@ -385,6 +385,7 @@
 			<span class="counter73">15/03</span>
 			<span class="counter74">16/03</span>
 			<span class="counter75">17/03</span>
+			<span class="counter76">18/03</span>
         </div>
         <div class="footer">
             <div class="bottom">
@@ -414,15 +415,15 @@
             let counter = 0;
             let circleArray = [];
             const dailyData = {
-                "confirmed_china":[548,643,920,1406,2075,2877,5509,6087,8141,9802,11891,16630,19716,23707,27440,30587,34110,36814,39829,42354,44386,44759,59895,66358,68413,70513,72434,74211,74619,75077,75550,77001,77022,77241,77754,78166,78600,78928,79356,79932,80136,80261,80386,80537,80690,80770,80823,80860,80887,80921,80932,80945,80977,81003,81033,81058],
-                "confirmed_rest":[7,10,21,28,43,50,69,79,93,125,147,157,165,185,195,230,281,306,321,408,416,462,473,527,617,711,824,925,1020,1120,1273,1578,1943,2327,2659,3229,4154,5192,6655,8437,10170,12579,14734,17345,21094,25051,28972,32701,37705,44944,47411,64248,75120,86446,100498,116088],
-				"countries":[6,8,9,11,13,16,16,18,20,24,25,25,25,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,28,28,30,30,30,35,39,46,50,56,60,65,72,76,80,83,92,94,99,102,105,111,113,120,136,142,149,152],
-                "dates":[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,01],[2,02],[2,03],[2,04],[2,05],[2,06],[2,07],[2,08],[2,09],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,01],[3,02],[3,03],[3,04],[3,05],[3,06],[3,07],[3,08],[3,09],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17]],
-                "recovered":[28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840]
+                "confirmed_china":[548,643,920,1406,2075,2877,5509,6087,8141,9802,11891,16630,19716,23707,27440,30587,34110,36814,39829,42354,44386,44759,59895,66358,68413,70513,72434,74211,74619,75077,75550,77001,77022,77241,77754,78166,78600,78928,79356,79932,80136,80261,80386,80537,80690,80770,80823,80860,80887,80921,80932,80945,80977,81003,81033,81058,81102],
+                "confirmed_rest":[7,10,21,28,43,50,69,79,93,125,147,157,165,185,195,230,281,306,321,408,416,462,473,527,617,711,824,925,1020,1120,1273,1578,1943,2327,2659,3229,4154,5192,6655,8437,10170,12579,14734,17345,21094,25051,28972,32701,37705,44944,47411,64248,75117,86443,100494,116084,133808],
+				"countries":[17,18,26,42,56,82,131,133,171,213,259,362,426,492,564,634,719,806,906,1013,1113,1118,1371,1523,1666,1770,1868,2007,2122,2247,2251,2458,2469,2629,2708,2770,2814,2872,2941,2996,3085,3160,3254,3348,3460,3558,3802,3988,4262,4615,4720,5404,5819,6440,7126,7905,8733],
+                "dates":[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,01],[2,02],[2,03],[2,04],[2,05],[2,06],[2,07],[2,08],[2,09],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,01],[3,02],[3,03],[3,04],[3,05],[3,06],[3,07],[3,08],[3,09],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18]],
+                "recovered":[28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840,83207]
             };
             const widthStep = canWid/dailyData['confirmed_china'].length;
-            const heightFactor = 120000;
-            const countriesFactor = 200;
+            const heightFactor = 150000;
+            const countriesFactor = 10000;
             const heightStep = canHgt/heightFactor;
             function makeGraph(counter){
                 if(counter<dailyData['dates'].length){
@@ -460,15 +461,20 @@
                     }
                     
                     ctx.beginPath();
-					ctx.fillStyle = '#a8710377';
-					ctx.rect((widthStep*counter)+2,5+(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))),8,-5+(canHgt*(dailyData['countries'][counter]/countriesFactor)));
+					ctx.fillStyle = '#96a80377';
+					ctx.rect(
+						(widthStep*counter)+2,
+						5+(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))),
+						8,
+						-5+(canHgt*(dailyData['countries'][counter]/countriesFactor))
+					);
                     ctx.fill();
                     ctx.closePath();
-                    ctx.beginPath();
-                    ctx.fillStyle = '#DDD';
-					ctx.fillText(dailyData['countries'][counter],(widthStep*counter)+2,(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))));
-					ctx.fill();
-					ctx.closePath();
+                    // ctx.beginPath();
+                    // ctx.fillStyle = '#DDD';
+					// ctx.fillText(dailyData['countries'][counter],(widthStep*counter)+2,(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))));
+					// ctx.fill();
+					// ctx.closePath();
 
 					if(counter>0){
 						ctx.beginPath();
@@ -512,7 +518,7 @@
 
                     setTimeout(()=>{
                         makeGraph(counter+1)
-                    },200)
+                    },100)
                     
                 }
             }
