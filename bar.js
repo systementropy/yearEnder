@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	const areaMap = {
+		"Angola":2,"Benin":2,"Botswana":2,"Burkina Faso":2,"Burundi":2,"Cameroon":2,"Cabo Verde":2,"Central African Republic":2,"Chad":2,"Congo (Brazzaville)":2,"Cote d'Ivoire":2,"Congo (Kinshasa)":2,"Equatorial Guinea":2,"Eritrea":2,"Eswatini":2,"Ethiopia":2,"Gabon":2,"Gambia":2,"Ghana":2,"Guinea":2,"Guinea-Bissau":2,"Kenya":2,"Lesotho":2,"Liberia":2,"Madagascar":2,"Malawi":2,"Mali":2,"Mauritius":2,"Mozambique":2,"Namibia":2,"Niger":2,"Nigeria":2,"Rwanda":2,"Sao Tome and Principe":2,"Senegal":2,"Seychelles":2,"Sierra Leone":2,"South Africa":2,"South Sudan":2,"Tanzania":2,"Togo":2,"Uganda":2,"Zambia":2,"Zimbabwe":2,"Antigua and Barbuda":5,"Argentina":5,"Bahamas":5,"Barbados":5,"Belize":5,"Bolivia":5,"Brazil":5,"Canada":5,"Chile":5,"Colombia":5,"Costa Rica":5,"Cuba":5,"Dominica":5,"Dominican Republic":5,"Ecuador":5,"El Salvador":5,"Grenada":5,"Guatemala":5,"Guyana":5,"Haiti":5,"Honduras":5,"Jamaica":5,"Mexico":5,"Nicaragua":5,"Panama":5,"Paraguay":5,"Peru":5,"Saint Kitts and Nevis":5,"Saint Lucia":5,"Saint Vincent and the Grenadines":5,"Suriname":5,"Trinidad and Tobago":5,"US":5,"Uruguay":5,"Venezuela":5,"Algeria":6,"Bahrain":6,"Comoros":6,"Djibouti":6,"Egypt":6,"Iraq":6,"Jordan":6,"Kuwait":6,"Lebanon":6,"Libya":6,"Mauritania":6,"Morocco":6,"Oman":6,"Qatar":6,"Saudi Arabia":6,"Somalia":6,"Sudan":6,"Syrian Arab Republic":6,"Tunisia":6,"United Arab Emirates":6,"Yemen":6,"Afghanistan":1,"Australia":1,"Bangladesh":1,"Bhutan":1,"Brunei":1,"Cambodia":1,"China":1,"Taiwan":1,"North Korea":1,"Fiji":1,"India":1,"Indonesia":1,"Iran":1,"Japan":1,"Kiribati":1,"South Korea":1,"Lao P.D.R.":1,"Malaysia":1,"Maldives":1,"Marshall Islands":1,"Micronesia":1,"Mongolia":1,"Myanmar":1,"Nauru":1,"Nepal":1,"New Zealand":1,"Pakistan":1,"Papua New Guinea":1,"Philippines":1,"Samoa":1,"Singapore":1,"Solomon Islands":1,"Sri Lanka":1,"Thailand":1,"Timor-Leste":1,"Tonga":1,"Tuvalu":1,"Vanuatu":1,"Vietnam":1,"Armenia":3,"Azerbaijan":3,"Belarus":3,"Kazakhstan":3,"Kyrgyzstan":3,"Russia":3,"Tajikistan":3,"Turkmenistan":3,"Uzbekistan":3,"Albania":4,"Andorra":4,"Austria":4,"Belgium":4,"Bosnia and Herzegovina":4,"Bulgaria":4,"Croatia":4,"Cyprus":4,"Czechia":4,"Denmark":4,"Estonia":4,"Finland":4,"France":4,"Georgia":4,"Germany":4,"Greece":4,"Hungary":4,"Iceland":4,"Ireland":4,"Israel":4,"Italy":4,"Latvia":4,"Liechtenstein":4,"Lithuania":4,"Luxembourg":4,"Malta":4,"Moldova":4,"Monaco":4,"Montenegro":4,"Netherlands":4,"Norway":4,"Poland":4,"Portugal":4,"Romania":4,"San Marino":4,"Serbia":4,"Slovakia":4,"Slovenia":4,"Spain":4,"Sweden":4,"Switzerland":4,"North Macedonia ":4,"Turkey":4,"Ukraine":4,"United Kingdom":4,"Holy See":4
+	}
+	// const areaIndex = {"Asia Pacific":1,"Europe":4,}
 	var canvas = document.getElementById("canvas");
 	var points = [];
 	var canHgt = 600;
@@ -48,8 +52,6 @@ $(document).ready(function(){
 			}else{
 				this.dateCounterLabel = this.dateCounter
 			}
-			console.log(this.dateCounter);
-			
 			this.draw();
 		};
 		this.draw = function(){
@@ -80,11 +82,11 @@ $(document).ready(function(){
 		this.update();
 	}
 
-	function animateCircles(){
-		requestAnimationFrame(animateCircles);
-		if(Math.floor(globalCounter/20)!==tick && Math.floor(globalCounter/20)<ticks){
+	function animateCircles(tickCounter){
+		// requestAnimationFrame(animateCircles);
+		if(tickCounter!==tick && tickCounter<ticks){
 			
-			tick = Math.floor(globalCounter/20)
+			tick = tickCounter
 			ctx.clearRect(0,0,canWid,canHgt);
 			barArray = barArray.sort(function(a, b){
 				return (b.dl[tick] - a.dl[tick]);
@@ -103,13 +105,12 @@ $(document).ready(function(){
 				$('.month').text('Mar')
 			}
 			$('.stateName').addClass('active')
-			$('.legendContainer').addClass('active')
-			console.log(tick);
-			
+			$('.legendContainer').addClass('active');
+			setTimeout(()=>{animateCircles(tickCounter+1)},200)
 		}else{
 
 		}
-		globalCounter++;
+		
 	}
 
 	var maxArr = 20;
@@ -265,7 +266,7 @@ $(document).ready(function(){
 			{name:"Suriname",area:'unde',data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1]},
 			{name:"Sweden",area:'unde',data:[0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,7,7,12,14,15,21,35,94,101,161,203,248,355,500,599,814,961,1022,1103,1190,1279,1439]},
 			{name:"Switzerland",area:'unde',data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,8,8,18,27,42,56,90,114,214,268,337,374,491,652,652,1139,1359,2200,2200,2700,3028,4075]},
-			{name:"Taiwan*",area:'unde',data:[1,1,3,3,4,5,8,8,9,10,10,10,10,11,11,16,16,17,18,18,18,18,18,18,18,20,22,22,23,24,26,26,28,30,31,32,32,34,39,40,41,42,42,44,45,45,45,45,47,48,49,50,53,59,67,77,100,108]},
+			{name:"Taiwan",area:'unde',data:[1,1,3,3,4,5,8,8,9,10,10,10,10,11,11,16,16,17,18,18,18,18,18,18,18,20,22,22,23,24,26,26,28,30,31,32,32,34,39,40,41,42,42,44,45,45,45,45,47,48,49,50,53,59,67,77,100,108]},
 			{name:"Tanzania",area:'unde',data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,6]},
 			{name:"Thailand",area:'unde',data:[2,3,5,7,8,8,14,14,14,19,19,19,19,25,25,25,25,32,32,32,33,33,33,33,33,34,35,35,35,35,35,35,35,35,37,40,40,41,42,42,43,43,43,47,48,50,50,50,53,59,70,75,82,114,147,177,212,272]},
 			{name:"Togo",area:'unde',data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
@@ -285,9 +286,14 @@ $(document).ready(function(){
 		for (let index = 0; index < dataTotal.length; index++) {
 			const element = dataTotal[index];
 			var color = getColor();
-			barArray.push(new Bar(0, index, element['data'][0] , element['data'], color , index, element['name']));
+			if(!areaMap[element['name']]){
+				console.log(element['name'])
+			}
+			barArray.push(new Bar(0, index, element['data'][0] , element['data'], colorArray[areaMap[element['name']]] , index, element['name']));
 		}
-		animateCircles();
+		setTimeout(()=>{
+			animateCircles(0);
+		},100)
 	};
 	init();
 })
