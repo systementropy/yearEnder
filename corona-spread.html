@@ -56,7 +56,7 @@
             padding: 0;
             font-family: monty;
             font-weight: 400;
-            color: #F5F5F6;
+            color: #555;
         }
         .title{
             border-bottom: 5px solid #000;
@@ -77,14 +77,14 @@
             margin: 0;
         }
         .mainBody{
-            border: 1px solid #999;
+            /* border: 1px solid #999; */
             height: 100vh;
-            width: 100vh;
+            width: 1080px;
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
-			background: #999;
-            background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png);
+			/* background: #999;
+            background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
 			background-repeat: no-repeat;
 			background-position: bottom;
 			background-size: cover;
@@ -143,9 +143,8 @@
 			display: block;
 			line-height: 30px;
 			font-size: 20px;
-			color: 
-			rgba(220,220,220,0.8);
-			width: 100%;
+			color: #333;
+			width: 45%;
 			position: relative;
 		}
 		.legendStat span::before{
@@ -159,7 +158,8 @@
 			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
 		}
 		.legendStat span:nth-child(1){
-			color: #F5F5F6;
+			color: #555;
+			width: 100%;
 		}
 		.legendStat span:nth-child(1)::before{
 			display: none;
@@ -177,7 +177,7 @@
 		.legendStat span i{
 			position: absolute;
 			top: 5px;
-			left: 210px;
+			left: 110px;
 			height: 18px;
 			width: 0px;
 			/* background:
@@ -194,7 +194,7 @@
 			top: -5px;
             line-height: 30px;
             font-size: 24px;
-            color: rgba(220,220,220,1);
+            color: #999;
 		}
 		.legendStat span.blue i{
 			background: #5bc0de;
@@ -223,7 +223,7 @@
 			height: 200px;
 			text-align: left;
 			opacity: 0;
-            color: #F5F5F6;
+            color: #333;
 			transition: opacity 100ms ease;
         }
 		.stateName.active{
@@ -235,6 +235,14 @@
 		.stateName.orange{
 			color: #cc7722
 		}
+		.legendStat span.orange::before{
+			background: #cc7722;
+		}
+		
+		.legendStat span.us::before{
+			background: #3C3B6E
+		}
+
 		.date {
 			font-size: 72px;
 			font-weight: 400;
@@ -320,10 +328,12 @@
 				</div>
 				<div class="legendStat">
 					<span>Confirmed Cases</span>
-                    <span class="yellow">Deaths<i data-deaths="0"></i></span>
-					<span class="red">Mainland China<i data-deaths="0"></i></span>
-					<span class="blue">Rest of the World<i data-deaths="0"></i></span>
-                    <span class="green">Recovered<i data-deaths="0"></i></span>
+                    <span class="yellow">India<i data-deaths="0"></i></span>
+					<span class="red">China<i data-deaths="0"></i></span>
+					<span class="blue">Italy<i data-deaths="0"></i></span>
+					<span class="green">Iran<i data-deaths="0"></i></span>
+					<span class="orange">S. Korea<i data-deaths="0"></i></span>
+					<span class="us">USA<i data-deaths="0"></i></span>
 				</div>
 			</div>
             <canvas id="canvas"></canvas>
@@ -386,11 +396,15 @@
 			<span class="counter74">16/03</span>
 			<span class="counter75">17/03</span>
 			<span class="counter76">18/03</span>
+			<span class="counter77">19/03</span>
+			<span class="counter78">20/03</span>
+			<span class="counter80">21/03</span>
+			
         </div>
         <div class="footer">
             <div class="bottom">
                 <span>Source: Johns Hopkins CSSE</span>
-                <span><img src="./logo_gray.png" alt=""></span>
+                <span><img src="./logo.png" alt=""></span>
             </div>
         </div>
         
@@ -400,7 +414,7 @@
         $(document).ready(function(){
             const canvas = document.getElementById("canvas");
             const canHgt = 600;
-            const canWid = 710;
+            const canWid = 1000;
             canvas.style.height = canHgt+'px';
             canvas.style.width = canWid+'px';
             canvas.height = canHgt*2;
@@ -415,15 +429,18 @@
             let counter = 0;
             let circleArray = [];
             const dailyData = {
-                "confirmed_china":[548,643,920,1406,2075,2877,5509,6087,8141,9802,11891,16630,19716,23707,27440,30587,34110,36814,39829,42354,44386,44759,59895,66358,68413,70513,72434,74211,74619,75077,75550,77001,77022,77241,77754,78166,78600,78928,79356,79932,80136,80261,80386,80537,80690,80770,80823,80860,80887,80921,80932,80945,80977,81003,81033,81058,81102],
-                "confirmed_rest":[7,10,21,28,43,50,69,79,93,125,147,157,165,185,195,230,281,306,321,408,416,462,473,527,617,711,824,925,1020,1120,1273,1578,1943,2327,2659,3229,4154,5192,6655,8437,10170,12579,14734,17345,21094,25051,28972,32701,37705,44944,47411,64248,75117,86443,100494,116084,133808],
-				"countries":[17,18,26,42,56,82,131,133,171,213,259,362,426,492,564,634,719,806,906,1013,1113,1118,1371,1523,1666,1770,1868,2007,2122,2247,2251,2458,2469,2629,2708,2770,2814,2872,2941,2996,3085,3160,3254,3348,3460,3558,3802,3988,4262,4615,4720,5404,5819,6440,7126,7905,8733],
-                "dates":[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,01],[2,02],[2,03],[2,04],[2,05],[2,06],[2,07],[2,08],[2,09],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,01],[3,02],[3,03],[3,04],[3,05],[3,06],[3,07],[3,08],[3,09],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18]],
-                "recovered":[28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840,83207]
+				
+				"China":[548,643,920,1406,2075,2877,5509,6087,8141,9802,11891,16630,19716,23707,27440,30587,34110,36814,39829,42354,44386,44759,59895,66358,68413,70513,72434,74211,74619,75077,75550,77001,77022,77241,77754,78166,78600,78928,79356,79932,80136,80261,80386,80537,80690,80770,80823,80860,80887,80921,80932,80945,80977,81003,81033,81058,81102,81156,81250,81303],
+				"India":[0,0,0,0,0,0,0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,5,5,28,30,31,34,39,43,56,62,73,82,102,113,119,142,156,194,244,283],
+				"Italy":[0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,20,62,155,229,322,453,655,888,1128,1694,2036,2502,3089,3858,4636,5883,7375,9172,10149,12462,12462,17660,21157,24747,27980,31506,35713,41035,47021],
+                "dates":[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[02,01],[02,02],[02,03],[02,04],[02,05],[02,06],[02,07],[02,08],[02,09],[02,10],[02,11],[02,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[03,01],[03,02],[03,03],[03,04],[03,05],[03,06],[03,07],[03,08],[03,09],[03,10],[03,11],[03,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21]],
+				"Iran":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,5,18,28,43,61,95,139,245,388,593,978,1501,2336,2922,3513,4747,5823,6566,7161,8042,9000,10075,11364,12729,13938,14991,16169,17361,18407,19644,20610],
+				"usa":[1,1,2,2,5,5,5,5,5,7,8,8,11,11,11,11,11,11,11,11,12,12,13,13,13,13,13,13,13,13,15,15,15,51,51,57,58,60,68,74,98,118,149,217,262,402,518,583,959,1281,1663,2179,2727,3499,4632,6421,7783,13677,19100,19624],
+				"sKor":[1,1,2,2,3,4,4,4,4,11,12,15,15,16,19,23,24,24,25,27,28,28,28,28,28,29,30,31,31,104,204,433,602,833,977,1261,1766,2337,3150,3736,4335,5186,5621,6088,6593,7041,7314,7478,7513,7755,7869,7979,8086,8162,8236,8320,8413,8565,8652,8799]
             };
-            const widthStep = canWid/dailyData['confirmed_china'].length;
-            const heightFactor = 150000;
-            const countriesFactor = 10000;
+            const widthStep = canWid/dailyData['dates'].length;
+            const heightFactor = 300;
+            const countriesFactor = 300;
             const heightStep = canHgt/heightFactor;
             function makeGraph(counter){
                 if(counter<dailyData['dates'].length){
@@ -439,23 +456,34 @@
                         $('.month').text('Mar')
                     }
                     $('.stateName').addClass('active')
-                    $('.yellow').children('i').attr("data-deaths",dailyData['countries'][counter])
-                    if(dailyData['confirmed_china'][counter]>1000){
-                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData['confirmed_china'][counter]/1000).toFixed(1)+'K')
+                    $('.yellow').children('i').attr("data-deaths",dailyData['India'][counter])
+                    if(dailyData['China'][counter]>1000){
+                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData['China'][counter]/1000).toFixed(1)+'K')
                     }else{
-                        $('.red').children('i').attr("data-deaths",dailyData['confirmed_china'][counter])
+                        $('.red').children('i').attr("data-deaths",dailyData['China'][counter])
                     }
-                    if(dailyData['confirmed_rest'][counter]>1000){
-                        $('.blue').children('i').attr("data-deaths",parseFloat(dailyData['confirmed_rest'][counter]/1000).toFixed(1)+'K')
+                    if(dailyData['Italy'][counter]>1000){
+                        $('.blue').children('i').attr("data-deaths",parseFloat(dailyData['Italy'][counter]/1000).toFixed(1)+'K')
                     }else{
-                        $('.blue').children('i').attr("data-deaths",dailyData['confirmed_rest'][counter])
+                        $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
                     }
-                    if(dailyData['recovered'][counter]>1000){
-                        $('.green').children('i').attr("data-deaths",parseFloat(dailyData['recovered'][counter]/1000).toFixed(1)+'K')
+                    if(dailyData['Iran'][counter]>1000){
+                        $('.green').children('i').attr("data-deaths",parseFloat(dailyData['Iran'][counter]/1000).toFixed(1)+'K')
                     }else{
-                        $('.green').children('i').attr("data-deaths",dailyData['recovered'][counter])
+                        $('.green').children('i').attr("data-deaths",dailyData['Iran'][counter])
+					}
+					if(dailyData['sKor'][counter]>1000){
+                        $('.orange').children('i').attr("data-deaths",parseFloat(dailyData['sKor'][counter]/1000).toFixed(1)+'K')
+                    }else{
+                        $('.orange').children('i').attr("data-deaths",dailyData['sKor'][counter])
+					}
+					
+					if(dailyData['usa'][counter]>1000){
+                        $('.us').children('i').attr("data-deaths",parseFloat(dailyData['usa'][counter]/1000).toFixed(1)+'K')
+                    }else{
+                        $('.us').children('i').attr("data-deaths",dailyData['usa'][counter])
                     }
-                    // $('.blue').children('i').attr("data-deaths",dailyData['confirmed_rest'][counter])
+                    // $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
                     if(counter%7==0){
                         $('.counter'+(20+counter)).addClass('active')
                     }
@@ -464,9 +492,9 @@
 					ctx.fillStyle = '#96a80377';
 					ctx.rect(
 						(widthStep*counter)+2,
-						5+(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))),
+						5+(canHgt*(1-(dailyData['India'][counter]/countriesFactor))),
 						8,
-						-5+(canHgt*(dailyData['countries'][counter]/countriesFactor))
+						-5+(canHgt*(dailyData['India'][counter]/countriesFactor))
 					);
                     ctx.fill();
                     ctx.closePath();
@@ -479,40 +507,66 @@
 					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E60000';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['confirmed_china'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed_china'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['China'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['China'][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 
 						ctx.beginPath();
 						ctx.strokeStyle = '#5bc0de';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['confirmed_rest'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed_rest'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Italy'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 
                         ctx.beginPath();
 						ctx.strokeStyle = '#2cb62c';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Iran'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#FFAA00';
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['sKor'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+
+						ctx.beginPath();
+						ctx.strokeStyle = '#3C3B6E';
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['usa'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 					}
 					ctx.beginPath();
 					ctx.fillStyle = '#E60000';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed_china'][counter]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['China'][counter]/heightFactor))),3,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
 
 					ctx.beginPath();
 					ctx.fillStyle = '#5bc0de';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed_rest'][counter]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))),3,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
                     // 2cb62c
                     ctx.beginPath();
 					ctx.fillStyle = '#2cb62c';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),5,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))),3,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#FFAA00';
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))),3,0,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#3C3B6E';
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))),3,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
 

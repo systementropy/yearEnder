@@ -315,6 +315,43 @@
             0% {transform: translateX(0);}
             100% {transform: translateX(100px);}
         }
+		.legendBg{
+			height: 300px;
+			position: absolute;
+			right: 100px;
+    		top: -260px;
+			width: 20px;
+			font-size: 14px;
+			font-weight: 200;
+			display: flex;
+			flex-direction: column;
+			width: 50px;
+			justify-content: space-around;
+			background: linear-gradient(to bottom, 
+				rgba(255, 255, 255, 1) 0% 10%,
+				#EE999F 10% 20%,
+				#F0DDB8 20% 30%,
+				#F0C38F 30% 40%,
+				#D0DEc2 40% 50%,
+				#AECDAD 50% 60%,
+				#333 60% 70%,
+				rgba(255,255,255) 70% 100%
+			);
+		}
+		.legendBg span{
+			position: relative;
+			right: 110px;
+			width: 100px;
+			text-align: right;
+			height: 30px;
+			font-weight: normal;
+			line-height: 30px;
+		}
+		.footer span i{
+			position: relative;
+			top: -23px;
+			left: -230px;
+		}
 	</style>
 </head>
 <body class="bars">
@@ -325,6 +362,18 @@
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
+				<div class="legendBg">
+					<span></span>
+					<span>Asia & Pacific</span>
+					<span>Africa</span>
+					<span>CIS</span>
+					<span>Europe</span>
+					<span>Americas</span>
+					<span>Middle East</span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 				<div class="stateName">
 					<span class="date">20</span>
 					<span class="month">Jan</span>,
@@ -342,7 +391,7 @@
 		</div>
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: Johns Hopkins CSSE</span>
+				<span>Source: Johns Hopkins CSSE<i>*All figures are Cumulative</i></span>
 				<span><img src="./logo.png" alt=""></span>
 			</div>
 		</div>
