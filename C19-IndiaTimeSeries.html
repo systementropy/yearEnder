@@ -375,14 +375,15 @@
 			position: absolute;
 			right: 0;
 			top: 260px;
-			width: 20px;
+			width: 64px;
 			font-size: 14px;
-			font-weight: 200;
+			font-weight: 400;
+			letter-spacing: -1px;
 			display: flex;
 			flex-direction: column;
 			width: 50px;
 			justify-content: space-around;
-			background: linear-gradient(to bottom, rgb(169, 255, 0) 0% 10%,rgb(255, 246, 0) 10% 20%,rgb(255, 195, 2) 20% 30%,rgb(255, 210, 65) 30% 40%,rgb(255, 171, 63) 40% 50%,rgb(255, 143, 0) 50% 60%,rgb(255, 132, 63) 60% 70%,rgb(255, 91, 0) 70% 80%,rgb(255, 67, 67) 80% 90%,rgb(255, 5, 5) 90% 100%);
+			background: linear-gradient(to bottom, rgb(235, 255, 0) 0% 9%,rgb(255, 246, 0) 9% 18%,rgb(255, 195, 2) 18% 27%,rgb(255, 210, 65) 27% 36%,rgb(255, 171, 63) 36% 45%,rgb(255, 143, 0) 45% 54%,rgb(255, 132, 63) 54% 63%,rgb(255, 91, 0) 63% 72%,rgb(255, 67, 67) 72% 81%,rgb(255, 5, 5) 81% 90%,rgb(176, 14, 14) 90% 100%);
 		}
 		.legendBg span{
 			font-weight: 400;
@@ -19281,7 +19282,8 @@
 					<span>51 - 60</span>
 					<span>61 - 70</span>
 					<span>71 - 80</span>
-					<span>81 - 90</span>
+					<span>81 - 100</span>
+					<span>100+</span>
 				</div>
 				<div class="stateName total">Total Cases</div>
 				<div class="internal total">
@@ -19295,7 +19297,7 @@
 			
 		</div>
 		<div class="footer">
-			<span class="timeFinal">(06:00 PM)</span>
+			<span class="timeFinal">(09:30 AM)</span>
 			<div class="bottom">
 				<span>Source: News Reports</span>
 				<span><img src="./logo2.png" alt=""></span>
@@ -19336,7 +19338,9 @@
 				"Puducherry":["Puducherry","Puducherry"],
 				"Madhya Pradesh":["Madhya Pradesh","MP"],
 				"Himachal Pradesh":["Himachal Pradesh","Himachal"],
-				"Bihar":["Bihar","Bihar"]
+				"Bihar":["Bihar","Bihar"],
+				"Manipur":["Manipur","Manipur"],
+				"Mizoram":["Mizoram","Mizoram"]
 			};
 			const dataIndia = [{
 					'date':[11,'Mar',2020],
@@ -19390,9 +19394,21 @@
 					'states':[
 						["Andhra Pradesh",7,0,0,0],["Bihar",2,0,0,1],["Chhattisgarh",1,0,0,0],["Delhi",28,1,5,1],["Gujarat",29,0,0,1],["Haryana",12,14,0,0],["Himachal Pradesh",2,0,0,0],["Karnataka",33,0,2,1],["Kerala",60,7,3,0],["Madhya Pradesh",6,0,0,0],["Maharashtra",71,3,0,2],["Odisha",2,0,0,0],["Puducherry",1,0,0,0],["Punjab",21,0,0,1],["Rajasthan",26,2,3,0],["Tamil Nadu",7,2,1,0],["Telengana",22,10,1,0],["Chandigarh",6,0,0,0],["Jammu and Kashmir",4,0,0,0],["Ladakh",13,0,0,0],["Uttar Pradesh",30,1,9,0],["Uttarakhand",3,0,0,0],["West Bengal",7,0,0,0],
 					]
+				},{
+					'date':[24,'Mar',2020],
+					'total':[191,32,23,4],
+					'states':[
+						["Andhra Pradesh",8,0,0,0],["Bihar",3,0,0,1],["Chhattisgarh",1,0,0,0],["Delhi",29,1,6,1],["Gujarat",32,1,0,1],["Haryana",14,14,11,0],["Himachal Pradesh",3,0,0,1],["Karnataka",37,0,3,1],["Kerala",87,8,4,0],["Madhya Pradesh",7,0,0,0],["Maharashtra",86,3,0,2],["Manipur",1,0,0,0],["Odisha",2,0,0,0],["Puducherry",1,0,0,0],["Punjab",29,0,0,1],["Rajasthan",30,2,3,0],["Tamil Nadu",13,2,1,0],["Telengana",25,10,1,0],["Chandigarh",7,0,0,0],["Jammu and Kashmir",4,0,0,0],["Ladakh",13,0,0,0],["Uttar Pradesh",32,1,11,0],["Uttarakhand",3,1,0,0],["West Bengal",9,0,0,1],
+					]
+				},{
+					'date':[25,'Mar',2020],
+					'total':[191,32,23,4],
+					'states':[
+						["Andhra Pradesh",9,0,0,0],["Bihar",3,0,0,1],["Chhattisgarh",1,0,0,0],["Delhi",30,1,6	,1],["Gujarat",32,1,0,1],["Haryana",14,14,11,0],["Himachal Pradesh",3,0,0,1],["Karnataka",41,0,3,1],["Kerala",101,8,4,0],["Madhya Pradesh",9,0,0,0],["Maharashtra",98,3,0,2],["Manipur",1,0,0,0],["Mizoram",1,0,0,0],["Odisha",2,0,0,0],["Puducherry",1,0,0,0],["Punjab",29,0,0,1],["Rajasthan",30,2,3,0],["Tamil Nadu",16,2,1,0],["Telengana",25,10,1,0],["Chandigarh",7,0,0,0],["Jammu and Kashmir",7,0,1,0],["Ladakh",13,0,0,0],["Uttar Pradesh",34,1,11,0],["Uttarakhand",3,1,0,0],["West Bengal",9,0,0,1],
+					]
 				}
 			];
-			let colorArray = [[169, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5]]
+			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
 			function getColor(perc){
 				if(perc <= 2){
 					colorIndex = 0
@@ -19412,8 +19428,10 @@
 					colorIndex = 7
 				}else if(perc>70 && perc <= 80){
 					colorIndex = 8
-				}else if(perc>80 && perc <= 90){
+				}else if(perc>80 && perc <=100){
 					colorIndex = 9
+				}else{
+					colorIndex = 10
 				}
 				return [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
 			}
@@ -19433,7 +19451,7 @@
 					confirmed += states[i][1]+states[i][2]
 					recovered += states[i][3]
 					deaths += states[i][4]
-					console.log(element[0]);
+					// console.log(element[0]);
 					let colorElt = getColor(element[1]+element[2])
 					$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+colorElt[0]+','+colorElt[1]+','+colorElt[2]+',1)'})	
 				}
