@@ -79,9 +79,9 @@
         .mainBody{
             /* border: 1px solid #999; */
             height: 100vh;
-            width: 1080px;
+            width: 100vh;
             margin: 0 auto;
-            padding: 40px;
+            padding: 25px;
             box-sizing: border-box;
 			/* background: #999;
             background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
@@ -144,7 +144,7 @@
 			line-height: 30px;
 			font-size: 20px;
 			color: #333;
-			width: 45%;
+			width: 100%;
 			position: relative;
 		}
 		.legendStat span::before{
@@ -177,7 +177,7 @@
 		.legendStat span i{
 			position: absolute;
 			top: 5px;
-			left: 110px;
+			left: 240px;
 			height: 18px;
 			width: 0px;
 			/* background:
@@ -327,18 +327,18 @@
 					<span class="year">2020</span>
 				</div>
 				<div class="legendStat">
-					<span>Confirmed Cases</span>
-                    <span class="yellow">India<i data-deaths="0"></i></span>
-					<span class="red">China<i data-deaths="0"></i></span>
-					<span class="blue">Italy<i data-deaths="0"></i></span>
+					<span></span>
+                    <!-- <span class="yellow">India<i data-deaths="0"></i></span> -->
+					<span class="red">Confirmed Cases<i data-deaths="0"></i></span>
+					<!-- <span class="blue">Italy<i data-deaths="0"></i></span>
 					<span class="green">Iran<i data-deaths="0"></i></span>
 					<span class="orange">S. Korea<i data-deaths="0"></i></span>
-					<span class="us">USA<i data-deaths="0"></i></span>
+					<span class="us">USA<i data-deaths="0"></i></span> -->
 				</div>
 			</div>
             <canvas id="canvas"></canvas>
         </div>
-        <div class="bottomDates">
+        <!-- <div class="bottomDates">
             <span class="counter20">22/01</span>
             <span class="counter21">23/01</span>
             <span class="counter22">24/01</span>
@@ -400,7 +400,7 @@
 			<span class="counter78">20/03</span>
 			<span class="counter80">21/03</span>
 			
-        </div>
+        </div> -->
         <div class="footer">
             <div class="bottom">
                 <span>Source: Johns Hopkins CSSE</span>
@@ -414,7 +414,7 @@
         $(document).ready(function(){
             const canvas = document.getElementById("canvas");
             const canHgt = 600;
-            const canWid = 1000;
+            const canWid = 740;
             canvas.style.height = canHgt+'px';
             canvas.style.width = canWid+'px';
             canvas.height = canHgt*2;
@@ -429,17 +429,11 @@
             let counter = 0;
             let circleArray = [];
             const dailyData = {
-				
-				"China":[548,643,920,1406,2075,2877,5509,6087,8141,9802,11891,16630,19716,23707,27440,30587,34110,36814,39829,42354,44386,44759,59895,66358,68413,70513,72434,74211,74619,75077,75550,77001,77022,77241,77754,78166,78600,78928,79356,79932,80136,80261,80386,80537,80690,80770,80823,80860,80887,80921,80932,80945,80977,81003,81033,81058,81102,81156,81250,81303],
-				"India":[0,0,0,0,0,0,0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,5,5,28,30,31,34,39,43,56,62,73,82,102,113,119,142,156,194,244,283],
-				"Italy":[0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,20,62,155,229,322,453,655,888,1128,1694,2036,2502,3089,3858,4636,5883,7375,9172,10149,12462,12462,17660,21157,24747,27980,31506,35713,41035,47021],
-                "dates":[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[02,01],[02,02],[02,03],[02,04],[02,05],[02,06],[02,07],[02,08],[02,09],[02,10],[02,11],[02,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[03,01],[03,02],[03,03],[03,04],[03,05],[03,06],[03,07],[03,08],[03,09],[03,10],[03,11],[03,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21]],
-				"Iran":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,5,18,28,43,61,95,139,245,388,593,978,1501,2336,2922,3513,4747,5823,6566,7161,8042,9000,10075,11364,12729,13938,14991,16169,17361,18407,19644,20610],
-				"usa":[1,1,2,2,5,5,5,5,5,7,8,8,11,11,11,11,11,11,11,11,12,12,13,13,13,13,13,13,13,13,15,15,15,51,51,57,58,60,68,74,98,118,149,217,262,402,518,583,959,1281,1663,2179,2727,3499,4632,6421,7783,13677,19100,19624],
-				"sKor":[1,1,2,2,3,4,4,4,4,11,12,15,15,16,19,23,24,24,25,27,28,28,28,28,28,29,30,31,31,104,204,433,602,833,977,1261,1766,2337,3150,3736,4335,5186,5621,6088,6593,7041,7314,7478,7513,7755,7869,7979,8086,8162,8236,8320,8413,8565,8652,8799]
+				'confirmed':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242500,272035,304396,336953,378235,418045,467593],
+				'dates':[[12,31],[1,01],[1,02],[1,03],[1,04],[1,05],[1,06],[1,07],[1,08],[1,09],[1,10],[1,11],[1,12],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[1,19],[1,20],[1,21],[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[02,01],[02,02],[02,03],[02,04],[02,05],[02,06],[02,07],[02,08],[02,09],[02,10],[02,11],[02,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[03,01],[03,02],[03,03],[03,04],[03,05],[03,06],[03,07],[03,08],[03,09],[03,10],[03,11],[03,12],[3,13],[3,	14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26]]
             };
             const widthStep = canWid/dailyData['dates'].length;
-            const heightFactor = 300;
+            const heightFactor = 508000;
             const countriesFactor = 300;
             const heightStep = canHgt/heightFactor;
             function makeGraph(counter){
@@ -456,48 +450,57 @@
                         $('.month').text('Mar')
                     }
                     $('.stateName').addClass('active')
-                    $('.yellow').children('i').attr("data-deaths",dailyData['India'][counter])
-                    if(dailyData['China'][counter]>1000){
-                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData['China'][counter]/1000).toFixed(1)+'K')
-                    }else{
-                        $('.red').children('i').attr("data-deaths",dailyData['China'][counter])
+                    // $('.yellow').children('i').attr("data-deaths",dailyData['India'][counter])
+                    if(dailyData['confirmed'][counter]>1000){
+                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData['confirmed'][counter]/1000).toFixed(1)+'K')
+                    }else if(dailyData['confirmed'][counter]>1){
+                        $('.red').children('i').attr("data-deaths",dailyData['confirmed'][counter])
                     }
-                    if(dailyData['Italy'][counter]>1000){
-                        $('.blue').children('i').attr("data-deaths",parseFloat(dailyData['Italy'][counter]/1000).toFixed(1)+'K')
-                    }else{
-                        $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
-                    }
-                    if(dailyData['Iran'][counter]>1000){
-                        $('.green').children('i').attr("data-deaths",parseFloat(dailyData['Iran'][counter]/1000).toFixed(1)+'K')
-                    }else{
-                        $('.green').children('i').attr("data-deaths",dailyData['Iran'][counter])
-					}
-					if(dailyData['sKor'][counter]>1000){
-                        $('.orange').children('i').attr("data-deaths",parseFloat(dailyData['sKor'][counter]/1000).toFixed(1)+'K')
-                    }else{
-                        $('.orange').children('i').attr("data-deaths",dailyData['sKor'][counter])
-					}
-					
-					if(dailyData['usa'][counter]>1000){
-                        $('.us').children('i').attr("data-deaths",parseFloat(dailyData['usa'][counter]/1000).toFixed(1)+'K')
-                    }else{
-                        $('.us').children('i').attr("data-deaths",dailyData['usa'][counter])
-                    }
-                    // $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
-                    if(counter%7==0){
-                        $('.counter'+(20+counter)).addClass('active')
-                    }
-                    
+                    // if(dailyData['Italy'][counter]>1000){
+                    //     $('.blue').children('i').attr("data-deaths",parseFloat(dailyData['Italy'][counter]/1000).toFixed(1)+'K')
+                    // }else{
+                    //     $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
+                    // }
+                    // if(dailyData['Iran'][counter]>1000){
+                    //     $('.green').children('i').attr("data-deaths",parseFloat(dailyData['Iran'][counter]/1000).toFixed(1)+'K')
+                    // }else{
+                    //     $('.green').children('i').attr("data-deaths",dailyData['Iran'][counter])
+					// }
+					// if(dailyData['sKor'][counter]>1000){
+                    //     $('.orange').children('i').attr("data-deaths",parseFloat(dailyData['sKor'][counter]/1000).toFixed(1)+'K')
+                    // }else{
+                    //     $('.orange').children('i').attr("data-deaths",dailyData['sKor'][counter])
+					// }
+					// if(dailyData['usa'][counter]>1000){
+                    //     $('.us').children('i').attr("data-deaths",parseFloat(dailyData['usa'][counter]/1000).toFixed(1)+'K')
+                    // }else{
+                    //     $('.us').children('i').attr("data-deaths",dailyData['usa'][counter])
+                    // }
+                    // // $('.blue').children('i').attr("data-deaths",dailyData['Italy'][counter])
+                    // if(counter%7==0){
+                    //     $('.counter'+(20+counter)).addClass('active')
+                    // }
                     ctx.beginPath();
 					ctx.fillStyle = '#96a80377';
+					const hgtRect = Math.ceil(dailyData['confirmed'][counter]/100000)
 					ctx.rect(
 						(widthStep*counter)+2,
-						5+(canHgt*(1-(dailyData['India'][counter]/countriesFactor))),
+						-5+(canHgt*(1-(hgtRect*100000/heightFactor))),
 						8,
-						-5+(canHgt*(dailyData['India'][counter]/countriesFactor))
+						(canHgt*(hgtRect*100000/heightFactor))
 					);
                     ctx.fill();
                     ctx.closePath();
+                    // ctx.beginPath();
+					// ctx.fillStyle = '#96a80377';
+					// ctx.rect(
+					// 	(widthStep*counter)+2,
+					// 	5+(canHgt*(1-(dailyData['India'][counter]/countriesFactor))),
+					// 	8,
+					// 	-5+(canHgt*(dailyData['India'][counter]/countriesFactor))
+					// );
+                    // ctx.fill();
+                    // ctx.closePath();
                     // ctx.beginPath();
                     // ctx.fillStyle = '#DDD';
 					// ctx.fillText(dailyData['countries'][counter],(widthStep*counter)+2,(canHgt*(1-(dailyData['countries'][counter]/countriesFactor))));
@@ -507,68 +510,74 @@
 					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E60000';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['China'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['China'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
 						ctx.stroke();
 						ctx.closePath();
 
-						ctx.beginPath();
-						ctx.strokeStyle = '#5bc0de';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Italy'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))))
-						ctx.stroke();
-						ctx.closePath();
+						// ctx.beginPath();
+						// ctx.strokeStyle = '#5bc0de';
+						// ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Italy'][counter-1]/heightFactor))));
+						// ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))))
+						// ctx.stroke();
+						// ctx.closePath();
 
-                        ctx.beginPath();
-						ctx.strokeStyle = '#2cb62c';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Iran'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))))
-						ctx.stroke();
-						ctx.closePath();
+                        // ctx.beginPath();
+						// ctx.strokeStyle = '#2cb62c';
+						// ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['Iran'][counter-1]/heightFactor))));
+						// ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))))
+						// ctx.stroke();
+						// ctx.closePath();
 
-						ctx.beginPath();
-						ctx.strokeStyle = '#FFAA00';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['sKor'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))))
-						ctx.stroke();
-						ctx.closePath();
+						// ctx.beginPath();
+						// ctx.strokeStyle = '#FFAA00';
+						// ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['sKor'][counter-1]/heightFactor))));
+						// ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))))
+						// ctx.stroke();
+						// ctx.closePath();
 
-						ctx.beginPath();
-						ctx.strokeStyle = '#3C3B6E';
-						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['usa'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))))
-						ctx.stroke();
-						ctx.closePath();
+						// ctx.beginPath();
+						// ctx.strokeStyle = '#3C3B6E';
+						// ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['usa'][counter-1]/heightFactor))));
+						// ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))))
+						// ctx.stroke();
+						// ctx.closePath();
 					}
 					ctx.beginPath();
 					ctx.fillStyle = '#E60000';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['China'][counter]/heightFactor))),3,0,2*Math.PI);
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),5,0,2*Math.PI);
 					ctx.fill();
 					ctx.closePath();
 
 					ctx.beginPath();
-					ctx.fillStyle = '#5bc0de';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))),3,0,2*Math.PI);
-					ctx.fill();
-					ctx.closePath();
-                    // 2cb62c
-                    ctx.beginPath();
-					ctx.fillStyle = '#2cb62c';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))),3,0,2*Math.PI);
-					ctx.fill();
+					ctx.strokeStyle = '#FFFFFF';
+					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),1,0,2*Math.PI);
+					ctx.stroke();
 					ctx.closePath();
 
-					ctx.beginPath();
-					ctx.fillStyle = '#FFAA00';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))),3,0,2*Math.PI);
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = '#5bc0de';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Italy'][counter]/heightFactor))),3,0,2*Math.PI);
+					// ctx.fill();
+					// ctx.closePath();
+                    // // 2cb62c
+                    // ctx.beginPath();
+					// ctx.fillStyle = '#2cb62c';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['Iran'][counter]/heightFactor))),3,0,2*Math.PI);
+					// ctx.fill();
+					// ctx.closePath();
 
-					ctx.beginPath();
-					ctx.fillStyle = '#3C3B6E';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))),3,0,2*Math.PI);
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = '#FFAA00';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['sKor'][counter]/heightFactor))),3,0,2*Math.PI);
+					// ctx.fill();
+					// ctx.closePath();
+
+					// ctx.beginPath();
+					// ctx.fillStyle = '#3C3B6E';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['usa'][counter]/heightFactor))),3,0,2*Math.PI);
+					// ctx.fill();
+					// ctx.closePath();
 
                     setTimeout(()=>{
                         makeGraph(counter+1)
@@ -577,6 +586,23 @@
                 }
             }
             setTimeout(function () {
+				const arr = [0, 100000, 200000, 300000, 400000, 500000]
+				for (let i = 0; i < arr.length; i++) {
+					ctx.beginPath();
+					ctx.setLineDash([1,5])
+					ctx.lineWidth =1;
+					ctx.strokeStyle = '#999';
+					ctx.moveTo(0,-5+(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.lineTo(canWid,-5+(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.stroke();
+					ctx.closePath();
+					ctx.beginPath();
+					ctx.fillText(arr[i], canWid -50, -5+(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.fill();
+					ctx.closePath();
+					ctx.setLineDash([])
+					ctx.lineWidth =5;
+				}
                 makeGraph(0);
             }, 2000)
             
