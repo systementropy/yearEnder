@@ -58,11 +58,14 @@
             color: #333;
         }
         .title{
-            border-bottom: 5px solid #000;
+            /* border-bottom: 5px solid #000; */
             padding: 0;
+			position: absolute;
+			top: 150px;
+			right: 25px;
         }
         .title h1{
-            font-size: 47px;
+            font-size: 60px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
@@ -70,7 +73,7 @@
             
         }
         .title h3{
-            font-size: 35px;
+            font-size: 40px;
             font-weight: 300;
             line-height: 1;
             margin: 0;
@@ -80,8 +83,9 @@
             height: 100vh;
             width: 100vh;
             margin: 0 auto;
-            padding: 40px;
+            padding: 25px;
             box-sizing: border-box;
+			position: relative;
 			/* background: #999;
             background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
 			background-repeat: no-repeat;
@@ -96,16 +100,17 @@
 		}
         .graphicsContainer{
             width: auto;
-            height: auto;
+            height: 725px;
             position: relative;
 			overflow: hidden;
 			z-index: 1;
-			margin: 25px 0;
+			margin:  0;
             box-shadow: 0px 0px 2px 1px rgba(255,255,255,0.5);
         }
 		.graphicsContainer::after{
 			content: '';
 			position: absolute;
+			opacity: 0;
 			width: 20px;
 			height: 29px;
 			top: 1px;
@@ -316,10 +321,10 @@
             100% {transform: translateX(100px);}
         }
 		.legendBg{
-			height: 300px;
+			height: 100px;
 			position: absolute;
 			right: 100px;
-    		top: -260px;
+    		top: -300px;
 			width: 20px;
 			font-size: 14px;
 			font-weight: 200;
@@ -328,24 +333,44 @@
 			width: 50px;
 			justify-content: space-around;
 			background: linear-gradient(to bottom, 
-				rgba(255, 255, 255, 1) 0% 10%,
-				#EE999F 10% 20%,
-				#F0DDB8 20% 30%,
-				#F0C38F 30% 40%,
-				#D0DEc2 40% 50%,
-				#AECDAD 50% 60%,
-				#333 60% 70%,
-				rgba(255,255,255) 70% 100%
+				#141889 0% 33%,
+				#00FF00 33% 67%,
+				transparent 67%
+			),linear-gradient(to right,
+					rgb(235, 255, 0),
+					rgb(255, 246, 0),
+					rgb(255, 210, 65),
+					rgb(255, 195, 2),
+					rgb(255, 171, 63),
+					rgb(255, 143, 0),
+					rgb(255, 132, 63),
+					rgb(255, 91, 0),
+					rgb(255, 67, 67),
+					rgb(255, 5, 5),
+					rgb(176, 14, 14)
 			);
 		}
+		/* linear-gradient(to right,
+					rgb(235, 255, 0),
+					rgb(255, 246, 0),
+					rgb(255, 195, 2),
+					rgb(255, 210, 65),
+					rgb(255, 171, 63),
+					rgb(255, 143, 0),
+					rgb(255, 132, 63),
+					rgb(255, 91, 0),
+					rgb(255, 67, 67),
+					rgb(255, 5, 5),
+					rgb(176, 14, 14)
+				) 67% 100% */
 		.legendBg span{
 			position: relative;
 			right: 110px;
 			width: 100px;
 			text-align: right;
-			height: 30px;
-			font-weight: normal;
-			line-height: 30px;
+			/* height: 30px; */
+			font-weight: 600;
+			/* line-height: 30px; */
 		}
 		.footer span i{
 			position: relative;
@@ -358,21 +383,26 @@
 	<div class="mainBody">
 		<span class="texty">TEXTY</span>
 		<div class="title">
-			<h1>COVID-19: Cases in States</h1>
+			<h1>COVID-19</h1>
+			<h3>Cases in States</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
 				<div class="legendBg">
-					<span></span>
-					<span>Asia & Pacific</span>
-					<span>Africa</span>
-					<span>CIS</span>
-					<span>Europe</span>
-					<span>Americas</span>
-					<span>Middle East</span>
-					<span></span>
-					<span></span>
-					<span></span>
+					<span>Deaths</span>
+					<span>Recovered</span>
+					<span>Active</span>
+					<!-- <span>0 - 2</span>
+					<span>3 - 10</span>
+					<span>11 - 20</span>
+					<span>21 - 30</span>
+					<span>31 - 40</span>
+					<span>41 - 50</span>
+					<span>51 - 60</span>
+					<span>61 - 70</span>
+					<span>71 - 80</span>
+					<span>81 - 100</span>
+					<span>100+</span> -->
 				</div>
 				<div class="stateName">
 					<span class="date">20</span>

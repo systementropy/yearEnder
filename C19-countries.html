@@ -315,6 +315,26 @@
             0% {transform: translateX(0);}
             100% {transform: translateX(100px);}
         }
+		.bottom span{
+			position: relative;
+		}
+		.bottom span i{
+			position: absolute;
+			left: 0;
+			top: -50px;
+			white-space: pre;
+		}
+		.bottom span i::before{
+			content: '';
+			position: absolute;
+			background: #504040a3;
+			width: 32px;
+			height: 13px;
+			clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+			transform: rotate(-109deg);
+			top: -15px;
+			left: -5px;
+		}
 	</style>
 </head>
 <body class="bars">
@@ -341,8 +361,8 @@
 		</div>
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: Johns Hopkins CSSE</span>
-				<span><img src="./logo.png" alt=""></span>
+				<span>Source: Johns Hopkins CSSE<i>*DAY 0 : Day on which cases crossed 100 in any country </i></span>
+				<span><img src="./logo2.png" alt=""></span>
 			</div>
 		</div>
 	</div>

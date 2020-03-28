@@ -58,8 +58,11 @@
             font-weight: 400;
             color: #555;
         }
+		p{
+			margin: 0;
+		}
         .title{
-            border-bottom: 5px solid #000;
+            /* border-bottom: 5px solid #000; */
             padding: 0;
         }
         .title h1{
@@ -311,6 +314,34 @@
             0% {transform: translateX(0);}
             100% {transform: translateX(100px);}
         }
+		.dateDisp{
+			position: absolute;
+			top: 0%;
+			left: 0;
+		}
+		.dateDisp .change{
+			position: absolute;
+			background: #EEE;
+			width: 90px;
+			height: 94px;
+			padding: 10px 10px 0;
+			transform: translate(-100%,-100%);
+			opacity: 0;
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 95% 75%, 95% 100%, 85% 75%, 0% 75%);
+			transition: all 250ms ease;
+		}
+		.dateDisp p.daysImp{
+			font-size: 21px;
+			font-weight: 600;
+		}
+		.dateDisp p{
+			font-weight: 300;
+			font-size: 18px;
+		}
+		.dateDisp p.dateImp{
+			font-weight: 500;
+			font-size: 24px;
+		}
     </style>
 </head>
 <body>
@@ -326,10 +357,42 @@
 					<span class="month">Jan</span>,
 					<span class="year">2020</span>
 				</div>
+				<div class="dateDisp">
+					<div class="change1 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+						
+					</div>
+					<div class="change2 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+						
+					</div>
+					<div class="change3 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+						
+					</div>
+					<div class="change4 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+						
+					</div>
+					<div class="change5 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+						
+					</div>
+				</div>
 				<div class="legendStat">
 					<span></span>
                     <!-- <span class="yellow">India<i data-deaths="0"></i></span> -->
-					<span class="red">Confirmed Cases<i data-deaths="0"></i></span>
+					<!-- <span class="red">Confirmed Cases<i data-deaths="0"></i></span> -->
 					<!-- <span class="blue">Italy<i data-deaths="0"></i></span>
 					<span class="green">Iran<i data-deaths="0"></i></span>
 					<span class="orange">S. Korea<i data-deaths="0"></i></span>
@@ -404,7 +467,7 @@
         <div class="footer">
             <div class="bottom">
                 <span>Source: Johns Hopkins CSSE</span>
-                <span><img src="./logo.png" alt=""></span>
+                <span><img src="./logo2.png" alt=""></span>
             </div>
         </div>
         
@@ -429,13 +492,15 @@
             let counter = 0;
             let circleArray = [];
             const dailyData = {
-				'confirmed':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242500,272035,304396,336953,378235,418045,467593],
-				'dates':[[12,31],[1,01],[1,02],[1,03],[1,04],[1,05],[1,06],[1,07],[1,08],[1,09],[1,10],[1,11],[1,12],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[1,19],[1,20],[1,21],[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[02,01],[02,02],[02,03],[02,04],[02,05],[02,06],[02,07],[02,08],[02,09],[02,10],[02,11],[02,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[03,01],[03,02],[03,03],[03,04],[03,05],[03,06],[03,07],[03,08],[03,09],[03,10],[03,11],[03,12],[3,13],[3,	14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26]]
+				'confirmed':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242500,272035,304396,336953,378235,418045,467593,551337],
+				'dates':[[12,31],[1,01],[1,02],[1,03],[1,04],[1,05],[1,06],[1,07],[1,08],[1,09],[1,10],[1,11],[1,12],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[1,19],[1,20],[1,21],[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[02,01],[02,02],[02,03],[02,04],[02,05],[02,06],[02,07],[02,08],[02,09],[02,10],[02,11],[02,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[03,01],[03,02],[03,03],[03,04],[03,05],[03,06],[03,07],[03,08],[03,09],[03,10],[03,11],[03,12],[3,13],[3,	14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27]]
             };
             const widthStep = canWid/dailyData['dates'].length;
-            const heightFactor = 508000;
+            const heightFactor = 708000;
             const countriesFactor = 300;
-            const heightStep = canHgt/heightFactor;
+			const heightStep = canHgt/heightFactor;
+			let counterPrev  = 1;
+			let secs = 50;
             function makeGraph(counter){
                 if(counter<dailyData['dates'].length){
                     $('.legendContainer').addClass('active')
@@ -451,11 +516,11 @@
                     }
                     $('.stateName').addClass('active')
                     // $('.yellow').children('i').attr("data-deaths",dailyData['India'][counter])
-                    if(dailyData['confirmed'][counter]>1000){
-                        $('.red').children('i').attr("data-deaths",parseFloat(dailyData['confirmed'][counter]/1000).toFixed(1)+'K')
-                    }else if(dailyData['confirmed'][counter]>1){
-                        $('.red').children('i').attr("data-deaths",dailyData['confirmed'][counter])
-                    }
+                    // if(dailyData['confirmed'][counter]>1000){
+                    //     $('.red').children('i').attr("data-deaths",parseFloat(dailyData['confirmed'][counter]/1000).toFixed(1)+'K')
+                    // }else if(dailyData['confirmed'][counter]>1){
+                    //     $('.red').children('i').attr("data-deaths",dailyData['confirmed'][counter])
+                    // }
                     // if(dailyData['Italy'][counter]>1000){
                     //     $('.blue').children('i').attr("data-deaths",parseFloat(dailyData['Italy'][counter]/1000).toFixed(1)+'K')
                     // }else{
@@ -480,14 +545,28 @@
                     // if(counter%7==0){
                     //     $('.counter'+(20+counter)).addClass('active')
                     // }
-                    ctx.beginPath();
-					ctx.fillStyle = '#96a80377';
-					const hgtRect = Math.ceil(dailyData['confirmed'][counter]/100000)
+					ctx.beginPath();
+					const hgtRect = dailyData['confirmed'][counter]
+					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+						secs += 50
+						const eltIndex = (-1+(Math.ceil(dailyData['confirmed'][counter]/100000)))
+						$('.change'+eltIndex).css({
+							left : ((widthStep*counter)+2)+'px',
+							top : -5+(canHgt*(1-(hgtRect/heightFactor)))+'px',
+							opacity : 1
+						})
+						$('.change'+eltIndex).children('.dateImp').html(+eltIndex+'00K');
+						$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
+						counterPrev = counter;
+						ctx.fillStyle = '#E60000';
+					}else{
+						ctx.fillStyle = '#AFB6D0';
+					}
 					ctx.rect(
 						(widthStep*counter)+2,
-						-5+(canHgt*(1-(hgtRect*100000/heightFactor))),
+						-5+(canHgt*(1-(hgtRect/heightFactor))),
 						8,
-						(canHgt*(hgtRect*100000/heightFactor))
+						(canHgt*(hgtRect/heightFactor))
 					);
                     ctx.fill();
                     ctx.closePath();
@@ -509,7 +588,7 @@
 
 					if(counter>0){
 						ctx.beginPath();
-						ctx.strokeStyle = '#E60000';
+						ctx.strokeStyle = '#E6000055';
 						ctx.moveTo((widthStep*(counter-1))+7,-5+(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
 						ctx.lineTo((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
 						ctx.stroke();
@@ -543,17 +622,17 @@
 						// ctx.stroke();
 						// ctx.closePath();
 					}
-					ctx.beginPath();
-					ctx.fillStyle = '#E60000';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),5,0,2*Math.PI);
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = '#E6000077';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),5,0,2*Math.PI);
+					// ctx.fill();
+					// ctx.closePath();
 
-					ctx.beginPath();
-					ctx.strokeStyle = '#FFFFFF';
-					ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),1,0,2*Math.PI);
-					ctx.stroke();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.strokeStyle = '#FFFFFF';
+					// ctx.arc((widthStep*counter)+7,-5+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))),1,0,2*Math.PI);
+					// ctx.stroke();
+					// ctx.closePath();
 
 					// ctx.beginPath();
 					// ctx.fillStyle = '#5bc0de';
@@ -581,12 +660,12 @@
 
                     setTimeout(()=>{
                         makeGraph(counter+1)
-                    },100)
+                    },secs)
                     
                 }
             }
             setTimeout(function () {
-				const arr = [0, 100000, 200000, 300000, 400000, 500000]
+				const arr = [0, 100000, 200000, 300000, 400000, 500000,600000,700000]
 				for (let i = 0; i < arr.length; i++) {
 					ctx.beginPath();
 					ctx.setLineDash([1,5])
@@ -597,7 +676,7 @@
 					ctx.stroke();
 					ctx.closePath();
 					ctx.beginPath();
-					ctx.fillText(arr[i], canWid -50, -5+(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.fillText((arr[i]/100000)+'00K', 20, -5+(canHgt*(1-(arr[i]/heightFactor))));
 					ctx.fill();
 					ctx.closePath();
 					ctx.setLineDash([])
