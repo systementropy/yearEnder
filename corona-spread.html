@@ -261,6 +261,8 @@
 			margin: 0;
 			height: 20px;
 			padding: 10px 0 20px;
+			position: relative;
+			overflow: hidden;
 		}
 		.bottomDates>span {
 			margin: -35px auto 0;
@@ -271,14 +273,15 @@
 			opacity: 0;
 			top: 0px;
 			position: relative;
-			transition: all 250ms ease,transform 250ms ease 100ms;
+			transition: all 50ms ease,transform 50ms ease 50ms;
 		}
 		.bottomDates>span.active {
 			transform: translateX(-10px) rotate(0deg);
 			margin: 0 auto 0;
 			opacity: 1;
 			top: 10px;
-			position: relative;
+			text-indent: 14px;
+			position: absolute;
 			font-size: 14px;
 		}
 		.bottomDates>span.counter20.active{
@@ -353,7 +356,7 @@
 		}
 		.footer span i{
 			position: relative;
-			top: -200px;
+			top: -250px;
 			left: -100px;
 			transform: rotate(-90deg);
 			display: block;
@@ -361,6 +364,28 @@
 			color: #000;
 			letter-spacing: 1px;
 			text-transform: capitalize;
+		}
+		.legendBg{
+			height: 100px;
+			position: absolute;
+			left: 60px;
+			top: 200px;
+			width: 64px;
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			display: flex;
+			text-align: center;
+			flex-direction: column;
+			width: 50px;
+			justify-content: space-around;
+			white-space: pre;
+			background: linear-gradient(to bottom, #AFB6D0 0% 33%,#2CB62C 33% 67%,#382F1B 67%);
+		}
+		.legendBg span{
+			font-weight: 400;
+			position: relative;
+			left: 60px;
 		}
 	</style>
 </head>
@@ -425,10 +450,14 @@
 					<span class="us">USA<i data-deaths="0"></i></span> -->
 				</div>
 			</div>
+			<div class="legendBg">
+				<span>Confirmed Cases</span>
+				<span>Recovered</span>
+				<span>Deaths</span>
+			</div>
 			<canvas id="canvas"></canvas>
 		</div>
 		<div class="bottomDates">
-			<!-- <span class="counter20">22/01</span> -->
 		</div>
 		<div class="footer">
 			<div class="bottom">
@@ -442,7 +471,7 @@
 	<script>
 		$(document).ready(function(){
 			const canvas = document.getElementById("canvas");
-			const canHgt = 800;
+			const canHgt = 750;
 			const canWid = 920;
 			canvas.style.height = canHgt+'px';
 			canvas.style.width = canWid+'px';
@@ -484,9 +513,13 @@
 					}
 					$('.stateName').addClass('active')
 					
+					if(counter%7 == 0){
+						$('.bottomDates').append("<span class='active counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dailyData['dates'][counter][1]+"/"+dailyData['dates'][counter][0]+"</span>")
+					}
 					ctx.beginPath();
 					const hgtRect = dailyData['confirmed'][counter]
 					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+						
 						secs += 50
 						const eltIndex = (-1+(Math.ceil(dailyData['confirmed'][counter]/100000)))
 						$('.change'+eltIndex).css({
@@ -507,9 +540,9 @@
 						ctx.fillStyle = '#AFB6D0';
 					}
 					ctx.rect(
-						(widthStep*counter)+2,
+						(widthStep*counter)+1,
 						-5+(canHgt*(1-(hgtRect/heightFactor))),
-						8,
+						10,
 						(canHgt*(hgtRect/heightFactor))
 					);
 					ctx.fill();
@@ -522,9 +555,9 @@
 						ctx.fillStyle = '#2cb62cFF';
 					}
 					ctx.rect(
-						(widthStep*counter)+2,
+						(widthStep*counter)+1,
 						-5+(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),
-						8,
+						10,
 						(canHgt*(dailyData['recovered'][counter]/heightFactor))
 					);
 					ctx.fill();

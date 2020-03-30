@@ -1,460 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Thin.ttf);
-            font-weight: 100;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
-            font-weight: 200;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Light.ttf);
-            font-weight: 300;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Regular.ttf);
-            font-weight: 400;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Medium.ttf);
-            font-weight: 500;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-SemiBold.ttf);
-            font-weight: 600;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Bold.ttf);
-            font-weight: 700;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
-            font-weight: 800;
-        }
-        @font-face {
-            font-family: monty;
-            src: url(./Montserrat/Montserrat-Black.ttf);
-            font-weight: 900;
-        }
-        body,html{
-            margin : 0;
-            padding: 0;
-            font-family: monty;
-            font-weight: 400;
-        }
-        .title{
-            border-bottom: 5px solid #000;
-            padding: 0;
-            position: relative;
-            color: #585858;
-        }
-        .title img{
-            position: absolute;
-            right: 0;
-            top: 3px;
-            height: 39px;
-        }
-        .title h1{
-            font-size: 42px;
-            font-weight: 900;
-            line-height: 1;
-            margin: 0;
-        }
-        .title h3{
-            font-size: 35px;
-            font-weight: 300;
-            line-height: 1;
-            margin: 0;
-            text-transform: uppercase;
-        }
-        .mainBody{
-            border: 1px solid #999;
-            height: 100vh;
-            width: 692px;
-            margin: 0 auto;
-            padding: 40px;
-            box-sizing: border-box;
-        }
-        .graphicsContainer{
-            width: auto;
-            height: auto;
-            position: relative;
-            /* transform: translateY(-150px); */
-        }
-        .graphicsContainer::after{
-            content: '';
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 50%;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(255,255,255,0),rgba(255,255,255,1));
-        }
-        #year{
-            font-size: 34px;
-            font-weight: 400;
-            margin: auto;
-            text-align: center;
-            padding: 15px 0 0;
-            color: #555555;
-            text-transform: uppercase;
-        }
-        #year p{
-            margin: 0 auto;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        #year p.weeks{margin-bottom: 0;}
-        #year p span{
-            font-size: 16px;
-            flex-grow: 1;
-            padding: 5px 0;
-            outline: 1px solid #DDD;
-            width: 14.2857142857%;
-        }
-        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
-        .bottom{
-            display: flex;
-            justify-content: space-between;
-        }
-        .bottom img{
-            height: 24px;
-        }
-        .bottom{
-            line-height: 30px;
-        }
-        #labels{
-            position: absolute;
-            bottom: 0;
-            display: block;
-            z-index: -1;
-            filter: blur(0px);
-            transition: all 0.2s ease;
-        }
-        #labels.active{
-            filter: blur(5px);
-        }
-        #canvas{
-            display: block;
-            margin: auto;
-        }
-        .Month{
-            opacity: 0;
-            letter-spacing: 10px;
-            transition: all 0s ease 0s;
-        }
-        .Month.active{
-            opacity: 1;
-            letter-spacing: 0px;
-            transition: all 1s ease 0.3s;
-        }
-        .logo{
-            width: 280px;
-            margin-bottom: 15px;
-            transform: translateX(-9px);
-        }
-        .legendStates {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 40px;
-            line-height: 1;
-            padding: 0px 0;
-            box-sizing: border-box;
-            font-weight: 500;
-            width: 600px;
-            height: 250px;
-            text-align: center;
-            opacity: 0;
-            background: rgba(221, 221, 221, 0.8);
-            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            transition: all 100ms ease-in;
-        }
-        .legendStates::after{
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: var(--arrow-left);
-            width: 20px;
-            height: 50px;
-            clip-path: polygon(0 0, 100% 0%, 50% 100%);
-            background: linear-gradient(to bottom, rgba(225, 225, 225, 1), rgba(180, 180, 180, 1));
-            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
-            transition: all 100ms ease;
-        }
-        .legendStates.active{
-            opacity: 1;
-        }
-        .stateName{
-            font-weight: 200;
-            padding: 15px 0;
-        }
-        .totalSeats{
-            font-weight: 300;
-        }
-        .total{
-            font-weight: 500;
-        }
-        .bjpSeats{
-            font-weight: 300;
-        }
-        .bjp{
-            font-weight: 500;
-        }
-        .internal{
-            display: flex;
-            justify-content: space-evenly;
-            position: relative;
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-        .internal p{
-            font-size: 18px;
-            line-height: 1;
-            margin: 0;
-            font-weight: 200;
-            perspective: 100px;
-        }
-        .legendStates>div>div{
-            flex-grow: 1;
-            width: 33%;
-        }
-        .legendStates div span{
-            font-size: 24px;
-            margin: 10px 20px;
-            line-height: 24px;
-            display: block;
-            /* height: 80px; */
-            justify-self: flex-end;
-        }
-        .legendStates div.bar{
-            width: 2px;
-            background: #333;
-            transform: skewX(-20deg) scale(0.5);
-        }
-        .footer{
-            position: absolute;
-            top: 70%;
-            width: 100%;
-        }
-        .internal .fillbg{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: #F5F5F6;
-            border: 2px solid #333;
-            box-shadow: 0px 0px 1px 1px #2821195E;
-            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        .internal .fill{
-            content: " ";
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            width: 0%;
-            height: 10px;
-            background: #F28500;
-            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
-            background: linear-gradient(to right, 
-                    rgb(240,240,240)    0px,
-                    rgb(255,243,228)    calc(0 * 40px),
-                    rgb(255,231,203)    calc(1 * 40px),
-                    rgb(255,214,164)    calc(2 * 40px),
-                    rgb(255,196,124)    calc(3 * 40px),
-                    rgb(255,178,85)     calc(4 * 40px),
-                    rgb(255,161,46)     calc(5 * 40px),
-                    rgb(255,143,7)      calc(6 * 40px),
-                    rgb(203,111,0)      calc(7 * 40px),
-                    rgb(183,101,0)      calc(8 * 40px)
-            );
-            box-shadow: -1px 8px 7px 0px #8C6331;
-            transition: all 0.3s ease;
-            z-index: 1;
-            transform-origin: center;
-            /*! height: 100px; */
-        }
-        
-        .footer i{
-            display: block;
-            font-weight: 300;
-            line-height: 1;
-            font-size: 14px;
-        }
-        .texty{
-            position: fixed;
-            top:0;
-            left: 0;
-            font-size: 3vh;
-            animation: aniTr 1s infinite alternate;
-            
-        }
-        @keyframes aniTr {
-            0% {transform: translateX(0);}
-            100% {transform: translateX(100px);}
-        }
-        .svgContainer {
-            padding-top: 0px;
-        }
-        .svgContainer svg{
-            max-width: 90%;
-            max-height: 100%;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
+		}
+		.title{
+			border-bottom: 5px solid #000;
+			padding: 0;
+			position: relative;
+			color: #585858;
+		}
+		.title img{
+			position: absolute;
+			right: 0;
+			top: 3px;
+			height: 39px;
+		}
+		.title h1{
+			font-size: 42px;
+			font-weight: 900;
+			line-height: 1;
+			margin: 0;
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.mainBody{
+			border: 1px solid #999;
+			height: 100vh;
+			width: 100vh;
+			margin: 0 auto;
+			padding: 40px;
+			box-sizing: border-box;
+		}
+		.graphicsContainer{
+			width: auto;
+			height: auto;
+			position: relative;
+			overflow: hidden;
+			/* transform: translateY(-150px); */
+		}
+		.graphicsContainer::after{
+			content: '';
+			position: absolute;
+			display: block;
+			width: 100%;
+			height: 50%;
+			bottom: -25%;
+			background: linear-gradient(to bottom, rgba(255,255,255,0),rgba(255,255,255,1));
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0 0;
+			color: #555555;
+			text-transform: uppercase;
+		}
+		#year p{
+			margin: 0 auto;
+			margin-bottom: 15px;
+			display: flex;
+			justify-content: space-evenly;
+		}
+		#year p.weeks{margin-bottom: 0;}
+		#year p span{
+			font-size: 16px;
+			flex-grow: 1;
+			padding: 5px 0;
+			outline: 1px solid #DDD;
+			width: 14.2857142857%;
+		}
+		#year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+		}
+		.bottom img{
+			height: 24px;
+		}
+		.bottom{
+			line-height: 30px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			filter: blur(0px);
+			transition: all 0.2s ease;
+		}
+		#labels.active{
+			filter: blur(5px);
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+			overflow: hidden;
+			border-radius: 10px;
+		}
+		.Month{
+			opacity: 0;
+			letter-spacing: 10px;
+			transition: all 0s ease 0s;
+		}
+		.Month.active{
+			opacity: 1;
+			letter-spacing: 0px;
+			transition: all 1s ease 0.3s;
+		}
+		.logo{
+			width: 280px;
+			margin-bottom: 15px;
+			transform: translateX(-9px);
+		}
+		.legendStates {
+			position: fixed;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 40px;
+			line-height: 1;
+			padding: 0px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 600px;
+			height: 220px;
+			text-align: center;
+			opacity: 0;
+			background: rgba(221, 221, 221, 0.8);
+			box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+			border-radius: 10px;
+			transition: all 100ms ease-in;
+		}
+		.legendStates::after{
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: var(--arrow-left);
+			width: 20px;
+			height: 50px;
+			clip-path: polygon(0 0, 100% 0%, 50% 100%);
+			background: linear-gradient(to bottom, rgba(225, 225, 225, 1), rgba(180, 180, 180, 1));
+			box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+			transition: all 100ms ease;
+		}
+		.legendStates.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 200;
+			padding: 15px 0;
+		}
+		.totalSeats{
+			font-weight: 300;
+		}
+		.total{
+			font-weight: 500;
+		}
+		.bjpSeats{
+			font-weight: 300;
+		}
+		.bjp{
+			font-weight: 500;
+		}
+		.internal{
+			display: flex;
+			justify-content: space-evenly;
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+		.internal p{
+			font-size: 18px;
+			line-height: 1;
+			margin: 0;
+			font-weight: 200;
+			perspective: 100px;
+		}
+		.legendStates>div>div{
+			flex-grow: 1;
+			width: 33%;
+		}
+		.legendStates div span{
+			font-size: 24px;
+			margin: 10px 20px;
+			line-height: 24px;
+			display: block;
+			/* height: 80px; */
+			justify-self: flex-end;
+		}
+		.legendStates div.bar{
+			width: 2px;
+			background: #333;
+			transform: skewX(-20deg) scale(0.5);
+		}
+		.footer{
+			position: static;
+			top: 98%;
+			width: 100%;
+		}
+		.internal .fillbg{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 100%;
+			height: 10px;
+			background: #F5F5F6;
+			border: 2px solid #333;
+			box-shadow: 0px 0px 1px 1px #2821195E;
+			transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		.internal .fill{
+			content: " ";
+			position: absolute;
+			bottom: -20px;
+			left: 0;
+			width: 0%;
+			height: 10px;
+			background: #F28500;
+			transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+			background: linear-gradient(to right, 
+					rgb(240,240,240)    0px,
+					rgb(255,243,228)    calc(0 * 40px),
+					rgb(255,231,203)    calc(1 * 40px),
+					rgb(255,214,164)    calc(2 * 40px),
+					rgb(255,196,124)    calc(3 * 40px),
+					rgb(255,178,85)     calc(4 * 40px),
+					rgb(255,161,46)     calc(5 * 40px),
+					rgb(255,143,7)      calc(6 * 40px),
+					rgb(203,111,0)      calc(7 * 40px),
+					rgb(183,101,0)      calc(8 * 40px)
+			);
+			box-shadow: -1px 8px 7px 0px #8C6331;
+			transition: all 0.3s ease;
+			z-index: 1;
+			transform-origin: center;
+			/*! height: 100px; */
+		}
+		
+		.footer i{
+			display: block;
+			font-weight: 300;
+			line-height: 1;
+			font-size: 14px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
+			animation: aniTr 1s infinite alternate;
+			
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.svgContainer {
+			padding-top: 0px;
+		}
+		.svgContainer svg{
+			max-width: 100%;
+			max-height: 100%;
+		}
 		.svgContainer path{
 			fill : #F5F5F6;
-            stroke :rgba(0, 0, 0, 0.1);
+			stroke :rgba(0, 0, 0, 0.1);
 		}
-        .imgCont{
-            width: 64px;
-            height: 64px;
-            background-image: url("./Extra/candidates_grid.png");
-            background-position: 8% 24%;
-            background-size: 275px;
-            margin: 5px auto;
-            border-radius: 50%;
-            /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1); */
-            background-repeat: no-repeat;
-            transition: all 250ms linear;
-            z-index: 1;
-            display: block;
-        }
-        .aapParty .imgCont{
-            transform: scale(0.5);
-            filter: grayscale(1);
-            opacity: 0.5;
-            background-position: 54% 42%;
-        }
-        .bjpParty .imgCont{
-            transform: scale(0.5);
-            filter: grayscale(1);
-            opacity: 0.5;
-            background-position: 54% 59%;
-        }
-        .congParty .imgCont{
-            transform: scale(0.5);
-            filter: grayscale(1);
-            opacity: 0.5;
-            background-position: 54% 76%;
-        }
-        .aapParty .imgCont.aap0{background-position: 11% 93%;; opacity: 1;}
-        .aapParty .imgCont.aap1{background-position: 11% 9.5%; opacity: 1;}
-        .aapParty .imgCont.aap2{background-position: 11% 66%; opacity: 1;}
-        .aapParty .imgCont.aap3{background-position: 11% 82%; opacity: 1;}
-        .aapParty .imgCont.aap4{background-position: 11% 17.5%; opacity: 1;}
-        .aapParty .imgCont.aap5{background-position: 11% 76%; opacity: 1;}
-        .aapParty .imgCont.aap6{background-position: 11% 58%; opacity: 1;}
-        .aapParty .imgCont.aap7{background-position: 11% 90%; opacity: 1;}
-        .aapParty .imgCont.aap8{background-position: 11% 99%; opacity: 1;}
-        .aapParty .imgCont.inactive{
-            
-            opacity: 1;
-            background-position: 11% 1%;
-        }
-        .bjpParty .imgCont.bjp6{
-            background-image: url("./Extra/candidates_grid.png");
-            background-size: 275px;
-            background-position: 50% 25.5%;
-            opacity: 1;
-        }
-        .bjpParty .imgCont{
-            background-image: url("./Extra/delhi2020Candidates.png");
-            background-position: 8% 24%;
-            background-size: 440px;
-        }
-        .bjpParty .imgCont.bjp0{background-position: 31% 93%;opacity: 1;}
-        .bjpParty .imgCont.bjp1{background-position: 31% 59%;opacity: 1;}
-        .bjpParty .imgCont.bjp2{background-position: 31% 41%;opacity: 1;}
-        .bjpParty .imgCont.bjp3{background-position: 31% 24%;opacity: 1;}
-        .bjpParty .imgCont.bjp4{background-position: 31% 7%;opacity: 1;}
-        .bjpParty .imgCont.bjp5{background-position: 31% 76%;opacity: 1;}
-        
-        .bjpParty .imgCont.inactive{
-            
-            /* background-position: 31% 1%; */
-            opacity: 1;
-            background-position: 54% 59%;
-            
-        }
-        .congParty .imgCont{
-            background-image: url("./Extra/candidates_grid.png");
-            background-size: 275px;
-            background-position: 89% 1%;
-            opacity: 1;
-        }
-        .congParty .imgCont.cong0{background-position: 89% 9.5%;opacity: 1;}
-        .congParty .imgCont.cong1{background-position: 89% 33.5%;opacity: 1;}
-        .congParty .imgCont.inactive{
-            
-            opacity: 1;
-            background-position: 89% 1%;
-        }
-        .congParty .imgCont.winner,.aapParty .imgCont.winner,.bjpParty .imgCont.winner{
-            filter: grayscale(0);
-            transform: scale(1);
-            opacity: 1;
-            box-shadow: 0px 0px 0px 3px rgb(117, 191, 75);
-        }
-        .imgCont.winner::after{
-            /* content: ''; */
-            display: none;
-            background-image: url("./Extra/win.jpg");
-            background-size: 100px;
-            width: 80px;
-            height: 80px;
-            display: block;
-            border-radius: 50%;
-            z-index: -29;
-            position: absolute;
-            /* mix-blend-mode: saturation; */
-            top: -10px;
-            right: -7px;
-            background-position: 43% 3%;
-            opacity: 1;
-        }
-        .hidden{
-            display: none;
-        }
-    </style>
+		.imgCont{
+			width: 64px;
+			height: 64px;
+			background-image: url("./Extra/candidates_grid.png");
+			background-position: 8% 24%;
+			background-size: 275px;
+			margin: 5px auto;
+			border-radius: 50%;
+			/* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1); */
+			background-repeat: no-repeat;
+			transition: all 250ms linear;
+			z-index: 1;
+			display: block;
+		}
+		.aapParty .imgCont{
+			transform: scale(0.5);
+			filter: grayscale(1);
+			opacity: 0.5;
+			background-position: 54% 42%;
+		}
+		.bjpParty .imgCont{
+			transform: scale(0.5);
+			filter: grayscale(1);
+			opacity: 0.5;
+			background-position: 54% 59%;
+		}
+		.congParty .imgCont{
+			transform: scale(0.5);
+			filter: grayscale(1);
+			opacity: 0.5;
+			background-position: 54% 76%;
+		}
+		.aapParty .imgCont.aap0{background-position: 11% 93%;; opacity: 1;}
+		.aapParty .imgCont.aap1{background-position: 11% 9.5%; opacity: 1;}
+		.aapParty .imgCont.aap2{background-position: 11% 66%; opacity: 1;}
+		.aapParty .imgCont.aap3{background-position: 11% 82%; opacity: 1;}
+		.aapParty .imgCont.aap4{background-position: 11% 17.5%; opacity: 1;}
+		.aapParty .imgCont.aap5{background-position: 11% 76%; opacity: 1;}
+		.aapParty .imgCont.aap6{background-position: 11% 58%; opacity: 1;}
+		.aapParty .imgCont.aap7{background-position: 11% 90%; opacity: 1;}
+		.aapParty .imgCont.aap8{background-position: 11% 99%; opacity: 1;}
+		.aapParty .imgCont.inactive{
+			
+			opacity: 1;
+			background-position: 11% 1%;
+		}
+		.bjpParty .imgCont.bjp6{
+			background-image: url("./Extra/candidates_grid.png");
+			background-size: 275px;
+			background-position: 50% 25.5%;
+			opacity: 1;
+		}
+		.bjpParty .imgCont{
+			background-image: url("./Extra/delhi2020Candidates.png");
+			background-position: 8% 24%;
+			background-size: 440px;
+		}
+		.bjpParty .imgCont.bjp0{background-position: 31% 93%;opacity: 1;}
+		.bjpParty .imgCont.bjp1{background-position: 31% 59%;opacity: 1;}
+		.bjpParty .imgCont.bjp2{background-position: 31% 41%;opacity: 1;}
+		.bjpParty .imgCont.bjp3{background-position: 31% 24%;opacity: 1;}
+		.bjpParty .imgCont.bjp4{background-position: 31% 7%;opacity: 1;}
+		.bjpParty .imgCont.bjp5{background-position: 31% 76%;opacity: 1;}
+		
+		.bjpParty .imgCont.inactive{
+			
+			/* background-position: 31% 1%; */
+			opacity: 1;
+			background-position: 54% 59%;
+			
+		}
+		.congParty .imgCont{
+			background-image: url("./Extra/candidates_grid.png");
+			background-size: 275px;
+			background-position: 89% 1%;
+			opacity: 1;
+		}
+		.congParty .imgCont.cong0{background-position: 89% 9.5%;opacity: 1;}
+		.congParty .imgCont.cong1{background-position: 89% 33.5%;opacity: 1;}
+		.congParty .imgCont.inactive{
+			
+			opacity: 1;
+			background-position: 89% 1%;
+		}
+		.congParty .imgCont.winner,.aapParty .imgCont.winner,.bjpParty .imgCont.winner{
+			filter: grayscale(0);
+			transform: scale(1);
+			opacity: 1;
+			box-shadow: 0px 0px 0px 3px rgb(117, 191, 75);
+		}
+		.imgCont.winner::after{
+			/* content: ''; */
+			display: none;
+			background-image: url("./Extra/win.jpg");
+			background-size: 100px;
+			width: 80px;
+			height: 80px;
+			display: block;
+			border-radius: 50%;
+			z-index: -29;
+			position: absolute;
+			/* mix-blend-mode: saturation; */
+			top: -10px;
+			right: -7px;
+			background-position: 43% 3%;
+			opacity: 1;
+		}
+		.hidden{
+			display: none;
+		}
+		.legendBg{
+			width: 100%;
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
+			height: 50px;
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			display: flex;
+			text-align: center;
+			flex-direction: row;
+			/* width: 50px; */
+			justify-content: space-around;
+			white-space: pre;
+			z-index: 1;
+			background: linear-gradient(to right, #009966 0% 16.6%,#FFDE33 16.6% 33.3%,#FF9933 33.3% 50%,#CC0033 50% 66.666%,#660099 66.666% 83.33%,#7E0023 83.33% 100%);
+		}
+		.legendBg span{
+			font-weight: 600;
+			color: #FFF;
+			font-size: 21px;
+			line-height: 14px;
+			position: relative;
+			top: 10px;
+			white-space: normal;
+			text-align: center;
+			width: 16.666666%;
+		}
+		.legendBg span:nth-child(3){
+			font-size: 17px;
+		}
+	</style>
 </head>
 <body> 
-    <div class="hidden">
-        
-        <img src="./Extra/delhi2020Candidates.png" alt="">
-        <img src="./Extra/candidates_grid.png" alt="">
-        <img src="./Extra/win.jpg" alt="">
-    </div>
-    <span class="texty">TEXTY</span>
-    <div class="mainBody">
-        <div class="title">
-            <h1>KEY CONTESTS</h1>
-            <img src="./Logos/delhi2020.png" alt="">
-        </div>
-        <div class="graphicsContainer">
-            <div class="svgContainer">
+	<div class="hidden">
+
+	</div>
+	<span class="texty">TEXTY</span>
+	<div class="mainBody">
+		<div class="title">
+			<h1>DELHI POLLUTION</h1>
+			<h3>AQI IN MARCH</h3>
+		</div>
+		<div class="graphicsContainer">
+			<div class="svgContainer">
 				<?xml version="1.0"?>
-				<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="800" height="759" viewBox="0 0 800 759" stroke-linecap="round" stroke-linejoin="round">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="886" height="759" viewBox="0 0 800 759" stroke-linecap="round" stroke-linejoin="round">
 					<g title="Delhi Assembly Seats">
 						<path title="Narela" id="U05A001" d="M 594.1211 155.9369 570.7002 163.6777 556.3499 156.5334 555.6318 148.1149 502.7787 141.2747 477.6026 152.3713 476.9027 164.4466 451.2521 173.3234 450.6815 178.6797 460.9332 175.9555 458.7311 183.2827 448.8699 185.6538 445.53 201.3477 435.2737 207.8974 399.7259 185.3247 372.4227 200.2898 365.0505 171.901 347.7658 156.1095 366.7802 126.3589 322.9281 97.2669 318.3734 82.1626 336.6913 46.0023 352.3693 20.8205 373.543 26.3263 386.812 1 400.261 17.7484 429.8019 22.4212 448.0782 40.9022 464.1538 32.467 478.3433 35.1838 486.6145 73.4982 505.1055 74.3465 532.317 39.4759 586.2869 40.3299 598.4532 50.5437 598.0071 67.2577 607.9097 80.111 601.3796 119.0544 573.4722 114.9627 571.375 136.5794 594.1211 155.9369 Z"/>
 						<path title="Burari" id="U05A002" d="M 594.1211 155.9369 594.433 156.0074 595.0614 190.8974 634.9364 230.173 640.2854 247.2766 634.6637 264.7546 621.5129 265.1469 615.3621 247.4208 606.8839 245.4333 593.901 248.2337 599.2276 264.7818 579.6477 261.1302 545.0914 244.1912 516.3724 242.9632 512.2036 237.605 522.5563 227.4742 511.5935 221.9512 535.2856 197.9829 458.7311 183.2827 460.9332 175.9555 450.6815 178.6797 451.2521 173.3234 476.9027 164.4466 477.6026 152.3713 502.7787 141.2747 555.6318 148.1149 556.3499 156.5334 570.7002 163.6777 594.1211 155.9369 Z"/>
@@ -530,118 +562,175 @@
 				</svg>
 
 			</div>
-            <div class="legendStates">
-                <div class="stateName"></div>
-                <div class="internal">
-                    <div class="aapParty"><p>AAP</p><div class="imgCont"></div><span class="aap"></span></div>
-                    <div class="bjpParty"><p>BJP</p><div class="imgCont"></div><span class="bjp"></span></div>
-                    <div class="congParty"><p>INC</p><div class="imgCont"></div><span class="cong"></span></div>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="bottom">
-                    <span><img src="./logo.png" alt=""></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="./jquery.js"></script>
-    <script>
-        $(document).ready(function(){
-            const imgArray = [
-                [["Arvind Kejriwal",""],["Manish Sisodia",""],["Rakhi Bidlan",""],["Satyendar Jain",""],["Shoaib Iqbal",""],["Kailash Gahlot",""],["Raghav Chadha",""],["Somnath Bharti",""],["Saurabh Bharadwaj",""],["Atishi",""],["Amanatullah Khan",""],["Gopal Rai",""]],
-                [["Vijender Gupta",""],["Kapil Mishra",""],["Tajinder Pal Bagga",""],["Om Prakash Sharma",""]],
-                [["Alka Lamba",""],["Haroon Yusuf",""],["Adarsh Shastri",""],["Arvinder Lovely",""]],
-            ];
-            var dataIndia = [
-                ["Chandni Chowk","U05A020",["Parlad Singh Sawhney","AAP","inactive"],["Suman Kumar Gupta","BJP","bjp0"],["Alka Lamba","Cong","cong0"],1],
-                ["Hari Nagar","U05A028",["Rajkumari Dhillon","AAP","inactive"],["Tajinder Pal Bagga","BJP","bjp6"],["Surender Setia","Cong","inactive"],1],
-                ["Rajinder Nagar","U05A039",["Raghav Chadha","AAP","aap6"],["RP Singh","BJP","inactive"],["Rocky Tuseed","Cong","inactive"],1],
-                ["New Delhi","U05A040",["Arvind Kejriwal","AAP","aap1"],["Sunil Yadav","BJP","bjp1"],["Romesh Sabharwal","Cong","inactive"],1],
-                ["Malviya Nagar","U05A043",["Somnath Bharti","AAP","aap2"],["Sailender Monti","BJP","bjp2"],["Neetu Verma","Cong","inactive"],1],
-                ["Kalkaji","U05A051",["Atishi","AAP","aap3"],["Dharam Veer Singh","BJP","bjp3"],["Shivani Chopra","Cong","inactive"],1],
-                ["Okhla","U05A054",["Amanatullah Khan","AAP","aap7"],["Braham Singh","BJP","inactive"],["Parvez Hashmi","Cong","inactive"],1],
-                ["Patparganj","U05A057",["Manish Sisodia","AAP","aap4"],["Ravi Negi","BJP","bjp4"],["Laxman Rawat","Cong","inactive"],1],
-                ["Gandhi Nagar","U05A061",["Naveen Choudhary","AAP","inactive"],["Anil Vajpai","BJP","bjp5"],["Arvinder Lovely","Cong","cong1"],2],
-                ["Babarpur","U05A067",["Gopal Rai","AAP","aap8"],["Naresh Gaur","BJP","inactive"],["Anveeksha Tripathi Jain","Cong","inactive"],1],
-                ["Seelampur","U05A065",["Abdul Rehman","AAP","inactive"],["Kaushal Mishra","BJP","inactive"],["Mateen Ahmed","Cong","inactive"],1],
-            ];
-            
-            let colorArray = [[76, 191, 198],[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
-            var max = [242,133,0];
-            var min = [255,255,255];
-            var globalCounter = 0;
-            for (let i = 0; i < dataIndia.length; i++) {
-                let element = dataIndia[i];
-                let color = [colorArray[0][0],colorArray[0][1],colorArray[0][2]]
-                element.push(color);
-                dataIndia[i]=element;
-            }
-            var alpha; var index;
-            const secsForEach = 2;
-            const fps = 60; 
-            let regionNum;
-            function updateColor(label){
-                if(label == "init"){
-                    animate();
-                }else if(((globalCounter/(fps*secsForEach))<dataIndia.length) && label!=='final'){
-                    let tempNum = Math.floor(globalCounter/(fps*secsForEach));
-                    globalCounter += 1;
-                    if(tempNum == regionNum){
+			<div class="legendStates">
+				<div class="stateName"></div>
+				<canvas id="canvas"></canvas>
+			</div>
+			<div class="legendBg">
+				<span>Good</span>
+				<span>Moderate</span>
+				<span>Unhealthy for<br/>Sensitive Groups</span>
+				<span>Unhealthy</span>
+				<span>Very Unhealthy</span>
+				<span>Hazardous</span>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="bottom">
+				<span>Source : AQI</span>
+				<span><img src="./logo.png" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<script src="./jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			const canvas = document.getElementById("canvas");
+			const canHgt = 150;
+			const canWid = 600;
+			canvas.style.height = canHgt+'px';
+			canvas.style.width = canWid+'px';
+			canvas.height = canHgt*2;
+			canvas.width = canWid*2;
+			const ctx = canvas.getContext("2d");
+			ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000';
+			let widStep;
+			let heightFactor = 300;
+			var dataIndia = [
+				["Malviya Nagar","U05A043",[122,97,155,136,139,74,54,103,124,124,138,111,113,129,89,109,119,120,135,142,157,134,135,112,103,75,82,65,59,68]],
+				["R. K. Puram","U05A044",[122,97,155,136,139,74,54,103,124,124,138,111,113,129,89,109,119,120,135,142,157,134,135,112,103,75,82,65,59,68]],
+				["Karol Bagh","U05A023",[137,96,166,149,143,74,55,101,143,139,152,127,123,139,81,100,125,156,122,164,157,155,144,111,115,91,111,74,55,77]],
+				["Shahdara","U05A062",[146,122,205,174,156,106,81,117,202,131,168,142,143,140,112,147,151,135,129,172,188,169,159,137,133,103,115,67,68,66]],
+				["Moti Nagar","U05A025",[139,106,167,152,150,53,70,139,146,127,161,143,132,150,87,100,129,138,142,178,167,162,141,125,123,94,99,72,66,83]],
+				["Rohini","U05A013",[154,120,170,161,170,104,92,126,168,156,254,139,157,160,124,162,156,166,159,198,175,186,163,149,134,123,134,90,87,104]],
+				["New Delhi","U05A040",[152,155,169,136,145,90,63,109,134,119,160,136,129,126,105,128,125,131,127,159,166,151,142,128,126,88,95,70,55,64]],
+				["Mundka","U05A008",[142,103,190,156,149,96,73,113,161,144,167,141,141,170,120,177,167,174,176,208,169,185,158,131,129,121,139,81,73,108]],
+				["Dwarka","U05A033",[143,106,178,164,153,84,70,116,149,162,172,140,134,158,117,160,160,166,168,171,170,164,153,136,128,108,108,79,65,91]]
+			];
+			
+			let colorArray = [[76, 191, 198],[240,240,240],[255,243,228],[255,231,203],[255,214,164],[255,196,124],[255,178,85],[255,161,46],[255,143,7],[203,111,0],[183,101,0]]
+			var max = [242,133,0];
+			var min = [255,255,255];
+			var globalCounter = 0;
+			function getColor(dp){
+				let color;
+				if(dp<=50){
+					color = '#009966'
+				}else if(dp>50 && dp<=100){
+					color = '#FFDE33'
+				}else if(dp>100 && dp<=150){
+					color = '#FF9933'
+				}else if(dp>150 && dp<=200){
+					color = '#CC0033'
+				}else if(dp>200 && dp<=300){
+					color = '#660099'
+				}else if(dp>300){
+					color = '#7E0023'
+				}
+				return color;
+			}
+			for (let i = 0; i < dataIndia.length; i++) {
+				let element = dataIndia[i];
+				let color = [colorArray[0][0],colorArray[0][1],colorArray[0][2]]
+				element.push(color);
+				dataIndia[i]=element;
+			}
+			var alpha; var index;
+			const secsForEach = 1;
+			const fps = 60; 
+			let regionNum;
+			function updateColor(label){
+				if(label == "init"){
+					animate();
+				}else if(((globalCounter/(fps*secsForEach))<dataIndia.length) && label!=='final'){
+					let tempNum = Math.floor(globalCounter/(fps*secsForEach));
+					globalCounter += 1;
+					if(tempNum == regionNum){
 
-                    }else{
-                        regionNum = tempNum;
-                        const element = dataIndia[regionNum];
-                        if(dataIndia[regionNum-1]){
-                            $('#'+dataIndia[regionNum-1][1]).css({'fill':'#F5F5F6'})
-                            $('.aapParty').children('.imgCont').removeClass(dataIndia[regionNum-1][2][2]).removeClass('winner')
-                            $('.bjpParty').children('.imgCont').removeClass(dataIndia[regionNum-1][3][2]).removeClass('winner')
-                            $('.congParty').children('.imgCont').removeClass(dataIndia[regionNum-1][4][2]).removeClass('winner')
-                        }
-                        let position = $('#'+element[1]).position();
-                        let offset = ($(window).innerWidth() - 692)/2
-                        position.left = position.left - offset -40;
-                        $('.legendStates').attr("style","--arrow-left:"+(position.left)+"px").css({
-                            'top':((position.top)-300)+'px'
-                        })
-                        $('.stateName').html(element[0]);
-                        $('.aap').html(element[2][0]);
-                        $('.aapParty').children('.imgCont').addClass(element[2][2])
-                        $('.bjp').html(element[3][0]);
-                        $('.bjpParty').children('.imgCont').addClass(element[3][2])
-                        $('.cong').html(element[4][0]);
-                        $('.congParty').children('.imgCont').addClass(element[4][2])
-                        if(element[5]==1){
-                            $('.aapParty').children('.imgCont').addClass('winner')
-                        }else if(element[5]==2){
-                            $('.bjpParty').children('.imgCont').addClass('winner')
-                        }else{
-                            $('.congParty').children('.imgCont').addClass('winner')
-                        }
-                        $('#'+element[1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+',1)'})  
-                    }
-                }else{
-                    console.log(globalCounter);
-                }
-            }
-            setTimeout(function(){
-                updateColor("init");
-            },2000)
-            
-            function animate(){
-                if(globalCounter == 1){
-                    $('.legendStates').addClass('active');
-                }
-                if(globalCounter<(dataIndia.length*secsForEach*fps)-1){
-                    updateColor(globalCounter);
-                    requestAnimationFrame(animate)
-                }else{
-                    updateColor("final");
-                }
-                
-            }
-            
-        });
-    </script>
+					}else{
+						regionNum = tempNum;
+						if(regionNum>0){
+							$('#'+dataIndia[regionNum-1][1]).css({'fill':'rgba(245,245,246,1)'})  	
+						}
+						
+						const element = dataIndia[regionNum];
+						let position = $('#'+element[1]).position();
+						let offset = ($(window).innerWidth() - 692)/2
+						position.left = position.left - offset -40;
+						$('.stateName').text(element[0])
+						$('.legendStates').attr("style","--arrow-left:"+(position.left)+"px").css({
+							'top':((position.top)-270)+'px'
+						})
+						$('#'+element[1]).css({'fill':'rgba('+colorArray[0][0]+','+colorArray[0][1]+','+colorArray[0][2]+',1)'})  
+						widStep = (canWid/element[2].length);
+						console.log(element[0],element[2].length);
+						ctx.clearRect(0,0,canWid,canHgt);
+						for (var counter = 0; counter < element[2].length; counter++) {
+							ctx.fill();
+							const dp = element[2][counter];
+							ctx.beginPath();
+							ctx.fillStyle = getColor(dp);
+							ctx.clearRect((widStep*counter)+1,0,widStep-2,canHgt);
+							ctx.rect(
+								(widStep*counter)+1,
+								(canHgt*(1-(dp/heightFactor))),
+								widStep-2,
+								(canHgt*(dp/heightFactor))
+							);
+							ctx.fill();
+							ctx.closePath();
+
+							ctx.beginPath();
+							ctx.fillStyle = '#464646';
+							ctx.fillText(dp, (widStep*counter)+1, (canHgt*(1-(dp/heightFactor))) -10);
+							ctx.fill();
+							ctx.closePath();
+							if(counter == 21){
+								ctx.beginPath();
+								ctx.fillStyle = '#464646';
+								ctx.setLineDash([3,2])
+								ctx.moveTo((widStep*counter),0);
+								ctx.lineTo((widStep*counter),canHgt);
+								ctx.stroke();
+								ctx.closePath();
+
+								ctx.beginPath();
+								ctx.fillStyle = '#464646';
+								ctx.fillText('Lockdown', (widStep*counter)-50, 20);
+								ctx.fill();
+								ctx.closePath();
+								ctx.beginPath();
+								ctx.fillStyle = '#464646';
+								ctx.fillText('Start', (widStep*counter)-30, 30);
+								ctx.fill();
+								ctx.closePath();
+							}
+						}
+					}
+				}else{
+					console.log(globalCounter);
+				}
+			}
+			setTimeout(function(){
+				updateColor("init");
+			},2000)
+			
+			function animate(){
+				if(globalCounter == 1){
+					$('.legendStates').addClass('active');
+				}
+				if(globalCounter<(dataIndia.length*secsForEach*fps)-1){
+					updateColor(globalCounter);
+					requestAnimationFrame(animate)
+				}else{
+					updateColor("final");
+				}
+				
+			}
+			
+		});
+	</script>
 </body>
 </html>
