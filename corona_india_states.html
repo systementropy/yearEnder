@@ -101,32 +101,16 @@
 		.mainBody{
 			border: 1px solid #999;
 			height: 100vh;
-			width: 718px;
+			width: 90vh;
 			margin: 0 auto;
 			padding: 40px;
 			box-sizing: border-box;
-			/* background: #999; */
-			background-position-x: 0%;
-			background-position-y: 0%;
-			background-repeat: repeat;
-			background-image: none;
-			background-size: auto;
-			/* background-image: linear-gradient( rgba(255, 246, 0, 1.0), rgba(255, 187, 0, 0.747), rgba(255, 195, 2, 1.0), rgba(255, 195, 2, 0.5), rgba(255, 143, 0, 1.0), rgba(255, 143, 0, 0.5), rgba(255, 91, 0, 1.0), rgba(255, 91, 0, 0.5), rgba(255, 5, 5, 1.0), rgba(255, 5, 5, 0.5)),  url(./Extra/covid.png); */
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: cover;
-			background-blend-mode: multiply;
+			overflow: hidden;
 		}
-/* #fff600	(255,246,0)
-#ffc302	(255,195,2)
-#ff8f00	(255,143,0)
-#ff5b00	(255,91,0)
-#ff0505	(255,5,5) */
 		.graphicsContainer{
 			width: auto;
 			height: 90%;
 			position: relative;
-			overflow: hidden;
 		}
 		#year{
 			font-size: 34px;
@@ -320,7 +304,7 @@
 		
 		.stateName.total,.internal.total{
 			position: relative;
-			top: 300px;
+			top: 400px;
 			opacity: 0;
 			transition: all 250ms ease;
 		}
@@ -19264,8 +19248,7 @@
 				</div>
 			</div>
 			<div class="legendBg">
-				<span>0 - 2</span>
-				<span>3 - 10</span>
+				<span>0 - 10</span>
 				<span>11 - 20</span>
 				<span>21 - 30</span>
 				<span>31 - 40</span>
@@ -19274,14 +19257,15 @@
 				<span>61 - 70</span>
 				<span>71 - 80</span>
 				<span>81 - 100</span>
-				<span>100+</span>
+				<span>100 - 150</span>
+				<span>150+</span>
 			</div>
 		</div>
 		
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: News Reports<i>As on March 27th, 09:30 AM</i></span>
+				<span>Source: News Reports<i>As on March 30th, 10:30 AM</i></span>
 				<span><img src="./logo2.png" alt=""></span>
 			</div>
 		</div>
@@ -19328,33 +19312,33 @@
 			};
 			
 			var dataIndia = [
-				['Andaman and Nicobar Islands',1,0,0,0],
-				['Andhra Pradesh',12,0,1,0],
-				['Bihar',6,0,0,1],
-				['Chandigarh',7,0,0,0],
-				['Chhattisgarh',6,0,0,0],
-				['Delhi',35,1,6,1],
-				['Goa',3,0,0,0],
-				['Gujarat',42,1,0,3],
-				['Haryana',16,14,1,0],
-				['Himachal Pradesh',3,0,0,1],
-				['Jammu and Kashmir',13,0,1,1],
-				['Karnataka',55,0,3,2],
-				['Kerala',129,8,1,0],
-				['Ladakh',13,0,3,0],
-				['Madhya Pradesh',20,0,0,1],
-				['Maharashtra',127,3,1,4],
-				['Manipur',1,0,0,0],
-				['Mizoram',1,0,0,0],
-				['Odisha',2,0,0,0],
-				['Puducherry',1,0,0,0],
-				['Punjab',33,0,0,1],
-				['Rajasthan',39,2,3,0],
-				['Tamil Nadu',23,6,1,1],
-				['Telengana',35,10,1,0],
-				['Uttarakhand',4,1,0,0],
-				['Uttar Pradesh',40,1,1,0],
-				['West Bengal',10,0,0,1],
+				["Andhra Pradesh",19,1,0],
+				["Andaman and Nicobar Islands",9,0,0],
+				["Bihar",11,0,1],
+				["Chandigarh",8,0,0],
+				["Chhattisgarh",7,0,0],
+				["Delhi",53,6,2],
+				["Goa",5,0,0],
+				["Gujarat",58,1,5],
+				["Haryana",33,17,0],
+				["Himachal Pradesh",3,0,1],
+				["Jammu and Kashmir",31,1,2],
+				["Karnataka",80,5,3],
+				["Kerala",194,19,1],
+				["Ladakh",13,3,0],
+				["Madhya Pradesh",33,0,2],
+				["Maharashtra",193,25,8],
+				["Manipur",1,0,0],
+				["Mizoram",1,0,0],
+				["Odisha",3,0,0],
+				["Puducherry",1,0,0],
+				["Punjab",38,1,1],
+				["Rajasthan",57,3,0],
+				["Tamil Nadu",50,4,1],
+				["Telengana",69,1,1],
+				["Uttarakhand",7,2,0],
+				["Uttar Pradesh",75,11,0],
+				["West Bengal",19,0,1],
 			];
 			
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
@@ -19364,35 +19348,35 @@
 			var globalCounter = 0;
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
-				const perc = element[1]+element[2];
+				const perc = element[1];
 				let colorIndex;
-				if(perc <= 2){
+				if(perc>0 && perc <= 10){
 					colorIndex = 0
-				}else if(perc>2 && perc <= 10){
-					colorIndex = 1
 				}else if(perc>10 && perc <= 20){
-					colorIndex = 2
+					colorIndex = 1
 				}else if(perc>20 && perc <= 30){
-					colorIndex = 3
+					colorIndex = 2
 				}else if(perc>30 && perc <= 40){
-					colorIndex = 4
+					colorIndex = 3
 				}else if(perc>40 && perc <= 50){
-					colorIndex = 5
+					colorIndex = 4
 				}else if(perc>50 && perc <= 60){
-					colorIndex = 6
+					colorIndex = 5
 				}else if(perc>60 && perc <= 70){
-					colorIndex = 7
+					colorIndex = 6
 				}else if(perc>70 && perc <= 80){
-					colorIndex = 8
+					colorIndex = 7
 				}else if(perc>80 && perc <= 100){
+					colorIndex = 8
+				}else if(perc>100 && perc <= 150){
 					colorIndex = 9
 				}else{
 					colorIndex = 10
 				}
 				const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
-				confirmedTotal += element[1]+element[2]
-				recoveredTotal += element[3]
-				deathsTotal += element[4]
+				confirmedTotal += element[1]
+				recoveredTotal += element[2]
+				deathsTotal += element[3]
 				element.push(perc);
 				element.push(color);
 				element.push(colorIndex);
@@ -19425,13 +19409,13 @@
 					const element = dataIndia[index];
 					$('.stateName.statewise').html(arrayId[element[0]][0]);
 					
-					$('.confirmed.statewise').html(element[1]+element[2]);
-					$('.recovered.statewise').html((element[3]).toString());
-					$('.deaths.statewise').html(element[4]);
+					$('.confirmed.statewise').html(element[1]);
+					$('.recovered.statewise').html((element[2]).toString());
+					$('.deaths.statewise').html(element[3]);
 					if(arrayId[element[0]][0] === 'Andaman and Nicobar Islands'){
-						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
+						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
 					}else{
-						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
+						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
 					}
 					
 				}
