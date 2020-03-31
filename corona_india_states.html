@@ -101,8 +101,8 @@
 		.mainBody{
 			border: 1px solid #999;
 			height: 100vh;
-			width: 90vh;
-			margin: 0 auto;
+			width: 871px;
+			margin: 0 0;
 			padding: 40px;
 			box-sizing: border-box;
 			overflow: hidden;
@@ -368,6 +368,12 @@
 		}
 		.legendBg span{
 			font-weight: 400;
+		}
+		#canvas{
+			/* transform: translate(-70px,-164px); */
+			position: relative;
+			/* top: -5px;
+			left: 250px; */
 		}
 	</style>
 </head>
@@ -19227,6 +19233,9 @@
 				</svg>
 
 			</div>
+			<canvas id="canvas">
+				
+			</canvas>
 			<div class="legendStates">
 				<div class="stateName statewise"></div>
 				<div class="internal">
@@ -19277,38 +19286,38 @@
 		$(document).ready(function(){
 			var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","Daman"];
 			arrayId = {
-				"Andhra Pradesh":["Andhra Pradesh","Andhra"],
-				"Delhi":["Delhi","Delhi"],
-				"Haryana":["Haryana","Haryana"],
-				"Karnataka":["Karnataka","Karnataka"],
-				"Kerala":["Kerala","Kerala"],
-				"Maharashtra":["Maharashtra","Maharashtra"],
-				"Odisha":["Odisha","Orissa"],
-				"Pondicherry":["Pondicherry",],
-				"Punjab":["Punjab","Punjab"],
-				"Rajasthan":["Rajasthan","Rajasthan"],
-				"Tamil Nadu":["Tamil Nadu","Tamilnadu"],
-				"Telengana":["Telangana","Telangana"],
-				"Union Territory of Chandigarh":["Chandigarh","Chandigarh"],
-				"Chandigarh":["Chandigarh","Chandigarh"],
-				"Union Territory of Jammu and Kashmir":["Jammu & Kashmir","J_K"],
-				"Jammu and Kashmir":["Jammu & Kashmir","J_K"],
-				"Union Territory of Ladakh":["Ladakh","Laddakh"],
-				"Ladakh":["Ladakh","Laddakh"],
-				"Uttar Pradesh":["Uttar Pradesh","UP"],
-				"UP":["Uttar Pradesh","UP"],
-				"Uttarakhand":["Uttarakhand","UK"],
-				"West Bengal":["West Bengal","WB"],
-				"Chhattisgarh":["Chhattisgarh","Chhatisgarh"],
-				"Gujarat":["Gujarat","Gujrat"],
-				"Puducherry":["Puducherry","Puducherry"],
-				"Madhya Pradesh":["Madhya Pradesh","MP"],
-				"Himachal Pradesh":["Himachal Pradesh","Himachal"],
-				"Bihar":["Bihar","Bihar"],
-				"Manipur":["Manipur","Manipur"],
-				"Mizoram":["Mizoram","Mizoram"],
-				"Andaman and Nicobar Islands":["Andaman and Nicobar Islands","andaman"],
-				"Goa":["Goa","Goa"]
+				"Andhra Pradesh":["Andhra Pradesh","Andhra",[-175,166]],
+				"Delhi":["Delhi","Delhi",[-220,66]],
+				"Haryana":["Haryana","Haryana",[-178,109]],
+				"Karnataka":["Karnataka","Karnataka",[-175,140]],
+				"Kerala":["Kerala","Kerala",[-178,109]],
+				"Maharashtra":["Maharashtra","Maharashtra",[-178,109]],
+				"Odisha":["Odisha","Orissa",[-150,105]],
+				"Pondicherry":["Pondicherry",,[]],
+				"Punjab":["Punjab","Punjab",[-178,109]],
+				"Rajasthan":["Rajasthan","Rajasthan",[-132,145]],
+				"Tamil Nadu":["Tamil Nadu","Tamilnadu",[-178,109]],
+				"Telengana":["Telangana","Telangana",[-178,109]],
+				"Union Territory of Chandigarh":["Chandigarh","Chandigarh",[-214,58]],
+				"Chandigarh":["Chandigarh","Chandigarh",[-214,58]],
+				"Union Territory of Jammu and Kashmir":["Jammu & Kashmir","J_K",[-178,109]],
+				"Jammu and Kashmir":["Jammu & Kashmir","J_K",[-178,109]],
+				"Union Territory of Ladakh":["Ladakh","Laddakh",[-115,125]],
+				"Ladakh":["Ladakh","Laddakh",[-115,125]],
+				"Uttar Pradesh":["Uttar Pradesh","UP",[-110,150]],
+				"UP":["Uttar Pradesh","UP",[-110,150]],
+				"Uttarakhand":["Uttarakhand","UK",[-183,95]],
+				"West Bengal":["West Bengal","WB",[-175,157]],
+				"Chhattisgarh":["Chhattisgarh","Chhatisgarh",[-178,109]],
+				"Gujarat":["Gujarat","Gujrat",[-150,110]],
+				"Puducherry":["Puducherry","Puducherry",[]],
+				"Madhya Pradesh":["Madhya Pradesh","MP",[-132,145]],
+				"Himachal Pradesh":["Himachal Pradesh","Himachal",[-175,100]],
+				"Bihar":["Bihar","Bihar",[-178,109]],
+				"Manipur":["Manipur","Manipur",[-195,85]],
+				"Mizoram":["Mizoram","Mizoram",[-204,85]],
+				"Andaman and Nicobar Islands":["Andaman and Nicobar Islands","andaman",[]],
+				"Goa":["Goa","Goa",[-210,70]]
 			};
 			
 			var dataIndia = [
@@ -19340,6 +19349,18 @@
 				["Uttar Pradesh",75,11,0],
 				["West Bengal",19,0,1],
 			];
+			const canvas = document.getElementById("canvas");
+			const canHgt = 1000;
+			const canWid = 883;
+			canvas.style.height = canHgt+'px';
+			canvas.style.width = canWid+'px';
+			canvas.height = canHgt*2;
+			canvas.width = canWid*2;
+			const ctx = canvas.getContext("2d");
+			ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000'
+		   
 			
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
@@ -19387,7 +19408,7 @@
 				return (a[1]+a[2])-(b[1]+b[2])
 			})
 			var alpha; var index;
-			const msecForEach = 40
+			const msecForEach = 10
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19412,11 +19433,31 @@
 					$('.confirmed.statewise').html(element[1]);
 					$('.recovered.statewise').html((element[2]).toString());
 					$('.deaths.statewise').html(element[3]);
+					let position;
 					if(arrayId[element[0]][0] === 'Andaman and Nicobar Islands'){
+						position = $('.'+arrayId[element[0]][1]).position();
 						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
 					}else{
-						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
+						position = $('#'+arrayId[element[0]][1]).position();
+						// $('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
 					}
+
+					if(position){
+						let position2 = $('#Delhi').position();
+						let offset = arrayId[element[0]][2];
+						let offset2 = arrayId['Delhi'][2];
+						const globalOffset = [185,-170]
+						ctx.setLineDash([10,2,1,2,10])
+						ctx.beginPath();
+						ctx.arc(globalOffset[0] +position.left+offset[0], globalOffset[1]+position.top+offset[1], 2, 0, 2*Math.PI)
+						ctx.fill();
+						ctx.moveTo(globalOffset[0] +position.left+offset[0], globalOffset[1]+position.top+offset[1]);
+						ctx.lineTo(globalOffset[0]+position2.left+offset2[0], globalOffset[1]+position2.top+offset2[1]);
+						ctx.stroke()
+						ctx.fillText(arrayId[element[0]][1],globalOffset[0]+position.left+offset[0]-10, globalOffset[1]+position.top+offset[1]+10);
+						ctx.closePath();	
+					}
+					
 					
 				}
 			}
