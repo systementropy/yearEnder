@@ -81,7 +81,7 @@
 			padding: 0;
 		}
 		.title h1{
-			font-size: 46px;
+			font-size: 45px;
 			font-weight: 900;
 			line-height: 50px;
 			margin: 0;
@@ -101,7 +101,7 @@
 		.mainBody{
 			border: 1px solid #999;
 			height: 100vh;
-			width: 871px;
+			width: 90vh;
 			margin: 0 0;
 			padding: 40px;
 			box-sizing: border-box;
@@ -296,7 +296,7 @@
 		}
 		.svgContainer {
 			position: absolute;
-			width: 112%;
+			width: 706px;
 			top: -164px;
 			left: -71px;
 			height: 1000px;
@@ -19351,22 +19351,63 @@
 			];
 			const canvas = document.getElementById("canvas");
 			const canHgt = 1000;
-			const canWid = 883;
+			const canWid = 706;
 			canvas.style.height = canHgt+'px';
 			canvas.style.width = canWid+'px';
 			canvas.height = canHgt*2;
 			canvas.width = canWid*2;
 			const ctx = canvas.getContext("2d");
 			ctx.scale(2,2);
-			ctx.lineWidth = 2;
+			ctx.lineWidth = 1;
 			ctx.strokeColor = '#000'
 		   
+			let lineArray = [];
 			
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
 			var max = [242,133,0];
 			var min = [255,255,255];
 			var globalCounter = 0;
+			function Line(pt1X,pt1Y,pt2X,pt2Y,label){
+				this.pt1X = pt1X;
+				this.pt1Y = pt1Y;
+				this.pt2X = pt2X;
+				this.pt2Y = pt2Y;
+				this.label = label;
+				this.lineDashOffset = Math.floor(Math.random()*100)
+				this.dlDashOffset = Math.floor(Math.random()*3)+1 
+				this.setLineDash = [10,10];
+
+				this.update = function(){
+					console.log('here')
+					if(this.lineDashOffset>=100){
+						this.lineDashOffset = 0;
+					}
+					this.lineDashOffset+=this.dlDashOffset;
+					this.draw();
+				}
+				this.draw = function(){
+					ctx.strokeStyle = 'rgba(255,0,0,0.7)'
+					ctx.lineDashOffset = this.lineDashOffset;
+					ctx.setLineDash(this.setLineDash)
+					ctx.beginPath();
+					ctx.arc(this.pt1X, this.pt1Y, 2, 0, 2*Math.PI)
+					ctx.fill();
+					ctx.closePath();
+					
+					ctx.beginPath();
+					ctx.moveTo(this.pt2X,this.pt2Y);
+					ctx.lineTo(this.pt1X,this.pt1Y);
+					
+					ctx.stroke()
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillText(this.label,this.pt1X-10, this.pt1Y+10);
+					ctx.closePath();
+				}
+				this.update();
+			}
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
 				const perc = element[1];
@@ -19442,23 +19483,26 @@
 						// $('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
 					}
 
-					if(position){
+					if(position && !lineArray[element[0]]){
 						let position2 = $('#Delhi').position();
 						let offset = arrayId[element[0]][2];
 						let offset2 = arrayId['Delhi'][2];
-						const globalOffset = [185,-170]
-						ctx.setLineDash([10,2,1,2,10])
-						ctx.beginPath();
-						ctx.arc(globalOffset[0] +position.left+offset[0], globalOffset[1]+position.top+offset[1], 2, 0, 2*Math.PI)
-						ctx.fill();
-						ctx.moveTo(globalOffset[0] +position.left+offset[0], globalOffset[1]+position.top+offset[1]);
-						ctx.lineTo(globalOffset[0]+position2.left+offset2[0], globalOffset[1]+position2.top+offset2[1]);
-						ctx.stroke()
-						ctx.fillText(arrayId[element[0]][1],globalOffset[0]+position.left+offset[0]-10, globalOffset[1]+position.top+offset[1]+10);
-						ctx.closePath();	
+						const globalOffset = [185,-170];
+						lineArray[element[0]] = new Line(
+							globalOffset[0] +position.left+offset[0], 
+							globalOffset[1]+position.top+offset[1],
+							globalOffset[0]+position2.left+offset2[0], 
+							globalOffset[1]+position2.top+offset2[1],
+							arrayId[element[0]][1]
+						)
+						// lineArray.push(new Line(
+						// 	globalOffset[0] +position.left+offset[0], 
+						// 	globalOffset[1]+position.top+offset[1],
+						// 	globalOffset[0]+position2.left+offset2[0], 
+						// 	globalOffset[1]+position2.top+offset2[1],
+						// 	arrayId[element[0]][1]
+						// ))
 					}
-					
-					
 				}
 			}
 			
@@ -19467,6 +19511,7 @@
 			},2000)
 			
 			function animate(){
+				// ctx.clearRect(0,0,canWid,canHgt)
 				
 				if(globalCounter == 1){
 					$('.legendStates').addClass('active')
@@ -19477,9 +19522,22 @@
 				}else{
 					updateColor("final");
 				}
-				
+				// requestAnimationFrame(animate)
 			}
-			// animate();
+			function animateLine(){
+				ctx.clearRect(0,0,canWid,canHgt)
+				if(lineArray){	
+					for (const key in lineArray) {
+						if (lineArray.hasOwnProperty(key)) {
+							lineArray[key].update();
+						}
+					}
+				}
+				requestAnimationFrame(animateLine)
+				// setTimeout(animateLine,20)
+			}
+			animateLine()
+			
 		});
 	</script>
 </body>
