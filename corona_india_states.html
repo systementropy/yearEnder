@@ -19256,7 +19256,7 @@
 					<div class="totalSeats"><span class="deathsTotal deaths">07</span><p>Deaths</p></div>
 				</div>
 			</div>
-			<div class="legendBg">
+			<!-- <div class="legendBg">
 				<span>0 - 10</span>
 				<span>11 - 20</span>
 				<span>21 - 30</span>
@@ -19268,7 +19268,7 @@
 				<span>81 - 100</span>
 				<span>100 - 150</span>
 				<span>150+</span>
-			</div>
+			</div> -->
 		</div>
 		
 		<div class="footer">
@@ -19377,41 +19377,86 @@
 				this.lineDashOffset = Math.floor(Math.random()*100)
 				this.dlDashOffset = Math.floor(Math.random()*3)+1 
 				this.setLineDash = [10,10];
-
+				const randomDen = Math.floor(Math.random()*400)+20
+				this.dx = (this.pt2X-this.pt1X)/200
+				this.dy = (this.pt2Y-this.pt1Y)/200
+				this.x = this.pt1X;
+				this.y = this.pt1Y;
+				this.color = getColor();
+				let temp = this.color;
+				this.color =[temp[2],temp[1],temp[0]]
+				this.colorString = 'rgb('+this.color[0]+','+this.color[1]+','+this.color[2]+')'
+				this.r = Math.random()*2+1;
+				this.dr = 0.01;
+				this.strokeStyle = 'rgba('+this.color[0]+','+this.color[1]+','+this.color[2]+',0.3)'
 				this.update = function(){
-					console.log('here')
-					if(this.lineDashOffset>=100){
-						this.lineDashOffset = 0;
+					// console.log('here')
+					if(this.lineDashOffset<0){
+						this.lineDashOffset = 100;
 					}
-					this.lineDashOffset+=this.dlDashOffset;
+					this.lineDashOffset-=this.dlDashOffset;
+					if(this.r <1 || this.r>4){
+						this.dr = -this.dr
+					}
+					this.r +=this.dr
+					if(Math.abs(this.pt2X-this.x)<5 && Math.abs(this.pt2Y-this.y)<5){
+						
+						if((Math.random()*100)>80){
+							let temp = this.color;
+							this.color =[temp[2],temp[1],temp[0]]
+							this.colorString = 'rgb(255,'+this.color[1]+','+this.color[2]+')'
+							this.strokeStyle = 'rgba(0,0,0,0.7)'
+							this.dx = 0;
+							this.dy = 0;	
+							this.pt1X = this.x
+							this.pt1Y = this.y
+							this.r = 4;
+							this.dr = 0;
+						}else{
+							this.x = this.pt1X
+							this.y = this.pt1Y	
+						}
+					}else{
+						this.x += this.dx;
+						this.y += this.dy;
+					}
+					
 					this.draw();
 				}
 				this.draw = function(){
-					ctx.strokeStyle = 'rgba(255,0,0,0.7)'
-					ctx.lineDashOffset = this.lineDashOffset;
-					ctx.setLineDash(this.setLineDash)
+					ctx.strokeStyle = this.strokeStyle;
+					// ctx.lineDashOffset = this.lineDashOffset;
+					// ctx.setLineDash(this.setLineDash)
 					ctx.beginPath();
-					ctx.arc(this.pt1X, this.pt1Y, 2, 0, 2*Math.PI)
+					ctx.fillStyle = this.colorString;
+					ctx.arc(this.x, this.y, this.r, 0, 2*Math.PI)
 					ctx.fill();
 					ctx.closePath();
 					
 					ctx.beginPath();
-					ctx.moveTo(this.pt2X,this.pt2Y);
-					ctx.lineTo(this.pt1X,this.pt1Y);
-					
-					ctx.stroke()
+					ctx.strokeStyle = this.strokeStyle;
+					ctx.arc(this.x, this.y, this.r+1, 0, 2*Math.PI)
+					ctx.stroke();
 					ctx.closePath();
 
-					ctx.beginPath();
-					ctx.fillText(this.label,this.pt1X-10, this.pt1Y+10);
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.moveTo(this.pt2X,this.pt2Y);
+					// ctx.lineTo(this.pt1X,this.pt1Y);
+					
+					// ctx.stroke()
+					// ctx.closePath();
+
+					// ctx.beginPath();
+					// ctx.fillText(this.label,this.pt1X-10, this.pt1Y+10);
+					// ctx.closePath();
 				}
 				this.update();
 			}
 			var alpha; var index;
 			const msecForEach = 10
 			function getColor (num){
-				let color
+				let color, colorIndex;
+				colorIndex = Math.floor(Math.random()*10.99999999)
 				if(num>0 && num <= 10){
 					colorIndex = 0
 				}else if(num>10 && num <= 20){
@@ -19432,10 +19477,11 @@
 					colorIndex = 8
 				}else if(num>100 && num <= 150){
 					colorIndex = 9
-				}else{
+				}else if(num>150){
 					colorIndex = 10
-				}
-				color = 'rgb('+colorArray[colorIndex][0]+','+colorArray[colorIndex][1]+','+colorArray[colorIndex][2]+')'
+				}	
+				color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
+				// color = 'rgb('+colorArray[colorIndex][0]+','+colorArray[colorIndex][1]+','+colorArray[colorIndex][2]+')'
 				return color
 			}	
 
@@ -19448,28 +19494,33 @@
 				}
 				requestAnimationFrame(animateLine)
 			}
-			function init(){
-				let position2 = $('#Delhi').position();
-				let offset2 = arrayId['Delhi'][2];
-				const globalOffset = [-85,-170];
-				for (var i = 0; i < dataIndia.length; i++) {
-					const position = $('#'+arrayId[dataIndia[i][0]][1]).position();
-					if(position){
-						let offset = arrayId[dataIndia[i][0]][2];	
-						lineArray.push(new Line(
-							globalOffset[0] +position.left+offset[0], 
-							globalOffset[1]+position.top+offset[1],
-							globalOffset[0]+position2.left+offset2[0], 
-							globalOffset[1]+position2.top+offset2[1],
-							arrayId[dataIndia[i][0]][1]
-						))	
+			function init(num){
+				if(num<20){
+					let position2 = $('#Delhi').position();
+					let offset2 = arrayId['Delhi'][2];
+					const globalOffset = [-85,-170];
+					for (var i = 0; i < dataIndia.length; i++) {
+						const position = $('#'+arrayId[dataIndia[i][0]][1]).position();
+						if(position){
+							let offset = arrayId[dataIndia[i][0]][2];
+							// const y = canHgt*Math.random();
+							// const x = canWid*Math.random();	
+							const x = globalOffset[0] + position.left + offset[0] + ((Math.random()*20)-10);
+							const y = globalOffset[1] + position.top + offset[1] + ((Math.random()*20)-10);
+							lineArray.push(new Line(
+								x,
+								y,
+								globalOffset[0]+position2.left+offset2[0], 
+								globalOffset[1]+position2.top+offset2[1],
+								arrayId[dataIndia[i][0]][1]
+							))	
+						}
 					}
-					
-
+					setTimeout(()=>{init(num+1)},1000)	
 				}
 				animateLine()	
 			}
-			init();
+			init(0);
 						
 		});
 	</script>

@@ -61,6 +61,11 @@
 		.title{
 			/* border-bottom: 5px solid #000; */
 			padding: 0;
+			position: relative;
+			z-index: 10;
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
+			/* box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); */
+			/* padding: 10px 20px; */
 		}
 		.title h1{
 			font-size: 62px;
@@ -69,20 +74,22 @@
 			margin: 0;
 			margin-bottom: 0px;
 			letter-spacing: 2px;
-			color: #E50000;
-			font-size: 35px;
+			/* color: #E50000; */
+			color: #333;
 			margin-bottom: 10px;
 		}
 		.title h3{
+			font-size: 36px;
 			font-weight: 300;
-			line-height: 1;
+			line-height: 0.8;
 			margin: 0;
 			text-transform: uppercase;
 		}
 		.mainBody{
 			/* border: 1px solid #999; */
 			height: 100vh;
-			width: 110vh;
+			width: 100vw;
+			max-width: 1400px;
 			overflow: hidden;
 			/* width: 850px; */
 			margin: 0 auto;
@@ -96,7 +103,8 @@
 			width: 100%;
 			height: 90%;
 			position: relative;
-			overflow: hidden;
+			top: -30px;
+			/* overflow: hidden; */
 			/* box-shadow: 0px 0px 0px 5px
 			#999 inset,0px 0px 10000px 0px
 			#9968688A; */
@@ -219,14 +227,15 @@
 			color: #cc7722
 		}
 		.date {
-			font-size: 130px;
+			font-size: 60px;
 			font-weight: 400;
-			display: block;
+			
 			text-align: right;
 		}
 		.year {
 			font-weight: 200;
-			font-size: 50px;
+			font-size: 25px;
+			display: block;
 		}
 		.month{
 			font-size: 50px;
@@ -264,7 +273,7 @@
 		}
 		.footer{
 			position: relative;
-			top: 0%;
+			top: -4%;
 			width: 100%;
 			height: 32px;
 		}
@@ -334,11 +343,11 @@
 			position: absolute;
 			/* height: auto;
 			width: 900px; */
-			height: 100%;
-			width: auto;
+			height: auto;
+			width: 100%;
 			left: 50%;
 			top: 50%;
-			transform: translate(-60%,-50%);
+			transform: translate(-50%,-50%);
 			z-index: 0;
 			/* background: #383838; */
 		}
@@ -624,14 +633,14 @@
 	<div class="mainBody">
 
 		<div class="title">
-			<h1>CORONAVIRUS MAP</h1>
-			<!-- <h3>The year in news & politics</h3> -->
+			<h1>CORONAVIRUS WORLD MAP</h1>
+			<h3>Tracking the global outbreak</h3>
 
 		</div>
 		<div class="legendStates">
 			<div class="stateName">
-				<span class="date"></span>
 				<span class="month"></span>,
+				<span class="date"></span>
 				<span class="year"></span>
 			</div>
 		</div>
@@ -786,11 +795,18 @@
 						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",1],["IE",1],["PE",1],["GF",1],["CR",1],["BG",1],["MV",1],["BA",1],["BD",1],["SK",1],["ZA",1],["MT",1],["CM",1],["MQ",1],["TG",1],["MD",1],["CO",1],["BT",1],["PY",1],["RS",1],["AL",1],["PA",1],["CA",1],["BO",1],["MF",1],["BF",1],["JM",1],["TR",1],["MN",1],["BN",1],["VA",1],["CU",1],["HN",1],["CD",1],["CI",1],["GY",1],["VE",1],["KZ",1],["GH",1],["RW",1],["ET",1],["UY",1],["GU",1],["KE",1],["SC",1],["GP",1],["AW",1],["JE",1],["LC",1],["NA",1],["TT",1],["GT",1],["GQ",1],["GN",1],["GA",1],["CG",1],["VC",1],["TG",1],["CF",1],["KY",1],["BS",1],["GG",1],["UZ",1],["AG",1],["SZ",1],["SD",1],["SR",1],["MR",1],["TZ",1],["MU",1],["KG",1],["YT",1],["LR",1],["BJ",1],["BB",1],["ZM",1],["SO",1],["ME",1],["FJ",1],["SV",1],["DJ",1],["NI",1],["GM",1],["CV",10],["MG",10],["ZW",10],["AO",10],["HT",10],["TD",10],["DM",10],["ER",10],["GD",10],["MZ",10],["PG",10],["SY",10],["TL",10],["UG",10]
 					]
 				},{
-					'date':[23, 'Mar', 2020],
+					'date':[1, 'Apr', 2020],
 					'china':80956,
 					'world':38178,
 					'countries':[
-						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",1],["IE",1],["PE",1],["GF",1],["CR",1],["BG",1],["MV",1],["BA",1],["BD",1],["SK",1],["ZA",1],["MT",1],["CM",1],["MQ",1],["TG",1],["MD",1],["CO",1],["BT",1],["PY",1],["RS",1],["AL",1],["PA",1],["CA",1],["BO",1],["MF",1],["BF",1],["JM",1],["TR",1],["MN",1],["BN",1],["VA",1],["CU",1],["HN",1],["CD",1],["CI",1],["GY",1],["VE",1],["KZ",1],["GH",1],["RW",1],["ET",1],["UY",1],["GU",1],["KE",1],["SC",1],["GP",1],["AW",1],["JE",1],["LC",1],["NA",1],["TT",1],["GT",1],["GQ",1],["GN",1],["GA",1],["CG",1],["VC",1],["TG",1],["CF",1],["KY",1],["BS",1],["GG",1],["UZ",1],["AG",1],["SZ",1],["SD",1],["SR",1],["MR",1],["TZ",1],["MU",1],["KG",1],["YT",1],["LR",1],["BJ",1],["BB",1],["ZM",1],["SO",1],["ME",1],["FJ",1],["SV",1],["DJ",1],["NI",1],["GM",1],["CV",1],["MG",1],["ZW",1],["AO",1],["HT",1],["TD",1],["DM",1],["ER",1],["GD",1],["MZ",1],["PG",1],["SY",1],["TL",1],["UG",1]
+						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",1],["IE",1],["PE",1],["GF",1],["CR",1],["BG",1],["MV",1],["BA",1],["BD",1],["SK",1],["ZA",1],["MT",1],["CM",1],["MQ",1],["TG",1],["MD",1],["CO",1],["BT",1],["PY",1],["RS",1],["AL",1],["PA",1],["CA",1],["BO",1],["MF",1],["BF",1],["JM",1],["TR",1],["MN",1],["BN",1],["VA",1],["CU",1],["HN",1],["CD",1],["CI",1],["GY",1],["VE",1],["KZ",1],["GH",1],["RW",1],["ET",1],["UY",1],["GU",1],["KE",1],["SC",1],["GP",1],["AW",1],["JE",1],["LC",1],["NA",1],["TT",1],["GT",1],["GQ",1],["GN",1],["GA",1],["CG",1],["VC",1],["TG",1],["CF",1],["KY",1],["BS",1],["GG",1],["UZ",1],["AG",1],["SZ",1],["SD",1],["SR",1],["MR",1],["TZ",1],["MU",1],["KG",1],["YT",1],["LR",1],["BJ",1],["BB",1],["ZM",1],["SO",1],["ME",1],["FJ",1],["SV",1],["DJ",1],["NI",1],["GM",1],["CV",1],["MG",1],["ZW",1],["AO",1],["HT",1],["TD",1],["DM",1],["ER",1],["GD",1],["MZ",1],["PG",1],["SY",1],["TL",1],["UG",1],["ML",10],["MM",10],["LY",10],["LA",10],["GW",10],["MZ",10],["KN",10],["BW",10],["BZ",10],["BI",10],["SL",10]
+					]
+				},{
+					'date':[1, 'Apr', 2020],
+					'china':80956,
+					'world':38178,
+					'countries':[
+						["CN",1],["KR",1],["IT",1],["IR",1],["JP",1],["FR",1],["DE",1],["ES",1],["US",1],["SG",1],["HK",1],["CH",1],["GB",1],["NO",1],["KW",1],["BH",1],["AU",1],["MY",1],["TH",1],["TW",1],["NL",1],["SE",1],["IQ",1],["CA",1],["AT",1],["AE",1],["IN",1],["IS",1],["BE,1"],["SM",1],["VN",1],["OM",1],["IL",1],["LB",1],["DZ",1],["MO",1],["EC",1],["DK",1],["HR",1],["GR",1],["CZ",1],["QA",1],["FI",1],["RO",1],["SA",1],["IE",1],["BY",1],["PK",1],["PT",1],["MX",1],["SN",1],["BR",1],["NZ",1],["AZ",1],["RU",1],["GE",1],["PH",1],["SA,1"],["ID",1],["EE",1],["EG",1],["LT",1],["KH",1],["MK",1],["MC",1],["AF",1],["AM",1],["DO",1],["UA",1],["LU",1],["AD",1],["NG",1],["MA",1],["NP",1],["LV",1],["LK",1],["BL",1],["HU",1],["AR",1],["SI",1],["LI",1],["FO",1],["GI",1],["CL",1],["JO",1],["PL",1],["TN",1],["PS",1],["IE",1],["PE",1],["GF",1],["CR",1],["BG",1],["MV",1],["BA",1],["BD",1],["SK",1],["ZA",1],["MT",1],["CM",1],["MQ",1],["TG",1],["MD",1],["CO",1],["BT",1],["PY",1],["RS",1],["AL",1],["PA",1],["CA",1],["BO",1],["MF",1],["BF",1],["JM",1],["TR",1],["MN",1],["BN",1],["VA",1],["CU",1],["HN",1],["CD",1],["CI",1],["GY",1],["VE",1],["KZ",1],["GH",1],["RW",1],["ET",1],["UY",1],["GU",1],["KE",1],["SC",1],["GP",1],["AW",1],["JE",1],["LC",1],["NA",1],["TT",1],["GT",1],["GQ",1],["GN",1],["GA",1],["CG",1],["VC",1],["TG",1],["CF",1],["KY",1],["BS",1],["GG",1],["UZ",1],["AG",1],["SZ",1],["SD",1],["SR",1],["MR",1],["TZ",1],["MU",1],["KG",1],["YT",1],["LR",1],["BJ",1],["BB",1],["ZM",1],["SO",1],["ME",1],["FJ",1],["SV",1],["DJ",1],["NI",1],["GM",1],["CV",1],["MG",1],["ZW",1],["AO",1],["HT",1],["TD",1],["DM",1],["ER",1],["GD",1],["MZ",1],["PG",1],["SY",1],["TL",1],["UG",1],["ML",1],["MM",1],["LY",1],["LA",1],["GW",1],["MZ",1],["KN",1],["BW",1],["BZ",1],["BI",1],["SL",1]
 					]
 				}
 			]
@@ -825,7 +841,7 @@
 					options = {
 						domain: 'IN',
 						legend: 'none',
-						// backgroundColor: '#383838',
+						backgroundColor: 'transparent',
 						datalessRegionColor: '#baccbf',
 						colorAxis: {
 							values: [1,10],
@@ -864,13 +880,7 @@
 
 <!-- 
 
-China--Italy--US--Spain--Germany--Iran--France--Korea, South--Switzerland--United Kingdom--Netherlands--Austria--Belgium--Norway--Sweden--Portugal--Australia--Brazil--Denmark--Canada--Malaysia--Turkey--Czechia--Japan--Israel--Ireland--Luxembourg--Ecuador--Pakistan--Poland--Chile--Finland--Greece--Thailand--Iceland--Indonesia--Saudi Arabia--Qatar--Singapore--Romania--Slovenia--India--Philippines--Russia--Peru--Bahrain--Egypt--Estonia--Panama--South Africa--Argentina--Croatia--Mexico--Lebanon--Iraq--Colombia--Serbia--Dominican Republic--Algeria--Armenia--Kuwait--Bulgaria--Slovakia--San Marino--Taiwan*--Uruguay--United Arab Emirates--Lithuania--Latvia--Costa Rica--Hungary--Bosnia and Herzegovina--Morocco--North Macedonia--Andorra--Vietnam--Jordan--New Zealand--Cyprus--Moldova--Malta--Albania--Brunei--Cambodia--Sri Lanka--Belarus--Burkina Faso--Tunisia--Ukraine--Venezuela--Senegal--Azerbaijan--Kazakhstan--Oman--Georgia--Trinidad and Tobago--Uzbekistan--Afghanistan--Cameroon--Liechtenstein--Cuba--Congo (Kinshasa)--Nigeria--Mauritius--Bangladesh--Honduras--Bolivia--Ghana--Monaco--Paraguay--Montenegro--Guatemala--Guyana--Jamaica--Rwanda--Togo--Kenya--Barbados--Cote d'Ivoire--Kyrgyzstan--Maldives--Tanzania--Ethiopia--Mongolia--Seychelles--Equatorial Guinea--Gabon--Suriname--Bahamas--Eswatini--Cabo Verde--Central African Republic--Congo (Brazzaville)--El Salvador--Liberia--Madagascar--Namibia--Zambia--Zimbabwe--Angola--Benin--Bhutan--Fiji--Guinea--Haiti--Mauritania--Nicaragua--Niger--Saint Lucia--Sudan--Antigua and Barbuda--Chad--Djibouti--Dominica--Eritrea--Gambia--Grenada--Holy See--Mozambique--Nepal--Papua New Guinea--Saint Vincent and the Grenadines--Somalia--Syria--Timor-Leste--Uganda
-
-"China--Italy--Iran--Spain--Germany--US--France--Korea, South--Switzerland--United Kingdom--Netherlands--Austria--Norway--Belgium--Sweden--Denmark--Japan--Malaysia--Canada--Portugal--Czechia--Australia--Brazil--Qatar--Israel--Greece--Ireland--Finland--Singapore--Indonesia--Pakistan--Poland--Slovenia--Thailand--Romania--Estonia--Bahrain--Iceland--Saudi Arabia--Chile--Egypt--Luxembourg--Philippines--Turkey--India--Ecuador--Iraq--Kuwait--Russia--Peru--Lebanon--San Marino--South Africa--United Arab Emirates--Armenia--Panama--Taiwan*--Slovakia--Argentina--Mexico--Colombia--Bulgaria--Serbia--Croatia--Uruguay--Vietnam--Algeria--Latvia--Costa Rica--Brunei--Albania--Hungary--Cyprus--Jordan--Morocco--Andorra--Belarus--Sri Lanka--Malta--North Macedonia--Oman--Bosnia and Herzegovina--Georgia--Moldova--Venezuela--Cambodia--Kazakhstan--Azerbaijan--Dominican Republic--Lithuania--Guadeloupe--Senegal--Tunisia--New Zealand--Liechtenstein--Martinique--Afghanistan--Burkina Faso--Ukraine--Jamaica--Uzbekistan--Bangladesh--Reunion--Maldives--Cameroon--Bolivia--French Guiana--Paraguay--Cuba--Cote d'Ivoire--Honduras--Rwanda--Nigeria--Monaco--Kenya--Ghana--Trinidad and Tobago--Guyana--Ethiopia--Guatemala--Mongolia--Seychelles--Aruba--Congo (Kinshasa)--Equatorial Guinea--Tanzania--Mauritius--Kyrgyzstan--Mayotte--Liberia--Saint Lucia--Benin--Namibia--Kosovo--Barbados--Sudan--Zambia--Mauritania--Guinea--Gabon--Congo (Brazzaville)--Saint Vincent and the Grenadines--Somalia--Montenegro--Togo--Central African Republic--Fiji--The Bahamas--El Salvador--Djibouti--Antigua and Barbuda--Eswatini--Bhutan--Nepal--Suriname--Holy See--Nicaragua--Gambia, The"
-
-
-
-
+US--Italy--Spain--China--Germany--France--Iran--United Kingdom--Switzerland--Turkey--Belgium--Netherlands--Austria--South Korea--Canada--Portugal--Brazil--Israel--Norway--Australia--Sweden--Czechia--Ireland--Denmark--Malaysia--Chile--Russia--Poland--Ecuador--Romania--Japan--Luxembourg--Philippines--Pakistan--Thailand--India--Saudi Arabia--Indonesia--Finland--South Africa--Greece--Mexico--Panama--Iceland--Dominican Republic--Peru--Argentina--Singapore--Colombia--Serbia--Croatia--Slovenia--Qatar--Estonia--Algeria--Egypt--New Zealand--Iraq--United Arab Emirates--Ukraine--Morocco--Bahrain--Lithuania--Armenia--Hungary--Lebanon--Bosnia and Herzegovina--Bulgaria--Latvia--Tunisia--Andorra--Slovakia--Moldova--Kazakhstan--Costa Rica--Uruguay--North Macedonia--Taiwan*--Azerbaijan--Kuwait--Jordan--Cyprus--Burkina Faso--Albania--San Marino--Vietnam--Afghanistan--Cameroon--Oman--Cuba--Cote d'Ivoire--Senegal--Honduras--Uzbekistan--Malta--Ghana--Belarus--Mauritius--Sri Lanka--Nigeria--Venezuela--Brunei--West Bank and Gaza--Bolivia--Kosovo--Georgia--Cambodia--Montenegro--Kyrgyzstan--Congo (Kinshasa)--Trinidad and Tobago--Rwanda--Liechtenstein--Paraguay--Kenya--Madagascar--Monaco--Bangladesh--Uganda--Guatemala--Jamaica--Zambia--Barbados--Niger--Togo--El Salvador--Djibouti--Mali--Ethiopia--Guinea--Congo (Brazzaville)--Tanzania--Maldives--Gabon--Haiti--Bahamas--Burma--Equatorial Guinea--Eritrea--Saint Lucia--Dominica--Guyana--Mongolia--Namibia--Libya--Seychelles--Suriname--Syria--Benin--Eswatini--Grenada--Laos--Guinea-Bissau--Mozambique--Saint Kitts and Nevis--Zimbabwe--Angola--Antigua and Barbuda--Chad--Sudan--Cabo Verde--Holy See--Mauritania--Fiji--Nepal--Nicaragua--Somalia--Bhutan--Botswana--Gambia--Belize--Central African Republic--Liberia--Burundi--MS Zaandam--Papua New Guinea--Saint Vincent and the Grenadines--Sierra Leone--Timor-Leste,
 -->
 
  
