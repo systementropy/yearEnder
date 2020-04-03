@@ -19378,8 +19378,8 @@
 				this.dlDashOffset = Math.floor(Math.random()*3)+1 
 				this.setLineDash = [10,10];
 				const randomDen = Math.floor(Math.random()*400)+20
-				this.dx = (this.pt2X-this.pt1X)/200
-				this.dy = (this.pt2Y-this.pt1Y)/200
+				this.dx = (this.pt2X-this.pt1X)/1000
+				this.dy = (this.pt2Y-this.pt1Y)/1000
 				this.x = this.pt1X;
 				this.y = this.pt1Y;
 				this.color = getColor();
@@ -19495,7 +19495,7 @@
 				requestAnimationFrame(animateLine)
 			}
 			function init(num){
-				if(num<20){
+				if(num<10){
 					let position2 = $('#Delhi').position();
 					let offset2 = arrayId['Delhi'][2];
 					const globalOffset = [-85,-170];
@@ -19508,15 +19508,15 @@
 							const x = globalOffset[0] + position.left + offset[0] + ((Math.random()*20)-10);
 							const y = globalOffset[1] + position.top + offset[1] + ((Math.random()*20)-10);
 							lineArray.push(new Line(
-								x,
-								y,
 								globalOffset[0]+position2.left+offset2[0], 
 								globalOffset[1]+position2.top+offset2[1],
+								x,
+								y,
 								arrayId[dataIndia[i][0]][1]
 							))	
 						}
 					}
-					setTimeout(()=>{init(num+1)},1000)	
+					setTimeout(()=>{init(num+1)},(Math.random()*1000)+100)	
 				}
 				animateLine()	
 			}
