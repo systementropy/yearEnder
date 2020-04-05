@@ -119,10 +119,12 @@
 			justify-content: space-between;
 		}
 		.bottom img{
-			height: 30px;
+			height: 44px;
 		}
 		.bottom{
+			margin-top: 20px;
 			height: 30px;
+			font-size: 24px;
 			line-height: 30px;
 		}
 		#labels{
@@ -198,7 +200,7 @@
 			font-style: normal;
 			top: -5px;
 			line-height: 30px;
-			font-size: 24px;
+			font-size: 28px;
 			color: #999;
 		}
 		.legendStat span.blue i{
@@ -284,7 +286,7 @@
 			top: 10px;
 			
 			position: absolute;
-			font-size: 14px;
+			font-size: 21px;
 		}
         .bottomDates>span.counter0.active{
             text-indent: 14px;
@@ -363,8 +365,8 @@
 		}
 		.footer span i{
 			position: relative;
-			top: -250px;
-			left: -100px;
+			top: -350px;
+			left: -150px;
 			transform: rotate(-90deg);
 			display: block;
 			font-style: normal;
@@ -400,7 +402,7 @@
 	<div class="mainBody">
 		<span class="texty">TEXTY</span>
 		<div class="title">
-			<h1>ONE MILLION AND COUNTING</h1>
+			<h1>coronavirus cases in india</h1>
 			<h3>How fast is coronavirus spreading</h3>
 		</div>
 		<div class="graphicsContainer">
@@ -454,7 +456,7 @@
 				</div>
 				<div class="legendStat">
 					<span></span>
-					<span class="yellow">Countries Affected<i data-deaths="0"></i></span>
+					<!-- <span class="yellow">Countries Affected<i data-deaths="0"></i></span> -->
 					<span class="red">Confirmed Cases<i data-deaths="0"></i></span>
 					<span class="green">Recovered<i data-deaths="0"></i></span>
 					<span class="blue">Deaths<i data-deaths="0"></i></span>
@@ -475,8 +477,8 @@
 		</div>
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: Johns Hopkins CSSE<i>Total cases worldwide</i></span>
-				<span><img src="./logo2.png" alt=""></span>
+				<span>Source: Johns Hopkins CSSE<i>Total cases in India</i></span>
+				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
 		
@@ -502,13 +504,13 @@
 			let circleArray = [];
 			const dailyData = {
 				'country':[6,8,9,11,14,16,16,18,20,24,25,25,25,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,28,28,30,30,30,35,39,46,50,56,60,65,72,76,80,84,93,98,102,105,108,114,116,122,135,139,144,147,150,154,161,163,168,169,171,173,174,175,175,175,176,178,178,179],
-				'deaths':[17,18,26,42,56,82,131,133,171,213,259,362,426,492,564,634,719,806,906,1013,1113,1118,1371,1523,1666,1770,1868,2007,2122,2247,2251,2458,2469,2629,2708,2770,2814,2872,2941,2996,3085,3160,3254,3348,3460,3558,3802,3988,4262,4615,4720,5404,5819,6440,7126,7905,8733,9867,11299,12973,14651,16505,18625,21181,23970,27198,30652,33925,37582,42107,46809,52983],
-				'recovered':[28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840,83312,84975,87420,91692,97899,98351,108000,113787,122150,130915,139415,149082,164566,178034,193177,210263],
-				'dates':[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2]],
-				'confirmed':[555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242500,272035,304396,336953,378235,418045,467653,529591,593291,660706,720117,782365,857487,932605,1013157],
+				'deaths':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,3,3,4,5,4,7,10,10,12,20,20,24,27,32,35,58,72,72,86,99],
+				'recovered':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,13,13,14,14,15,20,23,27,27,40,43,45,73,84,95,102,123,148,191,192,229,229],
+				'dates':[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5]],
+				'confirmed':[0,0,0,0,0,0,0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,5,5,28,30,31,34,39,43,56,62,73,82,102,113,119,142,156,194,244,330,396,499,536,657,727,887,987,1024,1251,1397,1998,2543,2567,3082,3588],
 			};
 			const widthStep = canWid/dailyData['dates'].length;
-			const heightFactor = 1100000;
+			const heightFactor = 4000;
 			const countriesFactor = 250;
 			const heightStep = canHgt/heightFactor;
 			let counterPrev  = 1;
@@ -541,44 +543,44 @@
 // red
 // green
 // blue
-					$('.yellow').children('i').attr("data-deaths",dailyData['country'][counter])
+					// $('.yellow').children('i').attr("data-deaths",dailyData['country'][counter])
 					if(dailyData['confirmed'][counter]>1000){
-						confNum = Math.floor(dailyData['confirmed'][counter]/1000).toFixed(1)+'K'
+						confNum = parseFloat(dailyData['confirmed'][counter]/1000).toFixed(1)+'K'
 					}else{
 						confNum = dailyData['confirmed'][counter]
 					}
 					$('.red').children('i').attr("data-deaths",confNum)
 					if(dailyData['recovered'][counter]>1000){
-						recvNum = Math.floor(dailyData['recovered'][counter]/1000).toFixed(1)+'K'
+						recvNum = parseFloat(dailyData['recovered'][counter]/1000).toFixed(1)+'K'
 					}else{
 						recvNum = dailyData['recovered'][counter]
 					}
 					$('.green').children('i').attr("data-deaths",recvNum)
 					if(dailyData['deaths'][counter]>1000){
-						dethNum = Math.floor(dailyData['deaths'][counter]/1000).toFixed(1)+'K'
+						dethNum = parseFloat(dailyData['deaths'][counter]/1000).toFixed(1)+'K'
 					}else{
 						dethNum = dailyData['deaths'][counter]
 					}
 					$('.blue').children('i').attr("data-deaths",dethNum)
 					
 
-					ctx.beginPath();
-					ctx.fillStyle = '#96a80377';
-					ctx.rect(
-						(widthStep*counter)+1,
-						-5+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))),
-						widthStep-2,
-						(canHgt*(dailyData['country'][counter]/countriesFactor))
-                    );
-                    ctx.fill();
-					ctx.closePath();
-					if(counter%2 === 0){
-                        ctx.beginPath();
-                        ctx.fillStyle = '#444';
-                        ctx.fillText(dailyData['country'][counter],(widthStep*counter)+1,-20+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))))
-                        ctx.fill();
-                        ctx.closePath();    
-                    }
+					// ctx.beginPath();
+					// ctx.fillStyle = '#96a80377';
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	-5+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(dailyData['country'][counter]/countriesFactor))
+                    // );
+                    // ctx.fill();
+					// ctx.closePath();
+					// if(counter%2 === 0){
+                    //     ctx.beginPath();
+                    //     ctx.fillStyle = '#444';
+                    //     ctx.fillText(dailyData['country'][counter],(widthStep*counter)+1,-20+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))))
+                    //     ctx.fill();
+                    //     ctx.closePath();    
+                    // }
 					
 					
 					if(counter>0){
@@ -629,7 +631,7 @@
 				}
 			}
 			setTimeout(function () {
-				const arr = [0, 100000, 200000, 300000, 400000, 500000,600000,700000,800000,900000,1000000,1100000]
+				const arr = [0, 1000, 2000, 3000, 4000, 5000,6000,7000,8000,900000,1000000,1100000]
 				for (let i = 0; i < arr.length; i++) {
 					ctx.beginPath();
 					ctx.setLineDash([2,5])
@@ -648,7 +650,8 @@
 
 					ctx.beginPath();
 					ctx.font = '500 14px monty'
-					ctx.fillText((arr[i]/100000)+'00K', canWid - 50, -5+(canHgt*(1-(arr[i]/heightFactor))));
+					// ctx.fillText((arr[i]/100000)+'00K', canWid - 50, -5+(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.fillText((arr[i]), canWid - 50, -5+(canHgt*(1-(arr[i]/heightFactor))));
 					ctx.fill();
 					ctx.closePath();
 					ctx.setLineDash([])

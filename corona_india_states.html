@@ -185,7 +185,7 @@
 			padding: 25px 0;
 			box-sizing: border-box;
 			font-weight: 500;
-			width: 400px;
+			width: 500px;
 			text-align: center;
 			opacity: 0;
 			transition: all 250ms ease-in;
@@ -217,7 +217,7 @@
 			transform-style: preserve-3d;
 		}
 		.internal p{
-			font-size: 18px;
+			font-size: 25px;
 			line-height: 1;
 			margin: 0;
 			font-weight: 400;
@@ -298,7 +298,7 @@
 			position: absolute;
 			width: 112%;
 			top: -164px;
-			left: -71px;
+			left: -100px;
 			height: 1000px;
 		}
 		
@@ -312,7 +312,7 @@
 			opacity: 1;
 		}
 		.footer span i {
-			font-size: 20px;
+			font-size: 25px;
 			font-weight: 500;
 			font-style: italic;
 			text-transform: none;
@@ -336,6 +336,7 @@
 			right: 0;
 		}
 		.bottom{
+			font-size: 25px;
 			line-height: 22px;
 			height: 100%;
 		}
@@ -355,8 +356,8 @@
 			position: absolute;
 			right: 0;
 			top: 200px;
-			width: 70px;
-			font-size: 14px;
+			width: 100px;
+			font-size: 21px;
 			font-weight: 400;
 			letter-spacing: -1px;
 			display: flex;
@@ -19265,8 +19266,8 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>As on April 4th, 09:00 AM</i></span>
-				<span><img src="./logo2.png" alt=""></span>
+				<span>Source: MoHFW<i>As on April 5th, 09:00 AM</i></span>
+				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
 		<!-- <p>lorem500</p> -->
@@ -19319,32 +19320,32 @@
 				["Andaman and Nicobar Islands",10,0,0],
 				["Arunachal Pradesh",1,0,0],
 				["Assam",24,0,0],
-				["Bihar",29,0,1],
+				["Bihar",30,0,1],
 				["Chandigarh",18,0,0],
 				["Chhattisgarh",9,3,0],
-				["Delhi",386,8,6],
-				["Goa",6,0,0],
-				["Gujarat",95,10,9],
+				["Delhi",445,15,6],
+				["Goa",7,0,0],
+				["Gujarat",105,14,10],
 				["Haryana",49,24,0],
 				["Himachal Pradesh",6,1,1],
-				["Jammu and Kashmir",75,3,2],
+				["Jammu and Kashmir",92,4,2],
 				["Jharkhand",2,0,0],
-				["Karnataka",128,12,3],
-				["Kerala",295,41,2],
-				["Ladakh",14,3,0],
+				["Karnataka",144,12,4],
+				["Kerala",306,49,2],
+				["Ladakh",14,10,0],
 				["Madhya Pradesh",104,0,6],
-				["Maharashtra",423,42,19],
+				["Maharashtra",490,42,24],
 				["Manipur",2,0,0],
 				["Mizoram",1,0,0],
-				["Odisha",5,0,0],
+				["Odisha",20,0,0],
 				["Puducherry",5,1,0],
-				["Punjab",53,1,5],
-				["Rajasthan",179,3,0],
-				["Tamil Nadu",411,6,1],
-				["Telengana",158,1,7],
-				["Uttarakhand",16,2,0],
-				["Uttar Pradesh",174,19,2],
-				["West Bengal",63,3,3],
+				["Punjab",57,1,5],
+				["Rajasthan",200,21,0],
+				["Tamil Nadu",485,6,3],
+				["Telengana",269,32,7],
+				["Uttarakhand",22,2,0],
+				["Uttar Pradesh",227,19,2],
+				["West Bengal",69,10,3],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
@@ -19392,7 +19393,7 @@
 				return (a[1]+a[2])-(b[1]+b[2])
 			})
 			var alpha; var index;
-			const msecForEach = 40
+			const msecForEach = 25
 			function updateColor(label){
 				if(label == "init"){
 					animate();
