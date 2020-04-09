@@ -1,4 +1,5 @@
 {
    "server": { "baseDir": "./" },
-   "open": false
+   "open": false,
+   "port": 8000
 }
