@@ -45,7 +45,11 @@ $(document).ready(function(){
             this.update();
         }
         this.update = function(){
-
+            if(this.x+this.r+2>canWid || this.y+this.r+2>canHgt || this.x<2 || this.y<2){
+                this.x = canWid/2 + (Math.random()*100-50)
+                this.y = canHgt/2 + (Math.random()*100-50)
+                this.changeStatus()
+            }
             if(this.lineWidth<2 || this.lineWidth>5){
                 this.dr = -this.dr
             }
@@ -97,7 +101,7 @@ $(document).ready(function(){
         }
         console.log(circleArray);
         moveCircles()
-        // makeGraph(0);
+        makeGraph(0);
     }, 2000)
     function moveCircles(){
         ctx.clearRect(0,0,canWid,canHgt);
