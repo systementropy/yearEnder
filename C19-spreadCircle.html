@@ -56,7 +56,7 @@
 			padding: 0;
 			font-family: monty;
 			font-weight: 400;
-			color: #F5F5F6;
+			color: #333;
 		}
 		p{
 			margin: 0;
@@ -86,7 +86,7 @@
 			margin: 0 auto;
 			padding: 25px;
 			box-sizing: border-box;
-			background: #383838;
+			/* background: #383838; */
 			/* background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
 			background-repeat: no-repeat;
 			background-position: bottom;
@@ -144,7 +144,7 @@
 			top: 90px;
 			width: 225px;
 			text-align: left;
-			opacity: 0;
+			/* opacity: 0; */
 		}
 		.legendStat span {
 			display: block;
@@ -155,14 +155,15 @@
 			position: relative;
 		}
 		.legendStat span::before{
-			content: '';
+			content: ':';
 			position: absolute;
-			top: 12px;
+			top: 0px;
+			background: transparent !important;
 			right: -25px;
 			width: 16px;
 			height: 16px;
 			border-radius: 50%;
-			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+			/* box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3); */
 		}
 		.legendStat span:nth-child(1){
 			color: #555;
@@ -417,8 +418,8 @@
 	<div class="mainBody">
 		<span class="texty">TEXTY</span>
 		<div class="title">
-			<h1>COVID-19 PANDEMIC</h1>
-			<h3>Death Toll in India</h3>
+			<h1>COVID-19 CASES IN INDIA</h1>
+			<h3>How they are rising every 15 days</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -478,8 +479,8 @@
 					<span></span>
 					<!-- <span class="yellow">Countries Affected<i data-deaths="0"></i></span> -->
 					<span class="red">Confirmed Cases<i data-deaths="0"></i></span>
-					<!-- <span class="green">Recovered<i data-deaths="0"></i></span>
-					<span class="blue">Deaths<i data-deaths="0"></i></span> -->
+					<span class="green">Increase<i data-deaths="0"></i></span>
+					<!-- <span class="blue">Deaths<i data-deaths="0"></i></span> -->
 					
 					<!-- <span class="green">Iran<i data-deaths="0"></i></span>
 					<span class="orange">S. Korea<i data-deaths="0"></i></span>

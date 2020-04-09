@@ -19,14 +19,15 @@ $(document).ready(function(){
     };
     console.log(dailyData);
     let circleArray = []
-    let secs = 100;
+    let secs = 500;
     const countNum = [41,59,62,67];
     const countText = ['','','25+','50+','100+'];
     let globalCounter = 0;
     colorArray =['rgba(0, 51, 68, 0.5)','rgba(221, 34, 34, 0.5)','rgba(255, 119, 0, 0.5)','rgba(255, 187, 68, 0.5)','rgba(34, 187, 255, 0.5)','rgba(102, 17, 153, 0.5)','rgba(0, 136, 136, 0.5)','rgba(220,220,220,0.5)','rgba(221, 34, 34, 1)'];
     function getColor(){
 		return colorArray[Math.floor(Math.random() * (colorArray.length))];
-	}
+    }
+    let canUpdate = true
     function Circle (x,y,r,color){
         this.x = x;
         this.y = y;
@@ -42,13 +43,16 @@ $(document).ready(function(){
             this.dr = 0.1*rand;
             // this.rStroke = 5;
             this.lineWidth = 2+rand;
+            this.status = 'activated';
             this.update();
         }
-        this.update = function(){
-            if(this.x+this.r+2>canWid || this.y+this.r+2>canHgt || this.x<2 || this.y<2){
+        this.update = function(status){
+            if(this.status == 'activated' && (this.x+this.r+2>canWid || this.y+this.r+2>canHgt || this.x<2 || this.y<2)){
+                canUpdate = false;
                 this.x = canWid/2 + (Math.random()*100-50)
                 this.y = canHgt/2 + (Math.random()*100-50)
                 this.changeStatus()
+                
             }
             if(this.lineWidth<2 || this.lineWidth>5){
                 this.dr = -this.dr
@@ -79,7 +83,9 @@ $(document).ready(function(){
     }
     function makeGraph(counter){
         console.log(counter,Math.pow(counter,2) ,circleArray.length)
-        if(counter<50){
+        $('.legendContainer').addClass('active')
+        $('.stateName').addClass('active')
+        if(counter<10){
            for (let index = 0; index < Math.min(Math.pow(counter,2),circleArray.length); index++) {
                circleArray[index].changeStatus()
            }
@@ -107,7 +113,7 @@ $(document).ready(function(){
         ctx.clearRect(0,0,canWid,canHgt);
         for (let index = 0; index < circleArray.length; index++) {
             // if(index <= globalCounter){
-                circleArray[index].update(1);
+                circleArray[index].update();
             // }else{
             //     circleArray[index].update();
             // }
