@@ -103,7 +103,7 @@
 			height: auto;
 			position: relative;
 			z-index: 1;
-			box-shadow: 1px 1px 2px 1px rgba(220,220,220,0.5);
+			box-shadow: 0px 0px 2px 0px rgba(50,50,50,0.5);
 		}
 		#year{
 			font-size: 34px;
@@ -139,7 +139,7 @@
 			/* background: #383838; */
 		}
 		.legendStat{
-			position: absolute;
+			position: static;
 			left: 0%;
 			top: 90px;
 			width: 225px;
@@ -202,7 +202,7 @@
 			top: -1px;
 			line-height: 30px;
 			font-size: 35px;
-			color: #999;
+			color: #333;
 		}
 		.legendStat span.blue i{
 			background: #5bc0de;
@@ -210,10 +210,10 @@
 		.legendContainer {
 			position: absolute;
 			top: 0;
-			left: 10px;
+			left: 0px;
 			font-size: 40px;
 			line-height: 1;
-			padding: 10px 0;
+			padding: 10px 10px;
 			box-sizing: border-box;
 			font-weight: 500;
 			width: 400px;
@@ -221,7 +221,7 @@
 			opacity: 0;
 			transition : all 250ms ease-in;
 			z-index: 1;
-			background: #ffffff77;
+			background: rgba(255, 255, 255, 0.7);
 		}
 		.legendContainer.active{
 			opacity: 1;
@@ -229,7 +229,7 @@
 		.stateName{
 			font-weight: 300;
 			padding: 0px 0;
-			height: 200px;
+			height: auto;
 			text-align: left;
 			opacity: 0;
 			color: #333;
@@ -419,7 +419,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 CASES IN INDIA</h1>
-			<h3>How they are rising every 15 days</h3>
+			<h3>How they are rising every 7 days</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -498,7 +498,9 @@
 		</div> -->
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: Johns Hopkins CSSE<i>Deaths in India</i></span>
+				<span>Source: Johns Hopkins CSSE
+					<!-- <i>Deaths in India</i> -->
+				</span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
