@@ -576,69 +576,69 @@
 					}
 					ctx.beginPath();
 					const hgtRect = dailyData['confirmed'][counter]
-					if(alertIndex.indexOf(counter)>=0){
+					// if(alertIndex.indexOf(counter)>=0){
 						
-						const eltIndex = alertIndex.indexOf(counter)
-						$('.change'+eltIndex).css({
-							left : +((widthStep*counter)+2)+'px',
-							top : 100+(canHgt*(1-(hgtRect/heightFactor)))+'px',
-							opacity : 1
-						})
+					// 	const eltIndex = alertIndex.indexOf(counter)
+					// 	$('.change'+eltIndex).css({
+					// 		left : +((widthStep*counter)+2)+'px',
+					// 		top : 100+(canHgt*(1-(hgtRect/heightFactor)))+'px',
+					// 		opacity : 1
+					// 	})
 						
-						if(counter-counterPrev>1){
-							$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
-						}else{
-							$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Day');
-						}
-						$('.change'+eltIndex).children('.dateImp').html(infoArr[eltIndex]);
-						if(eltIndex == 0){
-							$('.change'+eltIndex).html('<p class="daysImp">1st cluster</p><p>(approx 45 cases)</p>');
-						}else{
-							secs += 50
-						}
-						counterPrev = counter;
-						ctx.fillStyle = '#E6000099';
-					}else{
-						ctx.fillStyle = '#AFB6D0';
-					}
-					ctx.rect(
-						(widthStep*counter)+1,
-						(canHgt*(1-(hgtRect/heightFactor))),
-						widthStep-2,
-						(canHgt*(hgtRect/heightFactor))
-					);
-					ctx.fill();
-					ctx.closePath();
+					// 	if(counter-counterPrev>1){
+					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
+					// 	}else{
+					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Day');
+					// 	}
+					// 	$('.change'+eltIndex).children('.dateImp').html(infoArr[eltIndex]);
+					// 	if(eltIndex == 0){
+					// 		$('.change'+eltIndex).html('<p class="daysImp">1st cluster</p><p>(approx 45 cases)</p>');
+					// 	}else{
+					// 		secs += 50
+					// 	}
+					// 	counterPrev = counter;
+					// 	ctx.fillStyle = '#E6000099';
+					// }else{
+					// 	ctx.fillStyle = '#AFB6D0';
+					// }
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(hgtRect/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(hgtRect/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
 					
-					ctx.beginPath();
-					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
-						ctx.fillStyle = '#2cb62cDD';
-					}else{
-						ctx.fillStyle = '#2cb62cFF';
-					}
-					ctx.rect(
-						(widthStep*counter)+1,
-						(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),
-						widthStep-2,
-						(canHgt*(dailyData['recovered'][counter]/heightFactor))
-					);
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+					// 	ctx.fillStyle = '#2cb62cDD';
+					// }else{
+					// 	ctx.fillStyle = '#2cb62cFF';
+					// }
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(dailyData['recovered'][counter]/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
 
-					ctx.beginPath();
-					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
-						ctx.fillStyle = '#ca9828DD';
-					}else{
-						ctx.fillStyle = '#ca9828FF';
-					}
-					ctx.rect(
-						(widthStep*counter)+1,
-						(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))),
-						widthStep-2,
-						(canHgt*(dailyData['deaths'][counter]/heightFactor))
-					);
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+					// 	ctx.fillStyle = '#ca9828DD';
+					// }else{
+					// 	ctx.fillStyle = '#ca9828FF';
+					// }
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(dailyData['deaths'][counter]/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
 					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E6000055';
