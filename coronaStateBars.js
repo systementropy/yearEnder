@@ -908,6 +908,8 @@ $(document).ready(function(){
 				$('.month').text('Feb')
 			}else if(legends[tick][0] == 3){
 				$('.month').text('Mar')
+			}else if(legends[tick][0] == 4){
+				$('.month').text('Apr')
 			}
 			$('.stateName').addClass('active')
 			$('.legendContainer').addClass('active');
