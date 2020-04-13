@@ -74,6 +74,7 @@
             font-weight: 300;
             line-height: 1;
             margin: 0;
+            text-transform: uppercase
         }
         .mainBody{
             border: 1px solid #999;
@@ -82,6 +83,7 @@
             margin: 0 auto;
             padding: 40px;
             box-sizing: border-box;
+            overflow: hidden;
 			/* background: #999;
             background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
 			background-repeat: no-repeat;
@@ -100,16 +102,16 @@
             position: relative;
 			overflow: hidden;
 			z-index: 1;
-			margin: 25px 0;
+			margin: 15px 0;
             box-shadow: 0px 0px 2px 1px rgba(255,255,255,0.5);
         }
 		.graphicsContainer.active::after{
-            opacity: 0;
+            /* opacity: 0; */
 			content: '';
 			position: absolute;
 			width: 20px;
-			height: 29px;
-			top: 1px;
+			height: 35px;
+			top: 5px;
 			left: 80%;
 			background: #FFF;
 			clip-path: polygon(0% 0%, 33% 33%, 0% 50%, 33% 67%, 0% 100%, 67% 100%, 100% 67%, 67% 50%, 100% 33%, 67% 0%);
@@ -134,7 +136,7 @@
         .bottom{
             line-height: 30px;
             font-size: 24px;
-            margin-top: 54px;
+            margin-top: 40px;
         }
         #labels{
             position: absolute;
@@ -333,7 +335,7 @@
 			width: 50px;
 			justify-content: space-around;
 			background: linear-gradient(to bottom, 
-				rgba(255, 255, 255, 1) 0% 10%,
+				#999 0% 10%,
 				#EE999F 10% 20%,
 				#F0DDB8 20% 30%,
 				#F0C38F 30% 40%,
@@ -358,6 +360,25 @@
 			top: -34px;
 			left: -342px;
 		}
+        .legendBg span:nth-child(1){
+            font-weight: 600
+        }
+        #canvas2{
+            position: fixed;
+            left: 0;
+            top:  150px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            z-index: 1
+        }
+        #canvas3{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            box-shadow: inset 5px 5px 10px 10px rgba(0, 0, 0, 1.0)
+        }
 	</style>
 </head>
 <body class="bars">
@@ -365,11 +386,13 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>CoronaVirus Cases</h1>
+            <h3>Countries by Death toll</h3>
 		</div>
+        <canvas id="canvas2"></canvas>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
 				<div class="legendBg">
-					<span></span>
+					<span>Deaths</span>
 					<span>Asia & Pacific</span>
 					<span>Americas</span>
 					<span>CIS</span>
@@ -393,7 +416,8 @@
 					<span class="green">Recovered<i data-deaths="0"></i></span>
 				</div>
 			</div>
-			<canvas id="canvas"></canvas>
+            <canvas id="canvas"></canvas>
+			<!-- <canvas id="canvas3"></canvas> -->
 		</div>
 		<div class="footer">
 			<div class="bottom">
