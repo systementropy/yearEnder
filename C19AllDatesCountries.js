@@ -192,7 +192,13 @@ $(document).ready(function(){
 			ctx.fill();
 			ctx.closePath()
 		}
-		
+		for (const country in dataTotal) {
+			if (dataTotal.hasOwnProperty(country)) {
+				const element = dataTotal[country];
+				barArray.push(new Bar(0, count, element[0] , element, colorArray[areaMap[country]] , count, country));	
+			}
+			// count++;
+		}
 		ctx.setLineDash([])
 		setTimeout(()=>{
 			animateCircles(0);
