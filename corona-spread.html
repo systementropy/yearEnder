@@ -284,6 +284,7 @@
 			top: 10px;
 			position: absolute;
 			font-size: 26px;
+			text-indent: -14px;
 		}
 		.bottomDates>span.counter0.active{
 			text-indent: 14px;
@@ -291,11 +292,11 @@
 		/* .bottomDates>span.counter0.active::after{
 			
 		} */
-		.bottomDates>span.counter70.active{
+		.bottomDates>span.counter105.active{
 			transform: translateX(-25px);
-			text-indent: 8px;
+			text-indent: -25px;
 		}
-		.bottomDates>span.counter70.active::after{
+		.bottomDates>span.counter105.active::after{
 			left: 30px;
 		}
 		.bottomDates > span.active::after{
@@ -530,17 +531,17 @@
 			let slideIndex;
 			let counter = 0;
 			let circleArray = [];
-			const infoArr = ["1st cluster (approx 45 cases)",'1 Lakh','10 Lakh','15 Lakh']
-			const alertIndex = [0,66,93,99]
+			const infoArr = ["1st cluster (approx 45 cases)",'1 Lakh','10 Lakh','20 Lakh']
+			const alertIndex = [0,66,93,106]
 			const dailyData = {
 				// 'country':[6,8,9,11,14,16,16,18,20,24,25,25,25,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,28,28,30,30,30,35,39,46,50,56,60,65,72,76,80,84,93,98,102,105,108,114,116,122,135,139,144,147,150,154,161,163,168,169,171,173,174,175,175,175,176,178,178,179],
-				'deaths':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,17,18,26,42,56,82,131,133,171,213,259,362,426,492,564,634,719,806,906,1013,1113,1118,1371,1523,1666,1770,1868,2007,2122,2247,2251,2458,2469,2629,2708,2770,2814,2872,2941,2996,3085,3160,3254,3348,3460,3558,3802,3988,4262,4615,4720,5404,5819,6440,7126,7905,8733,9867,11299,12973,14651,16505,18625,21181,23970,27198,30652,33925,37582,42107,46809,52983,58787,64606,69374,74565,81865,88338],
-				'recovered':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840,83312,84975,87420,91692,97899,98351,108000,113787,122150,130915,139415,149082,164566,178034,193177,210263,225796,246152,260012,276515,300054,328661],
-				'dates':[[12,31],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,10],[1,11],[1,12],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[1,19],[1,20],[1,21],[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8]],
-				'confirmed':[45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242570,272208,304507,336953,378235,418045,467653,529591,593291,660706,720140,782395,857487,932605,1013320,1095917,1197405,1272115,1345101,1426096,1511104],
+				'deaths':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,17,18,26,42,56,82,131,133,171,213,259,362,426,492,564,634,719,806,906,1013,1113,1118,1371,1523,1666,1770,1868,2007,2122,2247,2251,2458,2469,2629,2708,2770,2814,2872,2941,2996,3085,3160,3254,3348,3460,3558,3802,3988,4262,4615,4720,5404,5819,6440,7126,7905,8733,9867,11299,12973,14651,16505,18625,21181,23970,27198,30652,33925,37582,42107,46809,52983,58787,64606,69374,74565,81865,88338,95455,102525,108503,114091,119482,125984,134177],
+				'recovered':[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,28,30,36,39,52,61,107,126,143,222,284,472,623,852,1124,1487,2011,2616,3244,3946,4683,5150,6295,8058,9395,10865,12583,14352,16121,18177,18890,22886,23394,25227,27905,30384,33277,36711,39782,42716,45602,48228,51170,53796,55865,58358,60694,62494,64404,67003,68324,70251,72624,76034,78088,80840,83312,84975,87420,91692,97899,98351,108000,113787,122150,130915,139415,149082,164566,178034,193177,210263,225796,246152,260012,276515,300054,328661,353975,376096,402110,421722,448655,474261,511019],
+				'dates':[[12,31],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,10],[1,11],[1,12],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[1,19],[1,20],[1,21],[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],[4,11],[4,12],[4,13],[4,14],[4,15]],
+				'confirmed':[45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,555,654,941,1434,2118,2927,5578,6166,8234,9927,12038,16787,19881,23892,27635,30794,34391,37120,40150,42762,44802,45221,60368,66885,69030,71224,73258,75136,75639,76197,76819,78572,78958,79561,80406,81388,82746,84112,86011,88369,90306,92840,95120,97886,101801,105847,109821,113590,118620,125875,128352,145205,156101,167454,181574,197102,214821,242570,272208,304507,336953,378235,418045,467653,529591,593291,660693,720140,782389,857487,932605,1013466,1095917,1197408,1272115,1345101,1426096,1511104,1595350,1691719,1771514,1846679,1917319,1976191,2056054],
 			};
 			const widthStep = canWid/dailyData['dates'].length;
-			const heightFactor = 1500000;
+			const heightFactor = 2100000;
 			const countriesFactor = 300;
 			const heightStep = canHgt/heightFactor;
 			let counterPrev  = 1;
@@ -576,69 +577,69 @@
 					}
 					ctx.beginPath();
 					const hgtRect = dailyData['confirmed'][counter]
-					// if(alertIndex.indexOf(counter)>=0){
+					if(alertIndex.indexOf(counter)>=0){
 						
-					// 	const eltIndex = alertIndex.indexOf(counter)
-					// 	$('.change'+eltIndex).css({
-					// 		left : +((widthStep*counter)+2)+'px',
-					// 		top : 100+(canHgt*(1-(hgtRect/heightFactor)))+'px',
-					// 		opacity : 1
-					// 	})
+						const eltIndex = alertIndex.indexOf(counter)
+						$('.change'+eltIndex).css({
+							left : +((widthStep*counter)+2)+'px',
+							top : 100+(canHgt*(1-(hgtRect/heightFactor)))+'px',
+							opacity : 1
+						})
 						
-					// 	if(counter-counterPrev>1){
-					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
-					// 	}else{
-					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Day');
-					// 	}
-					// 	$('.change'+eltIndex).children('.dateImp').html(infoArr[eltIndex]);
-					// 	if(eltIndex == 0){
-					// 		$('.change'+eltIndex).html('<p class="daysImp">1st cluster</p><p>(approx 45 cases)</p>');
-					// 	}else{
-					// 		secs += 50
-					// 	}
-					// 	counterPrev = counter;
-					// 	ctx.fillStyle = '#E6000099';
-					// }else{
-					// 	ctx.fillStyle = '#AFB6D0';
-					// }
-					// ctx.rect(
-					// 	(widthStep*counter)+1,
-					// 	(canHgt*(1-(hgtRect/heightFactor))),
-					// 	widthStep-2,
-					// 	(canHgt*(hgtRect/heightFactor))
-					// );
-					// ctx.fill();
-					// ctx.closePath();
+						if(counter-counterPrev>1){
+							$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
+						}else{
+							$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Day');
+						}
+						$('.change'+eltIndex).children('.dateImp').html(infoArr[eltIndex]);
+						if(eltIndex == 0){
+							$('.change'+eltIndex).html('<p class="daysImp">1st cluster</p><p>(approx 45 cases)</p>');
+						}else{
+							secs += 50
+						}
+						counterPrev = counter;
+						ctx.fillStyle = '#E6000099';
+					}else{
+						ctx.fillStyle = '#AFB6D0';
+					}
+					ctx.rect(
+						(widthStep*counter)+1,
+						(canHgt*(1-(hgtRect/heightFactor))),
+						widthStep-2,
+						(canHgt*(hgtRect/heightFactor))
+					);
+					ctx.fill();
+					ctx.closePath();
 					
-					// ctx.beginPath();
-					// if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
-					// 	ctx.fillStyle = '#2cb62cDD';
-					// }else{
-					// 	ctx.fillStyle = '#2cb62cFF';
-					// }
-					// ctx.rect(
-					// 	(widthStep*counter)+1,
-					// 	(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),
-					// 	widthStep-2,
-					// 	(canHgt*(dailyData['recovered'][counter]/heightFactor))
-					// );
-					// ctx.fill();
-					// ctx.closePath();
+					ctx.beginPath();
+					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+						ctx.fillStyle = '#2cb62cDD';
+					}else{
+						ctx.fillStyle = '#2cb62cFF';
+					}
+					ctx.rect(
+						(widthStep*counter)+1,
+						(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))),
+						widthStep-2,
+						(canHgt*(dailyData['recovered'][counter]/heightFactor))
+					);
+					ctx.fill();
+					ctx.closePath();
 
-					// ctx.beginPath();
-					// if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
-					// 	ctx.fillStyle = '#ca9828DD';
-					// }else{
-					// 	ctx.fillStyle = '#ca9828FF';
-					// }
-					// ctx.rect(
-					// 	(widthStep*counter)+1,
-					// 	(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))),
-					// 	widthStep-2,
-					// 	(canHgt*(dailyData['deaths'][counter]/heightFactor))
-					// );
-					// ctx.fill();
-					// ctx.closePath();
+					ctx.beginPath();
+					if(counter!==0 && Math.ceil(dailyData['confirmed'][counter-1]/100000) !== Math.ceil(dailyData['confirmed'][counter]/100000)){
+						ctx.fillStyle = '#ca9828DD';
+					}else{
+						ctx.fillStyle = '#ca9828FF';
+					}
+					ctx.rect(
+						(widthStep*counter)+1,
+						(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))),
+						widthStep-2,
+						(canHgt*(dailyData['deaths'][counter]/heightFactor))
+					);
+					ctx.fill();
+					ctx.closePath();
 					if(counter>0){
 						ctx.beginPath();
 						ctx.strokeStyle = '#E6000055';
@@ -671,27 +672,29 @@
 			}
 			setTimeout(function () {
 				console.log(dailyData)
-				const arr = [0, 100000, 200000, 300000, 400000, 500000 ,600000, 700000, 800000, 900000, 1000000, 1100000, 1200000, 1300000, 1400000, 1500000]
-				for (let i = 0; i < arr.length; i++) {
+				// const arr = [0, 1, 2, 3, 4, 5,6, 7, 8, 9, 10, 11, 12, 13, 14, 15,]
+				for (let counter = 0; counter < 21; counter++) {
 					ctx.beginPath();
 					ctx.setLineDash([2,5])
 					ctx.lineWidth =0.3;
 					let color = '#DDD';
 					let arrNum = '#DDD';
-					arr[i] === 1000000?color="#D55":color;
-					arr[i] === 100000?color="#D55":color;
-					arr[i] === 1500000?color="#D55":color;
+					counter === 1?color="#D55":color;
+					counter === 5?color="#D55":color;
+					counter === 10?color="#D55":color;
+					counter === 15?color="#D55":color;
+					counter === 20?color="#D55":color;
 					ctx.strokeStyle = color;
 					ctx.fillStyle = color;
 					ctx.font = '500 24px monty';
 					
-					ctx.moveTo(0,(canHgt*(1-(arr[i]/heightFactor))));
-					ctx.lineTo(canWid,(canHgt*(1-(arr[i]/heightFactor))));
+					ctx.moveTo(0,(canHgt*(1-(counter*100000/heightFactor))));
+					ctx.lineTo(canWid,(canHgt*(1-(counter*100000/heightFactor))));
 					ctx.stroke();
 					ctx.closePath();
 					ctx.beginPath();
 					ctx.fillStyle = color+'7';
-					ctx.fillText((arr[i]/100000)+'L', 40, (canHgt*(1-(arr[i]/heightFactor))));
+					ctx.fillText((counter)+'L', 40, (canHgt*(1-(counter*100000/heightFactor))));
 					ctx.fill();
 					ctx.closePath();
 					ctx.setLineDash([])

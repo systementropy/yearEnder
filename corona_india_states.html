@@ -325,6 +325,13 @@
 		.footer span i::after{
 			content: ")";
 		}
+		.footer span b{
+			position: absolute;
+		    left: 0;
+		    top: 23px;
+		    font-weight: 200;
+		    font-style: italic;
+		}
 		.footer{
 			position: relative;
 			top: 0%;
@@ -19266,7 +19273,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>As on April 13th, 05:00 PM</i></span>
+				<span>Source: MoHFW<i>As on April 16th, 05:00 PM</i><b>*Nagaland Patient shifted to Assam</b></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19314,43 +19321,44 @@
 				"Jharkhand":["Jharkhand","Jharkhand"],
 				"Assam":["Assam","Assam"],
 				"Tripura":["Tripura","Tripura"],
-				"Nagaland":["Nagaland","Nagaland"]
+				"Nagaland":["Nagaland","Nagaland"],
+				"Meghalaya":["Meghalaya","Meghalaya"]
 			};
 			
 			var dataIndia = [
-				["Andhra Pradesh",432,11,7],
 				["Andaman and Nicobar Islands",11,10,0],
+				["Andhra Pradesh",534,20,14],
 				["Arunachal Pradesh",1,0,0],
-				["Assam",31,0,1],
-				["Bihar",64,26,1],
+				["Assam",33,5,1],
+				["Bihar",74,29,1],
 				["Chandigarh",21,7,0],
-				["Chhattisgarh",31,10,0],
-				["Delhi",1154,27,24],
+				["Chhattisgarh",33,17,0],
+				["Delhi",1578,42,32],
 				["Goa",7,5,0],
-				["Gujarat",539,47,26],
-				["Haryana",185,29,3],
-				["Himachal Pradesh",32,13,1],
-				["Jammu and Kashmir",245,6,4],
-				["Jharkhand",19,0,2],
-				["Karnataka",247,59,6],
-				["Kerala",376,179,3],
-				["Ladakh",15,10,0],
-				["Madhya Pradesh",604,44,43],
-				["Maharashtra",1985,217,149],
+				["Gujarat",871,64,36],
+				["Haryana",205,43,3],
+				["Himachal Pradesh",35,16,1],
+				["Jammu and Kashmir",300,36,4],
+				["Jharkhand",28,0,2],
+				["Karnataka",315,82,13],
+				["Kerala",388,218,3],
+				["Ladakh",17,10,0],
+				["Madhya Pradesh",1120,64,53],
+				["Maharashtra",2919,295,187],
 				["Manipur",2,1,0],
+				["Meghalaya",7,0,1],
 				["Mizoram",1,0,0],
-				["Nagaland",1,0,0],
-				["Odisha",54,12,1],
+				["Nagaland",0,0,0],
+				["Odisha",60,18,1],
 				["Puducherry",7,1,0],
-				["Punjab",167,14,11],
-				["Rajasthan",812,21,3],
-				["Tamil Nadu",1075,50,11],
-				["Telengana",562,100,16],
-				["Tripura",2,0,0],
-				["Uttarakhand",35,5,0],
-				["Uttar Pradesh",483,47,5],
-				["West Bengal",152,29,7],
-// Total number of confirmed cases in India	9352*	980	324
+				["Punjab",186,27,13],
+				["Rajasthan",1023,147,3],
+				["Tamil Nadu",1242,118,14],
+				["Telengana",698,120,18],
+				["Tripura",2,1,0],
+				["Uttarakhand",37,9,0],
+				["Uttar Pradesh",773,68,13],
+				["West Bengal",231,42,7],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
@@ -19361,7 +19369,7 @@
 				const element = dataIndia[i];
 				const perc = element[1];
 				let colorIndex;
-				if(perc>0 && perc <= 50){
+				if(perc>=0 && perc <= 50){
 					colorIndex = 0
 				}else if(perc>50 && perc <= 100){
 					colorIndex = 1
