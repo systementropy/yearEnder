@@ -56,7 +56,7 @@
 			padding: 0;
 			font-family: monty;
 			font-weight: 400;
-			color: #333;
+			color: #F5F5F6;
 		}
 		p{
 			margin: 0;
@@ -86,7 +86,7 @@
 			margin: 0 auto;
 			padding: 25px;
 			box-sizing: border-box;
-			/* background: #383838; */
+			background: #383838;
 			/* background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
 			background-repeat: no-repeat;
 			background-position: bottom;
@@ -119,6 +119,8 @@
 		}
 		.bottom img{
 			height: 44px;
+			position: relative;
+			top: -15px;
 		}
 		.bottom{
 			margin-top: 20px;
@@ -150,7 +152,7 @@
 			display: block;
 			line-height: 40px;
 			font-size: 25px;
-			color: #333;
+			
 			width: 100%;
 			position: relative;
 		}
@@ -202,7 +204,7 @@
 			top: -1px;
 			line-height: 30px;
 			font-size: 35px;
-			color: #333;
+			color: rgba(220, 220, 220, 0.7);
 		}
 		.legendStat span.blue i{
 			background: #5bc0de;
@@ -221,7 +223,8 @@
 			opacity: 0;
 			transition : all 250ms ease-in;
 			z-index: 1;
-			background: rgba(255, 255, 255, 0.7);
+			background: rgba(56, 56, 56, 0.7);
+			/* color: #333; */
 		}
 		.legendContainer.active{
 			opacity: 1;
@@ -232,7 +235,7 @@
 			height: auto;
 			text-align: left;
 			opacity: 0;
-			color: #333;
+			
 			transition: opacity 100ms ease;
 		}
 		.stateName.active{
@@ -391,26 +394,58 @@
 			text-transform: capitalize;
 		}
 		.legendBg{
-			height: 100px;
-			position: absolute;
-			left: 60px;
-			top: 200px;
-			width: 64px;
-			font-size: 14px;
-			font-weight: 400;
-			letter-spacing: -1px;
-			display: flex;
-			text-align: center;
-			flex-direction: column;
-			width: 50px;
-			justify-content: space-around;
-			white-space: pre;
-			background: linear-gradient(to bottom, #AFB6D0 0% 33%,#2CB62C 33% 67%,#382F1B 67%);
+			height: 150px;
+		    position: absolute;
+		    left: 0;
+		    bottom: 0px;
+		    width: 64px;
+		    font-size: 14px;
+		    font-weight: 400;
+		    letter-spacing: -1px;
+		    display: flex;
+		    text-align: center;
+		    flex-direction: column;
+		    width: 200px;
+		    justify-content: space-around;
+		    white-space: pre;
+		    background: #0007;
 		}
 		.legendBg span{
 			font-weight: 400;
 			position: relative;
-			left: 60px;
+			/* right: 160px; */
+			font-size: 24px;
+			height: 50px;
+			line-height: 50px;
+			text-align: left;
+			width: 150px;
+			margin-left: 50px;
+		}
+		.legendBg span::before{
+			content: '';
+			position: absolute;
+			left: -25px;
+			top: 50%;
+			width: 20px;
+			height: 20px;
+			display:inline-block;
+			border-radius: 50%;
+			transform: translate(-50%,-50%);
+			background: radial-gradient(#F00,#F007);
+		}
+		.legendBg span:nth-child(1)::before{
+			width: 40px;
+			height: 40px;
+		}
+		.legendBg span:nth-child(2)::before{
+			width: 20px;
+			height: 20px;
+			
+		}
+		.legendBg span:nth-child(3)::before{
+			width: 8px;
+			height: 8px;
+			
 		}
 	</style>
 </head>
@@ -419,7 +454,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 CASES IN INDIA</h1>
-			<h3>How they are rising every 7 days</h3>
+			<h3>How they are rising every 15 days</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -480,6 +515,7 @@
 					<!-- <span class="yellow">Countries Affected<i data-deaths="0"></i></span> -->
 					<span class="red">Confirmed Cases<i data-deaths="0"></i></span>
 					<span class="green">Increase<i data-deaths="0"></i></span>
+					<!-- <span class="blue">Days<i data-deaths="0"></i></span> -->
 					<!-- <span class="blue">Deaths<i data-deaths="0"></i></span> -->
 					
 					<!-- <span class="green">Iran<i data-deaths="0"></i></span>
@@ -487,11 +523,11 @@
 					<span class="us">USA<i data-deaths="0"></i></span> -->
 				</div>
 			</div>
-			<!-- <div class="legendBg">
-				<span>Confirmed Cases</span>
-				<span>Recovered</span>
-				<span>Deaths</span>
-			</div> -->
+			<div class="legendBg">
+				<span>100 people</span>
+				<span>10 people</span>
+				<span>1 person</span>
+			</div>
 			<canvas id="canvas"></canvas>
 		</div>
 		<!-- <div class="bottomDates">
@@ -501,7 +537,7 @@
 				<span>Source: Johns Hopkins CSSE
 					<!-- <i>Deaths in India</i> -->
 				</span>
-				<span><img src="./1logo.png" alt=""></span>
+				<span><img src="./logo1.png" alt=""></span>
 			</div>
 		</div>
 		
