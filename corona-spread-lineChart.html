@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
+			color: #555;
+		}
+		p{
+			margin: 0;
+		}
+		.title{
+			/* border-bottom: 5px solid #000; */
+			padding: 0;
+		}
+		.title h1{
+			font-size: 52px;
+			font-weight: 900;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+			
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+		}
+		.mainBody{
+			border: 1px solid #999;
+			height: 100vh;
+			width: 100vh;
+			margin: 0 auto;
+			padding: 25px;
+			box-sizing: border-box;
+			/* background: #999;
+			background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
+			background-repeat: no-repeat;
+			background-position: bottom;
+			background-size: cover;
+			background-blend-mode: multiply;
+			/* animation: aniBG 20s infinite forwards; */
+		}
+		@keyframes aniBG {
+			0% {background-position: top;}
+			100% {background-position: bottom;}
+		}
+		.graphicsContainer{
+			width: auto;
+			height: auto;
+			position: relative;
+			z-index: 1;
+			box-shadow: 1px 1px 2px 1px rgba(220,220,220,0.5);
+			/* padding-top: 100px; */
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0;
+			color: #555555;
+		}
+		.bottom img{
+			height: 44px;
+		}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+			height: 30px;
+			font-size: 24px;
+			line-height: 30px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			background: #383838;
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+			/* background: #383838; */
+		}
+		.legendStat{
+			position: absolute;
+			left: 0%;
+			top: 90px;
+			width: 225px;
+			text-align: left;
+			/* opacity: 0; */
+		}
+		.legendStat span {
+			display: block;
+			line-height: 40px;
+			font-size: 25px;
+			color: #333;
+			width: 70%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 12px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #555;
+			width: 100%;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #ca9828;
+		}
+		.legendStat span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+		.legendStat span.green::before{
+			background-color: rgb(44, 182, 44);
+		}
+		.legendStat span.yellow::before{background: #96a803}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 180px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 25px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -1px;
+			line-height: 30px;
+			font-size: 35px;
+			color: #999;deaths
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+		.legendContainer {
+			position: absolute;
+			top: 0;
+			left: 10px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 10px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 400px;
+			text-align: center;
+			opacity: 0;
+			transition : all 250ms ease-in;
+			z-index: 1;
+			background: #ffffff77;
+		}
+		.legendContainer.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 300;
+			padding: 0px 0;
+			height: auto;
+			text-align: left;
+			opacity: 0;
+			color: #333;
+			transition: opacity 100ms ease;
+		}
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.legendStat span.orange::before{
+			background: #cc7722;
+		}
+		
+		.legendStat span.us::before{
+			background: #3C3B6E
+		}
+
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 35px;
+		}
+		.bottomDates{
+			display: flex;
+			justify-content: space-around;
+			margin: 0;
+			height: 20px;
+			padding: 10px 0 10px;
+			position: relative;
+			overflow: hidden;
+		}
+		.bottomDates>span {
+			margin: -35px auto 0;
+			width: 0px;
+			transform: translateX(0px) rotate(60deg);
+			flex-grow: 1;
+			text-align: center;
+			opacity: 0;
+			top: 0px;
+			position: relative;
+			transition: all 50ms ease,transform 50ms ease 50ms;
+		}
+		.bottomDates>span.active {
+			transform: translateX(-10px) rotate(0deg);
+			margin: 0 auto 0;
+			opacity: 1;
+			top: 10px;
+			
+			position: absolute;
+			font-size: 21px;
+		}
+        .bottomDates>span.counter0.active{
+            text-indent: 14px;
+        }
+        
+		.bottomDates>span.counter20.active{
+			transform: translateX(-0px);
+		}
+		.bottomDates>span.counter20.active::after{
+			left: 5px;
+		}
+		.bottomDates>span.counter84.active{
+			transform: translateX(-25px);
+			text-indent: 5px;
+		}
+		.bottomDates>span.counter84.active::after{
+			left: 30px;
+		}
+		.bottomDates > span.active::after{
+			content: '';
+			position: absolute;
+			height: 20px;
+			transform: translateY(-100%);
+			width: 2px;
+			background: #999;
+			top: 0;
+			left: 16px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
+			animation: aniTr 1s infinite alternate;
+			color: #000;   
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.dateDisp{
+			position: absolute;
+			top: 0%;
+			left: 0;
+		}
+		.dateDisp .change{
+			position: absolute;
+			color: #333;
+			background: rgba(221, 221, 221, 0.8);
+			width: 290px;
+			height: 30px;
+			padding: 0;
+			transform: translate(-103%,-50%);
+			opacity: 0;
+			clip-path: polygon(0% 0%, 95% 0%, 95% 33%, 100% 50%, 95% 67%, 95% 100%, 0% 100%);
+			transition: all 250ms ease;
+			box-shadow: inset 0px 0px 15px 5px rgba(0,0,0,0.1);
+			display: flex;
+			justify-content: center;
+		}
+		.dateDisp .change1{
+			height: 40px;
+			/* background: #F5F5F6; */
+			transform: translate(-100%,-100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 95% 75%, 95% 100%, 85% 75%, 0% 75%);
+		}
+		.dateDisp .change0{
+			height: 40px;
+			transform: translate(-5px, -100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 2% 75%,0 100%);
+		}
+		.dateDisp p{
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 30px;
+			text-align: center;
+			height: 20px;
+			margin: 0 5px;
+			/* margin-top: 11px;
+			margin: 10px 5px 0; */
+		}
+		.dateDisp p.daysImp{
+			font-size: 21px;
+			font-weight: 600;
+		}
+		.dateDisp p.dateImp{
+			font-weight: 500;
+			font-size: 24px;
+		}
+		.footer{
+			position: relative;
+		}
+		.footer .numLegend{
+			position: absolute;
+			top: -350px;
+			left: -110px;
+			transform: rotate(-90deg);
+			display: block;
+			font-style: normal;
+			color: #999;
+			letter-spacing: 1px;
+			font-size: 25px;
+			
+			text-transform: capitalize;
+		}
+		.legendBg{
+			height: 100px;
+			position: absolute;
+			left: 60px;
+			top: 200px;
+			width: 64px;
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			display: flex;
+			text-align: center;
+			flex-direction: column;
+			width: 50px;
+			justify-content: space-around;
+			white-space: pre;
+			background: linear-gradient(to bottom, #AFB6D0 0% 33%,#2CB62C 33% 67%,#ca9828 67%);
+		}
+		.legendBg span{
+			font-weight: 300;
+			position: relative;
+			left: 60px;
+			font-size: 26px;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainBody">
+		<span class="texty">TEXTY</span>
+		<div class="title">
+			<h1>COVID-19 PANDEMIC</h1>
+			<h3>Cases in India</h3>
+		</div>
+		<div class="graphicsContainer">
+			<div class="legendContainer">
+				<div class="stateName">
+					<span class="date">20</span>
+					<span class="month">Jan</span>,
+					<span class="year">2020</span>
+				</div>
+				<div class="dateDisp">
+					<div class="change0 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change1 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change2 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change3 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change4 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change5 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change6 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change7 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+					<div class="change8 change">
+						<p class="daysImp"><span></span>Days</p>
+						<p>to reach</p>
+						<p class="dateImp"></p>
+					</div>
+				</div>
+				<div class="legendStat">
+					<span></span>
+					<!-- <span class="yellow">Countries Affected<i data-deaths="0"></i></span> -->
+					<span class="red">Confirmed<i data-deaths="0"></i></span>
+					<span class="green">Recovered<i data-deaths="0"></i></span>
+					<span class="blue">Deaths<i data-deaths="0"></i></span>
+					
+					<!-- <span class="green">Iran<i data-deaths="0"></i></span>
+					<span class="orange">S. Korea<i data-deaths="0"></i></span>
+					<span class="us">USA<i data-deaths="0"></i></span> -->
+				</div>
+			</div>
+			<!-- <div class="legendBg">
+				<span>Confirmed Cases</span>
+				<span>Recovered</span>
+				<span>Deaths</span>
+			</div> -->
+			<canvas id="canvas"></canvas>
+		</div>
+		<div class="bottomDates">
+		</div>
+		<div class="footer">
+			<p class="numLegend">Total cases in India</p>
+			<div class="bottom">
+				<span style="position: relative;">Source: Johns Hopkins CSSE;<!--<br/>Data for 10th April from MoHFW;--></span>
+				<span><img src="./1logo.png" alt=""></span>
+			</div>
+		</div>
+		
+	</div>
+	<script src="./jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			const canvas = document.getElementById("canvas");
+			const canHgt = 750;
+			const canWid = 930;
+			canvas.style.height = canHgt+'px';
+			canvas.style.width = canWid+'px';
+			canvas.height = canHgt*2;
+			canvas.width = canWid*2;
+			const ctx = canvas.getContext("2d");
+			ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000'
+		   
+			const colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+			let slideIndex;
+			let counter = 0;
+			let circleArray = [];
+			let confirmedColorSwitch ='#E60000';
+			let confirmedColor ='#AFB6D0';
+			let recoveredColor ='#2cb62c';
+			let deathColor ='#ca9828';
+			const dailyData = {
+				// 'country':[6,8,9,11,14,16,16,18,20,24,25,25,25,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,28,28,30,30,30,35,39,46,50,56,60,65,72,76,80,84,93,98,102,105,108,114,116,122,135,139,144,147,150,154,161,163,168,169,171,173,174,175,175,175,176,178,178,179],
+				'deaths':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,3,3,4,5,4,7,10,10,12,20,20,24,27,32,35,58,72,72,86,99,136,150,178,226,246,288,331,358,393,405,448,486],
+				'recovered':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,13,13,14,14,15,20,23,27,27,40,43,45,73,84,95,102,123,148,191,192,229,229,375,421,506,620,774,969,1080,1181,1359,1432,1768,2041],
+				'dates':[[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],[4,11],[4,12],[4,13],[4,14],[4,15],[4,16],[4,17]],
+				'confirmed':[0,0,0,0,0,0,0,0,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,5,5,28,30,31,34,39,43,56,62,73,82,102,113,119,142,156,194,244,330,396,499,536,657,727,887,987,1024,1251,1397,1998,2543,2567,3082,3588,4778,5311,5916,6725,7598,8446,9205,10453,11487,12322,13430,14352],
+			};
+			console.log(dailyData);
+			
+			const widthStep = canWid/dailyData['dates'].length;
+			const heightFactor = 16000;
+			const countriesFactor = 250;
+			const heightStep = canHgt/heightFactor;
+			let counterPrev  = 1;
+			let secs = 100;
+			// const countNum = [8,52,67,76,82];
+			// const countText = ['','100+','1000+','5000+','10000+']
+			const countNum =[]
+			function makeGraph(counter){
+				if(counter<dailyData['dates'].length){
+					$('.legendContainer').addClass('active')
+					if(dailyData['dates'][counter][1]>9){
+						$('.date').text(dailyData['dates'][counter][1])
+					}else{
+						$('.date').text('0'+dailyData['dates'][counter][1])
+					}
+					if(dailyData['dates'][counter][0] == 2){
+						$('.month').text('Feb')
+					}else if(dailyData['dates'][counter][0] == 3){
+						$('.month').text('Mar')
+					}else if(dailyData['dates'][counter][0] == 4){
+						$('.month').text('Apr')
+					}
+					$('.stateName').addClass('active')
+					let dateLabel = dailyData['dates'][counter][1]>9?dailyData['dates'][counter][1]:'0'+dailyData['dates'][counter][1]
+					if(counter%7 == 0){
+						$('.bottomDates').append("<span class='active counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dateLabel+"/0"+dailyData['dates'][counter][0]+"</span>")
+					}
+					let confNum;
+					let country;
+					let dethNum;
+					let recvNum;
+// yellow
+// red
+// green
+// blue
+					// $('.yellow').children('i').attr("data-deaths",dailyData['country'][counter])
+					if(dailyData['confirmed'][counter]>1000){
+						confNum = parseFloat(dailyData['confirmed'][counter]/1000).toFixed(1)+'K'
+					}else{
+						confNum = dailyData['confirmed'][counter]
+					}
+					$('.red').children('i').attr("data-deaths",confNum)
+					if(dailyData['recovered'][counter]>1000){
+						recvNum = parseFloat(dailyData['recovered'][counter]/1000).toFixed(1)+'K'
+					}else{
+						recvNum = dailyData['recovered'][counter]
+					}
+					$('.green').children('i').attr("data-deaths",recvNum)
+					if(dailyData['deaths'][counter]>1000){
+						dethNum = parseFloat(dailyData['deaths'][counter]/1000).toFixed(1)+'K'
+					}else{
+						dethNum = dailyData['deaths'][counter]
+					}
+					$('.blue').children('i').attr("data-deaths",dethNum)
+					// ctx.beginPath();
+					// const hgtRect = dailyData['confirmed'][counter];
+					
+					// if(countNum.indexOf(counter)>-1){
+					// 	if(countNum.indexOf(counter)>1){
+					// 		secs += 50	
+					// 	}
+						
+					// 	const eltIndex = countNum.indexOf(counter)
+					// 	$('.change'+eltIndex).css({
+					// 		left : +((widthStep*counter)+2)+'px',
+					// 		top : 100+(canHgt*(1-(hgtRect/heightFactor)))+'px',
+					// 		opacity : 1
+					// 	})
+
+					// 	$('.change'+eltIndex).children('.dateImp').html(countText[eltIndex]);
+					// 	if(counter-counterPrev>1){
+					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Days');
+					// 	}else{
+					// 		$('.change'+eltIndex).children('.daysImp').html((counter-counterPrev)+' Day');
+					// 	}
+					// 	if(eltIndex == 0){
+					// 		$('.change'+eltIndex).html('<p class="daysImp">1st confirmed case</p>');
+					// 		// $('.change'+eltIndex).children('.dateImp').html('(approx 45 cases)');
+
+					// 	}
+					// 	counterPrev = counter;
+					// 	// ctx.fillStyle = '#E6000099';
+					// 	ctx.fillStyle = confirmedColorSwitch+'99';
+					// }else{
+					// 	ctx.fillStyle = confirmedColor+'99';
+					// 	// ctx.fillStyle = '#AFB6D0';
+					// }
+					// // ctx.fillStyle = confirmedColor+'99';
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(hgtRect/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(hgtRect/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
+
+					// ctx.beginPath();
+					// const recRect = dailyData['recovered'][counter];
+					// ctx.fillStyle = recoveredColor+'77';
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(recRect/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(recRect/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
+
+					// ctx.beginPath();
+					// const dethRect = dailyData['deaths'][counter];
+					// ctx.fillStyle = deathColor+'77';
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	(canHgt*(1-(dethRect/heightFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(dethRect/heightFactor))
+					// );
+					// ctx.fill();
+					// ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = '#96a80377';
+					// ctx.rect(
+					// 	(widthStep*counter)+1,
+					// 	-2+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))),
+					// 	widthStep-2,
+					// 	(canHgt*(dailyData['country'][counter]/countriesFactor))
+     //                );
+     //                ctx.fill();
+					// ctx.closePath();
+					// if(counter%2 === 0){
+     //                    ctx.beginPath();
+     //                    ctx.fillStyle = '#444';
+     //                    ctx.fillText(dailyData['country'][counter],(widthStep*counter)+1,-20+(canHgt*(1-(dailyData['country'][counter]/countriesFactor))))
+     //                    ctx.fill();
+     //                    ctx.closePath();    
+     //                }
+					
+					
+					if(counter>0){
+						
+
+						ctx.beginPath();
+						ctx.strokeStyle = recoveredColor+'77';
+						ctx.moveTo((widthStep*(counter-1))+7,-2+(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+						
+						ctx.beginPath();
+						ctx.strokeStyle = deathColor+'77';
+						ctx.moveTo((widthStep*(counter-1))+7,-2+(canHgt*(1-(dailyData['deaths'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+						
+						ctx.beginPath();
+						ctx.strokeStyle = confirmedColorSwitch+'77';
+						ctx.moveTo((widthStep*(counter-1))+7,-2+(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
+						ctx.lineTo((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
+						ctx.stroke();
+						ctx.closePath();
+					}
+					ctx.beginPath();
+					ctx.fillStyle = confirmedColorSwitch;
+					ctx.arc((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					ctx.fill();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.fillStyle = recoveredColor;
+					ctx.arc((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					ctx.fill();
+					ctx.closePath();
+					
+					ctx.beginPath();
+					ctx.fillStyle = deathColor;
+					ctx.arc((widthStep*counter)+7,-2+(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					ctx.fill();
+					ctx.closePath();
+					
+
+					setTimeout(()=>{
+						makeGraph(counter+1)
+					},secs)
+					
+				}
+			}
+			setTimeout(function () {
+				// var arr = [0, 1000, 2000, 3000, 4000, 5000,6000,7000,8000,9000,10000,11000]
+				// const arr = [0, 25, 50, 75, 100, 125, 150, 175, 200]
+				for (let counter = 0; counter < 16; counter++) {
+					ctx.beginPath();
+					ctx.setLineDash([2,5])
+					ctx.lineWidth =1;
+                    ctx.strokeStyle = '#9997';
+                    ctx.fillStyle = '#9997';
+                    if(counter === 5 || counter === 10 || counter === 15){
+                    	ctx.setLineDash([3,5])
+                        ctx.strokeStyle = '#D00a';
+                        ctx.fillStyle = '#D00a';
+                    }
+					
+					ctx.moveTo(0,-2+(canHgt*(1-(counter*1000/heightFactor))));
+					ctx.lineTo(canWid,-2+(canHgt*(1-(counter*1000/heightFactor))));
+					ctx.stroke();
+					ctx.closePath();
+
+					ctx.beginPath();
+					ctx.font = '500 20px monty'
+					// ctx.fillText((counter/100000)+'00K', canWid - 50, -2+(canHgt*(1-(counter/heightFactor))));
+					ctx.textAlign = 'right';
+					ctx.fillText(counter+'K', canWid - 10, -2+(canHgt*(1-(counter*1000/heightFactor))));
+					ctx.fill();
+					ctx.closePath();
+					ctx.setLineDash([])
+					ctx.lineWidth =5;
+				}
+				makeGraph(0);
+			}, 2000)
+			
+		})
+	</script>
+</body>
+</html>
