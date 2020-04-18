@@ -19273,7 +19273,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>As on April 17th, 05:00 PM</i><b>*Nagaland Patient shifted to Assam</b></span>
+				<span>Source: MoHFW<i>As on April 18th, 05:00 PM</i><b>*Nagaland Patient shifted to Assam</b></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19326,39 +19326,39 @@
 			};
 			
 			var dataIndia = [
-				["Andaman and Nicobar Islands",11,10,0],
-				["Andhra Pradesh",572,36,14],
+				["Andaman and Nicobar Islands",12,11,0],
+				["Andhra Pradesh",603,42,15],
 				["Arunachal Pradesh",1,0,0],
-				["Assam",35,5,1],
-				["Bihar",83,37,1],
+				["Assam",35,9,1],
+				["Bihar",85,37,2],
 				["Chandigarh",21,9,0],
-				["Chhattisgarh",36,23,0],
-				["Delhi",1640,51,38],
+				["Chhattisgarh",36,24,0],
+				["Delhi",1707,72,42],
 				["Goa",7,6,0],
-				["Gujarat",1021,74,38],
-				["Haryana",205,43,3],
-				["Himachal Pradesh",35,16,1],
-				["Jammu and Kashmir",314,38,4],
-				["Jharkhand",29,0,2],
-				["Karnataka",353,82,13],
-				["Kerala",395,245,3],
+				["Gujarat",1272,88,48],
+				["Haryana",225,43,3],
+				["Himachal Pradesh",38,16,1],
+				["Jammu and Kashmir",328,42,5],
+				["Jharkhand",33,0,2],
+				["Karnataka",371,92,13],
+				["Kerala",396,255,3],
 				["Ladakh",18,14,0],
-				["Madhya Pradesh",1308,65,57],
-				["Maharashtra",3205,300,194],
+				["Madhya Pradesh",1355,69,69],
+				["Maharashtra",3323,331,201],
 				["Manipur",2,1,0],
-				["Meghalaya",9,0,1],
+				["Meghalaya",11,0,1],
 				["Mizoram",1,0,0],
 				["Nagaland",0,0,0],
-				["Odisha",60,19,1],
-				["Puducherry",7,1,0],
-				["Punjab",186,27,13],
-				["Rajasthan",1131,164,11],
-				["Tamil Nadu",1267,180,15],
-				["Telengana",743,186,18],
+				["Odisha",60,21,1],
+				["Puducherry",7,3,0],
+				["Punjab",202,27,13],
+				["Rajasthan",1229,183,11],
+				["Tamil Nadu",1323,283,15],
+				["Telengana",791,186,18],
 				["Tripura",2,1,0],
-				["Uttarakhand",37,9,0],
-				["Uttar Pradesh",846,74,14],
-				["West Bengal",255,51,10],
+				["Uttarakhand",42,9,0],
+				["Uttar Pradesh",969,86,14],
+				["West Bengal",287,55,10],
 
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
@@ -19404,8 +19404,9 @@
 				dataIndia[i]=element;
 			}
 			dataIndia.sort(function(a,b){
-				return (a[1]+a[2])-(b[1]+b[2])
+				return (a[1]-b[1])
 			})
+			console.log(dataIndia);
 			var alpha; var index;
 			const msecForEach = 25
 			function updateColor(label){
