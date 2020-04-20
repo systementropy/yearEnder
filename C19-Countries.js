@@ -33,6 +33,7 @@ $(document).ready(function(){
 			let lineArray = [];
 			const widthStep = canWid/dateLabels.length;
 			const heightFactor = 650000;
+			const activeFactor = 40000;
 			const countriesFactor = 300;
 			const heightStep = canHgt/heightFactor;
 			let counterPrev  = 1;
@@ -56,18 +57,32 @@ $(document).ready(function(){
 				}
 				this.draw = function(){
 					if(this.counter>0){
+						// ctx.beginPath();
+						// ctx.strokeStyle = this.color+'BC';
+						// ctx.moveTo((widthStep*(this.counter-1))+7,(canHgt*(1-(dl[this.counter-1]/heightFactor))));
+						// ctx.lineTo((widthStep*this.counter)+7,(canHgt*(1-(dl[this.counter]/heightFactor))))
+						// ctx.stroke();
+						// ctx.closePath();
+
 						ctx.beginPath();
-						ctx.strokeStyle = this.color+'BC';
-						ctx.moveTo((widthStep*(this.counter-1))+7,(canHgt*(1-(dl[this.counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*this.counter)+7,(canHgt*(1-(dl[this.counter]/heightFactor))))
-						ctx.stroke();
+						ctx.fillStyle = this.color;
+						ctx.arc((widthStep*this.counter)+7,(canHgt*(1-((dl[this.counter]-dl[this.counter-1])/activeFactor))), 2, 0, 2*Math.PI);
+						ctx.fill();
 						ctx.closePath();
 					}
-					ctx.beginPath();
-					ctx.fillStyle = this.color;
-					ctx.arc((widthStep*this.counter)+7,(canHgt*(1-(dl[this.counter]/heightFactor))), 2, 0, 2*Math.PI)
-					ctx.fill();
-					ctx.closePath();
+					if(this.counter>1){
+						ctx.beginPath();
+						ctx.strokeStyle = this.color+'BC';
+						ctx.moveTo((widthStep*(this.counter-1))+7,(canHgt*(1-((dl[this.counter-1]-dl[this.counter-2])/activeFactor))));
+						ctx.lineTo((widthStep*this.counter)+7,(canHgt*(1-((dl[this.counter]-dl[this.counter-1])/activeFactor))))
+						ctx.stroke();
+						ctx.closePath();	
+					}
+					// ctx.beginPath();
+					// ctx.fillStyle = this.color;
+					// ctx.arc((widthStep*this.counter)+7,(canHgt*(1-(dl[this.counter]/heightFactor))), 2, 0, 2*Math.PI)
+					// ctx.fill();
+					// ctx.closePath();
 				}
 			}
 			function makeGraph(counter){

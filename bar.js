@@ -601,7 +601,7 @@ $(document).ready(function(){
 				// if(!dataDeath[country]){
 				// 	console.log('deth'+country)
 				// }
-				// if(element[element.length-1]>9000 && dataDeath[country][dataDeath[country].length-1]>50){
+				// if(dataDeath[country] && dataDeath[country][dataDeath[country].length-1]>50){
 					barArray.push(new Bar(0, count, element[0] , element, colorArray[areaMap[country]] , count, country));	
 				// }
 				
