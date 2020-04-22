@@ -19258,22 +19258,22 @@
 			<div class="legendBg">
 				<span>0 - 50</span>
 				<span>51 - 100</span>
-				<span>101 - 200</span>
-				<span>201 - 300</span>
-				<span>301 - 400</span>
-				<span>401 - 500</span>
-				<span>501 - 600</span>
-				<span>601 - 700</span>
-				<span>701 - 800</span>
-				<span>801 - 1000</span>
-				<span>1000+</span>
+				<span>101 - 250</span>
+				<span>251 - 500</span>
+				<span>501 - 750</span>
+				<span>751 - 1000</span>
+				<span>1001 - 1500</span>
+				<span>1501 - 2000</span>
+				<span>2001 - 3000</span>
+				<span>3001 - 4000</span>
+				<span>4000+</span>
 			</div>
 		</div>
 		
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>As on April 20th, 05:00 PM</i><b>*Nagaland Patient shifted to Assam</b></span>
+				<span>Source: MoHFW<i>As on April 22nd, 05:00 PM</i><!-- <b>*Nagaland Patient shifted to Assam</b> --></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19326,41 +19326,38 @@
 			};
 			
 			var dataIndia = [
-				["Andaman and Nicobar Islands",15,11,0],
-				["Andhra Pradesh",722,92,20],
-				["Arunachal Pradesh",1,0,0],
-				["Assam",35,17,1],
-				["Bihar",96,42,2],
-				["Chandigarh",26,13,0],
-				["Chhattisgarh",36,25,0],
-				["Delhi",2003,290,45],
+				["Andaman and Nicobar Islands",17,11,0],
+				["Andhra Pradesh",813,120,24],
+				["Arunachal Pradesh",1,1,0],
+				["Assam",35,19,1],
+				["Bihar",126,46,2],
+				["Chandigarh",27,14,0],
+				["Chhattisgarh",36,26,0],
+				["Delhi",2156,611,47],
 				["Goa",7,7,0],
-				["Gujarat",1851,106,67],
-				["Haryana",233,87,3],
+				["Gujarat",2272,144,95],
+				["Haryana",254,127,3],
 				["Himachal Pradesh",39,16,1],
-				["Jammu and Kashmir",350,56,5],
-				["Jharkhand",42,0,2],
-				["Karnataka",395,111,16],
-				["Kerala",402,270,3],
+				["Jammu and Kashmir",380,81,5],
+				["Jharkhand",45,0,3],
+				["Karnataka",425,129,17],
+				["Kerala",427,323,3],
 				["Ladakh",18,14,0],
-				["Madhya Pradesh",1485,127,74],
-				["Maharashtra",4203,507,223],
+				["Madhya Pradesh",1592,148,80],
+				["Maharashtra",5221,722,251],
 				["Manipur",2,2,0],
-				["Meghalaya",11,0,1],
+				["Meghalaya",12,0,1],
 				["Mizoram",1,0,0],
-				["Nagaland",0,0,0],
-				["Odisha",68,24,1],
+				["Odisha",82,30,1],
 				["Puducherry",7,3,0],
-				["Punjab",219,31,16],
-				["Rajasthan",1478,183,14],
-				["Tamil Nadu",1477,411,15],
-				["Telengana",873,190,21],
+				["Punjab",251,49,16],
+				["Rajasthan",1801,230,25],
+				["Tamil Nadu",1596,635,18],
+				["Telengana",945,194,23],
 				["Tripura",2,1,0],
-				["Uttarakhand",44,11,0],
-				["Uttar Pradesh",1176,129,17],
-				["West Bengal",339,66,12],
-
-
+				["Uttarakhand",46,19,0],
+				["Uttar Pradesh",1412,165,21],
+				["West Bengal",423,73,15],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
@@ -19375,21 +19372,21 @@
 					colorIndex = 0
 				}else if(perc>50 && perc <= 100){
 					colorIndex = 1
-				}else if(perc>100 && perc <= 200){
+				}else if(perc>100 && perc <= 250){
 					colorIndex = 2
-				}else if(perc>200 && perc <= 300){
+				}else if(perc>250 && perc <= 500){
 					colorIndex = 3
-				}else if(perc>300 && perc <= 400){
+				}else if(perc>500 && perc <= 750){
 					colorIndex = 4
-				}else if(perc>400 && perc <= 500){
+				}else if(perc>750 && perc <= 1000){
 					colorIndex = 5
-				}else if(perc>500 && perc <= 600){
+				}else if(perc>1000 && perc <= 1500){
 					colorIndex = 6
-				}else if(perc>600 && perc <= 700){
+				}else if(perc>1500 && perc <= 2000){
 					colorIndex = 7
-				}else if(perc>700 && perc <= 800){
+				}else if(perc>2000 && perc <= 3000){
 					colorIndex = 8
-				}else if(perc>800 && perc <= 1000){
+				}else if(perc>3000 && perc <= 4000){
 					colorIndex = 9
 				}else{
 					colorIndex = 10
