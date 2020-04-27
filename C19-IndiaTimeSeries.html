@@ -104,27 +104,16 @@
 		.mainBody{
 			/* border: 1px solid #999; */
 			height: 100vh;
-			width: 718px;
+			width: 78Vh;
 			margin: 0 auto;
 			padding: 25px;
 			box-sizing: border-box;
-			/* background: #999; */
-			background-position-x: 0%;
-			background-position-y: 0%;
-			background-repeat: repeat;
-			background-image: none;
-			background-size: auto;
-			/* background-image: linear-gradient( rgba(255, 246, 0, 1.0), rgba(255, 187, 0, 0.747), rgba(255, 195, 2, 1.0), rgba(255, 195, 2, 0.5), rgba(255, 143, 0, 1.0), rgba(255, 143, 0, 0.5), rgba(255, 91, 0, 1.0), rgba(255, 91, 0, 0.5), rgba(255, 5, 5, 1.0), rgba(255, 5, 5, 0.5)),  url(./Extra/covid.png); */
+			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
 			background-repeat: no-repeat;
-			background-position: center;
+			background-position: bottom;
 			background-size: cover;
 			background-blend-mode: multiply;
 		}
-/* #fff600	(255,246,0)
-#ffc302	(255,195,2)
-#ff8f00	(255,143,0)
-#ff5b00	(255,91,0)
-#ff0505	(255,5,5) */
 		.graphicsContainer{
 			width: auto;
 			height: 80%;
@@ -208,7 +197,7 @@
 			padding: 25px 0;
 			box-sizing: border-box;
 			font-weight: 500;
-			width: 400px;
+			width: 450px;
 			text-align: center;
 			opacity: 0;
 			transition: all 250ms ease-in;
@@ -217,17 +206,17 @@
 			opacity: 1;
 		}
 		.stateName{
-			font-weight: 200;
+			font-weight: 500;
 			padding: 15px 0;
 		}
 		.totalSeats{
-			font-weight: 300;
-		}
-		.total{
 			font-weight: 500;
 		}
-		.bjpSeats{
+		.total{
 			font-weight: 300;
+		}
+		.bjpSeats{
+			font-weight: 500;
 		}
 		.bjp{
 			font-weight: 500;
@@ -240,11 +229,11 @@
 			transform-style: preserve-3d;
 		}
 		.internal p{
-			font-size: 18px;
-			line-height: 1;
-			margin: 0;
-			font-weight: 400;
-			perspective: 100px;
+			font-size: 25px;
+		    line-height: 1;
+		    margin: 0;
+		    font-weight: 400;
+		    perspective: 100px;
 		}
 		.bar{
 			width: 2px;
@@ -320,8 +309,8 @@
 		.svgContainer {
 			position: absolute;
 			width: 120%;
-			top: -200px;
-			left: -71px;
+			top: -235px;
+			left: -108px;
 			height: 1000px;
 		}
 		
@@ -361,15 +350,16 @@
 		}
 		.stateName.dateCont {
 			position: absolute;
-			top: 550px;
-			left: 0px;
+			top: 590px;
+			left: 50px;
 			width: 400px;
 			text-align: right;
 		}
 		span.timeFinal {
 			position: absolute;
+			font-size: 24px;
 			right: 120px;
-			bottom: 25px;
+			bottom: 16px;
 			font-weight: 500;
 			opacity: 0;
 			transition: all 250ms ease;
@@ -381,18 +371,19 @@
 			height: 300px;
 			position: absolute;
 			right: 0;
-			top: 300px;
-			width: 64px;
-			font-size: 14px;
+			top: 285px;
+			width: 115px;
+			font-size: 21px;
 			font-weight: 400;
 			letter-spacing: -1px;
 			display: flex;
+			text-align: center;
 			flex-direction: column;
 			justify-content: space-around;
 			background: linear-gradient(to bottom, rgb(235, 255, 0) 0% 9%,rgb(255, 246, 0) 9% 18%,rgb(255, 195, 2) 18% 27%,rgb(255, 210, 65) 27% 36%,rgb(255, 171, 63) 36% 45%,rgb(255, 143, 0) 45% 54%,rgb(255, 132, 63) 54% 63%,rgb(255, 91, 0) 63% 72%,rgb(255, 67, 67) 72% 81%,rgb(255, 5, 5) 81% 90%,rgb(176, 14, 14) 90% 100%);
 		}
 		.legendBg span{
-			font-weight: 400;
+			font-weight: 500;
 		}
 		.bottom img{
 			height: 50px;
@@ -19281,15 +19272,15 @@
 				<div class="legendBg">
 					<span>0 - 50</span>
 					<span>51 - 100</span>
-					<span>101 - 200</span>
-					<span>201 - 300</span>
-					<span>301 - 400</span>
-					<span>401 - 500</span>
-					<span>501 - 600</span>
-					<span>601 - 700</span>
-					<span>701 - 800</span>
-					<span>801 - 1000</span>
-					<span>1000+</span>
+					<span>101 - 250</span>
+					<span>251 - 500</span>
+					<span>501 - 750</span>
+					<span>751 - 1000</span>
+					<span>1001 - 1500</span>
+					<span>1501 - 2000</span>
+					<span>2001 - 3000</span>
+					<span>3001 - 4000</span>
+					<span>4000+</span>
 				</div>
 				<div class="stateName total">Total Cases</div>
 				<div class="internal total">
@@ -19303,7 +19294,7 @@
 			
 		</div>
 		<div class="footer">
-			<span class="timeFinal">(05:00 PM)</span>
+			<span class="timeFinal">(08:00 AM)</span>
 			<div class="bottom">
 				<span>Source: MoHFW</span>
 				<span><img src="./1logo.png" alt=""></span>
@@ -19420,13 +19411,7 @@
 					'date':[9,'Apr',2020],
 					'total':[191,32,23,4],
 					'states':[
-						["Andhra Pradesh",348,6,4],["Andaman and Nicobar Islands",11,0,0],["Arunachal Pradesh",1,0,0],["Assam",28,0,0],["Bihar",39,0,1],["Chandigarh",18,7,0],["Chhattisgarh",10,9,0],["Delhi",669,21,9],["Goa",7,0,0],["Gujarat",179,25,16],["Haryana",169,29,3],["Himachal Pradesh",18,2,1],["Jammu and Kashmir",158,4,4],["Jharkhand",13,0,0],["Karnataka",181,28,5],["Kerala",345,83,2],["Ladakh",14,10,0],["Madhya Pradesh",259,0,16],["Maharashtra",1135,117,72],["Manipur",2,1,0],["Mizoram",1,0,0],["Odisha",42,2,1],["Puducherry",5,1,0],["Punjab",101,4,8],["Rajasthan",383,21,3],["Tamil Nadu",738,21,8],["Telengana",442,35,7],["Tripura",1,0,0],["Uttarakhand",35,5,0],["Uttar Pradesh",410,31,4],["West Bengal",103,16,5],
-					]
-				},{
-					'date':[13,'Apr',2020],
-					'total':[0,0,0,0],
-					'states':[
-						["Andhra Pradesh",0,432,11,7],["Andaman and Nicobar Islands",0,11,10,0],["Arunachal Pradesh",0,1,0,0],["Assam",0,31,0,1],["Bihar",0,64,26,1],["Chandigarh",0,21,7,0],["Chhattisgarh",0,31,10,0],["Delhi",0,1154,27,24],["Goa",0,7,5,0],["Gujarat",0,539,47,26],["Haryana",0,185,29,3],["Himachal Pradesh",0,32,13,1],["Jammu and Kashmir",0,245,6,4],["Jharkhand",0,19,0,2],["Karnataka",0,247,59,6],["Kerala",0,376,179,3],["Ladakh",0,15,10,0],["Madhya Pradesh",0,604,44,43],["Maharashtra",0,1985,217,149],["Manipur",0,2,1,0],["Mizoram",0,1,0,0],["Nagaland",0,1,0,0],["Odisha",0,54,12,1],["Puducherry",0,7,1,0],["Punjab",0,167,14,11],["Rajasthan",0,812,21,3],["Tamil Nadu",0,1075,50,11],["Telengana",0,562,100,16],["Tripura",0,2,0,0],["Uttarakhand",0,35,5,0],["Uttar Pradesh",0,483,47,5],["West Bengal",0,152,29,7]
+						["Andhra Pradesh",0,348,6,4],["Andaman and Nicobar Islands",0,11,0,0],["Arunachal Pradesh",0,1,0,0],["Assam",0,28,0,0],["Bihar",0,39,0,1],["Chandigarh",0,18,7,0],["Chhattisgarh",0,10,9,0],["Delhi",0,669,21,9],["Goa",0,7,0,0],["Gujarat",0,179,25,16],["Haryana",0,169,29,3],["Himachal Pradesh",0,18,2,1],["Jammu and Kashmir",0,158,4,4],["Jharkhand",0,13,0,0],["Karnataka",0,181,28,5],["Kerala",0,345,83,2],["Ladakh",0,14,10,0],["Madhya Pradesh",0,259,0,16],["Maharashtra",0,1135,117,72],["Manipur",0,2,1,0],["Mizoram",0,1,0,0],["Odisha",0,42,2,1],["Puducherry",0,5,1,0],["Punjab",0,101,4,8],["Rajasthan",0,383,21,3],["Tamil Nadu",0,738,21,8],["Telengana",0,442,35,7],["Tripura",0,1,0,0],["Uttarakhand",0,35,5,0],["Uttar Pradesh",0,410,31,4],["West Bengal",0,103,16,5],
 					]
 				},{
 					'date':[14,'Apr',2020],
@@ -19434,29 +19419,34 @@
 					'states':[
 						["Andhra Pradesh",0,473,14,9],["Andaman and Nicobar Islands",0,11,10,0],["Arunachal Pradesh",0,1,0,0],["Assam",0,31,0,1],["Bihar",0,66,26,1],["Chandigarh",0,21,7,0],["Chhattisgarh",0,31,10,0],["Delhi",0,1510,30,28],["Goa",0,7,5,0],["Gujarat",0,617,55,26],["Haryana",0,199,34,3],["Himachal Pradesh",0,32,13,1],["Jammu and Kashmir",0,270,16,4],["Jharkhand",0,24,0,2],["Karnataka",0,258,65,9],["Kerala",0,379,198,3],["Ladakh",0,15,10,0],["Madhya Pradesh",0,730,51,50],["Maharashtra",0,2337,229,160],["Manipur",0,2,1,0],["Meghalaya",0,1,0,0],["Mizoram",0,1,0,0],["Nagaland",0,1,0,0],["Odisha",0,55,18,1],["Puducherry",0,7,1,0],["Punjab",0,176,14,12],["Rajasthan",0,879,133,3],["Tamil Nadu",0,1173,58,11],["Telengana",0,624,100,17],["Tripura",0,2,0,0],["Uttarakhand",0,35,7,0],["Uttar Pradesh",0,657,49,5],["West Bengal",0,190,36,7]
 					]
+				},{
+					'date':[27,'Apr',2020],
+					'total':[0,0,0,0],
+					'states':[["Andaman and Nicobar Islands",0,33,11,0],["Andhra Pradesh",0,1097,231,31],["Arunachal Pradesh",0,1,1,0],["Assam",0,36,27,1],["Bihar",0,274,56,2],["Chandigarh",0,30,17,0],["Chhattisgarh",0,37,32,0],["Delhi",0,2918,877,54],["Goa",0,7,7,0],["Gujarat",0,3301,313,151],["Haryana",0,289,176,3],["Himachal Pradesh",0,40,22,1],["Jammu and Kashmir",0,523,137,6],["Jharkhand",0,82,13,3],["Karnataka",0,503,182,19],["Kerala",0,458,338,4],["Ladakh",0,20,14,0],["Madhya Pradesh",0,2096,302,103],["Maharashtra",0,8068,1076,342],["Manipur",0,2,2,0],["Meghalaya",0,12,0,1],["Mizoram",0,1,0,0],["Odisha",0,103,35,1],["Puducherry",0,7,3,0],["Punjab",0,313,71,18],["Rajasthan",0,2185,518,33],["Tamil Nadu",0,1885,1020,24],["Telengana",0,1002,280,26],["Tripura",0,2,2,0],["Uttarakhand",0,50,28,0],["Uttar Pradesh",0,1868,289,29],["West Bengal",0,649,105,20],
+					]
 				}
 			];
 			let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
 			function getColor(perc){
-				if(perc>0 && perc <= 50){
+				if(perc>=0 && perc <= 50){
 					colorIndex = 0
 				}else if(perc>50 && perc <= 100){
 					colorIndex = 1
-				}else if(perc>100 && perc <= 200){
+				}else if(perc>100 && perc <= 250){
 					colorIndex = 2
-				}else if(perc>200 && perc <= 300){
+				}else if(perc>250 && perc <= 500){
 					colorIndex = 3
-				}else if(perc>300 && perc <= 400){
+				}else if(perc>500 && perc <= 750){
 					colorIndex = 4
-				}else if(perc>400 && perc <= 500){
+				}else if(perc>750 && perc <= 1000){
 					colorIndex = 5
-				}else if(perc>500 && perc <= 600){
+				}else if(perc>1000 && perc <= 1500){
 					colorIndex = 6
-				}else if(perc>600 && perc <= 700){
+				}else if(perc>1500 && perc <= 2000){
 					colorIndex = 7
-				}else if(perc>700 && perc <= 800){
+				}else if(perc>2000 && perc <= 3000){
 					colorIndex = 8
-				}else if(perc>800 && perc <= 1000){
+				}else if(perc>3000 && perc <= 4000){
 					colorIndex = 9
 				}else{
 					colorIndex = 10
