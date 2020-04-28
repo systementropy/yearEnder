@@ -375,8 +375,8 @@
         }
         .footer span i{
             position: relative;
-            top: -330px;
-            left: 390px;
+            top: -455px;
+            left: 590px;
             transform: rotate(-90deg);
             display: block;
             font-style: normal;
@@ -384,6 +384,7 @@
             letter-spacing: 1px;
             text-transform: capitalize;
             font-size: 26px;
+            white-space: pre;
         }
         .footer span b{
             position: absolute;
@@ -401,6 +402,7 @@
             text-align: right;
         }
         .legendBg{
+            opacity: 0;
             height: 400px;
             position: absolute;
             left: 15px;
@@ -445,6 +447,10 @@
             background: #999;
             clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
         }
+        .bottom span.days {
+            position: absolute;
+            top: 88%;
+        }
     </style>
 </head>
 <body>
@@ -463,7 +469,7 @@
                     <!-- <span class="year">2020</span> -->
                 </div>
                 <div class="dateDisp">
-                    <div class="change0 change active" style="top: 743px;left: 50%;opacity: 1;width: 240px;background: rgba(68, 68, 68, 0.8); color: #EEE;">
+                    <div class="change0 change" style="top: 743px;left: 50%;opacity: 0;width: 240px;background: rgba(68, 68, 68, 0.8); color: #EEE;">
                         <p class="daysImp"><span></span>Day 0</p>
                         <p>:</p>
                         <p class="dateImp">1st fatality</p>
@@ -553,14 +559,14 @@
         </div>
         <div class="footer">
             <div class="bottom">
-                <span class="days">Days</span>
-                <span>Source: Johns Hopkins CSSE<i>Number of Fatalities</i></span>
+                <span class="days">GDP per capita in 2017</span>
+                <span>Source: Johns Hopkins CSSE<i>Confirmed COVID-19 cases per million people</i></span>
                 <span><img src="./1logo.png" alt=""></span>
             </div>
         </div>
         
     </div>
     <script src="./jquery.js"></script>
-    <script type="text/javascript" src="./C19-Countries.js"></script>
+    <script type="text/javascript" src="./C19-GDPvsCases.js"></script>
 </body>
 </html>
