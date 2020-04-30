@@ -97,12 +97,12 @@ $(document).ready(function(){
 				}
 				this.draw = function(){
 					if(this.shouldUpdate){
-							ctx.beginPath();
-							ctx.strokeStyle = this.color+'77';
-							ctx.moveTo(this.posX,this.posyback);
-							ctx.lineTo(this.posX,this.posy)
-							ctx.stroke();
-							ctx.closePath();
+							// ctx.beginPath();
+							// ctx.strokeStyle = this.color+'77';
+							// ctx.moveTo(this.posX,this.posyback);
+							// ctx.lineTo(this.posX,this.posy)
+							// ctx.stroke();
+							// ctx.closePath();
 
 							ctx.beginPath();
 							ctx.fillStyle = this.color+'FF';
