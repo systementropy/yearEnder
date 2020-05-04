@@ -1,6 +1,6 @@
 $(document).ready(function(){
 let colorArray = [[235, 255, 0],[255, 246, 0],[255, 195, 2],[255, 210, 65],[255, 171, 63],[255, 143, 0],[255, 132, 63],[255, 91, 0],[255, 67, 67],[255, 5, 5],[176, 14, 14]]
-let colors = ['#999999','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#99EE9F','#C38FF0']
+let colors = ['#FF9933','#7c4cc2','#4cc292','#92c24c','#464646','#FF0000','#999FEE','#99EE9F','#C38FF0']
 const arrayId = {
 	"Andhra Pradesh":["Andhra Pradesh","Andhra"],
 	"Delhi":["Delhi","Delhi"],
@@ -76,7 +76,7 @@ let dataTotal = {
 	"West Bengal":[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[1,0,0,0],[1,0,0,0],[2,0,0,0],[3,0,0,0],[4,0,0,0],[7,0,0,0],[9,0,0,1],[9,0,0,1],[0,10,0,1],[0,10,0,1],[0,15,0,1],[0,18,0,1],[0,22,0,1],[0,26,0,2],[0,37,6,3],[0,53,6,3],[0,63,3,3],[0,69,3,3],[0,80,10,3],[0,80,10,3],[0,91,13,3],[0,99,13,5],[0,103,16,5],[0,116,16,5],[0,126,16,5],[0,134,19,5],[0,152,29,7],[0,190,36,7],[0,213,37,7],[0,231,42,7],[0,255,51,10],[0,287,55,10],[0,310,62,12],[0,339,66,12,339],[0,392,73,12],[0,423,73,15],[0,456,79,15],[0,514,103,15],[0,571,103,18],[0,611,105,18],[0,649,105,20],[0,697,109,20],[0,725,119,22],[0,758,124,22],[0,795,139,33],[0,795,139,33],[0,922,151,33],[0,963,151,35]],
 };
 // let stateLabelArray = ["Andaman and Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Odisha","Puducherry","Punjab","Rajasthan","Tamil Nadu","Telengana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal"];
-let stateLabelArray = ["Kerala","Andhra Pradesh","Uttar Pradesh","Tamil Nadu","Rajasthan","Madhya Pradesh","Delhi","Gujarat","Maharashtra"];
+let stateLabelArray = ["Uttar Pradesh","Tamil Nadu","Rajasthan","Madhya Pradesh","Delhi","Gujarat","Maharashtra"];
 // let stateLabelArray = ["Maharashtra"];
 let stateCounter = 0;
 const legends = [[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],[4,11],[4,12],[4,13],[4,14],[4,15],[4,16],[4,17],[4,18],[4,19],[4,20],[4,21],[4,22],[4,23],[4,24],[4,25],[4,26],[4,27],[4,28],[4,29],[4,30],[5,1],[5,2],[5,3],[5,4]];
@@ -118,40 +118,50 @@ function makeGraph(label,counter,index){
 			dispDate<10?dispDate='0'+dispDate:dispDate;
 			$('.bottomDates').append("<span class='active counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dispDate+"/"+dispMnth+"</span>")
 		}
-		const cNum = dataTotal[label][counter][0]+dataTotal[label][counter][1];
-		const rNum = dataTotal[label][counter][2];
-		const dNum = dataTotal[label][counter][3];
-		let colorIndex = index;
-		if(label === 'Andaman and Nicobar Islands'){
-			$('.'+arrayId[label][1]).css({'fill':colors[colorIndex]})
-		}else{
-			$('#'+arrayId[label][1]).css({'fill':colors[colorIndex]})
-		}
-
-		if(counter>0){
-			const cNumback = dataTotal[label][counter-1][0]+dataTotal[label][counter-1][1];
-			const rNumback = dataTotal[label][counter-1][2];
-			const dNumback = dataTotal[label][counter-1][3]
-
-			ctx.beginPath();
-			ctx.strokeStyle = colors[colorIndex]+'CC';
-			ctx.moveTo((widthStep*(counter-1))+7,(canHgt*(1-(cNumback/heightFactor))));
-			ctx.lineTo((widthStep*counter)+7,(canHgt*(1-(cNum/heightFactor))))
-			ctx.stroke();
-			ctx.closePath();
-		}
 		
+		if(dataTotal[label][counter]){
+			const cNum = dataTotal[label][counter][0]+dataTotal[label][counter][1];
+			const rNum = dataTotal[label][counter][2];
+			const dNum = dataTotal[label][counter][3];
+			let colorIndex = index;	
+			if(label === 'Andaman and Nicobar Islands'){
+				$('.'+arrayId[label][1]).css({'fill':colors[colorIndex]})
+			}else{
+				$('#'+arrayId[label][1]).css({'fill':colors[colorIndex]})
+			}	
+			if(counter>0){
+				const cNumback = dataTotal[label][counter-1][0]+dataTotal[label][counter-1][1];
+				const rNumback = dataTotal[label][counter-1][2];
+				const dNumback = dataTotal[label][counter-1][3]
 
+				ctx.beginPath();
+				ctx.strokeStyle = colors[colorIndex]+'CC';
+				ctx.moveTo((widthStep*(counter-1))+7,(canHgt*(1-(cNumback/heightFactor))));
+				ctx.lineTo((widthStep*counter)+7,(canHgt*(1-(cNum/heightFactor))))
+				ctx.stroke();
+				ctx.closePath();
+			}
+		}else{
+			// console.log(dataTotal[label],label)
+		}
 		setTimeout(()=>{
 			makeGraph(label,counter+1,index)
 		},secs)
 		
 	}else{
+		console.log(counter,dataTotal[label].length)
 		$('.legendStates').addClass('active')
-		const cNum = dataTotal[label][counter-1][0]+dataTotal[label][counter-1][1];
-		const rNum = dataTotal[label][counter-1][2];
-		const dNum = dataTotal[label][counter-1][3];
-		$('.stateName.total').addClass('active').html(arrayId[label][0]);
+		let cNum = 0; // = dataTotal[label][counter-2][0]+dataTotal[label][counter-2][1];
+		let rNum = 0; // = dataTotal[label][counter-2][2];
+		let dNum = 0; // = dataTotal[label][counter-2][3];
+		for (state in dataTotal) {
+			if (dataTotal.hasOwnProperty(state)) {
+				cNum += dataTotal[state][counter-2][0]+dataTotal[state][counter-2][1]
+				rNum += dataTotal[state][counter-2][2]
+				dNum += dataTotal[state][counter-2][3]
+			}
+		}
+		$('.stateName.total').addClass('active').html('Total Cases');
 		$('.confirmedTotal').text(cNum)
 		$('.recoveredTotal').text(rNum)
 		$('.deathsTotal').text(dNum)
