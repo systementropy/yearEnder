@@ -157,14 +157,15 @@ function makeGraph(label,counter,index){
 		for (state in dataTotal) {
 			if (dataTotal.hasOwnProperty(state)) {
 				cNum += dataTotal[state][counter-2][0]+dataTotal[state][counter-2][1]
-				rNum += dataTotal[state][counter-2][2]
-				dNum += dataTotal[state][counter-2][3]
 			}
 		}
-		$('.stateName.total').addClass('active').html('Total Cases');
-		$('.confirmedTotal').text(cNum)
-		$('.recoveredTotal').text(rNum)
-		$('.deathsTotal').text(dNum)
+		for (var i = 0; i < stateLabelArray.length; i++) {
+			rNum += dataTotal[stateLabelArray[i]][counter-2][0]+dataTotal[stateLabelArray[i]][counter-2][1]
+		}
+		// $('.stateName.total').addClass('active').html('Total Cases');
+		$('.confirmedTotal').text(stateLabelArray.length)
+		$('.deathsTotal').text(parseFloat(rNum/1000).toFixed(1)+'K')
+		$('.recoveredTotal').text(parseFloat(cNum/1000).toFixed(1)+'K')
 		$('.total').addClass('active');
 	}
 }
