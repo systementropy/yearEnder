@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
+			color: #555;
+		}
+		p{
+			margin: 0;
+		}
+		.title{
+			/* border-bottom: 5px solid #000; */
+			padding: 0;
+		}
+		.title h1{
+			font-size: 52px;
+			font-weight: 900;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+			
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+		}
+		.mainBody{
+			border: 1px solid #999;
+			height: 100vh;
+			width: 100vh;
+			margin: 0 auto;
+			padding: 25px;
+			box-sizing: border-box;
+			/* background: #999;*/
+			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
+			background-repeat: no-repeat;
+			background-position: bottom;
+			background-size: cover;
+			background-blend-mode: multiply;
+			/* animation: aniBG 20s infinite forwards; */
+		}
+		@keyframes aniBG {
+			0% {background-position: top;}
+			100% {background-position: bottom;}
+		}
+		.graphicsContainer{
+			width: auto;
+			height: auto;
+			position: relative;
+			z-index: 1;
+			box-shadow: 1px 1px 2px 1px rgba(220,220,220,0.5);
+			padding-top: 100px;
+		}
+        .graphicsContainer::before{
+            content: 'Total Fatalities: ';
+            position: absolute;
+            font-weight: 400;
+            top: 25px;
+            font-size: 40px;
+            left: 50%;
+            transform: translateX(-100%);
+        }
+        .graphicsContainer::after{
+            content: '1783';
+            position: absolute;
+            font-weight: 600;
+            top: 25px;
+            font-size: 40px;
+            left: 50%;
+            transform: translateX(5px);
+        }
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0;
+			color: #555555;
+		}
+		.bottom img{
+			height: 44px;
+		}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+			height: 30px;
+			font-size: 24px;
+			line-height: 30px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			background: #383838;
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+			/* background: #383838; */
+		}
+        #labels{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            opacity: 1;
+            margin: 0 auto;
+            z-index: 1;
+        }
+		.legendStat{
+			position: absolute;
+			left: 0%;
+			top: 90px;
+			width: 225px;
+			text-align: left;
+			/* opacity: 0; */
+		}
+		.legendStat span {
+			display: block;
+			line-height: 40px;
+			font-size: 25px;
+			color: #333;
+			width: 70%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 12px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #555;
+			width: 100%;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #ca9828;
+		}
+		.legendStat span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+		.legendStat span.green::before{
+			background-color: rgb(44, 182, 44);
+		}
+		.legendStat span.yellow::before{background: #96a803}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 180px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 25px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -1px;
+			line-height: 30px;
+			font-size: 35px;
+			color: #999;
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+		.legendContainer {
+			position: absolute;
+			top: -3px;
+			left: 10px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 10px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 400px;
+			text-align: center;
+			opacity: 0;
+			transition : all 250ms ease-in;
+			z-index: 1;
+			/* background: #ffffff77; */
+		}
+		.legendContainer.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 300;
+			padding: 0px 0;
+			height: auto;
+			text-align: left;
+			opacity: 0;
+			color: #333;
+			transition: opacity 100ms ease;
+		}
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.legendStat span.orange::before{
+			background: #cc7722;
+		}
+		
+		.legendStat span.us::before{
+			background: #3C3B6E
+		}
+
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 35px;
+		}
+		.bottomDates{
+			display: flex;
+			justify-content: space-around;
+			margin: 0;
+			height: 20px;
+			padding: 10px 0 10px;
+			position: relative;
+			overflow: hidden;
+		}
+		.bottomDates>span {
+			margin: -35px auto 0;
+			width: 0px;
+			transform: translateX(0px) rotate(60deg);
+			flex-grow: 1;
+			text-align: center;
+			opacity: 0;
+			top: 0px;
+			position: relative;
+			transition: all 50ms ease,transform 50ms ease 50ms;
+		}
+		.bottomDates>span.active {
+			transform: translateX(-10px) rotate(0deg);
+			margin: 0 auto 0;
+			opacity: 1;
+			top: 10px;
+			
+			position: absolute;
+			font-size: 21px;
+		}
+        .bottomDates>span.counter0.active{
+            text-indent: 14px;
+        }
+        
+		.bottomDates>span.counter20.active{
+			transform: translateX(-0px);
+		}
+		.bottomDates>span.counter20.active::after{
+			left: 5px;
+		}
+		.bottomDates>span.counter91.active{
+			transform: translateX(-25px);
+			text-indent: 5px;
+		}
+		.bottomDates>span.counter91.active::after{
+			left: 30px;
+		}
+		.bottomDates > span.active::after{
+			content: '';
+			position: absolute;
+			height: 20px;
+			transform: translateY(-100%);
+			width: 2px;
+			background: #999;
+			top: 0;
+			left: 16px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
+			animation: aniTr 1s infinite alternate;
+			color: #000;   
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.dateDisp{
+			position: absolute;
+			top: 0%;
+			left: 0;
+		}
+		.dateDisp .change{
+			position: absolute;
+			color: #333;
+			background: rgba(221, 221, 221, 0.8);
+			width: 290px;
+			height: 30px;
+			padding: 0;
+			transform: translate(-103%,-50%);
+			opacity: 0;
+			clip-path: polygon(0% 0%, 95% 0%, 95% 33%, 100% 50%, 95% 67%, 95% 100%, 0% 100%);
+			transition: all 250ms ease;
+			box-shadow: inset 0px 0px 15px 5px rgba(0,0,0,0.1);
+			display: flex;
+			justify-content: center;
+		}
+		.dateDisp .change1{
+			height: 40px;
+			/* background: #F5F5F6; */
+			transform: translate(-100%,-100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 95% 75%, 95% 100%, 85% 75%, 0% 75%);
+		}
+		.dateDisp .change0{
+			height: 40px;
+			transform: translate(-5px, -100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 2% 75%,0 100%);
+		}
+		.dateDisp p{
+			font-weight: 300;
+			font-size: 18px;
+			line-height: 30px;
+			text-align: center;
+			height: 20px;
+			margin: 0 5px;
+			/* margin-top: 11px;
+			margin: 10px 5px 0; */
+		}
+		.dateDisp p.daysImp{
+			font-size: 21px;
+			font-weight: 600;
+		}
+		.dateDisp p.dateImp{
+			font-weight: 500;
+			font-size: 24px;
+		}
+		.footer{
+			position: relative;
+		}
+		.footer .numLegend{
+			position: absolute;
+			top: -350px;
+			left: -110px;
+			transform: rotate(-90deg);
+			display: block;
+			font-style: normal;
+			color: #999;
+			letter-spacing: 1px;
+			font-size: 25px;
+			
+			text-transform: capitalize;
+		}
+		.legendBg{
+			height: 100px;
+			position: absolute;
+			left: 60px;
+			top: 200px;
+			width: 64px;
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			display: flex;
+			text-align: center;
+			flex-direction: column;
+			width: 50px;
+			justify-content: space-around;
+			white-space: pre;
+			background: linear-gradient(to bottom, #AFB6D0 0% 33%,#2CB62C 33% 67%,#ca9828 67%);
+		}
+		.legendBg span{
+			font-weight: 300;
+			position: relative;
+			left: 60px;
+			font-size: 26px;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="mainBody">
+		<span class="texty">TEXTY</span>
+		<div class="title">
+			<h1>COVID-19 PANDEMIC</h1>
+			<h3>Share of deaths as of 7th May</h3>
+		</div>
+		<div class="graphicsContainer">
+			
+            <canvas id="canvas"></canvas>
+            <canvas id="labels"></canvas>
+		</div>
+		<!-- <div class="bottomDates">
+		</div> -->
+		<div class="footer">
+			<p class="numLegend">Total cases in India</p>
+			<div class="bottom">
+				<span style="position: relative;">Source: MoHFW<!--<br/>Data for 10th April from MoHFW;--></span>
+				<span><img src="./1logo.png" alt=""></span>
+			</div>
+		</div>
+		
+	</div>
+	<script src="./jquery.js"></script>
+	<script>
+        $(document).ready(function(){
+            let canvas = document.getElementById("canvas");
+            let canHgt = 700;
+            let canWid = 930;
+            canvas.style.height = canHgt+'px';
+            canvas.style.width = canWid+'px';
+            canvas.height = canHgt*2;
+            canvas.width = canWid*2;
+            let ctx = canvas.getContext("2d");
+            ctx.scale(2,2);
+
+            let canvas2 = document.getElementById("labels");
+            canvas2.style.height = canHgt+'px';
+            canvas2.style.width = canWid+'px';
+            canvas2.height = canHgt*2;
+            canvas2.width = canWid*2;
+            let ctx2 = canvas2.getContext("2d");
+            ctx2.scale(2,2);
+
+            function Bar(arrayIndex, percentageValue, color, displacement, text){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.draw = function(){
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.displacement*canWid,0);
+                    ctx.rect(this.displacement*canWid,0,this.width,canHgt);
+                    ctx.fill();
+                    ctx.closePath();
+                    
+                }
+                this.update = function(){
+                    if(this.width<this.maxWidth){
+                        this.width += this.dWidth;
+                    }
+                    ctx.fillStyle = this.color;
+                    this.draw();
+                }
+                this.update();
+            }
+
+            function Bar2(arrayIndex, percentageValue, color, displacement, text,x,y,width,height,direction,percData){
+                this.arrayIndex = arrayIndex;
+                this.percentageValue = percentageValue;
+                this.color = color;
+                this.displacement = displacement;
+                this.text = text;
+                this.width = 0;
+                this.height = 0;
+                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.maxWidth = (this.percentageValue/100)*canWid;
+                this.x = x*canWid/100;
+                this.y = y*canHgt/100;
+                this.widthM = width*canWid/100;
+                this.heightM = height*canHgt/100;
+                this.direction = direction;
+                this.percData = percData.toFixed(1);
+                if(this.direction){
+                    this.height = this.heightM;
+                    this.dWidth = (this.widthM*canWid)/(100*100*4);
+                }else{
+                    this.width = this.widthM;
+                    this.dHeight = (this.heightM*canHgt)/(100*100*4);
+                }
+                
+                this.draw = function(label){
+                    
+                    ctx2.beginPath();
+                    ctx2.moveTo(this.x,this.y);
+                    ctx2.rect(this.x,this.y,this.width,this.height);
+                    ctx2.fill();
+                    ctx2.strokeStyle = '#3339';
+                    ctx2.stroke();
+                    ctx2.closePath();
+                    
+                    if(label == 'Final'){
+                        if(this.arrayIndex==1 || this.arrayIndex==4){
+                            ctx2.beginPath();
+                            ctx2.fillStyle = '#000';
+                            ctx2.font = '600 24px monty';
+                            const t1 = ctx2.measureText(this.text).width;
+                            ctx2.fillText(this.text,this.x+(this.width/2)-(t1/2),this.y-10+(this.height)/2);
+                            ctx2.closePath();
+                            ctx2.beginPath();
+                            ctx2.font = '400 32px monty';
+                            const t2 = ctx2.measureText(this.percentageValue).width;
+                            ctx2.alignText = 'right';
+                            ctx2.fillText(this.percentageValue,this.x-10+(this.width/2)-(t2),(this.y+(this.height)/2)+20);
+                            ctx2.closePath();
+                            ctx2.beginPath();
+                            ctx2.font = '300 26px monty';
+                            const t3 = ctx2.measureText('('+this.percData+'%)').width;
+                            ctx2.alignText = 'left';
+                            ctx2.fillText('('+this.percData+'%)',this.x+(this.width/2),(this.y+(this.height)/2)+20);
+                            ctx2.closePath();
+                        }else{
+                            ctx2.beginPath();
+                            ctx2.fillStyle = '#000';
+                            ctx2.font = '600 24px monty';
+                            const t1 = ctx2.measureText(this.text).width;
+                            ctx2.fillText(this.text,this.x+(this.width/2)-(t1/2),this.y-40+(this.height)/2);
+                            
+                            ctx2.font = '400 32px monty';
+                            const t2 = ctx2.measureText(this.percentageValue).width;
+                            ctx2.fillText(this.percentageValue,this.x+(this.width/2)-(t2/2),(this.y+(this.height)/2));
+
+                            ctx2.font = '300 26px monty';
+                            const t3 = ctx2.measureText('('+this.percData+'%)').width;
+                            ctx2.fillText('('+this.percData+'%)',this.x+(this.width/2)-(t3/2),(this.y+(this.height)/2)+40);
+                            ctx2.closePath();
+                        }
+                        
+                    }
+                    
+                }
+                this.update = function(){
+                    if(this.direction && this.width<this.widthM){
+                        this.width += this.dWidth;
+                        ctx2.fillStyle = this.color;
+                        this.draw();
+                    }else if(!this.direction && this.height<this.heightM){
+                        this.height += this.dHeight;
+                        ctx2.fillStyle = this.color;
+                        this.draw();
+                    }else{
+                        ctx2.fillStyle = this.color;
+                        this.draw('Final');
+                    }
+                    
+                }
+                this.update();
+            }
+            let slideIndex;
+            let counter = 0;
+            let barArray = [];
+            let bar2Array = [];
+            let verticalDisplacement = 0;
+            let horizontalDisplacement = 0;
+            function init(index) {
+                slideIndex = index;
+                counter = 1;
+                barArray = [];
+                let colorArray = ['#FF492C','#FFC24C','#FF22c9','#FFC292',"#FFC22C",'#FF4195',"#999999"];
+                let total = 0;
+                let totalNum = 1783;
+                let totalMax = 100;
+                let areaLeft = 100;
+                let hLeft = 100;
+                let vLeft = 100;
+                let pieDataTot = [
+                    ['Maharashtra',651,'Maharashtra'],
+                    ['Delhi',65,'Delhi'],
+                    ['MP',185,'MP'],
+                    ['UP',60,'UP'],
+                    ['Rajasthan',92,'Rajasthan'],
+                    ['Gujarat',396,'Gujarat'],
+                ]
+                let pieDataCustom = [];
+                let totalNumLeft = 1783;
+                for (let index = 0; index < pieDataTot.length; index++) {
+                    const element = pieDataTot[index];
+                    totalNumLeft = totalNumLeft - element[1] 
+                    
+                    const num = (element[1]*100)/totalNum;
+                    pieDataCustom.push([element[0],num,element[0],element[1]])
+                }
+                pieDataCustom.push(['Others',(totalNumLeft/totalNum)*100,'Others'])
+                let pieData=[];
+                pieData.push(['S2',pieDataCustom[0][1]+pieDataCustom[1][1],'S2'])
+                pieData.push(['S1',pieDataCustom[2][1]+pieDataCustom[3][1],'S1'])
+                pieData.push(['S3',pieDataCustom[4][1]+pieDataCustom[5][1],'S3'])
+                pieData.push(['Others',pieDataCustom[6][1],'Others'])
+                console.log(pieDataCustom);
+                console.log(pieData);
+                for (let i = 0; i < pieData.length; i++) {
+                    const element = pieData[i];
+                    barArray.push(new Bar(
+                        i, element[1], colorArray[i*2], 
+                        (total/totalMax),
+                        element[2]
+                    ));
+                    let areaProportional
+                    let x
+                    let y
+                    let width
+                    let height
+                    if(i%2==0){
+                        areaProportional = (element[1]*100)/(totalMax-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        height = vLeft;
+                        width = (element[1]*100)/vLeft;
+                        hLeft -= width
+                    }else{
+                        areaProportional = (element[1]*100)/(totalMax-total);
+                        x = 100-hLeft;
+                        y = 100-vLeft;
+                        width = hLeft;
+                        height = (element[1]*100)/hLeft;
+                        vLeft -= height
+                    }
+                    
+                    if(i==0 || i==2){
+                        let perceny = (pieDataCustom[(i*2)+0][1])/(pieDataCustom[(i*2)+0][1]+pieDataCustom[(i*2)+1][1]);
+
+                        bar2Array.push(new Bar2(
+                            i*2, pieDataTot[i*2][1], colorArray[i*2], 
+                            (total/100),
+                            pieDataTot[i*2][2],
+                            x,y,width,height*perceny,
+                            i%2,pieDataCustom[i*2][1]
+                        ));
+                        console.log(colorArray[i*2+1],i*2+1,i)
+                        bar2Array.push(new Bar2(
+                            i*2+1, pieDataTot[i*2+1][1], colorArray[i*2+1], 
+                            (total/100),
+                            pieDataTot[(i*2)+1][2],
+                            x,y+(height*perceny),width,height*(1-perceny),
+                            i%2,pieDataCustom[i*2+1][1]
+                        ));
+                    }else if(i ==1){
+                        let perceny = (pieDataCustom[(i*2)+0][1])/(pieDataCustom[(i*2)+0][1]+pieDataCustom[(i*2)+1][1]);
+                        bar2Array.push(new Bar2(
+                            i*2, pieDataTot[i*2][1], colorArray[(i*2)], 
+                            (total/100),
+                            pieDataTot[i*2][2],
+                            x,y,width*(perceny),height,
+                            i%2,pieDataCustom[i*2][1]
+                        ));
+                        bar2Array.push(new Bar2(
+                            i*2+1, pieDataTot[i*2+1][1], colorArray[(i*2)+1], 
+                            (total/100),
+                            pieDataTot[i*2+1][2],
+                            x+width*(perceny),y,width*(1-perceny),height,
+                            i%2,pieDataCustom[i*2+1][1]
+                        ));
+                    }else if(i == 3){
+                        console.log(colorArray[i*2],i*2,i)
+                        bar2Array.push(new Bar2(
+                            6, totalNumLeft, colorArray[i*2], 
+                            (total/100),
+                            element[2],
+                            x,y,width,height,
+                            i%2,pieDataCustom[6][1]
+                        ));
+                    }
+                    
+                    // bar2Array.push(new Bar2(
+                    //     i, pieDataTot[i*2+1][1], colorArray[i*2+1], 
+                    //     (total/100),
+                    //     element[2],
+                    //     x,y,width,height,
+                    //     i%2
+                    // ));
+                    total = total + element[1]
+                }
+                console.log(bar2Array);
+                animate();
+            }
+            setTimeout(function () {
+                init(1);
+            }, 1000)
+            function animate() {
+                ctx.clearRect(0,0,canWid, canHgt);
+                ctx2.clearRect(0,0,canWid, canHgt);
+                for (let i = 0; i < bar2Array.length; i++) {
+                    // barArray[i].update();
+                    bar2Array[i].update();
+                }
+                requestAnimationFrame(animate);
+            }
+            
+        })
+	</script>
+</body>
+</html>
