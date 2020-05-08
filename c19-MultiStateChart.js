@@ -110,20 +110,25 @@ let counterPrev  = 1;
 let secs = 100;
 let recArr = [];
 let conArr = [];
+let detArr = [];
 for (var i = 0; i < dataTotal['Bihar'].length; i++) {
 	let rec = 0;
 	let conf = 0;
+	let det = 0;
 	for (state in dataTotal) {
 		if (dataTotal.hasOwnProperty(state)) {
 			rec += dataTotal[state][i][2];
+			det += dataTotal[state][i][3];
 			conf += dataTotal[state][i][0]+dataTotal[state][i][1]
 		}
 	}
 	recArr.push(rec)
 	conArr.push(conf)
+	detArr.push(det)
 }
 console.log(JSON.stringify(recArr))
 console.log(JSON.stringify(conArr))
+console.log(JSON.stringify(detArr))
 function makeGraph(label,counter,index){
 	if(counter<=legends.length){
 		$('.legendContainer').addClass('active')
