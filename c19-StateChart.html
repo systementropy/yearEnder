@@ -143,6 +143,7 @@
 		#canvas{
 			display: block;
 			margin: auto;
+			z-index: 1;
 			/* background: #383838; */
 		}
 		.legendStat{
@@ -299,11 +300,11 @@
 		/* .bottomDates>span.counter0.active::after{
 			
 		} */
-		.bottomDates>span.counter105.active{
+		.bottomDates>span.counterlast.active{
 			transform: translateX(-25px);
 			text-indent: -25px;
 		}
-		.bottomDates>span.counter105.active::after{
+		.bottomDates>span.counterlast.active::after{
 			left: 30px;
 		}
 		.bottomDates > span.active::after{
@@ -422,7 +423,12 @@
 			height: 100%;
 			top: 50%;
 			left: 50%;
-			transform: translate(-66%,-80%);
+			transform: translate(-66%,-80%) scale(1);
+			z-index: 200;
+			transition: all 250ms ease-in;
+		}
+		.svgContainer.active{
+			transform: translate(-86%,-90%) scale(0.5);
 		}
 		.legendStates {
 			position: absolute;
@@ -491,18 +497,27 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>STATE-WISE STATUS</h1>
-			<h3>COVID-19 trajectory in Indian states with <br/>highest number of cases <span>(05 May)</span></h3>
+			<h3>COVID-19 trajectory in Indian states with <br/>highest number of cases <span>(11 May)</span></h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendStates">
 				<div class="stateName total">Total Cases<!-- <i>(04 May)</i> --></div>
 				<div class="internal total">
-					<!-- <div class="bjpSeats"><span class="confirmedTotal confirmed">7</span><p>States</p></div>
-					<div class="bar"></div> -->
+					<div class="bjpSeats"><span class="confirmedTotal confirmed">7</span><p>Confirmed</p></div>
+					<div class="bar"></div>
+					<div class="totalSeats"><span class="recoveredTotal recovered">24</span><p>Recovered</p></div>
+					<div class="bar"></div>
+					<div class="totalSeats"><span class="deathsTotal deaths">07</span><p>Deaths</p></div>
+					<!-- 
+
+						MULTICHART
+
+						-- <div class="bjpSeats"><span class="confirmedTotal confirmed">7</span><p>States</p></div>
+					<div class="bar"></div> --
 					<div class="totalSeats"><span class="deathsTotal deaths">07</span><p>Seven worst-hit<br>states</p></div>
 					<div class="bar"></div>
 					<div class="totalSeats"><span class="recoveredTotal recovered">24</span><p>Confirmed Cases<br> in India</p></div>
-					
+					 -->
 				</div>
 			</div>
 			<div class="legendContainer">
@@ -576,19 +591,8 @@
 				</div>
 				<div class="legendStat">
 					<span></span>
-					<!-- <span class="yellow">India<i data-deaths="0"></i></span> -->
-					<!-- <span class="red">Confirmed Cases<i data-deaths="0"></i></span> -->
-					<!-- <span class="blue">Italy<i data-deaths="0"></i></span>
-					<span class="green">Iran<i data-deaths="0"></i></span>
-					<span class="orange">S. Korea<i data-deaths="0"></i></span>
-					<span class="us">USA<i data-deaths="0"></i></span> -->
 				</div>
 			</div>
-			<!-- <div class="legendBg">
-				<span>Confirmed</span>
-				<span>Recovered</span>
-				<span>Deaths</span>
-			</div> -->
 			<canvas id="canvas"></canvas>
 			<div class="svgContainer">
 				<!-- <embed src="India.svg" width="100%" height="100%" type="image/svg+xml" /> -->
@@ -19450,6 +19454,6 @@
 		
 	</div>
 	<script src="./jquery.js"></script>
-	<script type="text/javascript" src="./c19-MultiStateChart.js"></script>
+	<script type="text/javascript" src="./c19-StateChart.js"></script>
 </body>
 </html>

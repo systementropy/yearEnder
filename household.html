@@ -169,7 +169,6 @@
                 this.text = text;
                 this.perc = perc;
                 this.dRad = 1;
-                // this.color = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
                 this.startAngle = startAngle;
                 this.endAngle = startAngle;
                 this.finalAngle = endAngle;
@@ -249,44 +248,28 @@
             function init(index) {
                 slideIndex = index;
                 counter = 1;
+                circleArray = [];
+                var colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
+                var total = 0;
+                var pieData = [
+                    ['pneumonia',27,'Pneumonia'],
+                    ['stroke',18,'Stroke'],
+                    ['ischaemic heart disease',27,'Coronary Disease'],
+                    ['chronic obstructive pulmonary disease',20,'COPD'],
+                    ['lung cancer',8,'Lung Cancer'],
+                ]
+                for (let i = 0; i < pieData.length; i++) {
+                    const element = pieData[i];
+                    circleArray.push(new Circle(
+                        100,200, i, element[1], element[0], element[1], colorArray[i], 
+                        (total/100)*2*Math.PI, 
+                        ((total+element[1])/100)*2*Math.PI,
+                        element[2]
+                    ));
+                    total = total + element[1]
 
-                    // $('#year').each(function () {
-                    //     var $this = $(this);
-                    //     jQuery({ Counter: 1961 }).animate({ Counter: 2013 }, {
-                    //         duration: 2000,
-                    //         easing: 'swing',
-                    //         step: function () {
-                    //             $this.text(Math.ceil(this.Counter));
-                    //         }
-                    //     });
-                    // });
-                    // var elem = document.getElementById("year");
-                    // elem.innerHTML = "2018"
-                    circleArray = [];
-                    var colorArray = ['#92C24C77','#C9224C77','#C2924C77','#C24C9277','#C2492C77'];
-                    var total = 0;
-                    var pieData = [
-                        ['pneumonia',27,'Pneumonia'],
-                        ['stroke',18,'Stroke'],
-                        ['ischaemic heart disease',27,'Coronary Disease'],
-                        ['chronic obstructive pulmonary disease',20,'COPD'],
-                        ['lung cancer',8,'Lung Cancer'],
-                    ]
-                    for (let i = 0; i < pieData.length; i++) {
-                        const element = pieData[i];
-                        circleArray.push(new Circle(
-                            100,200, i, element[1], element[0], element[1], colorArray[i], 
-                            (total/100)*2*Math.PI, 
-                            ((total+element[1])/100)*2*Math.PI,
-                            element[2]
-                        ));
-                        total = total + element[1]
-
-                    }
-                    console.log(circleArray)
-                    animate();
-                
-                
+                }
+                animate();
             }
             setTimeout(function () {
                 init(1);
