@@ -118,7 +118,7 @@
         }
         .graphicsContainer::after{
 			color: #FF4141;
-            content: '1783';
+            content: '2293';
             position: absolute;
             font-weight: 600;
             top: 25px;
@@ -459,7 +459,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 SITUATION IN INDIA</h1>
-			<h3>Share of states in total fatalities<span>(7th May)</span></h3>
+			<h3>Share of states in total fatalities<span>(12th May)</span></h3>
 		</div>
 		<div class="graphicsContainer">
 			
@@ -541,7 +541,12 @@
                 this.widthM = width*canWid/100;
                 this.heightM = height*canHgt/100;
                 this.direction = direction;
-                this.percData = percData.toFixed(1);
+				this.percData = percData.toFixed(1);
+				if(this.arrayIndex == 0){
+					this.canUpdate = true;
+				}else{
+					this.canUpdate = false;
+				}
                 if(this.direction){
                     this.height = this.heightM;
                     this.dWidth = (this.widthM*canWid)/(100*100*4);
@@ -601,18 +606,22 @@
                     
                 }
                 this.update = function(){
-                    if(this.direction && this.width<this.widthM){
+                    if(this.canUpdate && this.direction && this.width<this.widthM){
                         this.width += this.dWidth;
                         ctx2.fillStyle = this.color;
                         this.draw();
-                    }else if(!this.direction && this.height<this.heightM){
+                    }else if(this.canUpdate && !this.direction && this.height<this.heightM){
                         this.height += this.dHeight;
                         ctx2.fillStyle = this.color;
                         this.draw();
-                    }else{
-                        ctx2.fillStyle = this.color;
-                        this.draw('Final');
-                    }
+                    }else if(this.canUpdate){
+						ctx2.fillStyle = this.color;
+						this.draw('Final');
+						if(bar2Array[this.arrayIndex+1] && this.canUpdate == true){
+							bar2Array[this.arrayIndex+1].canUpdate = true;
+						}
+						
+					}
                     
                 }
                 this.update();
@@ -629,21 +638,21 @@
                 barArray = [];
                 let colorArray = ['#FF492C','#FFC24C','#FF22c9','#FFC292',"#FFC22C",'#FF4195',"#999999"];
                 let total = 0;
-                let totalNum = 1783;
+                let totalNum = 2293;
                 let totalMax = 100;
                 let areaLeft = 100;
                 let hLeft = 100;
                 let vLeft = 100;
                 let pieDataTot = [
-                    ['Maharashtra',651,'Maharashtra'],
-                    ['Delhi',65,'Delhi'],
-                    ['MP',185,'MP'],
-                    ['UP',60,'UP'],
-                    ['Rajasthan',92,'Rajasthan'],
-                    ['Gujarat',396,'Gujarat'],
+                    ['Maharashtra',868,'Maharashtra'],
+                    ['West Bengal',190,'West Bengal'],
+                    ['MP',221,'MP'],
+                    ['UP',80,'UP'],
+                    ['Rajasthan',113,'Rajasthan'],
+                    ['Gujarat',513,'Gujarat'],
                 ]
                 let pieDataCustom = [];
-                let totalNumLeft = 1783;
+                let totalNumLeft = 2293;
                 for (let index = 0; index < pieDataTot.length; index++) {
                     const element = pieDataTot[index];
                     totalNumLeft = totalNumLeft - element[1] 

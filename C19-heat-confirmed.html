@@ -118,7 +118,7 @@
         }
         .graphicsContainer::after{
 			color: #c07130;
-            content: '52952';
+            content: '70756';
             position: absolute;
             font-weight: 600;
             top: 25px;
@@ -459,7 +459,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 SITUATION IN INDIA</h1>
-			<h3>Total cases and biggest contributor<span>(7th May)</span></h3>
+			<h3>Total cases and biggest contributors<span>(12th May)</span></h3>
 		</div>
 		<div class="graphicsContainer">
 			
@@ -498,34 +498,6 @@
             let ctx2 = canvas2.getContext("2d");
             ctx2.scale(2,2);
 
-            function Bar(arrayIndex, percentageValue, color, displacement, text){
-                this.arrayIndex = arrayIndex;
-                this.percentageValue = percentageValue;
-                this.color = color;
-                this.displacement = displacement;
-                this.text = text;
-                this.width = 0;
-                this.dWidth = (this.percentageValue*canWid)/(100*100);
-                this.maxWidth = (this.percentageValue/100)*canWid;
-                this.draw = function(){
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(this.displacement*canWid,0);
-                    ctx.rect(this.displacement*canWid,0,this.width,canHgt);
-                    ctx.fill();
-                    ctx.closePath();
-                    
-                }
-                this.update = function(){
-                    if(this.width<this.maxWidth){
-                        this.width += this.dWidth;
-                    }
-                    ctx.fillStyle = this.color;
-                    this.draw();
-                }
-                this.update();
-            }
-
             function Bar2(arrayIndex, percentageValue, color, displacement, text,x,y,width,height,direction,percData){
                 this.arrayIndex = arrayIndex;
                 this.percentageValue = percentageValue;
@@ -541,7 +513,12 @@
                 this.widthM = width*canWid/100;
                 this.heightM = height*canHgt/100;
                 this.direction = direction;
-                this.percData = percData.toFixed(1);
+				this.percData = percData.toFixed(1);
+				if(this.arrayIndex == 0){
+					this.canUpdate = true;
+				}else{
+					this.canUpdate = false;
+				}
                 if(this.direction){
                     this.height = this.heightM;
                     this.dWidth = (this.widthM*canWid)/(100*100*4);
@@ -579,19 +556,24 @@
                     
                 }
                 this.update = function(){
-                    if(this.direction && this.width<this.widthM){
-                        this.width += this.dWidth;
-                        ctx2.fillStyle = this.color;
-                        this.draw();
-                    }else if(!this.direction && this.height<this.heightM){
-                        this.height += this.dHeight;
-                        ctx2.fillStyle = this.color;
-                        this.draw();
-                    }else{
-                        ctx2.fillStyle = this.color;
-                        this.draw('Final');
-                    }
-                    
+                    if(this.update){
+						if(this.canUpdate && this.direction && this.width<this.widthM){
+							this.width += this.dWidth;
+							ctx2.fillStyle = this.color;
+							this.draw();
+						}else if(this.canUpdate && !this.direction && this.height<this.heightM){
+							this.height += this.dHeight;
+							ctx2.fillStyle = this.color;
+							this.draw();
+						}else if(this.canUpdate){
+							ctx2.fillStyle = this.color;
+							this.draw('Final');
+							if(bar2Array[this.arrayIndex+1] && this.canUpdate == true){
+								bar2Array[this.arrayIndex+1].canUpdate = true;
+							}
+							
+						}
+					}
                 }
                 this.update();
             }
@@ -607,21 +589,21 @@
                 barArray = [];
                 let colorArray = ['#419c95','#2299c9','#C2924C','#C24C92',"#49492C",'#C2492C',"#999999"];
                 let total = 0;
-                let totalNum = 52952;
+                let totalNum = 70756;
                 let totalMax = 100;
                 let areaLeft = 100;
                 let hLeft = 100;
                 let vLeft = 100;
                 let pieDataTot = [
-                    ['Maharashtra',16758,'Maharashtra'],
-                    ['Gujarat',6625,'Gujarat'],
-                    ['Delhi',5532,'Delhi'],
-                    ['Tamil Nadu',4829,'Tamil Nadu'],
-                    ['MP',3138,'MP'],
-                    ['Rajasthan',3317,'Rajasthan'],
+                    ['Maharashtra',23401,'Maharashtra'],
+                    ['Gujarat',8541,'Gujarat'],
+                    ['Delhi',7233,'Delhi'],
+                    ['Tamil Nadu',8002,'Tamil Nadu'],
+                    ['MP',3785,'MP'],
+                    ['Rajasthan',3988,'Rajasthan'],
                 ]
                 let pieDataCustom = [];
-                let totalNumLeft = 52952;
+                let totalNumLeft = 70756;
                 for (let index = 0; index < pieDataTot.length; index++) {
                     const element = pieDataTot[index];
                     totalNumLeft = totalNumLeft - element[1] 
@@ -639,11 +621,7 @@
                 console.log(pieData);
                 for (let i = 0; i < pieData.length; i++) {
                     const element = pieData[i];
-                    barArray.push(new Bar(
-                        i, element[1], colorArray[i*2], 
-                        (total/totalMax),
-                        element[2]
-                    ));
+                    
                     let areaProportional
                     let x
                     let y

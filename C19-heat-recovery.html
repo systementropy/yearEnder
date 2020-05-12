@@ -118,7 +118,7 @@
         }
         .graphicsContainer::after{
 			color: #419c95;
-            content: '15267';
+            content: '22455';
             position: absolute;
             font-weight: 600;
             top: 25px;
@@ -165,6 +165,7 @@
             opacity: 1;
             margin: 0 auto;
             z-index: 1;
+			box-shadow: 0px 0px 0px 1px #999;
         }
 		.legendStat{
 			position: absolute;
@@ -459,7 +460,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 SITUATION IN INDIA</h1>
-			<h3>Total recoveries and biggest contributors<span>(7th May)</span></h3>
+			<h3>Total recoveries and biggest contributors<span>(12th May)</span></h3>
 		</div>
 		<div class="graphicsContainer">
 			
@@ -534,14 +535,19 @@
                 this.text = text;
                 this.width = 0;
                 this.height = 0;
-                this.dWidth = (this.percentageValue*canWid)/(100*100);
+                this.dWidth = (this.percentageValue*canWid)/(50*50);
                 this.maxWidth = (this.percentageValue/100)*canWid;
                 this.x = x*canWid/100;
                 this.y = y*canHgt/100;
                 this.widthM = width*canWid/100;
                 this.heightM = height*canHgt/100;
                 this.direction = direction;
-                this.percData = percData.toFixed(1);
+				this.percData = percData.toFixed(1);
+				if(this.arrayIndex == 0){
+					this.canUpdate = true;
+				}else{
+					this.canUpdate = false;
+				}
                 if(this.direction){
                     this.height = this.heightM;
                     this.dWidth = (this.widthM*canWid)/(100*100*4);
@@ -579,19 +585,24 @@
                     
                 }
                 this.update = function(){
-                    if(this.direction && this.width<this.widthM){
-                        this.width += this.dWidth;
-                        ctx2.fillStyle = this.color;
-                        this.draw();
-                    }else if(!this.direction && this.height<this.heightM){
-                        this.height += this.dHeight;
-                        ctx2.fillStyle = this.color;
-                        this.draw();
-                    }else{
-                        ctx2.fillStyle = this.color;
-                        this.draw('Final');
-                    }
-                    
+                    if(this.update){
+						if(this.canUpdate && this.direction && this.width<this.widthM){
+							this.width += this.dWidth;
+							ctx2.fillStyle = this.color;
+							this.draw();
+						}else if(this.canUpdate && !this.direction && this.height<this.heightM){
+							this.height += this.dHeight;
+							ctx2.fillStyle = this.color;
+							this.draw();
+						}else if(this.canUpdate){
+							ctx2.fillStyle = this.color;
+							this.draw('Final');
+							if(bar2Array[this.arrayIndex+1] && this.canUpdate == true){
+								bar2Array[this.arrayIndex+1].canUpdate = true;
+							}
+							
+						}
+					}
                 }
                 this.update();
             }
@@ -607,21 +618,21 @@
                 barArray = [];
                 let colorArray = ['#41FF95','#22FFc9','#C2FF4C','#C2FF92',"#49FF2C",'#C2FF2C',"#999999"];
                 let total = 0;
-                let totalNum = 15267;
+                let totalNum = 22455;
                 let totalMax = 100;
                 let areaLeft = 100;
                 let hLeft = 100;
                 let vLeft = 100;
                 let pieDataTot = [
-                    ['Maharashtra',3094,'Maharashtra'],
-                    ['Gujarat',1500,'Gujarat'],
-                    ['Delhi',1542,'Delhi'],
-                    ['Tamil Nadu',1516,'Tamil Nadu'],
-                    ['MP',1099,'MP'],
-                    ['Rajasthan',1596,'Rajasthan'],
+                    ['Maharashtra',4786,'Maharashtra'],
+                    ['Gujarat',2780,'Gujarat'],
+                    ['Delhi',2129,'Delhi'],
+                    ['Tamil Nadu',2051,'Tamil Nadu'],
+                    ['MP',1747,'MP'],
+                    ['Rajasthan',2264,'Rajasthan'],
                 ]
                 let pieDataCustom = [];
-                let totalNumLeft = 15267;
+                let totalNumLeft = 22455;
                 for (let index = 0; index < pieDataTot.length; index++) {
                     const element = pieDataTot[index];
                     totalNumLeft = totalNumLeft - element[1] 
@@ -635,8 +646,7 @@
                 pieData.push(['S1',pieDataCustom[2][1]+pieDataCustom[3][1],'S1'])
                 pieData.push(['S3',pieDataCustom[4][1]+pieDataCustom[5][1],'S3'])
                 pieData.push(['Others',pieDataCustom[6][1],'Others'])
-                console.log(pieDataCustom);
-                console.log(pieData);
+
                 for (let i = 0; i < pieData.length; i++) {
                     const element = pieData[i];
                     barArray.push(new Bar(
@@ -700,7 +710,6 @@
                             i%2,pieDataCustom[i*2+1][1]
                         ));
                     }else if(i == 3){
-                        console.log(colorArray[i*2],i*2,i)
                         bar2Array.push(new Bar2(
                             6, totalNumLeft, colorArray[i*2], 
                             (total/100),
@@ -709,14 +718,6 @@
                             i%2,pieDataCustom[6][1]
                         ));
                     }
-                    
-                    // bar2Array.push(new Bar2(
-                    //     i, pieDataTot[i*2+1][1], colorArray[i*2+1], 
-                    //     (total/100),
-                    //     element[2],
-                    //     x,y,width,height,
-                    //     i%2
-                    // ));
                     total = total + element[1]
                 }
                 console.log(bar2Array);
@@ -729,7 +730,6 @@
                 ctx.clearRect(0,0,canWid, canHgt);
                 ctx2.clearRect(0,0,canWid, canHgt);
                 for (let i = 0; i < bar2Array.length; i++) {
-                    // barArray[i].update();
                     bar2Array[i].update();
                 }
                 requestAnimationFrame(animate);
