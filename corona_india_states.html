@@ -114,6 +114,7 @@
 			width: auto;
 			height: 83%;
 			position: relative;
+			z-index: 1;
 		}
 		#year{
 			font-size: 34px;
@@ -163,6 +164,14 @@
 		#canvas{
 			display: block;
 			margin: auto;
+			display: block;
+			margin: auto;
+			position: absolute;
+			
+			z-index: 100;
+			top: 170px;
+			right: 0px;
+			/* box-shadow: inset 0 0 2px 1px #3337; */
 		}
 		.Month{
 			opacity: 0;
@@ -299,10 +308,11 @@
 		}
 		.svgContainer {
 			position: absolute;
-			width: 100%;
-			top: -164px;
+			width: 77%;
+			top: -60px;
 			left: -100px;
 			height: 1000px;
+			z-index: -1;
 		}
 		
 		.stateName.total,.internal.total{
@@ -376,7 +386,7 @@
 			color:  rgb(255,91,0);
 		} */
 		.legendBg{
-			height: 300px;
+			height: max-content;
 			position: absolute;
 			right: 0;
 			top: 250px;
@@ -388,10 +398,28 @@
 			text-align: center;
 			flex-direction: column;
 			justify-content: space-around;
-			background: linear-gradient(to bottom, rgb(235,255,0) 0% 9%,rgb(255,246,0) 9% 18%,rgb(255,210,65) 18% 27%,rgb(255,195,2) 27% 36%,rgb(255,171,63) 36% 45%,rgb(255,143,0) 45% 54%,rgb(255,132,63) 54% 63%,rgb(255,91,0) 63% 72%,rgb(255,67,67) 72% 81%,rgb(255,5,5) 81% 90%,rgb(176,14,14) 90% 100%);
+			opacity: 0;
+			background: linear-gradient(to bottom, 
+			
+			rgb(135,255,0) 0px 30px,
+			rgb(200,255,0) 30px 60px,
+			rgb(255,246,0) 60px 90px,
+			rgb(255,210,65) 90px 120px,
+			rgb(255,195,2) 120px 150px,
+			rgb(255,171,63) 150px 180px,
+			rgb(255,143,0) 180px 210px,
+			rgb(255,132,63) 210px 240px,
+			rgb(255,91,0) 240px 270px,
+			rgb(176,14,14) 270px 300px,
+			rgb(145,0,0) 300px 330px,
+			rgb(83,0,0) 330px 360px
+			);
 		}
 		.legendBg span{
 			font-weight: 500;
+			height: 30px;
+			line-height: 30px;
+
 		}
 	</style>
 </head>
@@ -19252,6 +19280,7 @@
 				</svg>
 
 			</div>
+			<canvas id="canvas"></canvas>
 			<div class="legendStates">
 				<div class="stateName statewise"></div>
 				<div class="internal">
@@ -19271,17 +19300,18 @@
 				</div>
 			</div>
 			<div class="legendBg">
-				<span>0-50</span>
-				<span>51-100</span>
-				<span>101-250</span>
-				<span>251-500</span>
-				<span>501-750</span>
-				<span>751-1000</span>
-				<span>1001-1500</span>
-				<span>1501-2000</span>
-				<span>2001-3000</span>
-				<span>3001-4000</span>
-				<span>4000+</span>
+				<span>0</span>
+				<span>&lt;&nbsp;50</span>
+				<span>&lt;&nbsp;100</span>
+				<span>&lt;&nbsp;250</span>
+				<span>&lt;&nbsp;500</span>
+				<span>&lt;&nbsp;1K</span>
+				<span>&lt;&nbsp;2.5K</span>
+				<span>&lt;&nbsp;5.0K</span>
+				<span>&lt;&nbsp;7.5K</span>
+				<span>&lt;&nbsp;10K</span>
+				<span>&lt;&nbsp;15K</span>
+				<span>&gt;&nbsp;15K</span>
 			</div>
 		</div>
 		
@@ -19330,7 +19360,7 @@
 				"Bihar":["Bihar","Bihar"],
 				"Manipur":["Manipur","Manipur"],
 				"Mizoram":["Mizoram","Mizoram"],
-				"Andaman and Nicobar Islands":["Andaman & Nicobar Islands","andaman"],
+				"Andaman and Nicobar Islands":["A & N Islands","andaman"],
 				"Goa":["Goa","Goa"],
 				"Arunachal Pradesh":["Arunachal Pradesh","Arunachal"],
 				"Jharkhand":["Jharkhand","Jharkhand"],
@@ -19342,52 +19372,54 @@
 			};
 			
 			var dataIndia = [
-				["Andaman and Nicobar Islands",33,33,0],
-				["Andhra Pradesh",2018,975,45],
-				["Arunachal Pradesh",1,1,0],
-				["Assam",65,34,2],
-				["Bihar",747,377,6],
-				["Chandigarh",174,24,2],
-				["Chhattisgarh",59,53,0],
-				["Dadar Nagar Haveli",1,0,0],
-				["Delhi",7233,2129,73],
-				["Goa",7,7,0],
-				["Gujarat",8541,2780,513],
-				["Haryana",730,337,11],
-				["Himachal Pradesh",59,39,2],
-				["Jammu and Kashmir",879,427,10],
-				["Jharkhand",160,78,3],
-				["Karnataka",862,426,31],
-				["Kerala",519,489,4],
-				["Ladakh",42,21,0],
-				["Madhya Pradesh",3785,1747,221],
-				["Maharashtra",23401,4786,868],
-				["Manipur",2,2,0],
-				["Meghalaya",13,10,1],
-				["Mizoram",1,1,0],
-				["Odisha",414,85,3],
-				["Puducherry",12,6,0],
-				["Punjab",1877,168,31],
-				["Rajasthan",3988,2264,113],
-				["Tamil Nadu",8002,2051,53],
-				["Telengana",1275,800,30],
-				["Tripura",152,2,0],
-				["Uttarakhand",68,46,1],
-				["Uttar Pradesh",3573,1758,80],
-				["West Bengal",2063,499,190],
+				["Andaman and Nicobar Islands",33,33,0,33,33],
+				["Andhra Pradesh",2137,1142,47,2090,2018],
+				["Arunachal Pradesh",1,1,0,1,1],
+				["Assam",80,39,2,65,65],
+				["Bihar",940,388,7,831,747],
+				["Chandigarh",187,28,3,187,174],
+				["Chhattisgarh",59,55,0,59,59],
+				["Dadar Nagar Haveli",1,0,0,1,1],
+				["Delhi",7998,2858,106,7639,7233],
+				["Goa",7,7,0,7,7],
+				["Gujarat",9267,3562,566,8903,8541],
+				["Haryana",793,418,11,780,730],
+				["Himachal Pradesh",66,39,2,65,59],
+				["Jammu and Kashmir",971,466,11,934,879],
+				["Jharkhand",173,79,3,172,160],
+				["Karnataka",959,451,33,925,862],
+				["Kerala",534,490,4,524,519],
+				["Ladakh",43,22,0,42,42],
+				["Madhya Pradesh",4173,2004,232,3986,3785],
+				["Maharashtra",25922,5547,975,24427,23401],
+				["Manipur",2,2,0,2,2],
+				["Meghalaya",13,10,1,13,13],
+				["Mizoram",1,1,0,1,1],
+				["Odisha",538,143,3,437,414],
+				["Puducherry",13,9,1,13,12],
+				["Punjab",1924,200,32,1914,1877],
+				["Rajasthan",4328,2459,121,4126,3988],
+				["Tamil Nadu",9227,2176,64,8718,8002],
+				["Telengana",1367,940,34,1326,1275],
+				["Tripura",155,16,0,154,152],
+				["Uttarakhand",72,46,1,69,68],
+				["Uttar Pradesh",3729,1902,83,3664,3573],
+				["West Bengal",2290,702,207,2173,2063],
 			];
-			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0;
+			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
-				[235,255,0],[255,246,0],[255,210,65],[255,195,2],[255,171,63],[255,143,0],[255,132,63],[255,91,0],[255,67,67],[255,5,5],[176,14,14]
+				[135,255,0],[200,255,0],[255,246,0],[255,210,65],[255,195,2],[255,171,63],[255,143,0],[255,132,63],[255,91,0],[176,14,14],[145,0,0],[83,0,0]
 			]
 			var max = [242,133,0];
 			var min = [255,255,255];
 			var globalCounter = 0;
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
-				const perc = element[1];
+				const perc = element[1]-element[2]-element[3];
 				let colorIndex;
-				if(perc>=0 && perc <= 50){
+				if(perc==0){
+					colorIndex = 0
+				}else if(perc>0 && perc <= 50){
 					colorIndex = 0
 				}else if(perc>50 && perc <= 100){
 					colorIndex = 1
@@ -19395,37 +19427,49 @@
 					colorIndex = 2
 				}else if(perc>250 && perc <= 500){
 					colorIndex = 3
-				}else if(perc>500 && perc <= 750){
+				}else if(perc>500 && perc <= 1000){
 					colorIndex = 4
-				}else if(perc>750 && perc <= 1000){
+				}else if(perc>1000 && perc <= 2500){
 					colorIndex = 5
-				}else if(perc>1000 && perc <= 1500){
+				}else if(perc>2500 && perc <= 5000){
 					colorIndex = 6
-				}else if(perc>1500 && perc <= 2000){
+				}else if(perc>5000 && perc <= 7500){
 					colorIndex = 7
-				}else if(perc>2000 && perc <= 3000){
+				}else if(perc>7500 && perc <= 10000){
 					colorIndex = 8
-				}else if(perc>3000 && perc <= 4000){
+				}else if(perc>10000 && perc <= 15000){
 					colorIndex = 9
 				}else{
 					colorIndex = 10
 				}
+				perc==0?colorIndex=0:colorIndex = colorIndex+1
 				const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
 				confirmedTotal += element[1]
 				recoveredTotal += element[2]
 				deathsTotal += element[3]
+				activeTotal = activeTotal + element[1] - element[2] - element[3]
 				element.push(perc);
 				element.push(color);
 				element.push(colorIndex);
-				
 				dataIndia[i]=element;
 			}
 			dataIndia.sort(function(a,b){
-				return (a[3]-b[3])
+				return ((a[1]-a[2]-a[3])-(b[1]-b[2]-b[3]))
 			})
-			console.log(dataIndia);
+			const canvas = document.getElementById("canvas");
+			const canHgt = 400;
+			const canWid = 500;
+			canvas.style.height = canHgt+'px';
+			canvas.style.width = canWid+'px';
+			canvas.height = canHgt*2;
+			canvas.width = canWid*2;
+			const ctx = canvas.getContext("2d");
+			ctx.scale(2,2);
+			ctx.lineWidth = 2;
+			ctx.strokeColor = '#000';
+
 			var alpha; var index;
-			const msecForEach = 25
+			const msecForEach = 25;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19449,12 +19493,151 @@
 					$('.confirmed.statewise').html(element[1]);
 					$('.recovered.statewise').html((element[2]).toString());
 					$('.deaths.statewise').html(element[3]);
-					if(arrayId[element[0]][0] === 'Andaman and Nicobar Islands'){
-						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
-					}else{
-						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
+					if(index>0){
+
+						if(arrayId[dataIndia[index-1][0]][0] === 'Andaman and Nicobar Islands'){
+							$('.'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+						}else{
+							$('#'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+						}
 					}
+					if(arrayId[element[0]][0] === 'Andaman and Nicobar Islands'){
+						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+','+alpha+')'})
+					}else{
+						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+','+alpha+')'})
+					}
+					const activeState = element[1]-element[2]-element[3];
+					// let activeStatePerc = Math.pow((activeState*100/activeTotal),0.5)
+					let activeStatePerc = activeState/activeTotal
+
+					ctx.beginPath();
+					ctx.clearRect(0,0,canWid,canHgt);
+					ctx.fillStyle = '#999';
+					ctx.moveTo(50,50);
+					ctx.arc(50,50,48,0,2*Math.PI)
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = 'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+',1)';
+					ctx.moveTo(50,50);
+					ctx.arc(50,50,50,0,2*Math.PI*activeStatePerc)
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#EEE';
+					ctx.moveTo(50,50);
+					ctx.arc(50,50,45,0,2*Math.PI)
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '500 25px monty';
+					ctx.moveTo(50,50);
+					const t1 = ctx.measureText((activeStatePerc*100).toFixed(1)+'%').width;
+					ctx.fillText((activeStatePerc*100).toFixed(1)+'%', 50-(t1/2), 60 )
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '300 32px monty';
+					ctx.moveTo(50,50);
+					// const t1 = ctx.measureText((activeStatePerc*100).toFixed(1)+'%').width;
+					ctx.fillText('Of current active cases', 120, 60 )
+					ctx.font = '400 24px monty';
+					ctx.fillText('in India', 120, 80 )
+					ctx.fill();
+
 					
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '300 32px monty';
+					ctx.fillText(element[4]-element[5], 120, 160 )
+					ctx.font = '400 24px monty';
+					ctx.fillText(element[1]-element[4], 120, 180 )
+					ctx.fill();
+					const yester = element[4]-element[5];
+					const today = element[1]-element[4];
+					let scale;
+					today>yester?scale=today:scale=yester;
+
+					ctx.beginPath();
+					ctx.fillStyle = '#ffd241';
+					ctx.moveTo(100,100);
+					ctx.rect(100,(1-(yester/scale))*100+100,150,(yester/scale)*100)
+					ctx.fill();
+					ctx.closePath();
+					ctx.beginPath();
+					ctx.fillStyle = '#ffd241';
+					ctx.moveTo(250,100);
+					ctx.rect(260,(1-(today/scale))*100+100,150,(today/scale)*100)
+					ctx.fill();
+					ctx.closePath();
+					console.log(element[0],yester,today)
+
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '500 25px monty';
+					ctx.moveTo(50,50);
+					const t4 = ctx.measureText(((today-yester)*100/yester).toFixed(1)+'%').width;
+					ctx.fillText(((today-yester)*100/today).toFixed(1)+'%', 285-(t4/2),  (1-(today/scale))*100+100)
+					ctx.fill();
+
+
+					ctx.beginPath();
+					ctx.fillStyle = '#999';
+					ctx.moveTo(50,300);
+					ctx.arc(50,300,48,0,2*Math.PI)
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = 'rgba(74,111,32)';
+					ctx.moveTo(50,300);
+					if(element[2]>0){
+						ctx.arc(50,300,50,0,2*Math.PI*(1-element[2]/element[1]),true)
+					}
+					if(element[2] == element[1]){
+						ctx.arc(50,300,50,0,2*Math.PI)
+					}
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#F33';
+					ctx.moveTo(50,300);
+					ctx.arc(50,300,50,0,2*Math.PI*element[3]/element[1])
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#EEE';
+					ctx.moveTo(50,300);
+					ctx.arc(50,300,45,0,2*Math.PI)
+					ctx.fill();
+
+					
+
+					ctx.beginPath();
+					ctx.fillStyle = 'rgba(74,111,32)';
+					ctx.font = '500 25px monty';
+					ctx.moveTo(50,300);
+					const t2 = ctx.measureText((element[2]/element[1]*100).toFixed(1)+'%').width;
+					ctx.fillText((element[2]/element[1]*100).toFixed(1)+'%', 50-(t2/2), 300 )
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#F33';
+					ctx.font = '500 25px monty';
+					ctx.moveTo(50,300);
+					const t3 = ctx.measureText((element[3]/element[1]*100).toFixed(1)+'%').width;
+					ctx.fillText((element[3]/element[1]*100).toFixed(1)+'%', 50-(t3/2), 320 )
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '300 32px monty';
+					ctx.fillText('Recovered & Deaths', 120, 300 )
+					ctx.font = '400 24px monty';
+					ctx.fillText('in the state', 120, 320 )
+					ctx.fill();
+
 				}
 			}
 			
@@ -19467,6 +19650,7 @@
 				if(globalCounter == 1){
 					$('.legendStates').addClass('active')
 				}
+				// if(globalCounter<msecForEach*dataIndia.length-1){
 				if(globalCounter<msecForEach*dataIndia.length-1){
 					updateColor();
 					requestAnimationFrame(animate)
