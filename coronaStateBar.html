@@ -65,10 +65,11 @@
 			right: 25px;
         }
         .title h1{
-            font-size: 60px;
+            font-size: 40px;
             font-weight: 900;
             line-height: 1;
             margin: 0;
+			text-align: right;
             text-transform: uppercase;
             
         }
@@ -86,13 +87,11 @@
             padding: 25px;
             box-sizing: border-box;
 			position: relative;
-			/* background: #999;
-            background-image: linear-gradient(#FFF,#EEE),url(./Extra/covid.png); */
+			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
 			background-repeat: no-repeat;
 			background-position: bottom;
 			background-size: cover;
 			background-blend-mode: multiply;
-			/* animation: aniBG 20s infinite forwards; */
         }
 		@keyframes aniBG {
 			0% {background-position: top;}
@@ -107,14 +106,14 @@
 			margin:  0;
             box-shadow: 0px 0px 2px 1px rgba(255,255,255,0.5);
         }
-		.graphicsContainer::after{
+		.graphicsContainer.active::after{
 			content: '';
 			position: absolute;
-			opacity: 0;
+			opacity: 1;
 			width: 20px;
-			height: 29px;
-			top: 1px;
-			left: 80%;
+			height: 60px;
+			top: 0px;
+			left: 97%;
 			background: #FFF;
 			clip-path: polygon(0% 0%, 33% 33%, 0% 50%, 33% 67%, 0% 100%, 67% 100%, 100% 67%, 67% 50%, 100% 33%, 67% 0%);
 		}
@@ -383,8 +382,8 @@
 	<div class="mainBody">
 		<span class="texty">TEXTY</span>
 		<div class="title">
-			<h1>COVID-19</h1>
-			<h3>Cases in States</h3>
+			<h1>MOST-AFFECTED<br/>STATES</h1>
+			<!-- <h3>Cases in States</h3> -->
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -421,7 +420,7 @@
 		</div>
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: MOHFW<i>*All figures are cumulative</i></span>
+				<span>Source: MOHFW<!--<i>*All figures are cumulative</i>--></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
