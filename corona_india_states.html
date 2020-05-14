@@ -19318,7 +19318,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW;<!--<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> *Cumulative Cases<i>As on May 7th, 08:00 AM</i><!--<b>*Nagaland Patient shifted to Assam</b>--></span>
+				<span>Source: MoHFW;<!--<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--> *Cumulative Cases<i>As on May 14th, 08:00 AM</i><!--<b>*Nagaland Patient shifted to Assam</b>--></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19413,6 +19413,9 @@
 			var max = [242,133,0];
 			var min = [255,255,255];
 			var globalCounter = 0;
+			dataIndia.sort(function(a,b){
+				return ((a[1]-a[2]-a[3])-(b[1]-b[2]-b[3]))
+			})
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
 				const perc = element[1]-element[2]-element[3];
@@ -19443,6 +19446,7 @@
 					colorIndex = 10
 				}
 				perc==0?colorIndex=0:colorIndex = colorIndex+1
+				console.log(perc,colorIndex)
 				const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
 				confirmedTotal += element[1]
 				recoveredTotal += element[2]
@@ -19453,9 +19457,7 @@
 				element.push(colorIndex);
 				dataIndia[i]=element;
 			}
-			dataIndia.sort(function(a,b){
-				return ((a[1]-a[2]-a[3])-(b[1]-b[2]-b[3]))
-			})
+			
 			const canvas = document.getElementById("canvas");
 			const canHgt = 400;
 			const canWid = 500;
@@ -19469,7 +19471,7 @@
 			ctx.strokeColor = '#000';
 
 			var alpha; var index;
-			const msecForEach = 25;
+			const msecForEach = 20;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19493,14 +19495,14 @@
 					$('.confirmed.statewise').html(element[1]);
 					$('.recovered.statewise').html((element[2]).toString());
 					$('.deaths.statewise').html(element[3]);
-					if(index>0){
+					// if(index>0){
 
-						if(arrayId[dataIndia[index-1][0]][0] === 'Andaman and Nicobar Islands'){
-							$('.'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
-						}else{
-							$('#'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
-						}
-					}
+					// 	if(arrayId[dataIndia[index-1][0]][0] === 'Andaman and Nicobar Islands'){
+					// 		$('.'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+					// 	}else{
+					// 		$('#'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+					// 	}
+					// }
 					if(arrayId[element[0]][0] === 'Andaman and Nicobar Islands'){
 						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+','+alpha+')'})
 					}else{
@@ -19520,7 +19522,7 @@
 					ctx.beginPath();
 					ctx.fillStyle = 'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+',1)';
 					ctx.moveTo(50,50);
-					ctx.arc(50,50,50,0,2*Math.PI*activeStatePerc)
+					ctx.arc(50,50,50,0,2*Math.PI*activeStatePerc*Math.min(alpha,1))
 					ctx.fill();
 
 					ctx.beginPath();
@@ -19541,20 +19543,11 @@
 					ctx.fillStyle = '#333';
 					ctx.font = '300 32px monty';
 					ctx.moveTo(50,50);
-					// const t1 = ctx.measureText((activeStatePerc*100).toFixed(1)+'%').width;
 					ctx.fillText('Of current active cases', 120, 60 )
 					ctx.font = '400 24px monty';
 					ctx.fillText('in India', 120, 80 )
 					ctx.fill();
 
-					
-					ctx.beginPath();
-					ctx.fillStyle = '#333';
-					ctx.font = '300 32px monty';
-					ctx.fillText(element[4]-element[5], 120, 160 )
-					ctx.font = '400 24px monty';
-					ctx.fillText(element[1]-element[4], 120, 180 )
-					ctx.fill();
 					const yester = element[4]-element[5];
 					const today = element[1]-element[4];
 					let scale;
@@ -19563,23 +19556,35 @@
 					ctx.beginPath();
 					ctx.fillStyle = '#ffd241';
 					ctx.moveTo(100,100);
-					ctx.rect(100,(1-(yester/scale))*100+100,150,(yester/scale)*100)
+					ctx.rect(100,(100+(1-(yester/scale)*Math.min(1,alpha))*100),150,(yester/scale)*100*Math.min(1,alpha))
 					ctx.fill();
 					ctx.closePath();
 					ctx.beginPath();
 					ctx.fillStyle = '#ffd241';
 					ctx.moveTo(250,100);
-					ctx.rect(260,(1-(today/scale))*100+100,150,(today/scale)*100)
+					ctx.rect(260,(100+(1-(today/scale)*Math.min(1,alpha))*100),150,(today/scale)*100*Math.min(1,alpha))
 					ctx.fill();
 					ctx.closePath();
-					console.log(element[0],yester,today)
+					// console.log(element[0],yester,today)
 
 					ctx.beginPath();
 					ctx.fillStyle = '#333';
 					ctx.font = '500 25px monty';
-					ctx.moveTo(50,50);
-					const t4 = ctx.measureText(((today-yester)*100/yester).toFixed(1)+'%').width;
-					ctx.fillText(((today-yester)*100/today).toFixed(1)+'%', 285-(t4/2),  (1-(today/scale))*100+100)
+					ctx.alignText = 'left';
+					let label = ((today-yester)*100/yester).toFixed(1)+'%';
+					today>yester?label='+'+label:'';
+					const t4 = ctx.measureText(label).width;
+					ctx.fillText(label, 335-(t4/2),  (1-(today/scale))*100+100)
+					ctx.fill();
+
+					ctx.beginPath();
+					ctx.fillStyle = '#333';
+					ctx.font = '600 32px monty';
+					ctx.fillText(today, 105, 235 )
+					
+					let t5 = ctx.measureText(today).width
+					ctx.font = '400 24px monty';
+					ctx.fillText('New cases today', 110+t5, 235 )
 					ctx.fill();
 
 
@@ -19593,7 +19598,7 @@
 					ctx.fillStyle = 'rgba(74,111,32)';
 					ctx.moveTo(50,300);
 					if(element[2]>0){
-						ctx.arc(50,300,50,0,2*Math.PI*(1-element[2]/element[1]),true)
+						ctx.arc(50,300,50,0,Math.min(1,alpha)*2*Math.PI*(1-element[2]/element[1]),true)
 					}
 					if(element[2] == element[1]){
 						ctx.arc(50,300,50,0,2*Math.PI)
@@ -19603,7 +19608,7 @@
 					ctx.beginPath();
 					ctx.fillStyle = '#F33';
 					ctx.moveTo(50,300);
-					ctx.arc(50,300,50,0,2*Math.PI*element[3]/element[1])
+					ctx.arc(50,300,50,0,Math.min(1,alpha)*2*Math.PI*element[3]/element[1])
 					ctx.fill();
 
 					ctx.beginPath();
