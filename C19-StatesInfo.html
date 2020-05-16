@@ -19318,7 +19318,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>15th May, 08:00 AM</i></span>
+				<span>Source: MoHFW<i>16th May, 08:00 AM</i></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19373,38 +19373,38 @@
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",33,33,0,33,33],
-				["Andhra Pradesh",2205,1192,48,2137,2090],
+				["Andhra Pradesh",2307,1252,48,2205,2137],
 				["Arunachal Pradesh",1,1,0,1,1],
-				["Assam",87,39,2,80,65],
-				["Bihar",994,411,7,940,831],
-				["Chandigarh",191,37,3,187,187],
-				["Chhattisgarh",60,56,0,59,59],
+				["Assam",90,41,2,87,80],
+				["Bihar",1018,438,7,994,940],
+				["Chandigarh",191,37,3,191,187],
+				["Chhattisgarh",66,56,0,60,59],
 				["Dadar Nagar Haveli",1,0,0,1,1],
-				["Delhi",8470,3045,115,7998,7639],
-				["Goa",14,7,0,7,7],
-				["Gujarat",9591,3753,586,9267,8903],
-				["Haryana",818,439,11,793,780],
-				["Himachal Pradesh",74,39,2,66,65],
-				["Jammu and Kashmir",983,485,11,971,934],
-				["Jharkhand",197,87,3,173,172],
-				["Karnataka",987,460,35,959,925],
-				["Kerala",560,491,4,534,524],
-				["Ladakh",43,22,0,43,42],
-				["Madhya Pradesh",4426,2171,237,4173,3986],
-				["Maharashtra",27524,6059,1019,25922,24427],
-				["Manipur",3,2,0,2,2],
+				["Delhi",8895,3518,123,8470,7998],
+				["Goa",15,7,0,14,7],
+				["Gujarat",9931,4035,606,9591,9267],
+				["Haryana",818,439,11,818,793],
+				["Himachal Pradesh",76,39,3,74,66],
+				["Jammu and Kashmir",1013,513,11,983,971],
+				["Jharkhand",203,87,3,197,173],
+				["Karnataka",1056,480,36,987,959],
+				["Kerala",576,492,4,560,534],
+				["Ladakh",43,22,0,43,43],
+				["Madhya Pradesh",4595,2283,239,4426,4173],
+				["Maharashtra",29100,6564,1068,27524,25922],
+				["Manipur",3,2,0,3,2],
 				["Meghalaya",13,11,1,13,13],
 				["Mizoram",1,1,0,1,1],
-				["Odisha",611,158,3,538,437],
+				["Odisha",672,166,3,611,538],
 				["Puducherry",13,9,1,13,13],
-				["Punjab",1935,223,32,1924,1914],
-				["Rajasthan",4534,2580,125,4328,4126],
-				["Tamil Nadu",9674,2240,66,9227,8718],
-				["Telengana",1414,950,34,1367,1326],
-				["Tripura",156,29,0,155,154],
-				["Uttarakhand",78,50,1,72,69],
-				["Uttar Pradesh",3902,2072,88,3729,3664],
-				["West Bengal",2377,768,215,2290,2173],
+				["Punjab",1935,305,32,1935,1924],
+				["Rajasthan",4727,2677,125,4534,4328],
+				["Tamil Nadu",10108,2599,71,9674,9227],
+				["Telengana",1454,959,34,1414,1367],
+				["Tripura",156,42,0,156,155],
+				["Uttarakhand",82,51,1,78,72],
+				["Uttar Pradesh",4057,2165,95,3902,3729],
+				["West Bengal",2461,829,225,2377,2290],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
@@ -19471,7 +19471,7 @@
 			ctx.strokeColor = '#5557';
 
 			var alpha; var index;
-			const msecForEach = 150;
+			const msecForEach = 180;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19581,8 +19581,9 @@
 						ctx.alignText = 'left';
 						let label = today-yester;
 						today>yester?label='+'+label:'';
+						today>yester?ctx.fillStyle = '#761388':ctx.fillStyle = '#137688';
 						const t4 = ctx.measureText(label).width;
-						ctx.fillText(label, 365-(t4/2),(100+(1-(today/scale)*Math.min(1,alpha))*100))
+						ctx.fillText(label, 380-(t4/2),-25*(1-today/scale)+(100+(1-(today/scale)*Math.min(1,alpha))*100))
 						
 						ctx.font = '600 22px monty';
 						const t14 = ctx.measureText('14/05').width;
