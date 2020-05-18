@@ -95,8 +95,8 @@
             transition: all 250ms ease-in, opacity 400ms ease-in,transform 250ms ease-in 150ms,text-transform 800ms linear 200ms;
         }
         .title h3.confirmed::after{
-            content: 'Confirmed Cases';
-            color: rgb(110, 31, 31);
+            content: 'There is increasing evidence that masks (DIY or store bought) could help contain the spread of coronavirus';
+            color: #383838;
             font-weight: 500;
             letter-spacing: 1px;
             opacity: 1;
@@ -104,7 +104,7 @@
             position: absolute;
             left: 0%;
             top: 45px;
-            font-size: 28px;
+            font-size: 25px;
             text-transform: uppercase;
             transform: translate(0%, 0);
         }
@@ -444,6 +444,21 @@
             font-size: 26px;
             white-space: pre;
         }
+        .footer span i{
+            position: absolute;
+            top: -155px;
+            left: auto;
+            right: -509px;
+            /* transform: rotate(-90deg); */
+            display: block;
+            font-style: normal;
+            color: #666;
+            letter-spacing: 1px;
+            /* text-transform: capitalize; */
+            font-size: 26px;
+            white-space: normal;
+            width: 257px;
+        }
         .footer span b{
             position: absolute;
             bottom: 85px;
@@ -461,7 +476,7 @@
         }
         .legendBg{
             /* opacity: 0; */
-            height: 400px;
+            height: 90px;
             position: absolute;
             right: 15px;
             top: 140px;
@@ -475,17 +490,19 @@
             width: 50px;
             justify-content: space-around;
             white-space: pre;
-            background: linear-gradient(to bottom, #FF0000 0% 10%,#FF9933 10% 20%,#7c4cc2 20% 30%,#4cc292 30% 40%,#4c92c2 40% 50%,#464646 50% 60%, #FFFFFF00 60% 100%);
+            background: linear-gradient(to bottom,rgb(42,140,42) 0 30px,rgb(255,70,70) 30px 60px,rgb(255,135,0) 60px 90px);
         }
         .legendBg span{
             font-weight: 600;
             position: relative;
-            width: 100px;
-            right: 110px;
-            font-size: 21px;
+            width: 200px;
+            right: 210px;
+            font-size: 25px;
             text-align: right;
-            height: 40px; 
-            line-height: 40px;
+            height: 30px; 
+            line-height: 30px;
+            text-align: right;
+            color: #555;
         }
         .legendBg span::after{
             /* content: " ("attr(count-data)" Days)";
@@ -516,8 +533,8 @@
 	<div class="mainBody">
 		<span class="texty">TEXTY</span>
 		<div class="title">
-            <h1>COVID TRAJECTORY</h1>
-            <h3>A comparison of countries with over 70k cases</h3>
+            <h1>COVID-19 PANDEMIC</h1>
+            <h3>SHOULD YOU WEAR FACE COVER</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -533,18 +550,23 @@
 					<span class="green">Recovered<i data-deaths="0"></i></span>
 				</div> -->
 			</div>
-			<canvas id="canvas"></canvas>
+            <canvas id="canvas"></canvas>
+            <div class="legendBg">
+                <span>No masks</span>
+                <span>Masks</span>
+                <span>India</span>
+            </div>
 		</div>
         <div class="bottomDates">
         </div>
 		<div class="footer">
 			<div class="bottom">
-				<span>Source: Johns Hopkins CSSE<i>*Day 0: The day cases crossed 10k in any country </i></span>
+				<span>Source: Johns Hopkins CSSE<i>*Day 0: The day cases crossed 1K in any country </i></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
 	</div>
 	<script src="./jquery.js"></script>	
-	<script src="./C19AllDatesCountries.js" type="text/javascript"></script>
+	<script src="./C19AllDatesMaskvsNo.js" type="text/javascript"></script>
 </body>
 </html>
