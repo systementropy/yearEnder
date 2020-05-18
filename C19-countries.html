@@ -402,10 +402,10 @@
             text-align: right;
         }
         .legendBg{
-            opacity: 0;
+            /* opacity: 0; */
             height: 400px;
             position: absolute;
-            right: 15px;
+            left: 15px;
             top: 140px;
             width: 64px;
             font-size: 14px;
@@ -417,23 +417,23 @@
             width: 50px;
             justify-content: space-around;
             white-space: pre;
-            background: linear-gradient(to bottom, #FF0000 0% 10%,#FF9933 10% 20%,#7c4cc2 20% 30%,#4cc292 30% 40%,#4c92c2 40% 50%,#464646 50% 60%, #FFFFFF00 60% 100%);
+            background: linear-gradient(to bottom, #FF0000 0% 10%,#FF9933 10% 20%,#7c4cc2 20% 30%,#4cc292 30% 40%,#4c92c2 40% 50%,#464646 50% 60%, #FF9933 60% 70%,#92C24C 70% 80%,#4cc292 80% 90%,#FFFFFF00 90% 100%);
         }
         .legendBg span{
             font-weight: 600;
             position: relative;
             width: 100px;
-            right: 110px;
+            left: 75px;
             font-size: 21px;
             text-align: right;
             height: 40px; 
             line-height: 40px;
         }
         .legendBg span::after{
-            /* content: " ("attr(count-data)" Days)";
+            content: " ("attr(count-data)" Days)";
             font-weight: 500;
             color: #777;
-            opacity: 0; */
+            opacity: 0;
         }
         .legendBg span.active::after{
             opacity: 1;
@@ -458,8 +458,8 @@
     <div class="mainBody">
         <span class="texty">TEXTY</span>
         <div class="title">
-            <h1>COVID-19 relief PACKAGE</h1>
-            <h3>FISCAL Relief : India vs worst hit countries</h3>
+            <h1>COVID-19</h1>
+            <h3>Days to cross 3K deaths</h3>
         </div>
         <div class="graphicsContainer">
             <div class="legendContainer">
@@ -469,16 +469,16 @@
                 </div>
             </div>
             <div class="legendBg">
-                <span class="USA" count-data="-">500 - 1000</span>
-                <span class="Spain" count-data="-">1K - 2K</span>
-                <span class="Italy" count-data="-">2K - 4K</span>
-                <span class="France" count-data="-">4K - 8K</span>
-                <span class="Germany" count-data="-">8K - 16K</span>
-                <span class="UK" count-data="-">16K - 32K</span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <span class="USA">USA</span>
+                <span class="Spain">Spain</span>
+                <span class="Italy">Italy</span>
+                <span class="France">France</span>
+                <span class="Germany">Germany</span>
+                <span class="UK">UK</span>
+                <span class="India">India</span>
+                <span class="Iran">Iran</span>
+                <span class="Turkey">Turkey</span>
+                <span class=""></span>
             </div>
             <canvas id="canvas"></canvas>
         </div>
@@ -494,6 +494,6 @@
         
     </div>
     <script src="./jquery.js"></script>
-    <script type="text/javascript" src="./C19-countryDeathBenchMark.js"></script>
+    <script type="text/javascript" src="./C19-Countries.js"></script>
 </body>
 </html>
