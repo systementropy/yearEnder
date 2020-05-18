@@ -548,7 +548,7 @@
 			const countriesFactor = 250;
 			const heightStep = canHgt/heightFactor;
 			let counterPrev  = 1;
-			let secs = 100;
+			let secs = 1;
 			// const countNum = [8,52,67,76,82];
 			// const countText = ['','100+','1000+','5000+','10000+']
 			const countNum =[]
@@ -689,42 +689,54 @@
 
 						ctx.beginPath();
 						ctx.strokeStyle = recoveredColor+'77';
-						ctx.moveTo((widthStep*(counter-1))+7,(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1)),(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
+						ctx.bezierCurveTo(
+							(widthStep*counter),(canHgt*(1-(0.5*(dailyData['recovered'][counter-1]+dailyData['recovered'][counter])/heightFactor))),
+							(widthStep*counter-1),(canHgt*(1-0.5*((dailyData['recovered'][counter]+dailyData['recovered'][counter-1])/heightFactor))),
+							(widthStep*counter),(canHgt*(1-(dailyData['recovered'][counter]/heightFactor)))
+						)
 						ctx.stroke();
 						ctx.closePath();
 						
 						ctx.beginPath();
 						ctx.strokeStyle = deathColor+'77';
-						ctx.moveTo((widthStep*(counter-1))+7,(canHgt*(1-(dailyData['deaths'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1)),(canHgt*(1-(dailyData['deaths'][counter-1]/heightFactor))));
+						ctx.bezierCurveTo(
+							(widthStep*counter),(canHgt*(1-(0.5*(dailyData['deaths'][counter-1]+dailyData['deaths'][counter])/heightFactor))),
+							(widthStep*counter-1),(canHgt*(1-0.5*((dailyData['deaths'][counter]+dailyData['deaths'][counter-1])/heightFactor))),
+							(widthStep*counter),(canHgt*(1-(dailyData['deaths'][counter]/heightFactor)))
+						)
 						ctx.stroke();
 						ctx.closePath();
 						
 						ctx.beginPath();
 						ctx.strokeStyle = confirmedColorSwitch+'77';
-						ctx.moveTo((widthStep*(counter-1))+7,(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
-						ctx.lineTo((widthStep*counter)+7,(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
+						ctx.moveTo((widthStep*(counter-1)),(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
+						ctx.bezierCurveTo(
+							(widthStep*counter),(canHgt*(1-(0.5*(dailyData['confirmed'][counter-1]+dailyData['confirmed'][counter])/heightFactor))),
+							(widthStep*counter-1),(canHgt*(1-0.5*((dailyData['confirmed'][counter]+dailyData['confirmed'][counter-1])/heightFactor))),
+							(widthStep*counter),(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor)))
+						)
 						ctx.stroke();
 						ctx.closePath();
 					}
-					ctx.beginPath();
-					ctx.fillStyle = confirmedColorSwitch;
-					ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))), 4, 0, 2*Math.PI)
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = confirmedColorSwitch;
+					// ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					// ctx.fill();
+					// ctx.closePath();
 
-					ctx.beginPath();
-					ctx.fillStyle = recoveredColor;
-					ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))), 4, 0, 2*Math.PI)
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = recoveredColor;
+					// ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					// ctx.fill();
+					// ctx.closePath();
 					
-					ctx.beginPath();
-					ctx.fillStyle = deathColor;
-					ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))), 4, 0, 2*Math.PI)
-					ctx.fill();
-					ctx.closePath();
+					// ctx.beginPath();
+					// ctx.fillStyle = deathColor;
+					// ctx.arc((widthStep*counter)+7,(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))), 4, 0, 2*Math.PI)
+					// ctx.fill();
+					// ctx.closePath();
 					
 
 					setTimeout(()=>{
