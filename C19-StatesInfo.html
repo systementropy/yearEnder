@@ -19318,7 +19318,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>16th May, 08:00 AM</i></span>
+				<span>Source: MoHFW<i>18th May, 08:00 AM</i></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19373,38 +19373,38 @@
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",33,33,0,33,33],
-				["Andhra Pradesh",2307,1252,48,2205,2137],
+				["Andhra Pradesh",2407,1456,50,2355,2307],
 				["Arunachal Pradesh",1,1,0,1,1],
-				["Assam",90,41,2,87,80],
-				["Bihar",1018,438,7,994,940],
-				["Chandigarh",191,37,3,191,187],
-				["Chhattisgarh",66,56,0,60,59],
+				["Assam",101,41,2,92,90],
+				["Bihar",1262,475,8,1179,1018],
+				["Chandigarh",191,51,3,191,191],
+				["Chhattisgarh",86,59,0,67,66],
 				["Dadar Nagar Haveli",1,0,0,1,1],
-				["Delhi",8895,3518,123,8470,7998],
-				["Goa",15,7,0,14,7],
-				["Gujarat",9931,4035,606,9591,9267],
-				["Haryana",818,439,11,818,793],
-				["Himachal Pradesh",76,39,3,74,66],
-				["Jammu and Kashmir",1013,513,11,983,971],
-				["Jharkhand",203,87,3,197,173],
-				["Karnataka",1056,480,36,987,959],
-				["Kerala",576,492,4,560,534],
-				["Ladakh",43,22,0,43,43],
-				["Madhya Pradesh",4595,2283,239,4426,4173],
-				["Maharashtra",29100,6564,1068,27524,25922],
-				["Manipur",3,2,0,3,2],
+				["Delhi",10054,4485,160,9333,8895],
+				["Goa",29,7,0,17,15],
+				["Gujarat",11379,4499,659,10988,9931],
+				["Haryana",910,562,14,887,818],
+				["Himachal Pradesh",80,44,3,78,76],
+				["Jammu and Kashmir",1183,575,13,1121,1013],
+				["Jharkhand",223,113,3,217,203],
+				["Karnataka",1147,509,37,1092,1056],
+				["Kerala",601,497,4,587,576],
+				["Ladakh",43,24,0,43,43],
+				["Madhya Pradesh",4977,2403,248,4789,4595],
+				["Maharashtra",33053,7688,1198,30706,29100],
+				["Manipur",7,2,0,7,3],
 				["Meghalaya",13,11,1,13,13],
 				["Mizoram",1,1,0,1,1],
-				["Odisha",672,166,3,611,538],
+				["Odisha",828,220,4,737,672],
 				["Puducherry",13,9,1,13,13],
-				["Punjab",1935,305,32,1935,1924],
-				["Rajasthan",4727,2677,125,4534,4328],
-				["Tamil Nadu",10108,2599,71,9674,9227],
-				["Telengana",1454,959,34,1414,1367],
-				["Tripura",156,42,0,156,155],
-				["Uttarakhand",82,51,1,78,72],
-				["Uttar Pradesh",4057,2165,95,3902,3729],
-				["West Bengal",2461,829,225,2377,2290],
+				["Punjab",1964,1366,35,1946,1935],
+				["Rajasthan",5202,2992,131,4960,4727],
+				["Tamil Nadu",11224,4172,78,10585,10108],
+				["Telengana",1551,992,34,1509,1454],
+				["Tripura",167,85,0,167,156],
+				["Uttarakhand",92,52,1,88,82],
+				["Uttar Pradesh",4259,2441,104,4258,4057],
+				["West Bengal",2677,959,238,2576,2461],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
@@ -19446,7 +19446,6 @@
 					colorIndex = 10
 				}
 				perc==0?colorIndex=0:colorIndex = colorIndex+1
-				console.log(perc,colorIndex)
 				const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
 				confirmedTotal += element[1]
 				recoveredTotal += element[2]
@@ -19471,7 +19470,7 @@
 			ctx.strokeColor = '#5557';
 
 			var alpha; var index;
-			const msecForEach = 180;
+			const msecForEach = 40;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19484,7 +19483,7 @@
 				}else{
 					globalCounter += 1;
 					if(Math.floor(globalCounter/msecForEach) == index){
-						alpha += 0.05;
+						alpha += 0.1;
 					}else{
 						alpha = 0;
 						index = Math.floor(globalCounter/msecForEach);
@@ -19586,11 +19585,11 @@
 						ctx.fillText(label, 380-(t4/2),-25*(1-today/scale)+(100+(1-(today/scale)*Math.min(1,alpha))*100))
 						
 						ctx.font = '600 22px monty';
-						const t14 = ctx.measureText('14/05').width;
-						const t15 = ctx.measureText('15/05').width;
+						const t14 = ctx.measureText('17/05').width;
+						const t15 = ctx.measureText('18/05').width;
 						ctx.fillStyle = '#333D';
-						ctx.fillText('14/05', 225-(t14/2),200)
-						ctx.fillText('15/05', 380-(t15/2),200)
+						ctx.fillText('17/05', 225-(t14/2),200)
+						ctx.fillText('18/05', 380-(t15/2),200)
 						ctx.fill();
 					}
 					
