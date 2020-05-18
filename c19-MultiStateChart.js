@@ -126,9 +126,7 @@ for (var i = 0; i < dataTotal['Bihar'].length; i++) {
 	conArr.push(conf)
 	detArr.push(det)
 }
-console.log(JSON.stringify(recArr))
-console.log(JSON.stringify(conArr))
-console.log(JSON.stringify(detArr))
+
 function makeGraph(label,counter,index){
 	if(counter<=legends.length){
 		$('.legendContainer').addClass('active')
