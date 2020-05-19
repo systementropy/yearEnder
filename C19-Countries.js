@@ -40,13 +40,13 @@ $(document).ready(function(){
 		];
 			let lineArray = [];
 			// const widthStep = canWid/dateLabels.length;
-			const widthStep = canWid/75;
+			const widthStep = canWid/68;
 			const heightFactor = 5000;
 			const activeFactor = 40000;
 			const countriesFactor = 300;
 			const heightStep = canHgt/heightFactor;
 			let counterPrev  = 1;
-			let secs = 200;
+			let secs = 100;
 			function CountryLine(x, y, length, dl, color, index, label, lineWidth){
 				this.posX = x;
 				this.dl = dl;
@@ -115,7 +115,7 @@ $(document).ready(function(){
 				}
 			}
 			function makeGraph(counter){
-				if(counter<75){
+				if(counter<68){
 					$('.legendContainer').addClass('active')
 					if(dateLabels[counter][1]>9){
 						$('.date').text(dateLabels[counter][1])
@@ -188,6 +188,7 @@ $(document).ready(function(){
 					if (dailyData.hasOwnProperty(country)) {
 						const element = dailyData[country][1];
 						lineArray.push(new CountryLine(0, count, element[0] , element, colorArray[count] , count, country, dailyData[country][0]));
+						console.log(country,colorArray[count])
 					}
 					count++;
 				}
