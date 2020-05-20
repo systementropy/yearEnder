@@ -420,7 +420,7 @@
 			);
 		}
 		.legendBg::before{
-			content: 'Total Cases';
+			content: 'Active Cases';
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -19300,7 +19300,7 @@
 			<div class="legendStates">
 				<div class="stateInfo stateName statewise"></div>
 				<div class="stateInfo internal">
-					<div class="bjpSeats statewise"><span class="confirmed statewise"></span><p>Confirmed</p></div>
+					<div class="bjpSeats statewise"><span class="confirmed statewise"></span><p>Active</p></div>
 					<div class="bar statewise"></div>
 					<div class="totalSeats statewise"><span class="recovered statewise"></span><p>Recovered</p></div>
 					<div class="bar statewise"></div>
@@ -19308,7 +19308,7 @@
 				</div>
 				<div class="stateName total">India</div>
 				<div class="internal total">
-					<div class="confirmedDiv bjpSeats"><span class="confirmedTotal confirmed">433</span><p>Confirmed</p></div>
+					<div class="confirmedDiv bjpSeats"><span class="confirmedTotal confirmed">433</span><p>Active</p></div>
 					<div class="bar"></div>
 					<div class="recoveredDiv totalSeats"><span class="recoveredTotal recovered">24</span><p>Recovered</p></div>
 					<div class="bar"></div>
@@ -19334,7 +19334,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>Total Cases : 18th May, 08:00 AM</i></span>
+				<span>Source: MoHFW<i>Active Cases : 20th May, 08:00 AM</i></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19389,38 +19389,38 @@
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",33,33,0],
-				["Andhra Pradesh",2407,1456,50],
+				["Andhra Pradesh",2532,1621,52],
 				["Arunachal Pradesh",1,1,0],
-				["Assam",101,41,2],
-				["Bihar",1262,475,8],
-				["Chandigarh",191,51,3],
-				["Chhattisgarh",86,59,0],
+				["Assam",142,41,4],
+				["Bihar",1498,534,9],
+				["Chandigarh",200,57,3],
+				["Chhattisgarh",101,59,0],
 				["Dadar Nagar Haveli",1,0,0],
-				["Delhi",10054,4485,160],
-				["Goa",29,7,0],
-				["Gujarat",11379,4499,659],
-				["Haryana",910,562,14],
-				["Himachal Pradesh",80,44,3],
-				["Jammu and Kashmir",1183,575,13],
-				["Jharkhand",223,113,3],
-				["Karnataka",1147,509,37],
-				["Kerala",601,497,4],
-				["Ladakh",43,24,0],
-				["Madhya Pradesh",4977,2403,248],
-				["Maharashtra",33053,7688,1198],
-				["Manipur",7,2,0],
-				["Meghalaya",13,11,1],
+				["Delhi",10554,4750,168],
+				["Goa",46,7,0],
+				["Gujarat",12140,5043,719],
+				["Haryana",964,627,14],
+				["Himachal Pradesh",92,47,3],
+				["Jammu and Kashmir",1317,653,17],
+				["Jharkhand",231,127,3],
+				["Karnataka",1397,544,40],
+				["Kerala",642,497,4],
+				["Ladakh",43,43,0],
+				["Madhya Pradesh",5465,2630,258],
+				["Maharashtra",37136,9639,1325],
+				["Manipur",9,2,0],
+				["Meghalaya",13,12,1],
 				["Mizoram",1,1,0],
-				["Odisha",828,220,4],
-				["Puducherry",13,9,1],
-				["Punjab",1964,1366,35],
-				["Rajasthan",5202,2992,131],
-				["Tamil Nadu",11224,4172,78],
-				["Telengana",1551,992,34],
-				["Tripura",167,85,0],
-				["Uttarakhand",92,52,1],
-				["Uttar Pradesh",4259,2441,104],
-				["West Bengal",2677,959,238],
+				["Odisha",978,277,5],
+				["Puducherry",18,9,1],
+				["Punjab",2002,1642,38],
+				["Rajasthan",5845,3337,143],
+				["Tamil Nadu",12448,4895,84],
+				["Telengana",1634,1010,38],
+				["Tripura",173,116,0],
+				["Uttarakhand",111,52,1],
+				["Uttar Pradesh",4926,2918,123],
+				["West Bengal",2961,1074,250],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
@@ -19430,11 +19430,11 @@
 			var min = [255,255,255];
 			var globalCounter = 0;
 			dataIndia.sort(function(a,b){
-				return ((a[1])-(b[1]))
+				return ((a[1]-a[2]-a[3])-(b[1]-b[2]-b[3]))
 			})
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
-				const perc = element[1];
+				const perc = element[1]-element[2]-element[3];
 				let colorIndex;
 				if(perc<=10){
 					colorIndex = 0
@@ -19466,10 +19466,12 @@
 				confirmedTotal += element[1]
 				recoveredTotal += element[2]
 				deathsTotal += element[3]
-				activeTotal = activeTotal + element[1] - element[2] - element[3]
+				// activeTotal = activeTotal + element[1] - element[2] - element[3]
+				activeTotal = element[1] - element[2] - element[3]
 				element.push(perc);
 				element.push(color);
 				element.push(colorIndex);
+				element.push(activeTotal)
 				dataIndia[i]=element;
 				console.log(element)
 			}
@@ -19493,7 +19495,7 @@
 					animate();
 				}else if(label == "final"){
 					
-					$('.confirmedTotal').text(confirmedTotal)
+					$('.confirmedTotal').text('61149')
 					$('.recoveredTotal').text(recoveredTotal)
 					$('.deathsTotal').text(deathsTotal)
 					$('.total').addClass('active');
@@ -19509,7 +19511,7 @@
 					
 					const element = dataIndia[index];
 					$('.stateName.statewise').html(arrayId[element[0]][0]);
-					$('.confirmed.statewise').html(element[1]);
+					$('.confirmed.statewise').html(element[1] - element[2] - element[3]);
 					$('.recovered.statewise').html((element[2]).toString());
 					$('.deaths.statewise').html(element[3]);
 					if(arrayId[element[0]][0] === 'A & N Islands'){
