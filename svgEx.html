@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        svg{border: 1px solid #3337;}
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <svg width="950" height="950">
+		
+        </svg>
+    </div>
+	
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            
+            var numInEach = Math.floor(Math.pow(8825,0.5));
+            var wid = (950/numInEach)
+            console.log(numInEach,wid)
+            for (let index = 0; index < 8825; index++) {
+                const y = Math.floor(index/numInEach);
+                const x = (index-(y*numInEach));
+                const cy = (y*wid)+2;
+                const cx = (x*wid)+2;
+                console.log(x*wid, y*wid)
+                $('svg').append("<circle cx="+cx+" cy="+cy+" num="+index+" r='1' stroke='green' stroke-width='1' fill='yellow' />")
+            }
+            $("#cont").html($("#cont").html());
+            
+        });
+    </script>
+</body>
+</html>
