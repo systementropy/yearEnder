@@ -86,7 +86,7 @@
 			margin: 0 auto;
 			padding: 25px;
 			box-sizing: border-box;
-			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
+			/* background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg);  */
 			background-repeat: no-repeat;
 			background-position: bottom;
 			background-size: cover;
@@ -296,11 +296,11 @@
 		.bottomDates>span.counter20.active::after{
 			left: 5px;
 		}
-		.bottomDates>span.counter91.active{
+		.bottomDates>span.counterlast.active{
 			transform: translateX(-25px);
 			text-indent: 5px;
 		}
-		.bottomDates>span.counter91.active::after{
+		.bottomDates>span.counterlast.active::after{
 			left: 30px;
 		}
 		.bottomDates > span.active::after{
@@ -402,8 +402,10 @@
             letter-spacing: 1px;
             text-transform: capitalize;
             z-index: 0;
+			opacity: 0;
         }
 		.legendBg{
+			opacity: 0;
 			height: 120px;
 			position: absolute;
 			left: 60px;
@@ -435,7 +437,7 @@
 		<span class="texty">TEXTY</span>
 		<div class="title">
 			<h1>COVID-19 PANDEMIC</h1>
-			<h3>Cases in India</h3>
+			<h3>Cases in Mumbai</h3>
 		</div>
 		<div class="graphicsContainer">
 			<div class="legendContainer">
@@ -515,7 +517,7 @@
 		</div>
 		<div class="footer">
 			<div class="bottom">
-				<span style="position: relative;">Source: MoHFW<i>Total cases in India</i><b>New cases</b></span>
+				<span style="position: relative;">Source: MoHFW<i>New cases in Mumbai</i><b>New cases</b></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>

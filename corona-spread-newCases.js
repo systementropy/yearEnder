@@ -19,7 +19,26 @@ $(document).ready(function(){
     let confirmedColor ='#AFB6D0';
     let recoveredColor ='#2cb62c';
     let deathColor ='#ca9828';
-    const dailyData = {
+    var json = JSON.parse($.ajax({'url': "/mumbai.json", 'async': false}).responseText);
+    const mumbaiData = json['Mumbai'];
+    console.log(mumbaiData);
+    let dailyData = {
+        'active':[],
+        'deaths':[],
+        'recovered':[],
+        'dates':[],
+        'confirmed':[],
+    }
+    for (let index = 0; index < mumbaiData.length; index++) {
+        const element = mumbaiData[index];
+        dailyData['deaths'].push(element['deceased'])
+        dailyData['recovered'].push(element['recovered'])
+        const date = element['date'].split('-')
+        dailyData['dates'].push([date[1],date[2]])
+        dailyData['confirmed'].push(element['confirmed'])
+        dailyData['active'].push(element['active'])
+    }
+    const dailyDataOld = {
         // 'country':[6,8,9,11,14,16,16,18,20,24,25,25,25,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,28,28,30,30,30,35,39,46,50,56,60,65,72,76,80,84,93,98,102,105,108,114,116,122,135,139,144,147,150,154,161,163,168,169,171,173,174,175,175,175,176,178,178,179],
         'deaths':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,2,2,3,3,4,5,4,7,10,10,12,20,20,24,27,32,35,58,72,72,86,99,136,150,178,226,246,288,331,358,393,405,448,486,521,559,592,645,681,721,780,825,881,939,1008,1079,1154,1223,1323,1391,1566,1693,1785,1889,1985,2101,2212,2294,2415,2551,2649,2753,2871,3025],
         'recovered':[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,13,13,14,14,15,20,23,27,27,40,43,45,73,84,95,102,123,148,191,192,229,229,375,421,506,620,774,969,1080,1181,1359,1432,1768,2041,2463,2854,3273,3975,4370,5012,5498,5939,6523,7137,7747,8437,9068,10007,10819,11775,12847,14142,15331,16776,17887,19301,20969,22549,24420,26400,27969,30258,34224,36795],
@@ -28,21 +47,23 @@ $(document).ready(function(){
     };
     console.log(dailyData)
     const widthStep = canWid/dailyData['dates'].length;
-    const heightFactor = 103000;
-    const countriesFactor = 250;
+    const heightFactor = 26000;
+    const caseFactor = 4000;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
     let secs = 100;
-    const countNum = [8,76,82,90,102,113,117];
+    // const countNum = [8,76,82,90,102,113,117];
+    const countNum = [];
     const countText = ['','5K+','10K+','20K+','40K+','80K+','1L+']
     function makeGraph(counter){
         if(counter<dailyData['dates'].length){
             $('.legendContainer').addClass('active')
-            if(dailyData['dates'][counter][1]>9){
-                $('.date').text(dailyData['dates'][counter][1])
-            }else{
-                $('.date').text('0'+dailyData['dates'][counter][1])
-            }
+            // if(dailyData['dates'][counter][1]>9){
+            //     $('.date').text(dailyData['dates'][counter][1])
+            // }else{
+            //     $('.date').text('0'+dailyData['dates'][counter][1])
+            // }
+            $('.date').text(dailyData['dates'][counter][1])
             if(dailyData['dates'][counter][0] == 2){
                 $('.month').text('Feb')
             }else if(dailyData['dates'][counter][0] == 3){
@@ -53,11 +74,14 @@ $(document).ready(function(){
                 $('.month').text('May')
             }
             $('.stateName').addClass('active')
-            let dateLabel = dailyData['dates'][counter][1]>9?dailyData['dates'][counter][1]:'0'+dailyData['dates'][counter][1]
-            if(counter%15 == 0){
-                $('.bottomDates').append("<span class='active counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dateLabel+"/0"+dailyData['dates'][counter][0]+"</span>")
+            // let dateLabel = dailyData['dates'][counter][1]>9?dailyData['dates'][counter][1]:'0'+dailyData['dates'][counter][1]
+            let dateLabel = dailyData['dates'][counter][1]+'/'+dailyData['dates'][counter][0]
+            if(counter%7 == 0){
+                $('.bottomDates').append("<span class='active counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dateLabel+"</span>")
             }
-            
+            if(counter==dailyData['dates'].length-1){
+                $('.bottomDates').append("<span class='active counterlast counter"+(counter)+"' style='left:"+widthStep*counter+"px;'>"+dateLabel+"</span>")
+            }
             ctx.beginPath();
             const hgtRect = dailyData['confirmed'][counter];
             
@@ -96,36 +120,36 @@ $(document).ready(function(){
             if(counter>0){
                 ctx.lineWidth =1;
                 ctx.beginPath();
-                const newCases = dailyData['confirmed'][counter] - dailyData['confirmed'][counter-1];
+                const newCases = dailyData['active'][counter] - dailyData['active'][counter-1];
                 ctx.strokeStyle = '#8896ca';
                 ctx.fillStyle = confirmedColor+'77';
-                ctx.rect(widthStep*counter,(canHgt*(1-(newCases*10/heightFactor))),widthStep,(canHgt*newCases*10)/heightFactor);
+                ctx.rect(widthStep*counter,(canHgt*(1-(newCases/caseFactor))),widthStep,(canHgt*newCases)/caseFactor);
                 ctx.fill();
                 ctx.stroke();
                 ctx.closePath();
                 console.log(dailyData['dates'][counter],newCases)
                 
-                ctx.lineWidth =5;
-                ctx.beginPath();
-                ctx.strokeStyle = confirmedColorSwitch+'AA';
-                ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
-                ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
-                ctx.stroke();
-                ctx.closePath();
+                // ctx.lineWidth =5;
+                // ctx.beginPath();
+                // ctx.strokeStyle = confirmedColorSwitch+'AA';
+                // ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['confirmed'][counter-1]/heightFactor))));
+                // ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['confirmed'][counter]/heightFactor))))
+                // ctx.stroke();
+                // ctx.closePath();
 
-                ctx.beginPath();
-                ctx.strokeStyle = recoveredColor+'CC';
-                ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
-                ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))))
-                ctx.stroke();
-                ctx.closePath();
+                // ctx.beginPath();
+                // ctx.strokeStyle = recoveredColor+'CC';
+                // ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['recovered'][counter-1]/heightFactor))));
+                // ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['recovered'][counter]/heightFactor))))
+                // ctx.stroke();
+                // ctx.closePath();
 
-                ctx.beginPath();
-                ctx.strokeStyle = deathColor+'CC';
-                ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['deaths'][counter-1]/heightFactor))));
-                ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))))
-                ctx.stroke();
-                ctx.closePath();
+                // ctx.beginPath();
+                // ctx.strokeStyle = deathColor+'CC';
+                // ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-(dailyData['deaths'][counter-1]/heightFactor))));
+                // ctx.lineTo((widthStep/2)+(widthStep*counter),(canHgt*(1-(dailyData['deaths'][counter]/heightFactor))))
+                // ctx.stroke();
+                // ctx.closePath();
 
                 
             }
@@ -166,8 +190,8 @@ $(document).ready(function(){
                 ctx.fillStyle = '#D00A';
             }
             
-            ctx.moveTo(0,(canHgt*(1-(counter*1000/heightFactor))));
-            ctx.lineTo(canWid,(canHgt*(1-(counter*1000/heightFactor))));
+            ctx.moveTo(0,(canHgt*(1-(counter*100/caseFactor))));
+            ctx.lineTo(canWid,(canHgt*(1-(counter*100/caseFactor))));
             ctx.stroke();
             ctx.closePath();
 
@@ -175,11 +199,11 @@ $(document).ready(function(){
             ctx.font = '500 20px monty'
             if(counter % 10 === 0){
                 ctx.textAlign = 'left';
-                ctx.fillText(counter+'K', 10, (canHgt*(1-(counter*1000/heightFactor))));
+                ctx.fillText(counter*100, 10, (canHgt*(1-(counter*100/caseFactor))));
                 ctx.textAlign = 'right';
                 ctx.fillStyle ="#282e4477"
                 ctx.font = '300 20px monty'
-                ctx.fillText((counter/10)+'K', canWid - 10, (canHgt*(1-(counter*1000/heightFactor))));
+                // ctx.fillText((caseFactor/counter)+'K', canWid - 10, (canHgt*(1-(counter*100/caseFactor))));
                 ctx.fill();
             }
             

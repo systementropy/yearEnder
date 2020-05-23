@@ -29,29 +29,7 @@ $(document).ready(function(){
 	ctx.strokeStyle = '#FFFDDD';
 	ctx.fillStyle = 'rgba(255,0,0,1)';
 	ctx.scale(2,2);
-
-
-	// var canvas3 = document.getElementById("canvas3");
-	// var canH3 = window.innerHeight;
-	// var canW3 = window.innerWidth
-	// canvas3.style.height = canH3;
-	// canvas3.style.width = canW3;
-	// canvas3.height = canH3;
-	// canvas3.width = canW3;
-	// var ctx3 = canvas3.getContext("2d");
-	// ctx3.scale(2,2);
-	// ctx3.strokeStyle = '#FFFDDD';
-	// ctx3.fillStyle = 'rgba(255,0,0,1)';
-
-
-	// var canvas2 = document.getElementById("canvas2");
-	// canvas2.style.height = canHgt/5+'px';
-	// canvas2.style.width = canWid/5+'px';
-	// canvas2.height = 2*(canHgt/5);
-	// canvas2.width = 2*(canWid/5);
-	// var ctx2 = canvas2.getContext("2d");
-	// ctx2.scale(0.5,0.5);
-	
+	const secs  = 240;
 
 	var colorArray =['#000000','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#AECDAD'];
 	function Bar(x, y, length, dl, color, index, label, death){
@@ -66,22 +44,32 @@ $(document).ready(function(){
 		this.dateCounter = this.dl[0];
 		this.tick;
 		this.dateCounterLabel;
+		this.previousIndex = 100;
+		this.dy = 0;
 		// this.deathData = death;
 		// this.deathCounter = this.deathData[0];
 		this.update = function(i,dateCounter){
-			this.index = i;
-			this.tick = dateCounter;
-			this.posY = ((this.index * (this.width+2)));
-
-			this.dateCounter =this.dl[dateCounter];
-			// this.deathCounter =this.deathData[dateCounter]; 
-			this.length = 1+(this.dl[dateCounter]/500);
-			// this.deathLength = 1+(this.deathData[dateCounter]/500);
-			
-			if(this.dateCounter>1000){
-				this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
+			if(i!==undefined && dateCounter!==undefined){
+				
+				this.previousIndex = this.index;
+				this.index = i;
+				this.dy = (this.previousIndex - this.index)/(secs/2);
+				this.tick = dateCounter;
+				this.posY = (((this.previousIndex+this.dy) * (this.width+2)));
+				this.dateCounter =this.dl[dateCounter];
+				this.length = 1+(this.dl[dateCounter]/500);
+				
+				if(this.dateCounter>1000){
+					this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
+				}else{
+					this.dateCounterLabel = this.dateCounter
+				}
+				
 			}else{
-				this.dateCounterLabel = this.dateCounter
+				if(this.previousIndex !== this.index){
+					this.previousIndex -= this.dy;
+					this.posY = (((this.previousIndex+this.dy) * (this.width+2)));
+				}
 			}
 			this.draw();
 		};
@@ -152,7 +140,6 @@ $(document).ready(function(){
 				ctx.fill();
 				ctx.closePath();
 			}
-			// console.log(ticks - this.tick);
 			if(this.tick == ticks-1){
 				ctx.beginPath();
 				ctx.fillStyle = '#000';
@@ -161,11 +148,8 @@ $(document).ready(function(){
 				this.index+1>9?text=this.index+1:text='0'+(this.index+1)
 				ctx.fillText(text+'.', 2 , this.posY+8+(this.width/2));
 				ctx.closePath();
-			}
-
-			
+			}	
 		};
-		// this.update();
 	}
 
 	function animateCircles(tickCounter){
@@ -201,7 +185,8 @@ $(document).ready(function(){
 			}
 			$('.stateName').addClass('active')
 			$('.legendContainer').addClass('active');
-			setTimeout(()=>{animateCircles(tickCounter+1)},100)
+			allTimeAnimate();
+			setTimeout(()=>{animateCircles(tickCounter+1)},secs)
 		}else{
 
 		}
@@ -214,7 +199,13 @@ $(document).ready(function(){
 		// console.log(0, 0, canWid*2, canHgt*2);
 
 	}
-	
+	function allTimeAnimate(){
+		ctx.clearRect(0,0,canWid,canHgt);
+		for (var i = 0; i < barArray.length; i++) {
+			barArray[i].update();
+		}
+		requestAnimationFrame(allTimeAnimate)
+	}
 	
 	var init = function(){
 		barArray = [];
@@ -413,7 +404,7 @@ $(document).ready(function(){
 			"Zimbabwe":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,3,3,5,7,7,7,8,8,9,9,9,9,10,11,11,11,13,14,14,17,17,23,23,24,25,25,25,28,28,28,29,31,31,32,32,32,40,40,34,34,34,34,34,34,34,35,36,36,36,37,37,42,42,44,46,46],
 
 		}
-		// const dataDeath ={
+		const dataDeath ={
 		// 	"Afghanistan":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,4,4,4,4,4,4,4,6,6,7,7,11,14,14,15,15,18,18,21,23,25,30,30,30,33,36,36,40,42,43,47,50],
 		// 	"Albania":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,4,5,5,6,8,10,10,11,15,15,16,17,20,20,21,22,22,23,23,23,23,23,24,25,26,26,26,26,26,26,27,27,27,27,28],
 		// 	"Algeria":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,4,4,7,9,11,15,17,17,19,21,25,26,29,31,35,44,58,86,105,130,152,173,193,205,235,256,275,293,313,326,336,348,364,367,375,384,392,402,407,415,419,425],
@@ -599,7 +590,7 @@ $(document).ready(function(){
 		// 	"Yemen":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		// 	"Zambia":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3],
 		// 	"Zimbabwe":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4],
-		// }
+		}
 		console.log(dataTotal);
 		// console.log(dataDeath);
 		for (const country in dataTotal) {
