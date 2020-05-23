@@ -104,7 +104,8 @@
 			padding: 40px;
 			box-sizing: border-box;
 			overflow: hidden;
-			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
+			/* background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg);  */
+			background-color: #F5F5F6;
 			background-repeat: no-repeat;
 			background-position: bottom;
 			background-size: cover;
@@ -440,7 +441,7 @@
 					xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.28 841.89"
 					style="enable-background:new 0 0 595.28 841.89;" xml:space="preserve">
 					<style type="text/css">
-						.st0{fill:#FFFFFF77;stroke:#000;stroke-width:0.1;stroke-miterlimit:10;}
+						.st0{fill:#FFFFFF77;stroke:#000;stroke-width:0.3;stroke-miterlimit:10;}
 						.st1{fill:#FFFFFF77;}
 						.andaman{fill:#FFFFFF77}
 					</style>
@@ -19406,7 +19407,7 @@
 				["Uttar Pradesh",5735,3238,152,5515,5175],
 				["West Bengal",3332,1221,265,3197,3103],
 			];
-			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
+			let confirmedTotal = 125101; let recoveredTotal=51784; let deathsTotal =3720; let activeTotal = 69597;
 			let colorArray = [
 				[135,255,0],[200,255,0],[255,246,0],[255,210,65],[255,195,2],[255,171,63],[255,143,0],[255,132,63],[255,91,0],[176,14,14],[145,0,0],[83,0,0]
 			]
@@ -19447,10 +19448,10 @@
 				}
 				perc==0?colorIndex=0:colorIndex = colorIndex+1
 				const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
-				confirmedTotal += element[1]
-				recoveredTotal += element[2]
-				deathsTotal += element[3]
-				activeTotal = activeTotal + element[1] - element[2] - element[3]
+				// confirmedTotal += element[1]
+				// recoveredTotal += element[2]
+				// deathsTotal += element[3]
+				// activeTotal = activeTotal + element[1] - element[2] - element[3]
 				element.push(perc);
 				element.push(color);
 				element.push(colorIndex);
@@ -19470,7 +19471,7 @@
 			ctx.strokeColor = '#5557';
 
 			var alpha; var index;
-			const msecForEach = 150;
+			const msecForEach = 40;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19483,7 +19484,7 @@
 				}else{
 					globalCounter += 1;
 					if(Math.floor(globalCounter/msecForEach) == index){
-						alpha += 0.05;
+						alpha += 0.1;
 					}else{
 						alpha = 0;
 						index = Math.floor(globalCounter/msecForEach);
@@ -19527,7 +19528,7 @@
 					ctx.fill();
 
 					ctx.beginPath();
-					ctx.fillStyle = '#EEE';
+					ctx.fillStyle = '#F5F5F6';
 					ctx.moveTo(50,50);
 					ctx.arc(50,50,45,0,2*Math.PI)
 					ctx.fill();
@@ -19661,7 +19662,7 @@
 					ctx.fill();
 
 					ctx.beginPath();
-					ctx.fillStyle = '#EEE';
+					ctx.fillStyle = '#F5F5F6';
 					ctx.moveTo(50,300);
 					ctx.arc(50,300,45,0,2*Math.PI)
 					ctx.fill();
