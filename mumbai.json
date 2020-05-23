@@ -1,0 +1,257 @@
+{"Mumbai": [
+	{
+		"active": 2455,
+		"confirmed": 2455,
+		"deceased": 0,
+		"recovered": 0,
+		"date": "2020-04-21"
+	},
+	{
+		"notes": "",
+		"active": 3300,
+		"confirmed": 3451,
+		"deceased": 151,
+		"recovered": 0,
+		"date": "2020-04-22"
+	},
+	{
+		"notes": "",
+		"active": 3039,
+		"confirmed": 3683,
+		"deceased": 161,
+		"recovered": 483,
+		"date": "2020-04-23"
+	},
+	{
+		"notes": "",
+		"active": 3555,
+		"confirmed": 4205,
+		"deceased": 167,
+		"recovered": 483,
+		"date": "2020-04-24"
+	},
+	{
+		"notes": "",
+		"active": 4388,
+		"confirmed": 5049,
+		"deceased": 191,
+		"recovered": 470,
+		"date": "2020-04-25"
+	},
+	{
+		"notes": "",
+		"active": 4652,
+		"confirmed": 5407,
+		"deceased": 204,
+		"recovered": 551,
+		"date": "2020-04-26"
+	},
+	{
+		"notes": "",
+		"active": 4547,
+		"confirmed": 5407,
+		"deceased": 219,
+		"recovered": 641,
+		"date": "2020-04-27"
+	},
+	{
+		"notes": "",
+		"active": 5239,
+		"confirmed": 6169,
+		"deceased": 219,
+		"recovered": 711,
+		"date": "2020-04-28"
+	},
+	{
+		"notes": "",
+		"active": 5438,
+		"confirmed": 6644,
+		"deceased": 270,
+		"recovered": 936,
+		"date": "2020-04-29"
+	},
+	{
+		"notes": "",
+		"active": 5679,
+		"confirmed": 7061,
+		"deceased": 290,
+		"recovered": 1092,
+		"date": "2020-04-30"
+	},
+	{
+		"notes": "",
+		"active": 5673,
+		"confirmed": 7061,
+		"deceased": 296,
+		"recovered": 1092,
+		"date": "2020-05-01"
+	},
+	{
+		"notes": "",
+		"active": 6903,
+		"confirmed": 8359,
+		"deceased": 322,
+		"recovered": 1134,
+		"date": "2020-05-02"
+	},
+	{
+		"notes": "",
+		"active": 7227,
+		"confirmed": 8800,
+		"deceased": 343,
+		"recovered": 1230,
+		"date": "2020-05-03"
+	},
+	{
+		"notes": "",
+		"active": 7227,
+		"confirmed": 8800,
+		"deceased": 343,
+		"recovered": 1230,
+		"date": "2020-05-04"
+	},
+	{
+		"notes": "",
+		"active": 8163,
+		"confirmed": 9945,
+		"deceased": 387,
+		"recovered": 1395,
+		"date": "2020-05-05"
+	},
+	{
+		"notes": "",
+		"active": 8697,
+		"confirmed": 10714,
+		"deceased": 412,
+		"recovered": 1605,
+		"date": "2020-05-06"
+	},
+	{
+		"notes": "",
+		"active": 9264,
+		"confirmed": 11394,
+		"deceased": 436,
+		"recovered": 1694,
+		"date": "2020-05-07"
+	},
+	{
+		"notes": "",
+		"active": 9887,
+		"confirmed": 12142,
+		"deceased": 462,
+		"recovered": 1793,
+		"date": "2020-05-08"
+	},
+	{
+		"notes": "",
+		"active": 10508,
+		"confirmed": 12864,
+		"deceased": 489,
+		"recovered": 1867,
+		"date": "2020-05-09"
+	},
+	{
+		"notes": "",
+		"active": 11364,
+		"confirmed": 13739,
+		"deceased": 508,
+		"recovered": 1867,
+		"date": "2020-05-10"
+	},
+	{
+		"notes": "",
+		"active": 11627,
+		"confirmed": 14521,
+		"deceased": 528,
+		"recovered": 2366,
+		"date": "2020-05-11"
+	},
+	{
+		"notes": "",
+		"active": 11878,
+		"confirmed": 14947,
+		"deceased": 556,
+		"recovered": 2513,
+		"date": "2020-05-12"
+	},
+	{
+		"notes": "",
+		"active": 12678,
+		"confirmed": 15747,
+		"deceased": 556,
+		"recovered": 2513,
+		"date": "2020-05-13"
+	},
+	{
+		"notes": "",
+		"active": 13378,
+		"confirmed": 16738,
+		"deceased": 621,
+		"recovered": 2739,
+		"date": "2020-05-14"
+	},
+	{
+		"notes": "",
+		"active": 14072,
+		"confirmed": 17671,
+		"deceased": 655,
+		"recovered": 2944,
+		"date": "2020-05-15"
+	},
+	{
+		"notes": "",
+		"active": 14599,
+		"confirmed": 18555,
+		"deceased": 696,
+		"recovered": 3260,
+		"date": "2020-05-16"
+	},
+	{
+		"notes": "",
+		"active": 15918,
+		"confirmed": 20150,
+		"deceased": 734,
+		"recovered": 3498,
+		"date": "2020-05-17"
+	},
+	{
+		"notes": "",
+		"active": 16848,
+		"confirmed": 21335,
+		"deceased": 757,
+		"recovered": 3730,
+		"date": "2020-05-18"
+	},
+	{
+		"notes": "",
+		"active": 16848,
+		"confirmed": 21335,
+		"deceased": 757,
+		"recovered": 3730,
+		"date": "2020-05-19"
+	},
+	{
+		"notes": "",
+		"active": 18925,
+		"confirmed": 24118,
+		"deceased": 841,
+		"recovered": 4352,
+		"date": "2020-05-20"
+	},
+	{
+		"notes": "",
+		"active": 19916,
+		"confirmed": 25500,
+		"deceased": 882,
+		"recovered": 4702,
+		"date": "2020-05-21"
+	},
+	{
+		"notes": "",
+		"active": 18849,
+		"confirmed": 25500,
+		"deceased": 882,
+		"recovered": 5769,
+		"date": "2020-05-22"
+	}
+]}
