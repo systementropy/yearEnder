@@ -19338,7 +19338,7 @@
 		<div class="footer">
 			
 			<div class="bottom">
-				<span>Source: MoHFW<i>New Cases : 22 May, 08:00 AM</i></span>
+				<span>Source: MoHFW<i>New Cases : 25 May, 08:00 AM</i></span>
 				<span><img src="./1logo.png" alt=""></span>
 			</div>
 		</div>
@@ -19388,45 +19388,55 @@
 				"Tripura":["Tripura","Tripura"],
 				"Nagaland":["Nagaland","Nagaland"],
 				"Meghalaya":["Meghalaya","Meghalaya"],
-				"Dadar Nagar Haveli":["Dadra and Nagar Haveli","DnNHaweli"]
+				"Dadar Nagar Haveli":["Dadra and Nagar Haveli","DnNHaweli"],
+				"Sikkim":["Sikkim","Sikkim"]
 			};
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",33,33,0,33,33,0],
-				["Andhra Pradesh",2647,1709,53,2602,1640,53],
+				["Andhra Pradesh",2823,1856,56,2757,1809,56],
 				["Arunachal Pradesh",1,1,0,1,1,0],
-				["Assam",203,54,4,170,48,4],
-				["Bihar",1982,593,11,1674,571,10],
-				["Chandigarh",217,139,3,202,57,3],
-				["Chhattisgarh",128,59,0,115,59,0],
-				["Dadar Nagar Haveli",1,0,0,1,0,0],
-				["Delhi",11659,5567,194,11088,5192,176],
-				["Goa",52,7,0,50,7,0],
-				["Gujarat",12905,5488,773,12537,5219,749],
-				["Haryana",1031,681,15,993,648,14],
-				["Himachal Pradesh",152,59,3,110,54,3],
-				["Jammu and Kashmir",1449,684,20,1390,678,18],
-				["Jharkhand",290,129,3,231,127,3],
-				["Karnataka",1605,571,41,1462,556,41],
-				["Kerala",690,510,4,666,502,4],
-				["Ladakh",44,43,0,44,43,0],
-				["Madhya Pradesh",5981,2843,270,5735,2733,267],
-				["Maharashtra",41642,11726,1454,39297,10318,1390],
-				["Manipur",25,2,0,25,2,0],
+				["Assam",378,55,4,329,55,4],
+				["Bihar",2587,702,13,2380,653,11],
+				["Chandigarh",238,186,3,225,179,3],
+				["Chhattisgarh",252,67,0,214,64,0],
+				["Dadar Nagar Haveli",2,0,0,2,0,0],
+				["Delhi",13418,6540,261,12910,6267,231],
+				["Goa",66,19,0,55,16,0],
+				["Gujarat",14056,6412,858,13664,6169,829],
+				["Haryana",1184,765,16,1131,750,16],
+				["Himachal Pradesh",203,63,3,185,61,3],
+				["Jammu and Kashmir",1621,809,21,1569,774,21],
+				["Jharkhand",370,148,4,350,141,4],
+				["Karnataka",2089,654,42,1959,608,42],
+				["Kerala",847,521,4,795,515,4],
+				["Ladakh",52,43,0,49,43,0],
+				["Madhya Pradesh",6665,3408,290,6371,3267,281],
+				["Maharashtra",50231,14600,1635,47190,13404,1577],
+				["Manipur",32,4,0,29,4,0],
 				["Meghalaya",14,12,1,14,12,1],
 				["Mizoram",1,1,0,1,1,0],
-				["Odisha",1103,393,7,1052,307,6],
-				["Puducherry",20,10,0,18,9,0],
-				["Punjab",2028,1819,39,2005,1794,38],
-				["Rajasthan",6227,3485,151,6015,3404,147],
-				["Tamil Nadu",13967,6282,94,13191,5882,87],
-				["Telengana",1699,1035,45,1661,1015,40],
-				["Tripura",173,148,0,173,133,0],
-				["Uttarakhand",146,54,1,122,53,1],
-				["Uttar Pradesh",5515,3204,138,5175,3066,127],
-				["West Bengal",3197,1193,259,3103,1136,253],
+				["Odisha",1336,550,7,1269,497,7],
+				["Puducherry",41,12,0,26,10,0],
+				["Punjab",2060,1898,40,2045,1870,39],
+				["Rajasthan",7028,3848,163,6742,3786,160],
+				["Sikkim",1,0,0,1,0,0],
+				["Tamil Nadu",16277,8324,111,15512,7491,103],
+				["Telengana",1854,1090,53,1813,1065,49],
+				["Tripura",191,165,0,189,153,0],
+				["Uttarakhand",317,58,3,244,56,2],
+				["Uttar Pradesh",6268,3538,161,6017,3406,155],
+				["West Bengal",3667,1339,272,3459,1281,269],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
+			for (let index = 0; index < dataIndia.length; index++) {
+				const element = dataIndia[index];
+				confirmedTotal += element[4];
+				recoveredTotal += element[5];
+				deathsTotal += element[6];
+			}
+			console.log(confirmedTotal,recoveredTotal,deathsTotal)
+			confirmedTotal = 0; recoveredTotal=0; deathsTotal =0; activeTotal = 0;
 			let colorArray = [
 				[135,255,0],[200,255,0],[255,246,0],[255,210,65],[255,195,2],[255,171,63],[255,143,0],[255,132,63],[255,91,0],[176,14,14],[145,0,0],[83,0,0]
 			]
@@ -19501,7 +19511,7 @@
 				}else if(label == "final"){
 					$('.confirmedTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 118447-112359 }, {
+						jQuery({ Counter: 0 }).animate({ Counter: 138845-131868 }, {
 							duration: 2000,
 							easing: 'swing',
 							step: function () {
@@ -19511,7 +19521,7 @@
 					});
 					$('.recoveredTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 48534-45300 }, {
+						jQuery({ Counter: 0 }).animate({ Counter: 57721-54441 }, {
 							duration: 2000,
 							easing: 'swing',
 							step: function () {
@@ -19521,7 +19531,7 @@
 					});
 					$('.deathsTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 3583-3435 }, {
+						jQuery({ Counter: 0 }).animate({ Counter: 4021-3867 }, {
 							duration: 2000,
 							easing: 'swing',
 							step: function () {
