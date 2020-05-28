@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(./Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+			position: relative;
+			height: auto;
+			text-align: left;
+			padding-bottom: 5px;
+			z-index: 1;
+			/* display: flex; */
+        }
+		.title::after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+        .title h1{
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1;
+            margin: auto 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 100vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			position: relative;
+			overflow: hidden;
+        }
+        .graphicsContainer{
+            width: 900px;
+            height: 720px;
+            position: relative;
+			margin: 25px 0 40px;
+			/* overflow: hidden; */
+			background-repeat: no-repeat;
+			z-index: 0;
+        }
+		.imgCont{
+			height: 80px;
+			background-image: url('./Extra/budget2020.png');
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			margin-bottom: 20px;
+			position: static;
+			z-index: 100;
+			width: 175px;
+			top: 75px;
+			right: 20px;
+			float: left;
+			margin: 0;
+		}
+		.graphicsContainer::after{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			/* background: rgba(220, 220, 220, 0.7) */
+		}
+		.slide{
+			display: flex;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			transition: all 400ms ease;
+			z-index: 1;
+		}
+		/* .slide1{opacity: 1;} */
+		.slide.active{opacity: 1;}
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0;
+            color: #555555;
+        }
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 44px;
+        }
+        .bottom{
+            line-height: 50px;
+            font-size: 22px;
+        }
+		.bottom strong{
+			font-weight: 300;
+		}
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+		.legend{
+			display: flex;
+			text-align: center;
+			margin: 0 0 25px;
+		}
+		.legend:after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.legend>div{
+			float: left;
+			width: 50%;
+			position: relative;
+		}
+		.legend>div>span{
+			position: absolute;
+			top: -160px;
+			box-sizing: border-box;
+			width: 100%;
+			left: 0;
+			height: auto;
+			display: block;
+			padding: 17px 0;
+			height: 135px;
+			background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));
+			transition: opacity 250ms ease-in-out;
+		}
+		.legend.reset>div>span{
+			opacity: 0;
+		}
+		.legend.active>div>span{
+			opacity: 1;
+		}
+		.legend>div>span>main{
+			position: static;
+			top: 0px;
+			left: 0;
+			width: 100%;
+			font-size: 80px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>span>metric{
+			position: static;
+			top: 75px;
+			left: 0;
+			width: 100%;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			/* left: 50%;
+			transform: translateX(-50%); */
+			filter: invert(1);
+			
+			color: #000;
+		}
+		.legend>div>h3{
+			line-height: 1;
+			margin: 0;
+			font-size: 32px;
+			text-transform: uppercase;
+			font-weight: 400;
+		}
+		.legend>div>p{
+			line-height: 1;
+			margin: 0;
+		}
+		.legend>div>p::before{
+			content: '( ';
+		}
+		.legend>div>p::after{
+			content: ' )';
+		}
+		.slide>div{
+			/* width: 50%; */
+			margin: 1px;
+			/*! box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3); */
+			transition: all 2000ms ease, background 0ms ease;
+		}
+		.then1{
+			transform: scaleY(1);
+			height: 100%;
+			transform-origin: bottom;
+			/* background-image: linear-gradient(to right bottom, rgb(255, 255, 255),rgb(226, 226, 226)),url('./Extra/budget2020.png');
+			background-color: #333;
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed;
+			background-repeat: no-repeat; */
+			flex-grow: 1;
+			align-self: flex-end;
+		}
+		.then2{
+			width: 0;
+			background:#555;
+			background-image: linear-gradient(to right bottom, #35dc02,#333);
+			/* background-color: #333; */
+			background-blend-mode: multiply;
+			background-size: contain;
+			background-position: center;
+			/* background-attachment: fixed; */
+			background-repeat: no-repeat;
+			align-self: flex-end;
+		}
+		.slide.active>.then2{
+			width: 50%;
+		}
+		.title h3{
+			position: static;
+			opacity: 0;
+			transform: translateX(-100%);
+			z-index: 1000;
+			color:#000;
+			width: 100%;
+			transition: all 1000ms ease,opacity 1000ms ease 500ms;
+		}
+		.title h3.active{
+			opacity: 1;
+			transform: translateX(0%);
+			color: #333;
+		}
+		.legend > div.label1{
+			flex-grow: 1;
+			transition: all 2000ms ease;
+		}
+		.legend > div.label2{
+			width: 0;
+			opacity: 0;
+			height: 48px;
+			overflow: hidden;
+			transition: all 2000ms ease;
+		}
+		.legend.active .label2{
+			width: 50%;
+			overflow: visible;
+			opacity: 1;
+		}
+		.slide.reset{
+			opacity: 0;
+			transition: all 400ms linear;
+		}
+		
+		.title h3 span{
+			font-size: 20px;
+		}
+		.question{
+			max-width: 80%;
+			text-align: center;
+			margin: 0px auto;
+			height: auto;
+			padding: 50px 0 50px;
+			opacity: 0;
+			transform: translateY(80px);
+			transition: opacity 400ms ease 600ms,transform 800ms ease 400ms;
+			font-weight: 300;
+			font-size: 42px;
+			line-height: 1.3;
+			letter-spacing: -1px;
+		}
+		.question.active{
+			transform: translateY(0px);
+			opacity: 1;
+		}
+		.texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+		.list{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			width: 100%;
+			height: 100%;
+		}
+		.list span {
+			width: 0;
+			height: 100%;
+			padding: 0px;
+			background: #EEE;
+			font-size: 20px;
+			font-weight: normal;
+			letter-spacing: -1px;
+			line-height: 1;
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			opacity: 0;
+			transform-origin: bottom;
+			align-self: flex-end;
+			transition: all 800ms ease,transform 800ms ease, height 0s ease-in;
+			min-height: 1px;
+			margin: 0 2px;
+			box-shadow: 0px 0px 0px 1px rgba(0,0,0,0),inset 0px 0px 2px 0px rgba(0,0,0,0.3);
+		}
+		.list span:nth-child(2n){
+			transform: translateX(100%);
+			background: #C9224C77;
+		}
+		.list span:nth-child(2n+1){
+			transform: translateX(-100%);
+			background: #C9224C77;
+		}
+		/* .list span:nth-child(1){background: #C9224C77;z-index: 1;}
+		.list span:nth-child(2){background: #C9224C77;z-index: 2;}
+		.list span:nth-child(3){background: #C9224C77;z-index: 3;}
+		.list span:nth-child(4){background: #C9224C77;z-index: 4;}
+		.list span:nth-child(5){background: #C9224C77;z-index: 5;}
+		.list span:nth-child(6){background: #C9224C77;z-index: 5;} */
+		.list.active span:nth-child(2n){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.list.active span:nth-child(2n+1){
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		
+		.list span.active{
+			font-weight: 500;
+			color: #FFF;
+			flex-grow: 1;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5);
+		}
+		.list span::before{
+			content: attr(data-year);
+			position: absolute;
+			left: 0;
+			width: 100%;
+			bottom: -30px;
+			z-index: 1;
+			color: #000;
+			text-align: center;
+		}
+		.list span::after{
+			content: attr(data-disp);
+			position: absolute;
+			left: 0;
+			width: 50%;
+			margin: 0 0 0 auto;
+			top: -20px;
+			z-index: 1;
+			color: #000;
+			text-align: center;	
+		}
+		.list span.opt0::after{
+			width: 100%;
+			margin: 0 auto;
+		}
+		/* .list span.active::before{
+			opacity: 0;
+			transition: all 250ms ease-in;
+			transform: scaleX(1);
+		} */
+		@keyframes gradient {
+			0% {background-position: 0% 50%;}
+			50% {background-position: 100% 50%;}
+			100% {background-position: 0% 50%;}
+		}
+		.slide{
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.slide.active{
+			opacity: 1;
+		}
+		.defineText {
+			position: absolute;
+			z-index: 1;
+			font-size: 24px;
+			opacity: 0;
+			transition: all 400ms ease;
+		}
+		.defineText.active{
+			opacity: 1;
+		}
+		.new {
+			position: absolute;
+			width: 100%;
+			right: 0;
+			bottom: 0;
+			height: 0;
+			display: block;
+			background: #C9224C;
+			box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.5),0px 0px 4px 0px rgba(0,0,0,0.3);
+			/* opacity: 0; */
+			transition: all 1000ms ease,transform 800ms ease;
+		}
+		.new::after {
+
+			content: attr(data-disp);
+			position: absolute;
+			left: 0;
+			width: 100%;
+			margin: 0 auto;
+			top: -20px;
+			z-index: 1;
+			color: #000;
+			text-align: center;
+			font-style: normal;
+		}
+		.new::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 0px;
+			background: #FFF0;
+			top: -636px;
+		}
+		.new.active::before{height: 636px;}
+		.legendStat{
+			position: absolute;
+			left: 0%;
+			top: 0px;
+			width: 110px;
+			text-align: left;
+			z-index: 1000;
+            opacity: 0;
+		}
+		.legendStat span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(0,0,0,0.8);
+			width: 100%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+            border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.3);
+		}
+		/* .legendStat span:nth-child(1){
+			color: #F5F5F6;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		} */
+		.legendStat span.blue::before{
+			background-color: #5bc0de;
+		}
+        .legendStat span.red::before{
+			background-color: #92C24C;
+		}
+        .legendStat span.yellow::before{background: #C9224C77}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 210px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -5px;
+            line-height: 30px;
+            font-size: 24px;
+            color: rgba(220,220,220,1);
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+        .footer span i{
+            display: block;
+            position: relative;
+            top: -27px;
+            font-weight: 200;
+            left: 80px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+	<span class="texty">TEXTY</span>
+    <div class="mainBody">
+		
+        <div class="title">
+            <h1>HeatWaves</h1>
+			<h3>Deaths due to heatwaves over years</h3>
+        </div>
+		<div class="defineText">(The difference between total revenue and total expenditure of the government)</div>
+        <div class="graphicsContainer">
+			<div class="legendStat">
+				<span class="yellow">Old Slabs<i data-deaths=""></i></span>
+				<span class="red">New Slabs<i data-deaths=""></i></span>
+			</div>
+			<div class="slide slide1">
+				<div class="then1">
+					<!-- <span class="counterElt">1</span> -->
+					<div class="list">
+						<span class='2010 opt0'><i class="new new0"></i></span>
+						<span class='2011 opt1'><i class="new new1"></i></span>
+						<span class='2012 opt2'><i class="new new2"></i></span>
+						<span class='2013 opt3'><i class="new new3"></i></span>
+						<span class='2014 opt4'><i class="new new4"></i></span>
+						<span class='2015 opt5'><i class="new new5"></i></span>
+						<span class='2016 opt6'><i class="new new6"></i></span>
+                        <span class='2017 opt7'><i class="new new7"></i></span>
+                        <span class='2018 opt8'><i class="new new8"></i></span>
+                        <span class='2019 opt9'><i class="new new9"></i></span>
+					</div>
+				</div>
+			</div>
+        </div>
+        <div class="footer">
+			<!-- <i>*Revised Estimates, **Budget Estimates;</i> -->
+            <div class="bottom">
+				<span>Source: <strong>Lok Sabha replies</strong><i>*2019 figs as of June 16 2019</i></span>
+                <span><img src="./1logo.png" alt=""></span>
+            </div>
+        </div>
+    </div>
+	<!-- 
+
+
+	 -->
+    <script src="./jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+			const displayData = [
+				[[2010,990,269],[2011,824,12],[2012,334,729],[2013,6556,1433],[2014,866,548],[2015,1121,2081],[2016,807,700],[2017,1979,375],[2018,,25],[2019,,90]],
+			];
+			const fps = 30;
+			const eachQuestionTimer = 16;
+			let globalCounter = 0;
+			function animate() {
+				if(globalCounter<displayData.length*eachQuestionTimer*fps){
+					start(globalCounter)
+					requestAnimationFrame(animate);
+				}
+            }
+			
+			const multiplier = 1000;
+			function start(counter){
+				let questionNum = Math.floor(globalCounter/(eachQuestionTimer*fps))
+				if(globalCounter%fps==0){
+					let secs  = (counter/fps)-(questionNum*eachQuestionTimer);
+					let dataConst = displayData[questionNum][0];
+					switch (secs) {
+						case 0:
+							$('.title>h3')
+								.addClass('active')
+							// 	.text(dataConst[0])
+							$('.slide').addClass('active')
+							if(questionNum === 2){
+								$('.defineText').addClass('active')
+							}
+							break;
+						case 1:
+							$('.list').addClass('active');
+							break;
+						case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
+                        case 10:
+                        case 11:
+                            console.log(displayData[questionNum][secs-2][0],displayData[questionNum][secs-2][1])
+							$('.list').children(".opt"+(secs-2))
+								.attr('data-year',displayData[questionNum][secs-2][0])
+								.addClass('active')
+                                .css({'height':'0px'});
+                            $(".new"+(secs-2))
+								.addClass('active')
+								.attr('data-disp',displayData[questionNum][secs-2][2])
+								.css({'height':((1/3)*(displayData[questionNum][secs-2][2]))+'px'});
+                            break;
+                        case 12:
+						case 13:
+						case 14:
+							break;
+						case 15:
+							if((questionNum+1)<displayData.length){
+								$('.title>h3')
+									.removeClass('active')
+									.text('')
+								$('.slide').removeClass('active')
+								$('.list').removeClass('active');
+								$('.defineText').removeClass('active')
+								$(".opt1").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt2").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt3").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt4").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+								$(".opt5").attr('data-year','').attr('data-disp','').removeClass('active').css({'height':'100%'});
+							}
+					}
+				}
+				globalCounter+=1;
+			}
+			setTimeout(()=>{
+				animate();
+			},1000)
+			
+        })
+    </script>
+</body>
+</html>
