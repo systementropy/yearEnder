@@ -106,12 +106,13 @@
         }
 		.imgCont{
 			height: 80px;
-			background-image: url('./Extra/budget2020.png');
-			/* background-color: #333; */
-			background-blend-mode: multiply;
-			background-size: contain;
-			background-position: center;
+			/* background-image: url('./Extra/budget2020.png'); */
+			background-image: linear-gradient(#FFF,#EEE),url(./Banner/Canvas_sun.png); 
 			background-repeat: no-repeat;
+			background-position: bottom;
+			background-size: cover;
+			background-blend-mode: multiply;
+			overflow: hidden;
 			margin-bottom: 20px;
 			position: static;
 			z-index: 100;
@@ -419,8 +420,10 @@
 			width: 100%;
 			bottom: -30px;
 			z-index: 1;
-			color: #000;
+			color: #333;
+			font-size: 25px;
 			text-align: center;
+			font-weight: 300;
 		}
 		.list span::after{
 			content: attr(data-disp);
@@ -483,11 +486,13 @@
 			left: 0;
 			width: 100%;
 			margin: 0 auto;
-			top: -20px;
+			top: -35px;
 			z-index: 1;
-			color: #000;
+			color: #555;
 			text-align: center;
 			font-style: normal;
+			font-size: 28px;
+			font-weight: 600;
 		}
 		.new::before {
 			content: '';
@@ -560,29 +565,50 @@
 			top: -5px;
             line-height: 30px;
             font-size: 24px;
-            color: rgba(220,220,220,1);
+            color: #3339;
 		}
 		.legendStat span.blue i{
 			background: #5bc0de;
 		}
         .footer span i{
-            display: block;
+            /* display: block; */
             position: relative;
-            top: -27px;
+            /* top: -27px; */
             font-weight: 200;
             left: 80px;
             font-size: 22px;
+        }
+		.sunContainer{
+			position: absolute;
+			top: 150px;
+			left: 100px;
+			width: 150px;
+			height: 150px;
+			/* z-index: 100; */
+			border-radius: 50%;
+			background: radial-gradient(#dfc011,#e0c007);
+			box-shadow: 0px 0px 20px 5px #dfc011;
+			animation: aniSun 15s infinite forwards;	
+		}
+        @keyframes aniSun {
+            0% {left: 0;box-shadow: 0px 0px 100px 0px #dfc0116b;}
+			50% {left: 50%;box-shadow: 0px 0px 20px 5px #e0c007;}
+            100% {left: 100%;box-shadow: 0px 0px 100px 0px #dfc0116b;}
         }
     </style>
 </head>
 <body>
 	<span class="texty">TEXTY</span>
+	
     <div class="mainBody">
-		
+		<!-- <img class="imgCont" alt="">	 -->
         <div class="title">
-            <h1>HeatWaves</h1>
-			<h3>Deaths due to heatwaves over years</h3>
-        </div>
+            <h1>INDIA'S KILLER HEATWAVES</h1>
+			<h3>Death toll over years...</h3>
+		</div>
+		<span class="sunContainer">
+
+		</span>
 		<div class="defineText">(The difference between total revenue and total expenditure of the government)</div>
         <div class="graphicsContainer">
 			<div class="legendStat">
