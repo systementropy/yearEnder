@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Thin.ttf);
+			font-weight: 100;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraLight.ttf);
+			font-weight: 200;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Light.ttf);
+			font-weight: 300;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Regular.ttf);
+			font-weight: 400;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Medium.ttf);
+			font-weight: 500;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-SemiBold.ttf);
+			font-weight: 600;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Bold.ttf);
+			font-weight: 700;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-ExtraBold.ttf);
+			font-weight: 800;
+		}
+		@font-face {
+			font-family: monty;
+			src: url(./Montserrat/Montserrat-Black.ttf);
+			font-weight: 900;
+		}
+		body,html{
+			margin : 0;
+			padding: 0;
+			font-family: monty;
+			font-weight: 400;
+			color: #333;
+			overflow: hidden;
+		}
+		p{
+			margin: 0;
+		}
+		.title{
+			/* border-bottom: 5px solid #000; */
+			padding: 0;
+		}
+		.title h1{
+			font-size: 52px;
+			font-weight: 900;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+			
+		}
+		.title h3{
+			font-size: 35px;
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+		}
+		.title h3 span{
+			font-weight: 400;
+			font-size: 25px;
+			color: #555;
+		}
+		.mainBody{
+			/* border: 1px solid #999; */
+			height: 100vh;
+			width: 100vh;
+			margin: 0 auto;
+			padding: 25px;
+			box-sizing: border-box;
+			background-image: linear-gradient(#FFF,#EEE),url(./Extra/WhiteTexturedBG.jpg); 
+			background-repeat: no-repeat;
+			background-position: bottom;
+			background-size: cover;
+			background-blend-mode: multiply;
+			overflow: hidden;
+			/* animation: aniBG 20s infinite forwards; */
+		}
+		@keyframes aniBG {
+			0% {background-position: top;}
+			100% {background-position: bottom;}
+		}
+		.graphicsContainer{
+			width: auto;
+			height: auto;
+			position: relative;
+			z-index: 1;
+			box-shadow: 1px 1px 0px 0px rgba(255,255,255,0.5);
+			/* padding-top: 100px; */
+			overflow: hidden;
+		}
+		#year{
+			font-size: 34px;
+			font-weight: 400;
+			margin: auto;
+			text-align: center;
+			padding: 15px 0;
+			color: #555555;
+		}
+		
+		.bottom img{
+			height: 40px;
+		}
+		.bottom{
+			display: flex;
+			justify-content: space-between;
+			height: 30px;
+			line-height: 30px;
+			font-size: 24px;
+			margin-top: 10px;
+		}
+		#labels{
+			position: absolute;
+			bottom: 0;
+			display: block;
+			z-index: -1;
+			background: #383838;
+		}
+		#canvas{
+			display: block;
+			margin: auto;
+			z-index: 1;
+			/* background: #383838; */
+		}
+		.legendStat{
+			position: absolute;
+			left: 0%;
+			top: 90px;
+			width: 192px;
+			text-align: left;
+		}
+		.legendStat span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: #333;
+			width: 100%;
+			position: relative;
+		}
+		.legendStat span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			right: -25px;
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+			box-shadow: 0px 0px 0px 2px rgba(220,220,220,0.3);
+		}
+		.legendStat span:nth-child(1){
+			color: #555;
+			width: 100%;
+		}
+		.legendStat span:nth-child(1)::before{
+			display: none;
+		}
+		.legendStat span.blue::before{
+			background-color: #5bc0de;
+		}
+		.legendStat span.red::before{
+			background-color: rgb(182, 44, 44);
+		}
+		.legendStat span.green::before{
+			background-color: rgb(44, 182, 44);
+		}
+		.legendStat span.yellow::before{background: #96a803}
+		.legendStat span i{
+			position: absolute;
+			top: 5px;
+			left: 240px;
+			height: 18px;
+			width: 0px;
+			/* background:
+			rgb(182, 44, 44);
+			box-shadow: 0px 0px 2px 1px
+			rgba(255,0,0,0.3); */
+			transition: all 250ms ease;
+		}
+		.legendStat span i::after{
+			position: absolute;
+			left: calc(100% + 15px);
+			content: attr(data-deaths);
+			font-style: normal;
+			top: -5px;
+			line-height: 30px;
+			font-size: 24px;
+			color: #999;
+		}
+		.legendStat span.blue i{
+			background: #5bc0de;
+		}
+		.legendContainer {
+			position: absolute;
+			top: 0;
+			left: 10px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 10px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 400px;
+			text-align: center;
+			opacity: 0;
+			transition : all 250ms ease-in;
+			z-index: 1;
+		}
+		.legendContainer.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 300;
+			padding: 0px 0;
+			/* height: 200px; */
+			text-align: center;
+			opacity: 0;
+			/* color: #333; */
+			transition: opacity 100ms ease;
+		}
+		.stateName.active{
+			opacity: 1;
+		}
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+		.legendStat span.orange::before{
+			background: #cc7722;
+		}
+		
+		.legendStat span.us::before{
+			background: #3C3B6E
+		}
+
+		.date {
+			font-size: 72px;
+			font-weight: 400;
+		}
+		.year {
+			font-weight: 200;
+			font-size: 29px;
+		}
+		.bottomDates{
+			display: flex;
+			justify-content: space-around;
+			margin: 0;
+			height: 20px;
+			padding: 10px 0 10px;
+			position: relative;
+			overflow: hidden;
+		}
+		.bottomDates>span {
+			margin: -35px auto 0;
+			width: 0px;
+			transform: translateX(0px) rotate(60deg);
+			flex-grow: 1;
+			text-align: center;
+			opacity: 0;
+			top: 0px;
+			position: relative;
+			transition: all 50ms ease,transform 50ms ease 50ms;
+		}
+		.bottomDates>span.active {
+			transform: translateX(0px) rotate(0deg);
+			margin: 0 auto 0;
+			opacity: 1;
+			top: 10px;
+			position: absolute;
+			font-size: 26px;
+			text-indent: -25px;
+		}
+		.bottomDates>span.counter0.active{
+			text-indent: 14px;
+		}
+		/* .bottomDates>span.counter0.active::after{
+			
+		} */
+		.bottomDates>span.counterlast.active{
+			transform: translateX(-28px);
+			text-indent: -28px;
+		}
+		.bottomDates>span.counterlast.active::after{
+			left: 30px;
+		}
+		.bottomDates > span.active::after{
+			content: '';
+			position: absolute;
+			height: 20px;
+			transform: translateY(-100%);
+			width: 2px;
+			background: #999;
+			top: 0;
+			left: 16px;
+		}
+		.texty{
+			position: fixed;
+			top:0;
+			left: 0;
+			font-size: 3vh;
+			animation: aniTr 1s infinite alternate;
+			color: #000;   
+		}
+		@keyframes aniTr {
+			0% {transform: translateX(0);}
+			100% {transform: translateX(100px);}
+		}
+		.dateDisp{
+			position: absolute;
+			top: 0%;
+			left: 0;
+		}
+		.dateDisp .change{
+			position: absolute;
+			color: #333;
+			background: rgba(221, 221, 221, 0.8);
+			width: 370px;
+			height: 40px;
+			padding: 0;
+			transform: translate(-103%,-50%);
+			opacity: 0;
+			clip-path: polygon(0% 0%, 95% 0%, 95% 33%, 100% 50%, 95% 67%, 95% 100%, 0% 100%);
+			transition: all 250ms ease;
+			box-shadow: inset 0px 0px 15px 5px rgba(0,0,0,0.1);
+			display: flex;
+			justify-content: center;
+		}
+		.dateDisp .change1{
+			height: 50px;
+			/* background: #F5F5F6; */
+			transform: translate(-100%,-100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 95% 75%, 95% 100%, 85% 75%, 0% 75%);
+		}
+		.dateDisp .change0{
+			height: 50px;
+			transform: translate(-5px, -100%);
+			box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.1);
+			clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 2% 75%,0 100%);
+		}
+		.dateDisp p{
+			font-weight: 300;
+			font-size: 24px;
+			line-height: 40px;
+			text-align: center;
+			height: 40px;
+			margin: 0px 5px 0;
+			/* margin-top: 11px;
+			margin: 10px 5px 0; */
+		}
+		.dateDisp p.daysImp{
+			font-size: 25px;
+			font-weight: 600;
+		}
+		.dateDisp p.dateImp{
+			font-weight: 500;
+			font-size: 25px;
+		}
+		.footer span i{
+			position: relative;
+			top: -330px;
+			left: -150px;
+			transform: rotate(-90deg);
+			display: block;
+			font-style: normal;
+			color: #DDD;
+			letter-spacing: 1px;
+			text-transform: capitalize;
+			font-size: 26px;
+		}
+		.legendBg{
+			height: 100px;
+			position: absolute;
+			right: 560px;
+			top: 560px;
+			width: 64px;
+			font-size: 14px;
+			font-weight: 400;
+			letter-spacing: -1px;
+			display: flex;
+			text-align: center;
+			flex-direction: column;
+			width: 50px;
+			justify-content: space-around;
+			white-space: pre;
+			background: linear-gradient(to bottom, #AFB6D0 0% 33%,#2CB62C 33% 67%,#ca9828 67%);
+		}
+		.legendBg span{
+			font-weight: 500;
+			position: relative;
+			text-align: left;
+			left: 60px;
+			width: 100px;
+			font-size: 21px;
+		}
+		.svgContainer {
+			position: absolute;
+			width: 88%;
+			height: 100%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-66%,-80%) scale(1);
+			z-index: 200;
+			transition: all 250ms ease-in;
+		}
+		.svgContainer.active{
+			transform: translate(-86%,-90%) scale(0.5);
+		}
+		.legendStates {
+			position: absolute;
+			top: 10px;
+			right: 80px;
+			font-size: 40px;
+			line-height: 1;
+			padding: 25px 0;
+			box-sizing: border-box;
+			font-weight: 500;
+			width: 500px;
+			text-align: center;
+			opacity: 0;
+			transition: all 250ms ease-in;
+		}
+		.legendStates.active{
+			opacity: 1;
+		}
+		.stateName{
+			font-weight: 200;
+			padding: 15px 0;
+		}
+		.stateName.total{
+			font-weight: 400;
+		}
+		.stateName.total i{
+			font-size: 24px;
+			font-style: normal;
+			font-weight: 600;
+		}
+		.totalSeats{
+			font-weight: 500;
+		}
+		.total{
+			font-weight: 500;
+		}
+		.bjpSeats{
+			font-weight: 500;
+		}
+		.bjp{
+			font-weight: 500;
+		}
+		.internal{
+			display: flex;
+			justify-content: space-evenly;
+			position: relative;
+			perspective: 1000px;
+			transform-style: preserve-3d;
+		}
+		.internal p{
+			font-size: 25px;
+			line-height: 1;
+			margin: 0;
+			font-weight: 400;
+			perspective: 100px;
+		}
+		.bar{
+			width: 2px;
+			background: #555;
+			transform: skewX(-20deg) scale(0.5);
+		}
+	</style>
+</head>
+<body>
+	<div class="mainBody">
+		<span class="texty">TEXTY</span>
+		<div class="title">
+			<h1>STATE-WISE STATUS</h1>
+			<h3>COVID-19 trajectory in Indian states with <br/>highest number of cases <span>(19 May)</span></h3>
+		</div>
+		<div class="graphicsContainer">
+			<div class="legendStates">
+				<div class="stateName total">Total Cases<!-- <i>(04 May)</i> --></div>
+				<div class="internal total">					 
+					<div class="totalSeats"><span class="deathsTotal deaths">07</span><p>Seven worst-hit<br>states</p></div>
+					<div class="bar"></div>
+					<div class="totalSeats"><span class="recoveredTotal recovered">101.1K</span><p>Confirmed Cases<br> in India</p></div>
+					
+				</div>
+			</div>
+			<div class="legendContainer">
+				<div class="legendStat">
+					<span></span>
+				</div>
+			</div>
+			<canvas id="canvas"></canvas>
+			
+		</div>
+		<div class="bottomDates">
+		</div>
+		<div class="footer">
+			<div class="bottom">
+				<span>Source: MoHFW<i>Total cases worldwide</i></span>
+				<span><img src="./1logo.png" alt=""></span>
+			</div>
+		</div>
+		
+	</div>
+	<script src="./jquery.js"></script>
+	<script type="text/javascript" src="./C19-TT-JobsNumber.js"></script>
+</body>
+</html>
