@@ -130,8 +130,11 @@ $(document).ready(function(){
             ctx.moveTo(this.center.x, this.center.y);
             ctx.arc(this.center.x, this.center.y, this.radius, this.startAngle, this.endAngle);
             ctx.fill();
+            ctx.strokeStyle = '#F5F5F6'
+            ctx.lineWidth = 5;
+            ctx.stroke();
             ctx.closePath();
-    
+
             ctx.save();
             ctx.beginPath();
             ctx.moveTo(this.center.x, this.center.y);
@@ -139,8 +142,19 @@ $(document).ready(function(){
             ctx.clip();
             ctx.fillStyle = this.color;
             ctx.fill();
+            ctx.strokeStyle = '#F5F5F6'
+            ctx.lineWidth = 5;
+            ctx.stroke();
             ctx.closePath();
             ctx.restore();
+
+            ctx.beginPath();
+            ctx.fillStyle = '#F5F5F6';
+            ctx.moveTo(this.center.x, this.center.y);
+            ctx.arc(this.center.x, this.center.y, 50, this.startAngle, this.endAngle);
+            ctx.fill();
+            ctx.closePath();
+
             if(counter>0){
                 ctx.save();
                 ctx.beginPath();
