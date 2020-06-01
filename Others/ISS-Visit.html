@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="common.css">
+</head>
+<body> 
+	<span class="texty">TEXTY</span>
+	<div class="mainBody">
+
+		<div class="title">
+			<h1>SPACE STATION VISITORS BY COUNTRY</h1>
+			<h3>The International Space Station (ISS) is the most-visited spacecraft in the history of space flight. Most of its visitors are from US</h3>
+
+		</div>
+		<div class="legendStates">
+			<div class="stateName">
+				<span class="month"></span>,
+				<span class="date"></span>
+				<span class="year"></span>
+			</div>
+		</div>
+		<div class="graphicsContainer">
+			<div class="afterDiminish">
+				<p><strong>240 individuals from 19 countries</strong><br/>have visited the International Space Station</p>
+				<p><b>Rob Behnken</b> and <b>Doug Hurley</b>, NASA astronauts who visited the ISS aboard SpaceX's Crew Dragon have visited the ISS before </p>
+			</div>
+			<canvas id="canvas"></canvas>
+			<div id="regions_div"></div>
+			<div id="places_div"></div>
+		</div>
+		<div class="footer">
+			<div class="bottom">
+				<span>
+					Source: NASA
+				</span>
+				<span><img src="../1logo.png" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<script src="../jquery.js"></script>
+	<script type="text/javascript" src="../loader.js"></script>
+    <script src="./iSS-Visit.js"></script>
+</body>
+</html>
