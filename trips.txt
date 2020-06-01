@@ -1,0 +1,8 @@
+Countring... main heading
+            by line
+                =intro
+                body text
+                section heading ----spanin flo'\
+                subhead ------ first sign
+
+                graphic headlinet   
