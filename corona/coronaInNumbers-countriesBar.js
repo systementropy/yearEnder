@@ -54,10 +54,10 @@ $(document).ready(function(){
 				
 				this.previousIndex = this.index;
 				this.index = i;
-				this.dy = (this.index-this.previousIndex)/10;
+				this.dy = (this.index-this.previousIndex)/8;
 				this.tick = dateCounter;
 				this.posY = (((this.previousIndex+this.dy) * (this.width+2)));
-				this.posY = (((this.index) * (this.width+2)));
+				// this.posY = (((this.index) * (this.width+2)));
 				this.dateCounter =this.dl[dateCounter];
 				this.length = 1+(this.dl[dateCounter]/500);
 				this.previousIndex += this.dy;
@@ -70,11 +70,14 @@ $(document).ready(function(){
 			}else{
 				
 				if(this.previousIndex !== this.index){
-					
 					this.posY = (((this.previousIndex+this.dy) * (this.width+2)));
 					this.previousIndex += this.dy;
+					
+					if(this.posY<0){
+						console.table(this.label,this.index,this.previousIndex,this.posY)
+					}
 				}
-				console.table(this.label,this.index,this.previousIndex,this.posY)
+				
 			}
 			this.draw();
 		};
@@ -187,7 +190,7 @@ $(document).ready(function(){
 			}
 			$('.stateName').addClass('active')
 			$('.legendContainer').addClass('active');
-			// allTimeAnimate();
+			allTimeAnimate();
 			setTimeout(()=>{animateCircles(tickCounter+1)},secs)
 		}else{
 
