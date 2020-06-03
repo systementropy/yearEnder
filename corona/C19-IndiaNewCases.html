@@ -466,7 +466,7 @@
 	<div class="mainBody">
 		<div class="title">
 			<h1>COVID-19 UPDATE</h1>
-			<h3>New cases <span>On 02 June, 08:00 AM</span></h3>
+			<h3>New cases <span>On 03 June, 08:00 AM</span></h3>
 
 		</div>
 		<div class="graphicsContainer">
@@ -19412,40 +19412,40 @@
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",33,33,0,33,33,0],
-				["Andhra Pradesh",3783,2378,64,3679,2349,62],
-				["Arunachal Pradesh",22,1,0,4,1,0],
-				["Assam",1390,277,4,1272,185,4],
-				["Bihar",3926,1900,24,3815,1710,21],
-				["Chandigarh",294,199,4,293,199,4],
-				["Chhattisgarh",547,122,1,498,115,1],
-				["Dadar Nagar Haveli",3,1,0,2,0,0],
-				["Delhi",20834,8746,523,19844,8478,473],
-				["Goa",71,42,0,70,42,0],
-				["Gujarat",17200,10780,1063,16779,9919,1038],
-				["Haryana",2356,1055,21,2091,1048,20],
-				["Himachal Pradesh",340,122,5,331,120,5],
-				["Jammu and Kashmir",2601,946,31,2446,927,28],
-				["Jharkhand",659,296,5,610,256,5],
-				["Karnataka",3408,1328,52,3221,1218,51],
-				["Kerala",1326,608,10,1269,590,9],
-				["Ladakh",77,43,0,74,43,0],
-				["Madhya Pradesh",8283,5003,358,8089,4842,350],
-				["Maharashtra",70013,30108,2362,67655,29329,2286],
-				["Manipur",83,11,0,71,11,0],
+				["Andhra Pradesh",3898,2421,64,3783,2378,64],
+				["Arunachal Pradesh",22,1,0,22,1,0],
+				["Assam",1513,324,4,1390,277,4],
+				["Bihar",4155,1946,24,3926,1900,24],
+				["Chandigarh",301,214,5,294,199,4],
+				["Chhattisgarh",564,130,1,547,122,1],
+				["Dadar Nagar Haveli",4,1,0,3,1,0],
+				["Delhi",22132,9243,556,20834,8746,523],
+				["Goa",79,57,0,71,42,0],
+				["Gujarat",17617,11894,1092,17200,10780,1063],
+				["Haryana",2652,1069,23,2356,1055,21],
+				["Himachal Pradesh",345,140,5,340,122,5],
+				["Jammu and Kashmir",2718,953,33,2601,946,31],
+				["Jharkhand",712,320,5,659,296,5],
+				["Karnataka",3796,1403,52,3408,1328,52],
+				["Kerala",1412,627,11,1326,608,10],
+				["Ladakh",81,47,1,77,43,0],
+				["Madhya Pradesh",8420,5221,364,8283,5003,358],
+				["Maharashtra",72300,31333,2465,70013,30108,2362],
+				["Manipur",89,14,0,83,11,0],
 				["Meghalaya",27,12,1,27,12,1],
-				["Mizoram",1,1,0,1,1,0],
-				["Nagaland",43,0,0,43,0,0],
-				["Odisha",2104,1245,7,1948,1126,7],
-				["Puducherry",74,25,0,70,25,0],
-				["Punjab",2301,2000,45,2263,1987,45],
-				["Rajasthan",8980,6040,198,8831,5927,194],
+				["Mizoram",13,1,0,1,1,0],
+				["Nagaland",49,0,0,43,0,0],
+				["Odisha",2245,1325,7,2104,1245,7],
+				["Puducherry",82,25,0,74,25,0],
+				["Punjab",2342,2017,46,2301,2000,45],
+				["Rajasthan",9373,6435,203,8980,6040,198],
 				["Sikkim",1,0,0,1,0,0],
-				["Tamil Nadu",23495,13170,184,22333,12757,173],
-				["Telengana",2792,1491,88,2698,1428,82],
-				["Tripura",420,173,0,313,173,0],
-				["Uttarakhand",958,222,6,907,102,5],
-				["Uttar Pradesh",8075,4843,217,7823,4709,213],
-				["West Bengal",5772,2306,325,5501,2157,317],
+				["Tamil Nadu",24586,13706,197,23495,13170,184],
+				["Telengana",2891,1526,92,2792,1491,88],
+				["Tripura",468,173,0,420,173,0],
+				["Uttarakhand",1043,252,7,958,222,6],
+				["Uttar Pradesh",8361,5030,222,8075,4843,217],
+				["West Bengal",6168,2410,335,5772,2306,325],
 			];
 			let confirmedTotal = 5491; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			for (let index = 0; index < dataIndia.length; index++) {
@@ -19530,7 +19530,7 @@
 				}else if(label == "final"){
 					$('.confirmedTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 198706-190535}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 207615-198706}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
@@ -19540,7 +19540,7 @@
 					});
 					$('.recoveredTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 95527-91819}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 100303-95527}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
@@ -19550,7 +19550,7 @@
 					});
 					$('.deathsTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 5598-5394}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 5815-5598}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
