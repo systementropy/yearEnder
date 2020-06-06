@@ -414,7 +414,7 @@
 			height: max-content;
 			position: absolute;
 			right: 0;
-			top: 250px;
+			top: 325px;
 			width: 115px;
 			font-size: 21px;
 			font-weight: 400;
@@ -465,7 +465,7 @@
 	<div class="mainBody">
 		<div class="title">
 			<h1>Coronavirus in india</h1>
-			<h3>Cumulative cases <span>As of 03 June, 08:00 AM</span></h3>
+			<h3>Cumulative cases <span>As of 05 June, 08:00 AM</span></h3>
 
 		</div>
 		<div class="graphicsContainer">
@@ -19410,41 +19410,41 @@
 			};
 			
 			var dataIndia = [
-				["Andaman and Nicobar Islands",33,33,0],
-				["Andhra Pradesh",3898,2421,64],
-				["Arunachal Pradesh",22,1,0],
-				["Assam",1513,324,4],
-				["Bihar",4155,1946,24],
-				["Chandigarh",301,214,5],
-				["Chhattisgarh",564,130,1],
-				["Dadar Nagar Haveli",4,1,0],
-				["Delhi",22132,9243,556],
-				["Goa",79,57,0],
-				["Gujarat",17617,11894,1092],
-				["Haryana",2652,1069,23],
-				["Himachal Pradesh",345,140,5],
-				["Jammu and Kashmir",2718,953,33],
-				["Jharkhand",712,320,5],
-				["Karnataka",3796,1403,52],
-				["Kerala",1412,627,11],
-				["Ladakh",81,47,1],
-				["Madhya Pradesh",8420,5221,364],
-				["Maharashtra",72300,31333,2465],
-				["Manipur",89,14,0],
-				["Meghalaya",27,12,1],
-				["Mizoram",13,1,0],
-				["Nagaland",49,0,0],
-				["Odisha",2245,1325,7],
-				["Puducherry",82,25,0],
-				["Punjab",2342,2017,46],
-				["Rajasthan",9373,6435,203],
-				["Sikkim",1,0,0],
-				["Tamil Nadu",24586,13706,197],
-				["Telengana",2891,1526,92],
-				["Tripura",468,173,0],
-				["Uttarakhand",1043,252,7],
-				["Uttar Pradesh",8361,5030,222],
-				["West Bengal",6168,2410,335],
+				["Andaman and Nicobar Islands",0,33,0,33],
+				["Andhra Pradesh",1613,2539,71,4223],
+				["Arunachal Pradesh",41,1,0,42],
+				["Assam",1542,442,4,1988],
+				["Bihar",2254,2210,29,4493],
+				["Chandigarh",82,214,5,301],
+				["Chhattisgarh",541,213,2,756],
+				["Dadar Nagar Haveli",11,1,0,12],
+				["Delhi",14456,9898,650,25004],
+				["Goa",109,57,0,166],
+				["Gujarat",4762,12667,1155,18584],
+				["Haryana",1123,2134,24,3281],
+				["Himachal Pradesh",199,179,5,383],
+				["Jammu and Kashmir",2059,1048,35,3142],
+				["Jharkhand",433,354,6,793],
+				["Karnataka",2653,1610,57,4320],
+				["Kerala",884,690,14,1588],
+				["Ladakh",41,48,1,90],
+				["Madhya Pradesh",2748,5637,377,8762],
+				["Maharashtra",41402,33681,2710,77793],
+				["Manipur",86,38,0,124],
+				["Meghalaya",19,13,1,33],
+				["Mizoram",16,1,0,17],
+				["Nagaland",80,0,0,80],
+				["Odisha",1055,1416,7,2478],
+				["Puducherry",57,25,0,82],
+				["Punjab",325,2043,47,2415],
+				["Rajasthan",2545,7104,213,9862],
+				["Sikkim",2,0,0,2],
+				["Tamil Nadu",12134,14902,220,27256],
+				["Telengana",1455,1587,105,3147],
+				["Tripura",471,173,0,644],
+				["Uttarakhand",846,297,10,1153],
+				["Uttar Pradesh",3553,5439,245,9237],
+				["West Bengal",3753,2768,355,6876],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
@@ -19454,11 +19454,11 @@
 			var min = [255,255,255];
 			var globalCounter = 0;
 			dataIndia.sort(function(a,b){
-				return ((a[1])-(b[1]))
+				return ((a[4])-(b[4]))
 			})
 			for (let i = 0; i < dataIndia.length; i++) {
 				const element = dataIndia[i];
-				const perc = element[1];
+				const perc = element[4];
 				let colorIndex;
 				if(perc<=10){
 					colorIndex = 0
@@ -19491,7 +19491,7 @@
 				recoveredTotal += element[2]
 				deathsTotal += element[3]
 				// activeTotal = activeTotal + element[1] - element[2] - element[3]
-				activeTotal = element[1] - element[2] - element[3]
+				activeTotal = element[1]
 				element.push(perc);
 				element.push(color);
 				element.push(colorIndex);
@@ -19520,31 +19520,31 @@
 				}else if(label == "final"){
 					$('.confirmedTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 207615}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 226770}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
-								$this.text(Math.ceil(this.Counter));
+								$this.text((this.Counter/1000).toFixed(1)+'K');
 							}
 						});
 					});
 					$('.recoveredTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 100303}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 109462}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
-								$this.text(Math.ceil(this.Counter));
+								$this.text((this.Counter/1000).toFixed(1)+'K');
 							}
 						});
 					});
 					$('.deathsTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 5815}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 6348}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
-								$this.text(Math.ceil(this.Counter));
+								$this.text((this.Counter/1000).toFixed(1)+'K');
 							}
 						});
 					});
@@ -19564,13 +19564,19 @@
 					
 					const element = dataIndia[index];
 					$('.stateName.statewise').html(arrayId[element[0]][0]);
-					$('.confirmed.statewise').html(element[1]);
-					$('.recovered.statewise').html((element[2]).toString());
-					$('.deaths.statewise').html(element[3]);
+					$('.confirmed.statewise').html(
+						element[4]>1000?((element[4]/1000).toFixed(1)+'K'):element[4]
+					);
+					$('.recovered.statewise').html(
+						element[2]>1000?((element[2]/1000).toFixed(1)+'K'):element[2]
+					);
+					$('.deaths.statewise').html(
+						element[3]>1000?((element[3]/1000).toFixed(1)+'K'):element[3]
+					);
 					if(arrayId[element[0]][0] === 'A & N Islands'){
-						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
+						$('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
 					}else if(arrayId[element[0]] !== undefined){
-						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[5][0]+','+element[5][1]+','+element[5][2]+','+alpha+')'})
+						$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
 					}else {
 						console.log(element[0],arrayId[element[0]]);
 					}
