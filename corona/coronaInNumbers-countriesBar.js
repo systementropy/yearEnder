@@ -14,7 +14,7 @@ $(document).ready(function(){
 	let count = 0; 
 	// const ticks = legends.length;
 	const ticks = legends.length;
-	let globalCounter = true;
+	let globalCounter = 0;
 	let tick;
 	// const areaIndex = {"Asia Pacific":1,"Europe":4,}
 	var canvas = document.getElementById("canvas");
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	ctx.strokeStyle = '#FFFDDD';
 	ctx.fillStyle = 'rgba(255,0,0,1)';
 	ctx.scale(2,2);
-	const secs  = 200;
+	const secs  = 60;
 
 	var colorArray =['#000000','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#AECDAD'];
 	function Bar(x, y, length, dl, color, index, label, countryCode){
@@ -67,7 +67,7 @@ $(document).ready(function(){
 				this.previousIndex = this.index;
 				this.index = i;
 				if(Math.abs(this.previousIndex - this.index)>0.0001){
-					this.dy = (this.index-this.previousIndex)/150;
+					this.dy = (this.index-this.previousIndex)/40;
 				}else{
 					this.previousIndex = this.index;
 					this.dy = 0;
@@ -76,7 +76,7 @@ $(document).ready(function(){
 				this.posY = (((this.previousIndex+this.dy) * (this.width+15)));
 				// this.posY = (((this.index) * (this.width+15)));
 				this.dateCounter =this.dl[dateCounter];
-				this.length = 1+(this.dl[dateCounter]/1700);
+				this.length = 1+(this.dl[dateCounter]/1800);
 				this.previousIndex += this.dy;
 				if(this.dateCounter>1000){
 					this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
@@ -103,9 +103,9 @@ $(document).ready(function(){
 		this.draw = function(){
 			if(this.dateCounter<10000000 && this.dateCounter>0){
 				ctx.beginPath();
-				ctx.fillStyle = this.color+'77';
+				ctx.fillStyle = this.color+'CC';
 				ctx.strokeStyle = this.color;
-				ctx.lineWidth = 2;
+				ctx.lineWidth = 1;
 				ctx.rect(this.posX, this.posY, (this.posX+this.length), this.width);
 				ctx.fill();
 				ctx.stroke();
@@ -116,31 +116,31 @@ $(document).ready(function(){
 				ctx.rect(this.posX, this.posY, (this.posX+this.deathLength), this.width);
 				ctx.fill();
 				ctx.closePath();
-				
+
 				ctx.save();
 				ctx.beginPath();
-				ctx.fillStyle = '#464646';
-				ctx.font = '600 24px monty';
-				this.label == 'India'?ctx.fillStyle=this.color:'';
-				this.label == 'India'?ctx.font = '800 28px monty':'';
 				if(this.imgCountry){
 					ctx.arc(this.length+42, this.posY+32,32,0,2*Math.PI)
 					ctx.clip();
 					ctx.drawImage(this.imgCountry, this.length+10, this.posY, 64,64);
-					this.textLabelWidth = 60;
-				}else{
-					ctx.fillText(this.label, this.length + 20 , this.posY+8+(this.width/2));
-					this.textLabelWidth = ctx.measureText(this.label).width;
 				}
 				ctx.closePath();
 				ctx.restore();
+
 				ctx.beginPath();
-				ctx.fillStyle = '#464646';
-				ctx.font = '400 24px monty';
+				ctx.fillStyle = '#4A4A4A';
+				ctx.font = '400 28px monty';
 				this.label == 'India'?ctx.fillStyle=this.color:'';
-				this.label == 'India'?ctx.font = '400 28px monty':'';
+				ctx.fillText(this.label, this.length+90 , this.posY+10+(this.width/2));
+				this.textLabelWidth = ctx.measureText(this.label).width;
+				ctx.closePath();
+
+				ctx.beginPath();
+				ctx.fillStyle = '#4A4A4A';
+				this.label == 'India'?ctx.fillStyle=this.color:'';
+				ctx.font = '900 28px monty';
 				// ctx.textAlign = "left"
-				ctx.fillText(' ( '+this.dateCounterLabel+' )', this.length+ this.textLabelWidth + 20 , this.posY+8+(this.width/2));
+				ctx.fillText(this.dateCounterLabel, this.length+ 100 + this.textLabelWidth , this.posY+10+(this.width/2));
 				ctx.fill();
 				ctx.closePath();
 			}else if(this.dateCounter>0){
@@ -161,29 +161,29 @@ $(document).ready(function(){
 
 
 				ctx.beginPath();
-				ctx.fillStyle = '#464646';
-				ctx.font = '600 24px monty';
+				ctx.fillStyle = '#4A4A4A';
+				ctx.font = '600 28px monty';
 				// ctx.textAlign = "right"
-				ctx.fillText(this.label,  40 , this.posY+8+(this.width/2));
+				ctx.fillText(this.label,  40 , this.posY+10+(this.width/2));
 				this.textLabelWidth = ctx.measureText(this.label).width;
 				ctx.fill();
 				ctx.closePath();
 
 				ctx.beginPath();
-				ctx.fillStyle = '#464646';
-				ctx.font = '400 24px monty';
+				ctx.fillStyle = '#4A4A4A';
+				ctx.font = '400 28px monty';
 				// ctx.textAlign = "left"
-				ctx.fillText(' ( '+this.dateCounterLabel+' )', this.textLabelWidth + 40 , this.posY+8+(this.width/2));
+				ctx.fillText(' ( '+this.dateCounterLabel+' )', this.textLabelWidth + 40 , this.posY+10+(this.width/2));
 				ctx.fill();
 				ctx.closePath();
 			}
 			if(this.tick == ticks-1){
 				ctx.beginPath();
-				ctx.fillStyle = '#000';
+				ctx.fillStyle = '#FFF';
 				ctx.font = '400 22px monty';
 				let text;
 				this.index+1>9?text=this.index+1:text='0'+(this.index+1)
-				ctx.fillText(text+'.', 20 , this.posY+8+(this.width/2));
+				ctx.fillText(text+'.', 20 , this.posY+10+(this.width/2));
 				ctx.closePath();
 			}	
 		};
@@ -192,53 +192,55 @@ $(document).ready(function(){
 	function animateCircles(tickCounter){
 
 		if(tickCounter!==tick && tickCounter<ticks){
-			
 			tick = tickCounter
-			ctx.clearRect(0,0,canWid,canHgt);
-			barArray = barArray.sort(function(a, b){
-				return (b.dl[tick] - a.dl[tick]);
-			});
 			for (var i = 0; i < barArray.length; i++) {
 				barArray[i].update(i,tick);
 			}
-			if(legends[tick][1]>9){
-				$('.date').text(legends[tick][1])
-			}else{
-				$('.date').text('0'+legends[tick][1])
+			if(legends[tick] && legends[tick][1]){
+				if(legends[tick][1]>9){
+					$('.date').text(legends[tick][1])
+				}else{
+					$('.date').text('0'+legends[tick][1])
+				}
+				if(legends[tick][0] == 2){
+					$('.month').text('Feb')
+				}else if(legends[tick][0] == 3){
+					$('.month').text('Mar')
+				}else if(legends[tick][0] == 4){
+					$('.month').text('Apr')
+				}else if(legends[tick][0] == 5){
+					$('.month').text('May')
+				}else if(legends[tick][0] == 6){
+					$('.month').text('Jun')
+				}
+				$('.stateName').addClass('active')
+				$('.legendContainer').addClass('active');
 			}
-			if(legends[tick][0] == 2){
-				$('.month').text('Feb')
-			}else if(legends[tick][0] == 3){
-				$('.month').text('Mar')
-			}else if(legends[tick][0] == 4){
-				$('.month').text('Apr')
-			}else if(legends[tick][0] == 5){
-				$('.month').text('May')
-			}
-			$('.stateName').addClass('active')
-			$('.legendContainer').addClass('active');
-			allTimeAnimate();
-			setTimeout(()=>{animateCircles(tickCounter+1)},secs)
+			// setTimeout(()=>{animateCircles(tickCounter+1)},secs)
 		}else{
-			// globalCounter = false
 		}
-		
-		// ctx.beginPath();
-		// ctx.strokeStyle = '#0F0'
-		// ctx.rect(0, 0, canWid*2, canHgt*2);
-		// ctx.stroke();
-		// ctx.closePath();
-		// console.log(0, 0, canWid*2, canHgt*2);
-
 	}
 	function allTimeAnimate(){
-		if(globalCounter){
-			ctx.clearRect(0,0,canWid,canHgt);
-			for (var i = 0; i < barArray.length; i++) {
-				barArray[i].update();
+		if(globalCounter<secs*ticks-1){
+			if(globalCounter ==0 || globalCounter%secs!==0){
+				ctx.clearRect(0,0,canWid,canHgt);
+				for (var i = 0; i < barArray.length; i++) {
+					barArray[i].update();
+				}
+				globalCounter = globalCounter + 1;
+			}else{
+				// console.log(globalCounter,globalCounter/secs)
+				let ticker = Math.floor(globalCounter/secs);
+				ctx.clearRect(0,0,canWid,canHgt);
+				barArray = barArray.sort(function(a, b){
+					return (b.dl[ticker] - a.dl[ticker]);
+				});
+				animateCircles(ticker);
+				globalCounter += 1;
 			}
+			requestAnimationFrame(allTimeAnimate)
 		}
-		requestAnimationFrame(allTimeAnimate)
+		
 	}
 	
 	var init = function(){
@@ -449,6 +451,8 @@ $(document).ready(function(){
 				// 	console.log('deth'+country)
 				// }
 				// if(dataDeath[country] && dataDeath[country][dataDeath[country].length-1]>50){
+				let color;
+				country == 'India'?color = '#FF4E00':color = '#4A4A4A'
 				const contArr = [ 'INDIA','China','US','Russia','South Korea','Iran','Turkey','UK','Germany','Italy','Spain'];
 					// if(contArr.indexOf(country)>-1)
 					barArray.push(new Bar(
@@ -456,7 +460,7 @@ $(document).ready(function(){
 						count,
 						element[0] ,
 						element,
-						colorArray[areaMap[country]] ,
+						color ,
 						count,
 						country,
 						countryCode[country]
@@ -469,6 +473,7 @@ $(document).ready(function(){
 		}
 		// ticks = count-1
 		setTimeout(()=>{
+			allTimeAnimate();
 			animateCircles(0);
 		},2000)
 	};

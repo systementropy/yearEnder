@@ -220,14 +220,14 @@
 		}
         .legendContainer {
             position: absolute;
-            bottom: -100px;
-            right: -100px;
+            bottom: 0;
+            right: 0;
             font-size: 40px;
             line-height: 1;
             padding: 10px 0;
             box-sizing: border-box;
             font-weight: 500;
-            width: 400px;
+            width: max-content;
             text-align: center;
             opacity: 0;
             transition : all 250ms ease-in;
@@ -239,7 +239,7 @@
         .stateName{
             font-weight: 300;
             padding: 0px 0;
-			height: 200px;
+			height: auto;
 			text-align: left;
 			opacity: 0;
             color: #333;
@@ -255,12 +255,15 @@
 			color: #cc7722
 		}
 		.date {
-			font-size: 72px;
+			font-size: 140px;
 			font-weight: 400;
+		}
+        .month {
+			font-size: 80px;
 		}
 		.year {
 			font-weight: 200;
-			font-size: 29px;
+			font-size: 60px;
 		}
         .bottomDates{
             display: flex;
@@ -323,6 +326,7 @@
             100% {transform: translateX(100px);}
         }
 		.legendBg{
+            opacity: 0;
 			height: 300px;
 			position: absolute;
 			right: 100px;
