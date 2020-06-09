@@ -1,10 +1,64 @@
+@font-face {
+    font-family: Cormorant;
+    src: url(../Cormorant/Cormorant-Regular.ttf);
+    font-weight: 400;
+}@font-face {
+    font-family: Raleway;
+    src: url(../Raleway/Raleway-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Thin.ttf);
+    font-weight: 100;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-ExtraLight.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Bold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-ExtraBold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../Montserrat/Montserrat-Black.ttf);
+    font-weight: 900;
+}
 :root{
     --color1 : #FFFFFF;
     --color2 : #2B2A2A;
     --color3 : #5A5A5A;
     --color4 : #000000;
     --headColor : #700000;
-    --red0 : #EFEFEF;
+    --red0 : #efefef;
     --red1 : #FFEBEB;
     --red2 : #FFD5D5;
     --red3 : #FFC0C0;
@@ -22,18 +76,24 @@ body,html,*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 body{
     background: #999;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
 .mainBody{
     height: 1000px;
     width: 800px;
     position: relative;
-    outline: 1px solid #F00;
     margin: auto;
     overflow: hidden;
     background: #FFF;
+    transform: scale(calc(981/1000));
+    transform-origin: top;
 }
 .bgContent{
     position: absolute;
@@ -51,11 +111,178 @@ body{
     height: 233px;
     background: #2B2A2A 0% 0% no-repeat padding-box;
     opacity: 1;
+    position: relative;
 }
 .logo{
+    position: absolute;
     top: 42px;
     left: 330px;
     width: 140px;
     height: 64px;
     opacity: 1;
+    background: #999;
+}
+.headline{
+    position: absolute;
+    top: 112px;
+    left: 89px;
+    width: 631px;
+    height: 68px;
+    text-align: center;
+    font: 400 56px/68px Cormorant;
+    letter-spacing: -0.6px;
+    color: #FF6E6E;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.strap{
+    position: absolute;
+    top: 180px;
+    left: 215px;
+    width: 347px;
+    height: 40px;
+    text-align: center;
+    font: 700 33px/40px Montserrat;
+    letter-spacing: -0.33px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.legend1{
+    margin-top: 9px;
+    left: -0.5px;
+    width: 801px;
+    height: 30px;
+    text-align: center;
+    font: Bold 20px/24px Montserrat;
+    letter-spacing: 2px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+    border-bottom: 1px solid #5A5A5A44;
+}
+.legend2{
+    display: flex;
+    margin-top: 10px;
+}
+.legend2 div{
+    width: 73px;
+    height: 24px;
+    text-align: center;
+    font: 500 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    opacity: 1;
+    position: relative;
+}
+.legend2 div::after{
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: 0px;
+    width: 100%;
+    height: 14px;
+    background: #FFEBEB 0% 0% no-repeat padding-box;
+    border: 1px solid #FFA2A2;
+    opacity: 1;
+}
+.legend2 div:nth-child(1)::after{background :var(--red1)}
+.legend2 div:nth-child(2)::after{background :var(--red2)}
+.legend2 div:nth-child(3)::after{background :var(--red3)}
+.legend2 div:nth-child(4)::after{background :var(--red4)}
+.legend2 div:nth-child(5)::after{background :var(--red5)}
+.legend2 div:nth-child(6)::after{background :var(--red6)}
+.legend2 div:nth-child(7)::after{background :var(--red7)}
+.legend2 div:nth-child(8)::after{background :var(--red8)}
+.legend2 div:nth-child(9)::after{background :var(--red9)}
+.legend2 div:nth-child(10)::after{background :var(--red10)}
+.legend2 div:nth-child(11)::after{background :var(--red11)}
+.legend2 div:nth-child(12)::after{background :var(--red12)}
+
+.svgContainer{
+    position: absolute;
+    top: 369px;
+    left: 58px;
+    width: 554px;
+    height: 609px;
+    opacity: 1;
+}
+.svgContainer svg{
+    width: 134%;
+    transform: translate(-93px, -207px);
+}
+.stateName{
+    position: absolute;
+    top: 364px;
+    left: 381px;
+    width: 420px;
+    height: 30px;
+    text-align: center;
+    font: Bold 25px/30px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.statContainer{
+    position: absolute;
+    top: 401px;
+    left: 381px;
+    width: 419px;
+    height: 68px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: flex;
+    border: 1px solid #5A5A5A77;
+}
+.statContainer>div{
+    flex-grow: 1;
+    padding: 7px 0;
+}
+.statContainer>div:nth-child(2){
+    border-left: 1px solid #5A5A5A77;;
+    border-right: 1px solid #5A5A5A77;;
+}
+.nameLabel{
+    height: 19px;
+    display: block;
+    text-align: center;
+    font: 600 15px/19px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.data{
+    height: 34px;
+    text-align: center;
+    margin: 0;
+    font: 700 28px/34px Montserrat;
+    letter-spacing: -0.28px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+footer{
+    position: absolute;
+    right: 30px;
+    bottom: 50px;
+    width: 128px;
+    text-align: left;
+    font: 400 15px/18px Raleway;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+footer img{
+    width: 113px;
+    height: 45px;
+}
+.end{
+    position: absolute;
+    bottom: 0;
+    height: 6px;
+    background: rgba(43, 42, 42, 1);
+    width: 100%;
 }
