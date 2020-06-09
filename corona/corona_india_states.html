@@ -465,7 +465,7 @@
 	<div class="mainBody">
 		<div class="title">
 			<h1>Coronavirus in india</h1>
-			<h3>Cumulative cases <span>As of 08 June, 08:00 AM</span></h3>
+			<h3>Cumulative cases <span>As of 09 June, 08:00 AM</span></h3>
 
 		</div>
 		<div class="graphicsContainer">
@@ -19411,40 +19411,40 @@
 			
 			var dataIndia = [
 				["Andaman and Nicobar Islands",0,33,0,33],
-				["Andhra Pradesh",1951,2682,75,4708],
+				["Andhra Pradesh",2031,2745,75,4851],
 				["Arunachal Pradesh",50,1,0,51],
-				["Assam",1946,615,4,2565],
-				["Bihar",2578,2480,30,5088],
-				["Chandigarh",36,273,5,314],
-				["Chhattisgarh",786,283,4,1073],
-				["Dadar Nagar Haveli",18,2,0,20],
-				["Delhi",16229,10664,761,27654],
-				["Goa",235,65,0,300],
-				["Gujarat",5186,13635,1249,20070],
-				["Haryana",2286,2134,28,4448],
-				["Himachal Pradesh",184,224,5,413],
-				["Jammu and Kashmir",2830,1216,41,4087],
-				["Jharkhand",602,490,7,1099],
-				["Karnataka",3259,2132,61,5452],
-				["Kerala",1096,803,15,1914],
-				["Ladakh",52,50,1,103],
-				["Madhya Pradesh",2658,6331,412,9401],
-				["Maharashtra",43601,39314,3060,85975],
-				["Manipur",120,52,0,172],
+				["Assam",2107,665,4,2776],
+				["Bihar",2672,2499,31,5202],
+				["Chandigarh",39,273,5,317],
+				["Chhattisgarh",848,308,4,1160],
+				["Dadar Nagar Haveli",20,2,0,22],
+				["Delhi",17712,11357,874,29943],
+				["Goa",263,67,0,330],
+				["Gujarat",5309,13956,1280,20545],
+				["Haryana",2681,2134,39,4854],
+				["Himachal Pradesh",189,227,5,421],
+				["Jammu and Kashmir",2916,1324,45,4285],
+				["Jharkhand",730,519,7,1256],
+				["Karnataka",3177,2519,64,5760],
+				["Kerala",1175,814,16,2005],
+				["Ladakh",50,52,1,103],
+				["Madhya Pradesh",2688,6536,414,9638],
+				["Maharashtra",44384,40975,3169,88528],
+				["Manipur",214,58,0,272],
 				["Meghalaya",22,13,1,36],
-				["Mizoram",33,1,0,34],
-				["Nagaland",110,8,0,118],
-				["Odisha",953,1894,9,2856],
-				["Puducherry",63,36,0,99],
-				["Punjab",451,2106,51,2608],
-				["Rajasthan",2718,7641,240,10599],
+				["Mizoram",41,1,0,42],
+				["Nagaland",115,8,0,123],
+				["Odisha",992,1993,9,2994],
+				["Puducherry",75,52,0,127],
+				["Punjab",482,2128,53,2663],
+				["Rajasthan",2513,8004,246,10763],
 				["Sikkim",7,0,0,7],
-				["Tamil Nadu",14399,16999,269,31667],
-				["Telengana",1747,1710,123,3580],
-				["Tripura",608,192,0,800],
-				["Uttarakhand",814,528,13,1355],
-				["Uttar Pradesh",4076,6185,275,10536],
-				["West Bengal",4488,3303,396,8187],
+				["Tamil Nadu",15416,17527,286,33229],
+				["Telengana",1803,1710,137,3650],
+				["Tripura",646,192,0,838],
+				["Uttarakhand",684,714,13,1411],
+				["Uttar Pradesh",4320,6344,283,10947],
+				["West Bengal",4743,3465,405,8613],
 			];
 			let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
 			let colorArray = [
@@ -19513,14 +19513,14 @@
 			ctx.strokeColor = '#000';
 
 			var alpha; var index;
-			const msecForEach = 30;
+			const msecForEach = 60;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
 				}else if(label == "final"){
 					$('.confirmedTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 256611}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 266598}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
@@ -19530,7 +19530,7 @@
 					});
 					$('.recoveredTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 124095}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 129215}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
@@ -19540,7 +19540,7 @@
 					});
 					$('.deathsTotal').each(function () {
 						var $this = $(this);
-						jQuery({ Counter: 0 }).animate({ Counter: 7135}, {
+						jQuery({ Counter: 0 }).animate({ Counter: 7466}, {
 							duration: 1000,
 							easing: 'swing',
 							step: function () {
@@ -19556,7 +19556,7 @@
 				}else{
 					globalCounter += 1;
 					if(Math.floor(globalCounter/msecForEach) == index){
-						alpha += 0.1;
+						alpha += 0.025;
 					}else{
 						alpha = 0;
 						index = Math.floor(globalCounter/msecForEach);
