@@ -1,0 +1,61 @@
+:root{
+    --color1 : #FFFFFF;
+    --color2 : #2B2A2A;
+    --color3 : #5A5A5A;
+    --color4 : #000000;
+    --headColor : #700000;
+    --red0 : #EFEFEF;
+    --red1 : #FFEBEB;
+    --red2 : #FFD5D5;
+    --red3 : #FFC0C0;
+    --red4 : #FEAAAA;
+    --red5 : #FFA2A2;
+    --red6 : #FE9595;
+    --red7 : #FE7F7F;
+    --red8 : #E26666;
+    --red9 : #C54C4C;
+    --red10 : #A93333;
+    --red11 : #A93333;
+    --red12 : #700000;
+}
+body,html,*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #999;
+}
+.mainBody{
+    height: 1000px;
+    width: 800px;
+    position: relative;
+    outline: 1px solid #F00;
+    margin: auto;
+    overflow: hidden;
+    background: #FFF;
+}
+.bgContent{
+    position: absolute;
+    top: 327px;
+    left: -1.719970703125px;
+    width: 804px;
+    height: 689px;
+    background: transparent url('../Design/Rectangle2.png') 0% 0% no-repeat padding-box;
+    opacity: 0.32;
+}
+.header{
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 233px;
+    background: #2B2A2A 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.logo{
+    top: 42px;
+    left: 330px;
+    width: 140px;
+    height: 64px;
+    opacity: 1;
+}
