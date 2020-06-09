@@ -1,0 +1,555 @@
+
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Thin.ttf);
+    font-weight: 100;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-ExtraLight.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Bold.ttf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-ExtraBold.ttf);
+    font-weight: 800;
+}
+@font-face {
+    font-family: monty;
+    src: url(../Montserrat/Montserrat-Black.ttf);
+    font-weight: 900;
+}
+body,html{
+    margin : 0;
+    padding: 0;
+    font-family: monty;
+    font-weight: 400;
+}
+.title{
+    border-bottom: 5px solid #000;
+    padding-bottom: 5px;
+    position: relative;
+    color: #585858;
+}
+.title img{
+    position: absolute;
+    right: 0;
+    top: 3px;
+    height: 39px;
+}
+.title h1{
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+}
+.title h3{
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+}
+.title h3 span{
+    color: #555;
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 0;
+    text-transform: none;
+    position: absolute;
+    top: 785px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.title h3 span::before{
+    content: '(';
+    position: relative;
+    top: -2px;
+}
+.title h3 span::after{
+    content: ")";
+    position: relative;
+    top: -2px;
+}
+.mainBody{
+    border: 1px solid #999;
+    height: 100vh;
+    width: 100vh;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.graphicsContainer{
+    width: auto;
+    height: 745px;
+    position: relative;
+    overflow: hidden;
+    /* transform: translateY(-150px); */
+}
+.graphicsContainer::after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 50%;
+    bottom: -25%;
+    /* background: linear-gradient(to bottom, rgba(255,255,255,0),rgba(255,255,255,1)); */
+}
+#year{
+    font-size: 34px;
+    font-weight: 400;
+    margin: auto;
+    text-align: center;
+    padding: 15px 0 0;
+    color: #555555;
+    text-transform: uppercase;
+}
+#year p{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#year p.weeks{margin-bottom: 0;}
+#year p span{
+    font-size: 16px;
+    flex-grow: 1;
+    padding: 5px 0;
+    outline: 1px solid #DDD;
+    width: 14.2857142857%;
+}
+#year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+.bottom{
+    display: flex;
+    justify-content: space-between;
+}
+.bottom img{
+    height: 44px;
+}
+.bottom{
+    line-height: 80px;
+    font-size: 25px;
+}
+#labels{
+    position: absolute;
+    bottom: 0;
+    display: block;
+    z-index: -1;
+    filter: blur(0px);
+    transition: all 0.2s ease;
+}
+#labels.active{
+    filter: blur(5px);
+}
+#canvas{
+    display: block;
+    margin: auto 100px auto auto;
+    overflow: hidden;
+    /* border-radius: 10px; */
+}
+.Month{
+    opacity: 0;
+    letter-spacing: 10px;
+    transition: all 0s ease 0s;
+}
+.Month.active{
+    opacity: 1;
+    letter-spacing: 0px;
+    transition: all 1s ease 0.3s;
+}
+.logo{
+    width: 280px;
+    margin-bottom: 15px;
+    transform: translateX(-9px);
+}
+.legendStates {
+    position: fixed;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    line-height: 1;
+    padding: 0px 0;
+    box-sizing: border-box;
+    font-weight: 500;
+    width: 600px;
+    height: 225px;
+    text-align: center;
+    opacity: 0;
+    background: rgba(221, 221, 221, 0.8);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    transition: all 100ms ease-in;
+    overflow: hidden;
+}
+.legendStates::after{
+    opacity: 0;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 60%;
+    /* left: var(--arrow-left); */
+    width: 20px;
+    height: 50px;
+    clip-path: polygon(0 0, 100% 0%, 50% 100%);
+    background: linear-gradient(to bottom, rgba(225, 225, 225, 1), rgba(180, 180, 180, 1));
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.3);
+    transition: all 100ms ease;
+}
+.legendStates.active{
+    opacity: 1;
+}
+.stateName{
+    font-weight: 400;
+    padding: 15px 0;
+}
+.totalSeats{
+    font-weight: 300;
+}
+.total{
+    font-weight: 500;
+}
+.bjpSeats{
+    font-weight: 300;
+}
+.bjp{
+    font-weight: 500;
+}
+.internal{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+.internal p{
+    font-size: 18px;
+    line-height: 1;
+    margin: 0;
+    font-weight: 200;
+    perspective: 100px;
+}
+.legendStates>div>div{
+    flex-grow: 1;
+    width: 33%;
+}
+.legendStates div span{
+    font-size: 24px;
+    margin: 10px 20px;
+    line-height: 24px;
+    display: block;
+    /* height: 80px; */
+    justify-self: flex-end;
+}
+.legendStates div.bar{
+    width: 2px;
+    background: #333;
+    transform: skewX(-20deg) scale(0.5);
+}
+.footer{
+    position: static;
+    top: 98%;
+    width: 100%;
+}
+.internal .fillbg{
+    content: " ";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #F5F5F6;
+    border: 2px solid #333;
+    box-shadow: 0px 0px 1px 1px #2821195E;
+    transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+    transform-origin: center;
+    /*! height: 100px; */
+}
+.internal .fill{
+    content: " ";
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 0%;
+    height: 10px;
+    background: #F28500;
+    transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+    background: linear-gradient(to right, 
+            rgb(240,240,240)    0px,
+            rgb(255,243,228)    calc(0 * 40px),
+            rgb(255,231,203)    calc(1 * 40px),
+            rgb(255,214,164)    calc(2 * 40px),
+            rgb(255,196,124)    calc(3 * 40px),
+            rgb(255,178,85)     calc(4 * 40px),
+            rgb(255,161,46)     calc(5 * 40px),
+            rgb(255,143,7)      calc(6 * 40px),
+            rgb(203,111,0)      calc(7 * 40px),
+            rgb(183,101,0)      calc(8 * 40px)
+    );
+    box-shadow: -1px 8px 7px 0px #8C6331;
+    transition: all 0.3s ease;
+    z-index: 1;
+    transform-origin: center;
+    /*! height: 100px; */
+}
+
+.footer i{
+    display: block;
+    font-weight: 300;
+    line-height: 1;
+    font-size: 14px;
+}
+.texty{
+    position: fixed;
+    top:0;
+    left: 0;
+    font-size: 3vh;
+    animation: aniTr 1s infinite alternate;
+    
+}
+@keyframes aniTr {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(100px);}
+}
+.svgContainer {
+    padding-top: 0px;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    height: 500px;
+    padding-top: 180px;
+}
+.svgContainer svg{
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+.svgContainer path{
+    fill : rgba(220, 220, 220, 1);
+    stroke :rgba(50, 50, 50, 0.4);
+}
+.imgCont{
+    width: 64px;
+    height: 64px;
+    background-image: url("./Extra/candidates_grid.png");
+    background-position: 8% 24%;
+    background-size: 275px;
+    margin: 5px auto;
+    border-radius: 50%;
+    /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1); */
+    background-repeat: no-repeat;
+    transition: all 250ms linear;
+    z-index: 1;
+    display: block;
+}
+.aapParty .imgCont{
+    transform: scale(0.5);
+    filter: grayscale(1);
+    opacity: 0.5;
+    background-position: 54% 42%;
+}
+.bjpParty .imgCont{
+    transform: scale(0.5);
+    filter: grayscale(1);
+    opacity: 0.5;
+    background-position: 54% 59%;
+}
+.congParty .imgCont{
+    transform: scale(0.5);
+    filter: grayscale(1);
+    opacity: 0.5;
+    background-position: 54% 76%;
+}
+.aapParty .imgCont.aap0{background-position: 11% 93%;; opacity: 1;}
+.aapParty .imgCont.aap1{background-position: 11% 9.5%; opacity: 1;}
+.aapParty .imgCont.aap2{background-position: 11% 66%; opacity: 1;}
+.aapParty .imgCont.aap3{background-position: 11% 82%; opacity: 1;}
+.aapParty .imgCont.aap4{background-position: 11% 17.5%; opacity: 1;}
+.aapParty .imgCont.aap5{background-position: 11% 76%; opacity: 1;}
+.aapParty .imgCont.aap6{background-position: 11% 58%; opacity: 1;}
+.aapParty .imgCont.aap7{background-position: 11% 90%; opacity: 1;}
+.aapParty .imgCont.aap8{background-position: 11% 99%; opacity: 1;}
+.aapParty .imgCont.inactive{
+    
+    opacity: 1;
+    background-position: 11% 1%;
+}
+.bjpParty .imgCont.bjp6{
+    background-image: url("./Extra/candidates_grid.png");
+    background-size: 275px;
+    background-position: 50% 25.5%;
+    opacity: 1;
+}
+.bjpParty .imgCont{
+    background-image: url("./Extra/delhi2020Candidates.png");
+    background-position: 8% 24%;
+    background-size: 440px;
+}
+.bjpParty .imgCont.bjp0{background-position: 31% 93%;opacity: 1;}
+.bjpParty .imgCont.bjp1{background-position: 31% 59%;opacity: 1;}
+.bjpParty .imgCont.bjp2{background-position: 31% 41%;opacity: 1;}
+.bjpParty .imgCont.bjp3{background-position: 31% 24%;opacity: 1;}
+.bjpParty .imgCont.bjp4{background-position: 31% 7%;opacity: 1;}
+.bjpParty .imgCont.bjp5{background-position: 31% 76%;opacity: 1;}
+
+.bjpParty .imgCont.inactive{
+    
+    /* background-position: 31% 1%; */
+    opacity: 1;
+    background-position: 54% 59%;
+    
+}
+.congParty .imgCont{
+    background-image: url("./Extra/candidates_grid.png");
+    background-size: 275px;
+    background-position: 89% 1%;
+    opacity: 1;
+}
+.congParty .imgCont.cong0{background-position: 89% 9.5%;opacity: 1;}
+.congParty .imgCont.cong1{background-position: 89% 33.5%;opacity: 1;}
+.congParty .imgCont.inactive{
+    
+    opacity: 1;
+    background-position: 89% 1%;
+}
+.congParty .imgCont.winner,.aapParty .imgCont.winner,.bjpParty .imgCont.winner{
+    filter: grayscale(0);
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0px 0px 0px 3px rgb(117, 191, 75);
+}
+.imgCont.winner::after{
+    /* content: ''; */
+    display: none;
+    background-image: url("./Extra/win.jpg");
+    background-size: 100px;
+    width: 80px;
+    height: 80px;
+    display: block;
+    border-radius: 50%;
+    z-index: -29;
+    position: absolute;
+    /* mix-blend-mode: saturation; */
+    top: -10px;
+    right: -7px;
+    background-position: 43% 3%;
+    opacity: 1;
+}
+.hidden{
+    display: none;
+}
+.legendBg{
+    width: 100%;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    /* width: 50px; */
+    justify-content: space-around;
+    white-space: pre;
+    z-index: 1;
+    background: linear-gradient(to right, #009966 0% 16.6%,#FFDE33 16.6% 33.3%,#FF9933 33.3% 50%,#CC0033 50% 66.666%,#660099 66.666% 83.33%,#7E0023 83.33% 100%);
+}
+.legendBg span{
+    font-weight: 600;
+    color: #FFF;
+    font-size: 21px;
+    line-height: 14px;
+    position: relative;
+    top: 10px;
+    white-space: normal;
+    text-align: center;
+    width: 16.666666%;
+}
+.legendBg span:nth-child(3){
+    font-size: 17px;
+}
+.labelBox{
+    position: relative;
+    display: flex;
+    height: 25px;
+    padding-bottom: 5px;
+    z-index: -1;
+}
+.labelBox p{
+    margin: 0;
+    font-size: 22px;
+    line-height: 25px;
+    font-weight: 300;
+    position: relative;
+}
+.labelBox p:nth-child(1){
+    width: 120px;
+    background: transparent;
+    --main-bg-color: #d2a899;
+}
+.labelBox p:nth-child(2){
+    width: 370px;
+    --main-bg-color: #3c1b1b;
+}
+.labelBox p:nth-child(3){
+    width: auto;
+    flex-grow: 1;
+    --main-bg-color: #98b397;
+}
+.labelBox p::after{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--main-bg-color);
+    height: 170px;
+    width: 100%;
+}
+.labelBox p::before{
+    content: 'XYZ';
+    position: absolute;
+    left: 0;
+    top: 130px;
+    width: 100%;
+    z-index: 1;
+    background: #FFF;
+    text-align: left;
+}
+.labelBox p:nth-child(1)::before{
+    content: '01/03';
+}
+.labelBox p:nth-child(2)::before{
+    content: '25/03';
+}
+.labelBox p:nth-child(3)::before{
+    content: '08/06';
+}
