@@ -74,18 +74,19 @@ body,html{
     font-weight: 300;
     line-height: 1;
     margin: 0;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .title h3 span{
     color: #555;
     font-size: 25px;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 0;
     text-transform: none;
     position: absolute;
-    top: 785px;
+    top: 725px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-100%);
+    z-index: 100;
 }
 .title h3 span::before{
     content: '(';
@@ -105,6 +106,11 @@ body,html{
     padding: 40px;
     box-sizing: border-box;
     overflow: hidden;
+    background-image: linear-gradient(#FFF,#FFF),url(../Extra/WhiteTexturedBG.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-blend-mode: soft-light;
 }
 .graphicsContainer{
     width: auto;
@@ -151,11 +157,23 @@ body,html{
     justify-content: space-between;
 }
 .bottom img{
-    height: 44px;
+    height: 45px;
+    top: 9px;
+    position: relative;
 }
 .bottom{
-    line-height: 80px;
+    line-height: 65px;
     font-size: 25px;
+}
+.bottom span{
+    position: relative;
+}
+.bottom span i{
+    position: absolute;
+    font-size: 24px;
+    left: 350px;
+    top: 20px;
+    white-space: pre;
 }
 #labels{
     position: absolute;
@@ -470,7 +488,7 @@ body,html{
     position: absolute;
     right: 0px;
     bottom: 0px;
-    height: 50px;
+    height: auto;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: -1px;
@@ -481,22 +499,27 @@ body,html{
     justify-content: space-around;
     white-space: pre;
     z-index: 1;
-    background: linear-gradient(to right, #009966 0% 16.6%,#FFDE33 16.6% 33.3%,#FF9933 33.3% 50%,#CC0033 50% 66.666%,#660099 66.666% 83.33%,#7E0023 83.33% 100%);
+    flex-wrap: wrap;
 }
 .legendBg span{
-    font-weight: 600;
+    font-weight: 400;
     color: #FFF;
-    font-size: 21px;
-    line-height: 14px;
-    position: relative;
-    top: 10px;
+    font-size: 30px;
+    line-height: 50px;
     white-space: normal;
     text-align: center;
-    width: 16.666666%;
+    width: 33.3333333%;
+    height: 50px;
 }
-.legendBg span:nth-child(3){
+.legendBg span:nth-child(1){background: #009966;}
+.legendBg span:nth-child(2){background: #FFDE33;color: #333;}
+.legendBg span:nth-child(3){background: #FF9933;color: #333;}
+.legendBg span:nth-child(4){background: #CC0033}
+.legendBg span:nth-child(5){background: #660099}
+.legendBg span:nth-child(6){background: #7E0023}
+/* .legendBg span:nth-child(3){
     font-size: 17px;
-}
+} */
 .labelBox{
     position: relative;
     display: flex;
@@ -508,8 +531,9 @@ body,html{
     margin: 0;
     font-size: 22px;
     line-height: 25px;
-    font-weight: 300;
+    font-weight: 500;
     position: relative;
+    color: #555;
 }
 .labelBox p:nth-child(1){
     width: 120px;
@@ -543,6 +567,7 @@ body,html{
     z-index: 1;
     background: #FFF;
     text-align: left;
+    font-weight: 300;
 }
 .labelBox p:nth-child(1)::before{
     content: '01/03';
