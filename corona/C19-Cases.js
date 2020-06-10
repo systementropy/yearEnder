@@ -45,40 +45,40 @@ $(document).ready(function(){
     
     var dataIndia = [
         ["Andaman and Nicobar Islands",0,33,0,33],
-        ["Andhra Pradesh",2031,2745,75,4851],
-        ["Arunachal Pradesh",50,1,0,51],
-        ["Assam",2107,665,4,2776],
-        ["Bihar",2672,2499,31,5202],
-        ["Chandigarh",39,273,5,317],
-        ["Chhattisgarh",848,308,4,1160],
+        ["Andhra Pradesh",2191,2802,77,5070],
+        ["Arunachal Pradesh",56,1,0,57],
+        ["Assam",1848,1085,4,2937],
+        ["Bihar",2563,2864,32,5459],
+        ["Chandigarh",32,286,5,323],
+        ["Chhattisgarh",848,386,6,1240],
         ["Dadar Nagar Haveli",20,2,0,22],
-        ["Delhi",17712,11357,874,29943],
-        ["Goa",263,67,0,330],
-        ["Gujarat",5309,13956,1280,20545],
-        ["Haryana",2681,2134,39,4854],
-        ["Himachal Pradesh",189,227,5,421],
-        ["Jammu and Kashmir",2916,1324,45,4285],
-        ["Jharkhand",730,519,7,1256],
-        ["Karnataka",3177,2519,64,5760],
-        ["Kerala",1175,814,16,2005],
-        ["Ladakh",50,52,1,103],
-        ["Madhya Pradesh",2688,6536,414,9638],
-        ["Maharashtra",44384,40975,3169,88528],
-        ["Manipur",214,58,0,272],
-        ["Meghalaya",22,13,1,36],
-        ["Mizoram",41,1,0,42],
-        ["Nagaland",115,8,0,123],
-        ["Odisha",992,1993,9,2994],
+        ["Delhi",18543,11861,905,31309],
+        ["Goa",292,67,0,359],
+        ["Gujarat",5336,14365,1313,21014],
+        ["Haryana",3030,2134,45,5209],
+        ["Himachal Pradesh",191,249,5,445],
+        ["Jammu and Kashmir",2792,1506,48,4346],
+        ["Jharkhand",844,559,8,1411],
+        ["Karnataka",3251,2604,66,5921],
+        ["Kerala",1232,848,16,2096],
+        ["Ladakh",55,52,1,108],
+        ["Madhya Pradesh",2700,6729,420,9849],
+        ["Maharashtra",44860,42638,3289,90787],
+        ["Manipur",243,61,0,304],
+        ["Meghalaya",29,13,1,43],
+        ["Mizoram",87,1,0,88],
+        ["Nagaland",117,10,0,127],
+        ["Odisha",998,2133,9,3140],
         ["Puducherry",75,52,0,127],
-        ["Punjab",482,2128,53,2663],
-        ["Rajasthan",2513,8004,246,10763],
-        ["Sikkim",7,0,0,7],
-        ["Tamil Nadu",15416,17527,286,33229],
-        ["Telengana",1803,1710,137,3650],
-        ["Tripura",646,192,0,838],
-        ["Uttarakhand",684,714,13,1411],
-        ["Uttar Pradesh",4320,6344,283,10947],
-        ["West Bengal",4743,3465,405,8613],
+        ["Punjab",497,2167,55,2719],
+        ["Rajasthan",2662,8328,255,11245],
+        ["Sikkim",13,0,0,13],
+        ["Tamil Nadu",16282,18325,307,34914],
+        ["Telengana",1963,1809,148,3920],
+        ["Tripura",671,192,1,864],
+        ["Uttarakhand",769,755,13,1537],
+        ["Uttar Pradesh",4365,6669,301,11335],
+        ["West Bengal",4950,3620,415,8985],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -157,7 +157,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 266598}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 276583}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -167,7 +167,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 129215}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 135206}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -177,7 +177,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 7466}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 7745}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {

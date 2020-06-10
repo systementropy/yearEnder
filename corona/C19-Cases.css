@@ -80,10 +80,22 @@ body,html,*{
     margin-block-end: 0;
 }
 body{
-    background: #999;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    font: 300 33px/40px Montserrat;
+}
+.texty{
+    position: fixed;
+    top:0;
+    left: 0;
+    font-size: 3vh;
+    animation: aniTr 1s infinite alternate;
+    color: #000;   
+}
+@keyframes aniTr {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(100px);}
 }
 .mainBody{
     height: 1000px;
@@ -120,7 +132,10 @@ body{
     width: 140px;
     height: 64px;
     opacity: 1;
-    background: #999;
+    
+}
+.logo img{
+    max-width: 100%;
 }
 .headline{
     position: absolute;
