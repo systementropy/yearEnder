@@ -41,44 +41,46 @@ $(document).ready(function(){
         "Meghalaya":["Meghalaya","Meghalaya"],
         "Dadar Nagar Haveli":["Dadra and Nagar Haveli","DnNHaweli"],
         "Sikkim":["Sikkim","Sikkim"],
+        "Daman & Diu":["Daman & Diu","Daman"]
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",0,33,0,33],
-        ["Andhra Pradesh",2191,2802,77,5070],
-        ["Arunachal Pradesh",56,1,0,57],
-        ["Assam",1848,1085,4,2937],
-        ["Bihar",2563,2864,32,5459],
-        ["Chandigarh",32,286,5,323],
-        ["Chhattisgarh",848,386,6,1240],
-        ["Dadar Nagar Haveli",20,2,0,22],
-        ["Delhi",18543,11861,905,31309],
-        ["Goa",292,67,0,359],
-        ["Gujarat",5336,14365,1313,21014],
-        ["Haryana",3030,2134,45,5209],
-        ["Himachal Pradesh",191,249,5,445],
-        ["Jammu and Kashmir",2792,1506,48,4346],
-        ["Jharkhand",844,559,8,1411],
-        ["Karnataka",3251,2604,66,5921],
-        ["Kerala",1232,848,16,2096],
-        ["Ladakh",55,52,1,108],
-        ["Madhya Pradesh",2700,6729,420,9849],
-        ["Maharashtra",44860,42638,3289,90787],
-        ["Manipur",243,61,0,304],
-        ["Meghalaya",29,13,1,43],
-        ["Mizoram",87,1,0,88],
-        ["Nagaland",117,10,0,127],
-        ["Odisha",998,2133,9,3140],
-        ["Puducherry",75,52,0,127],
-        ["Punjab",497,2167,55,2719],
-        ["Rajasthan",2662,8328,255,11245],
+        ["Andaman and Nicobar Islands",1,33,0,34],
+        ["Andhra Pradesh",2292,2899,78,5269],
+        ["Arunachal Pradesh",55,2,0,57],
+        ["Assam",1839,1249,4,3092],
+        ["Bihar",2606,3071,33,5710],
+        ["Chandigarh",36,286,5,327],
+        ["Chhattisgarh",854,402,6,1262],
+        ["Dadar Nagar Haveli",24,2,0,26],
+        ["Daman & Diu",2,0,0,2],
+        ["Delhi",19581,12245,984,32810],
+        ["Goa",320,67,0,387],
+        ["Gujarat",5439,14735,1347,21521],
+        ["Haryana",3339,2188,52,5579],
+        ["Himachal Pradesh",191,254,6,451],
+        ["Jammu and Kashmir",2785,1671,51,4507],
+        ["Jharkhand",889,592,8,1489],
+        ["Karnataka",3110,2862,69,6041],
+        ["Kerala",1238,905,18,2161],
+        ["Ladakh",62,52,1,115],
+        ["Madhya Pradesh",2730,6892,427,10049],
+        ["Maharashtra",46086,44517,3438,94041],
+        ["Manipur",248,63,0,311],
+        ["Meghalaya",30,13,1,44],
+        ["Mizoram",92,1,0,93],
+        ["Nagaland",106,22,0,128],
+        ["Odisha",959,2282,9,3250],
+        ["Puducherry",74,53,0,127],
+        ["Punjab",518,2232,55,2805],
+        ["Rajasthan",2772,8569,259,11600],
         ["Sikkim",13,0,0,13],
-        ["Tamil Nadu",16282,18325,307,34914],
-        ["Telengana",1963,1809,148,3920],
-        ["Tripura",671,192,1,864],
-        ["Uttarakhand",769,755,13,1537],
-        ["Uttar Pradesh",4365,6669,301,11335],
-        ["West Bengal",4950,3620,415,8985],
+        ["Tamil Nadu",17182,19333,326,36841],
+        ["Telengana",2138,1817,156,4111],
+        ["Tripura",655,239,1,895],
+        ["Uttarakhand",716,831,15,1562],
+        ["Uttar Pradesh",4418,6871,321,11610],
+        ["West Bengal",5117,3779,432,9328],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -100,11 +102,13 @@ $(document).ready(function(){
     var min = [255,255,255];
     var globalCounter = 0;
     dataIndia.sort(function(a,b){
-        return ((a[4])-(b[4]))
+        return ((a[1])-(b[1]))
     })
+    console.log(dataIndia);
+    
     for (let i = 0; i < dataIndia.length; i++) {
         const element = dataIndia[i];
-        const perc = element[4];
+        const perc = element[1];
         let colorIndex;
         if(perc<=10){
             colorIndex = 0
@@ -143,7 +147,7 @@ $(document).ready(function(){
         element.push(colorIndex);
         element.push(activeTotal)
         dataIndia[i]=element;
-        console.log(element)
+        // console.log(element)
     }
     
     
@@ -157,7 +161,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 276583}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 137448}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -167,7 +171,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 135206}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 141029}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -177,7 +181,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 7745}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 8102}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -202,7 +206,7 @@ $(document).ready(function(){
             const element = dataIndia[index];
             $('.stateName').html(arrayId[element[0]][0]);
             $('.confirmedData').html(
-                element[4]>1000?((element[4]/1000).toFixed(1)+'K'):element[4]
+                element[1]>1000?((element[1]/1000).toFixed(1)+'K'):element[1]
             );
             $('.recoveredData').html(
                 element[2]>1000?((element[2]/1000).toFixed(1)+'K'):element[2]
