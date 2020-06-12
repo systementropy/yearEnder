@@ -310,6 +310,21 @@ footer{
     text-transform: uppercase;
     opacity: 1;
 }
+footer.casesWithNote{
+    bottom: 25px;
+}
+footer.casesWithNote img{
+    margin: 5px 15px 25px;
+}
+footer.casesWithNote p:nth-child(4){
+    width: max-content;
+    transform: translateX(-113px);
+}
+footer.casesWithNote p:nth-child(3){
+    width: max-content;
+    transform: translateX(-80px);
+    text-align: right;
+}
 footer.horizontal{
     display: flex;
     width: auto;
