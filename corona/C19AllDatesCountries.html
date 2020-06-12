@@ -7,48 +7,48 @@
 	<style>
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Light.ttf');
+            src: url('../Montserrat/Montserrat-Light.ttf');
             font-weight: 300;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Regular.ttf');
+            src: url('../Montserrat/Montserrat-Regular.ttf');
             font-weight: 400;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Medium.ttf');
+            src: url('../Montserrat/Montserrat-Medium.ttf');
             font-weight: 500;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Thin.ttf');
+            src: url('../Montserrat/Montserrat-Thin.ttf');
             font-weight: 100;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-ExtraLight.ttf');
+            src: url('../Montserrat/Montserrat-ExtraLight.ttf');
             font-weight: 200;
         }
         
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-SemiBold.ttf');
+            src: url('../Montserrat/Montserrat-SemiBold.ttf');
             font-weight: 600;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Bold.ttf');
+            src: url('../Montserrat/Montserrat-Bold.ttf');
             font-weight: 700;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-ExtraBold.ttf');
+            src: url('../Montserrat/Montserrat-ExtraBold.ttf');
             font-weight: 800;
         }
         @font-face {
             font-family: monty;
-            src: url('./Montserrat/Montserrat-Black.ttf');
+            src: url('../Montserrat/Montserrat-Black.ttf');
             font-weight: 900;
         }
         body,html{
@@ -537,11 +537,17 @@
             <h3>India vs Other Countries</h3>
 		</div>
 		<div class="graphicsContainer">
+            <div class="legendBg">
+                <span>Mask</span>
+                <span>NoMask</span>
+                <span>India</span>
+            </div>
 			<div class="legendContainer">
 				<div class="stateName">
 					<span class="month">Day</span>
 					<span class="date">20</span>
-				</div>
+                </div>
+                
 				<!-- <div class="legendStat">
 					<span>Confirmed Cases</span>
 					<span class="yellow">Deaths<i data-deaths="0"></i></span>
@@ -562,6 +568,6 @@
 		</div>
 	</div>
 	<script src="../jquery.js"></script>	
-	<script src="./C19AllDatesCountries.js" type="text/javascript"></script>
+	<script src="./C19AllDatesMaskvsNo.js" type="text/javascript"></script>
 </body>
 </html>

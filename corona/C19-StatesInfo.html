@@ -19474,7 +19474,7 @@
 			ctx.strokeColor = '#5557';
 
 			var alpha; var index;
-			const msecForEach = 40;
+			const msecForEach = 200;
 			function updateColor(label){
 				if(label == "init"){
 					animate();
@@ -19487,7 +19487,7 @@
 				}else{
 					globalCounter += 1;
 					if(Math.floor(globalCounter/msecForEach) == index){
-						alpha += 0.1;
+						alpha += 0.024;
 					}else{
 						alpha = 0;
 						index = Math.floor(globalCounter/msecForEach);

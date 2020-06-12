@@ -209,13 +209,13 @@ $(document).ready(function(){
 			$('.legendContainer').addClass('active');
 			setTimeout(()=>{animateCircles(tickCounter+1)},secs)
 		}else{
-			// if(slideLabel == 'confirmed'){
-			// 	setTimeout(()=>{$('.title h3').removeClass('confirmed')},2000)
-			// 	setTimeout(()=>{init('recovered')},3000)
-			// }else if(slideLabel == 'recovered'){
-			// 	setTimeout(()=>{$('.title h3').removeClass('recovered')},2000)
-			// 	setTimeout(()=>{init('deaths')},3000)
-			// }
+			if(slideLabel == 'confirmed'){
+				setTimeout(()=>{$('.title h3').removeClass('confirmed')},2000)
+				setTimeout(()=>{init('recovered')},3000)
+			}else if(slideLabel == 'recovered'){
+				setTimeout(()=>{$('.title h3').removeClass('recovered')},2000)
+				setTimeout(()=>{init('deaths')},3000)
+			}
 		}
 		
 	}
