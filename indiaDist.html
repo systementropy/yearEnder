@@ -797,8 +797,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="../jquery.js"></script>
-	<script type="text/javascript" src="../loader.js"></script>
+	<script src="./jquery.js"></script>
+	<script type="text/javascript" src="./loader.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -849,93 +849,93 @@
 				for(var i=0; i<districtData.length; i++){
 					
 				}
-				// if(!label){
-				// 	data = new google.visualization.DataTable();
-				// 	// data.addColumn('number', 'Lat');                                
-				// 	// data.addColumn('number', 'Long');
-				// 	data.addColumn('string', 'Place');
-				// 	data.addColumn('number', 'Color'); 
-				// 	data.addColumn('number', 'Size'); 
+				if(!label){
+					data = new google.visualization.DataTable();
+					// data.addColumn('number', 'Lat');                                
+					// data.addColumn('number', 'Long');
+					data.addColumn('string', 'Place');
+					data.addColumn('number', 'Color'); 
+					data.addColumn('number', 'Size'); 
 					
 					
-				// 	// data.addRow(["South Andaman ",1,9])
-				// 	options = {
-				// 		domain: 'IN',
-				// 		region: 'IN',
-				// 		legend: 'none',
-				// 		backgroundColor: 'transparent',
-				// 		datalessRegionColor: '#333',
-				// 		resolution: 'provinces',
-				// 		colorAxis: {
-				// 			values: [0,10],
-				// 			colors: ['#52a352','#E50000']
-				// 		},
-				// 		sizeAxis: { minValue: 0, maxValue: 110, minSize: 2, maxSize: 50 },
-				// 		displayMode: 'markers',
-				// 		tooltip: {
-				// 			trigger: 'selection'
-				// 		}
-				// 	};
-				// 	chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-				// 	chart.draw(data, options);
+					// data.addRow(["South Andaman ",1,9])
+					options = {
+						domain: 'IN',
+						region: 'IN',
+						legend: 'none',
+						backgroundColor: 'transparent',
+						datalessRegionColor: '#333',
+						resolution: 'provinces',
+						colorAxis: {
+							values: [0,10],
+							colors: ['#52a352','#E50000']
+						},
+						sizeAxis: { minValue: 0, maxValue: 110, minSize: 2, maxSize: 50 },
+						displayMode: 'markers',
+						tooltip: {
+							trigger: 'selection'
+						}
+					};
+					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
 
-				// 	dataPlace = new google.visualization.DataTable();
-				// 	dataPlace.addColumn('string', 'Country');
-				// 	dataPlace.addColumn('number', 'Value');
-				// 	dataPlace.addRow(["IN",0])
-				// 	optionsPlace = {
-				// 		domain: 'IN',
-				// 		region: 'IN',
-				// 		legend: 'none',
-				// 		backgroundColor: 'transparent',
-				// 		datalessRegionColor: '#333333',
-				// 		// resolution: 'provinces',
-				// 		colorAxis: {
-				// 			values: [0,10],
-				// 			colors: ['#555','#E50000']
-				// 		},
-				// 		sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
-				// 		displayMode: 'regions',
-				// 		tooltip: {
-				// 			trigger: 'selection'
-				// 		}
-				// 	};
-				// 	chartPlace = new google.visualization.GeoChart(document.getElementById('places_div'));
-				// 	chartPlace.draw(dataPlace, optionsPlace);
-				// 	google.visualization.events.addListener(chart, 'select', function () {
-				// 		var selection = chart.getSelection();
-				// 		console.log(selection)
-				// 		return selection;
-				// 	});
+					dataPlace = new google.visualization.DataTable();
+					dataPlace.addColumn('string', 'Country');
+					dataPlace.addColumn('number', 'Value');
+					dataPlace.addRow(["IN",0])
+					optionsPlace = {
+						domain: 'IN',
+						region: 'IN',
+						legend: 'none',
+						backgroundColor: 'transparent',
+						datalessRegionColor: '#333333',
+						// resolution: 'provinces',
+						colorAxis: {
+							values: [0,10],
+							colors: ['#555','#E50000']
+						},
+						sizeAxis: { minValue: 0, maxValue: 110, minSize: 5, maxSize: 50 },
+						displayMode: 'regions',
+						tooltip: {
+							trigger: 'selection'
+						}
+					};
+					chartPlace = new google.visualization.GeoChart(document.getElementById('places_div'));
+					chartPlace.draw(dataPlace, optionsPlace);
+					google.visualization.events.addListener(chart, 'select', function () {
+						var selection = chart.getSelection();
+						console.log(selection)
+						return selection;
+					});
 
-    //                 setTimeout(function(){
-				// 	    init(1);
-    //                 },1000);
-				// }else if(label<=databyDate.length){
-				// 	setTimeout(function(){
-				// 		drawRegionsMap(label-1);
-				// 		if(databyDate[label-1]){
-				// 				console.log('stop');
-				// 				init(label+1);
-				// 		}else{
-				// 			init(label+1);
-				// 		}
-				// 	},400)
-				// }else{
-				// 	var rArray = [];
-				// 	// setTimeout(function(){
-				// 	// 	$('svg circle').each(function(i){	
-				// 	// 		const circle = $(this);
-				// 	// 		const x = circle.attr("cx")
-				// 	// 		const y = circle.attr("cy")
-				// 	// 		const r = circle.attr("r")
-				// 	// 		console.log(circle,i)
-				// 	// 		// chart.setSelection([{row: i}]);
-				// 	// 		chart.setSelection([1])
-				// 	// 		$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
-				// 	// 	})
-				// 	// },1000);
-				// }
+                    setTimeout(function(){
+					    init(1);
+                    },1000);
+				}else if(label<=databyDate.length){
+					setTimeout(function(){
+						drawRegionsMap(label-1);
+						if(databyDate[label-1]){
+								console.log('stop');
+								init(label+1);
+						}else{
+							init(label+1);
+						}
+					},400)
+				}else{
+					var rArray = [];
+					// setTimeout(function(){
+					// 	$('svg circle').each(function(i){	
+					// 		const circle = $(this);
+					// 		const x = circle.attr("cx")
+					// 		const y = circle.attr("cy")
+					// 		const r = circle.attr("r")
+					// 		console.log(circle,i)
+					// 		// chart.setSelection([{row: i}]);
+					// 		chart.setSelection([1])
+					// 		$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
+					// 	})
+					// },1000);
+				}
 			}
 		});
 	</script>

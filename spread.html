@@ -212,7 +212,7 @@
 			/* width: 50%; */
 			margin: 1px;
 			box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
-			transition: all 2000ms ease, background 0ms ease;
+			transition: all 1000ms ease, background 0ms ease;
 		}
 		.then1{
 			transform: scaleY(1);
@@ -257,7 +257,7 @@
 			/* display: inline-block; */
 			width: max-content;
 			
-			transition: all 2000ms ease;
+			transition: all 1000ms ease;
 		}
 		.title.active h3{
 			top:48px;
@@ -268,14 +268,14 @@
 		}
 		.legend > div.label1{
 			flex-grow: 1;
-			transition: all 2000ms ease;
+			transition: all 1000ms ease;
 		}
 		.legend > div.label2{
 			width: 0;
 			opacity: 0;
 			height: 48px;
 			overflow: hidden;
-			transition: all 2000ms ease;
+			transition: all 1000ms ease;
 		}
 		.legend.active .label2{
 			width: 50%;
@@ -464,7 +464,7 @@
         </div>
     </div>
 	
-    <script src="../jquery.js"></script>
+    <script src="./jquery.js"></script>
     <script>
         $(document).ready(function(){
 			const displayData = [
@@ -480,7 +480,7 @@
 			];
 			function start(counter){
 				// const multiplier = 1000;
-				const multiplier = 1000;
+				const multiplier = 500;
 				if(counter < 8){
 					setTimeout(function(){
 						$('.slide1').addClass('active');
