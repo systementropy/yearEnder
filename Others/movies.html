@@ -381,12 +381,13 @@
                     ctx.restore();
                 }else{
                     ctx.save();
+                    ctx.globalAlpha = 0.5;
                     ctx.beginPath();
                     ctx.arc(element.x, element.y, element.radius, 0, 2*Math.PI);
                     ctx.clip();
-                    ctx.fillStyle = 'rgba(0,0,0,0.3)'
+                    ctx.fillStyle = 'rgba(150,150,150,0.8)'
                     ctx.fill();
-                    ctx.globalAlpha = 0.1;
+                    ctx.globalAlpha = 0.05;
                     var imgObj = document.getElementById(element.index+1);
                     ctx.drawImage(imgObj, 0, 0, imgObj.width, imgObj.height, element.x-element.radius, element.y-element.radius, 2*element.radius, 2*element.radius);
                     ctx.restore();

@@ -584,16 +584,18 @@
 			left: 100px;
 			width: 150px;
 			height: 150px;
+			opacity: 0.1;
 			/* z-index: 100; */
 			border-radius: 50%;
 			background: radial-gradient(#dfc011,#e0c007);
 			box-shadow: 0px 0px 20px 5px #dfc011;
 			animation: aniSun 15s infinite forwards;	
+			animation-delay: 2s;
 		}
         @keyframes aniSun {
-            0% {left: 0;box-shadow: 0px 0px 100px 0px #dfc0116b;}
-			50% {left: 50%;box-shadow: 0px 0px 20px 5px #e0c007;}
-            100% {left: 100%;box-shadow: 0px 0px 100px 0px #dfc0116b;}
+            0% {opacity:1;left: 0;box-shadow: 0px 0px 100px 0px #dfc0116b;}
+			50% {opacity:1;left: 50%;box-shadow: 0px 0px 20px 5px #e0c007;}
+            100% {opacity:1;left: 100%;box-shadow: 0px 0px 100px 0px #dfc0116b;}
         }
     </style>
 </head>
@@ -724,7 +726,7 @@
 			}
 			setTimeout(()=>{
 				animate();
-			},1000)
+			},2000)
 			
         })
     </script>
