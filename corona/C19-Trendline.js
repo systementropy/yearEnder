@@ -20,7 +20,7 @@ $(document).ready(function(){
     let confirmedColor ='#AFB6D0';
     let recoveredColor ='#55ABEA';
     let deathColor ='#ca9828';
-    const todayData = {
+    const todayData = [{
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
@@ -28,7 +28,15 @@ $(document).ready(function(){
         totalconfirmed: "308993",
         totaldeceased: "8884",
         totalrecovered: "154330",
-    }
+    },{
+        dailyconfirmed: "424",
+        dailydeceased: "6",
+        dailyrecovered: "19",
+        date: "14 June ",
+        totalconfirmed: "320922",
+        totaldeceased: "9195",
+        totalrecovered: "162379",
+    }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
@@ -44,7 +52,8 @@ $(document).ready(function(){
     let dailyCumulative = json['cases_time_series'];
     
     dailyCumulative = dailyCumulative.slice(62)
-    dailyCumulative.push(todayData)
+    dailyCumulative.push(todayData[0])
+    dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
     function makeGraph(counter){
