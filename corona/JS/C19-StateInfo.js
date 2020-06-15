@@ -12,7 +12,6 @@ $(document).ready(function(){
         "Punjab":["Punjab","Punjab"],
         "Rajasthan":["Rajasthan","Rajasthan"],
         "Tamil Nadu":["Tamil Nadu","Tamilnadu"],
-        "Telengana":["Telangana","Telangana"],
         "Telangana":["Telangana","Telangana"],
         "Union Territory of Chandigarh":["Chandigarh","Chandigarh"],
         "Chandigarh":["Chandigarh","Chandigarh"],
@@ -40,57 +39,69 @@ $(document).ready(function(){
         "Tripura":["Tripura","Tripura"],
         "Nagaland":["Nagaland","Nagaland"],
         "Meghalaya":["Meghalaya","Meghalaya"],
-        "Dadar Nagar Haveli":["Dadra and Nagar Haveli","DnNHaweli"],
+        "Dadra and Nagar Haveli and Daman and Diu":["DNHDD","DnNHaweli"],
         "Sikkim":["Sikkim","Sikkim"],
-        "Dadra and Nagar Haveli and Daman and Diu":["DNHDD","DnNHaweli"]
+        "Daman & Diu":["Daman & Diu","Daman"]
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",38,33,0,38,34],
-        ["Andhra Pradesh",5680,3105,80,5429,5269],
-        ["Arunachal Pradesh",67,4,0,61,57],
-        ["Assam",3498,1537,8,3319,3092],
-        ["Bihar",6103,3587,36,5983,5710],
-        ["Chandigarh",334,286,5,332,327],
-        ["Chhattisgarh",1429,550,6,1398,1262],
-        ["Dadra and Nagar Haveli and Daman and Diu",30,2,0,30,28],
-        ["Delhi",36824,13398,1214,34687,32810],
-        ["Goa",463,69,0,417,387],
-        ["Gujarat",22527,15493,1415,22032,21521],
-        ["Haryana",6334,2475,70,5968,5579],
-        ["Himachal Pradesh",486,297,6,470,451],
-        ["Jammu and Kashmir",4730,2086,53,4574,4507],
-        ["Jharkhand",1617,672,8,1599,1489],
-        ["Karnataka",6516,3440,79,6245,6041],
-        ["Kerala",2322,1000,19,2244,2161],
-        ["Ladakh",239,62,1,135,115],
-        ["Madhya Pradesh",10443,7201,440,10241,10049],
-        ["Maharashtra",101141,47796,3717,97648,94041],
-        ["Manipur",385,77,0,366,311],
-        ["Meghalaya",44,22,1,44,44],
-        ["Mizoram",104,1,0,102,93],
-        ["Nagaland",156,49,0,128,128],
-        ["Odisha",3498,2474,10,3386,3250],
-        ["Puducherry",157,67,2,157,127],
-        ["Punjab",2986,2282,63,2887,2805],
-        ["Rajasthan",12068,8898,272,11838,11600],
-        ["Sikkim",63,2,0,14,13],
-        ["Tamil Nadu",40698,22047,367,38716,36841],
-        ["Telangana",4484,2278,174,4320,4111],
-        ["Tripura",961,278,1,913,895],
-        ["Uttarakhand",1724,947,21,1643,1562],
-        ["Uttar Pradesh",12616,7609,365,12088,11610],
-        ["West Bengal",10244,4206,451,9768,9328],
+        ["Andaman and Nicobar Islands",38,33,0,38,38],
+        ["Andhra Pradesh",6163,3314,84,5965,5680],
+        ["Arunachal Pradesh",91,7,0,87,67],
+        ["Assam",4049,1960,8,3718,3498],
+        ["Bihar",6470,4170,39,6290,6103],
+        ["Chandigarh",352,293,5,345,334],
+        ["Chhattisgarh",1662,763,8,1512,1429],
+        ["Dadra and Nagar Haveli and Daman and Diu",36,2,0,35,30],
+        ["Delhi",41182,15823,1327,38958,36824],
+        ["Goa",564,74,0,523,463],
+        ["Gujarat",23544,16325,1477,23038,22527],
+        ["Haryana",7208,3003,88,6749,6334],
+        ["Himachal Pradesh",518,337,7,502,486],
+        ["Jammu and Kashmir",5041,2389,59,4878,4730],
+        ["Jharkhand",1745,905,8,1711,1617],
+        ["Karnataka",7000,3955,86,6824,6516],
+        ["Kerala",2461,1102,19,2407,2322],
+        ["Ladakh",549,80,1,437,239],
+        ["Madhya Pradesh",10802,7677,459,10641,10443],
+        ["Maharashtra",107958,50978,3950,104568,101141],
+        ["Manipur",458,91,0,449,385],
+        ["Meghalaya",44,25,1,44,44],
+        ["Mizoram",112,1,0,107,104],
+        ["Nagaland",168,88,0,163,156],
+        ["Odisha",3909,2708,11,3723,3498],
+        ["Puducherry",194,91,5,176,157],
+        ["Punjab",3140,2356,67,3063,2986],
+        ["Rajasthan",12694,9566,292,12401,12068],
+        ["Sikkim",68,4,0,63,63],
+        ["Tamil Nadu",44661,24547,435,42687,40698],
+        ["Telangana",4974,2377,185,4737,4484],
+        ["Tripura",1076,315,1,1046,961],
+        ["Uttarakhand",1819,1111,24,1785,1724],
+        ["Uttar Pradesh",13615,8268,399,13118,12616],
+        ["West Bengal",11087,5060,475,10698,10244],
     ];
-    let confirmedTotal = 308993; let recoveredTotal=154330; let deathsTotal =8884; let activeTotal = 154330;
+    let confirmedTotal = 332424; let recoveredTotal=169798; let deathsTotal =9520; let activeTotal = 153106;
     let colorArray = [
-        [135,255,0],[200,255,0],[255,246,0],[255,210,65],[255,195,2],[255,171,63],[255,143,0],[255,132,63],[255,91,0],[176,14,14],[145,0,0],[83,0,0]
+        [255, 235, 235],
+        [255, 213, 213],
+        [255, 192, 192],
+        [254, 170, 170],
+        [254, 149, 149],
+        [255, 162, 162],
+        [254, 127, 127],
+        [226, 102, 102],
+        [197, 76, 76],
+        [169, 51, 51],
+        [140, 25, 25],
+        [112, 0, 0]
     ]
     var max = [242,133,0];
     var min = [255,255,255];
     var globalCounter = 0;
+    $('.legend1').text('on '+(new Date().getDate())+' june, 2020 | 8:00 am')
     dataIndia.sort(function(a,b){
-        return ((a[1]-a[2]-a[3])-(b[1]-b[2]-b[3]))
+        return ((a[1]-a[4])-(b[1]-b[4]))
     })
     for (let i = 0; i < dataIndia.length; i++) {
         const element = dataIndia[i];
@@ -134,8 +145,8 @@ $(document).ready(function(){
     }
     
     const canvas = document.getElementById("canvas");
-    const canHgt = 500;
-    const canWid = 500;
+    const canHgt = 400;
+    const canWid = 400;
     canvas.style.height = canHgt+'px';
     canvas.style.width = canWid+'px';
     canvas.height = canHgt*2;
@@ -167,23 +178,23 @@ $(document).ready(function(){
             }
             
             const element = dataIndia[index];
-            $('.stateName.statewise').html(arrayId[element[0]][0]);
-            $('.confirmed.statewise').html(
+            $('.stateName').html(arrayId[element[0]][0]);
+            $('.confirmedData').html(
                 element[1]>1000?((element[1]/1000).toFixed(1)+'K'):element[1]
             );
-            $('.recovered.statewise').html(
+            $('.recoveredData').html(
                 element[2]>1000?((element[2]/1000).toFixed(1)+'K'):element[2]
             );
-            $('.deaths.statewise').html(
+            $('.deathsData').html(
                 element[3]>1000?((element[3]/1000).toFixed(1)+'K'):element[3]
             );
 
             if(index>0){
 
                 if(arrayId[dataIndia[index-1][0]][0] === 'A & N Islands'){
-                    $('.'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+                    $('.'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#EFEFEF'})
                 }else{
-                    $('#'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#FFF7'})
+                    $('#'+arrayId[dataIndia[index-1][0]][1]).css({'fill':'#EFEFEF'})
                 }
             }
             if(arrayId[element[0]][0] === 'A & N Islands'){
@@ -192,190 +203,104 @@ $(document).ready(function(){
                 $('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+','+alpha+')'})
             }
             const activeState = element[1]-element[2]-element[3];
-            let activeStatePerc = activeState/activeTotal
+            let activeStatePerc = (activeState/activeTotal)*100
 
-            ctx.beginPath();
+            $('.actPerc').text((activeStatePerc).toFixed(1)+'%')
             ctx.clearRect(0,0,canWid,canHgt);
-            ctx.fillStyle = '#999';
-            ctx.moveTo(50,50);
-            ctx.arc(50,50,48,0,2*Math.PI)
-            ctx.fill();
 
             ctx.beginPath();
-            ctx.fillStyle = 'rgba('+element[7][0]+','+element[7][1]+','+element[7][2]+',1)';
-            ctx.moveTo(50,50);
-            ctx.arc(50,50,50,0,2*Math.PI*activeStatePerc*Math.min(alpha,1))
+            ctx.fillStyle = '#707070';
+            ctx.moveTo(0,50);
+            ctx.rect(0,50,canWid,1)
             ctx.fill();
+            ctx.closePath();
 
             ctx.beginPath();
-            ctx.fillStyle = '#F5F5F6';
-            ctx.moveTo(50,50);
-            ctx.arc(50,50,45,0,2*Math.PI)
+            ctx.fillStyle = '#FF6E6E';
+            ctx.strokeStyle = '#FF6E6E';
+            ctx.moveTo(0,50);
+            ctx.rect(0,42,canWid*(activeStatePerc/100),16)
             ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
 
-            ctx.beginPath();
-            ctx.fillStyle = '#333';
-            ctx.font = '500 25px monty';
-            ctx.moveTo(50,50);
-            const t1 = ctx.measureText((activeStatePerc*100).toFixed(1)+'%').width;
-            ctx.fillText((activeStatePerc*100).toFixed(1)+'%', 50-(t1/2), 60 )
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.fillStyle = '#333';
-            ctx.font = '300 32px monty';
-            ctx.moveTo(50,50);
-            ctx.fillText('Of current active cases', 120, 60 )
-            ctx.font = '400 24px monty';
-            ctx.fillText('in India', 120, 80 )
-            ctx.fill();
+            
 
             const yester = element[4]-element[5];
             const today = element[1]-element[4];
             let scale;
             today>yester?scale=today:scale=yester;
-
+            scale = 4000;
+            if(today===0){
+                $('.newCaseP').text(0)
+            }else{
+                $('.newCaseP').text(today.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+            }
+            let yesterLength = (yester/scale)*Math.min(1,alpha)*(canWid-100)
+            let todayLength = (today/scale)*Math.min(1,alpha)*(canWid-100);
             ctx.beginPath();
-            ctx.fillStyle = '#e0c532CC';
-            ctx.moveTo(100,100);
-            ctx.rect(150,(150+(1-(yester/scale)*Math.min(1,alpha))*170),150,(yester/scale)*170*Math.min(1,alpha))
+            ctx.fillStyle = '#FF6E6E';
+            ctx.moveTo(0,190);
+            ctx.rect(0,190,yesterLength,15);
             ctx.fill();
-            ctx.strokeStyle = '#3337';
+            ctx.strokeStyle = '#FF6E6E';
             ctx.lineWidth = 0.5;
             ctx.stroke();
             ctx.closePath();
+
+            
             ctx.beginPath();
-            ctx.fillStyle = '#e08432CC';
-            ctx.moveTo(305,100);
-            ctx.rect(305,(150+(1-(today/scale)*Math.min(1,alpha))*170),150,(today/scale)*170*Math.min(1,alpha))
+            ctx.fillStyle = '#A93333';
+            ctx.moveTo(0,215);
+            ctx.rect(0,215,todayLength,15);
             ctx.fill();
-            ctx.strokeStyle = '#5557';
+            ctx.strokeStyle = '#A93333';
             ctx.lineWidth = 0.5;
             ctx.stroke();
             ctx.closePath();
             
-            if(yester!==0 || today!==0){
-                ctx.beginPath();
-                ctx.fillStyle = '#333';
-                ctx.font = '500 25px monty';
-                ctx.alignText = 'left';
-                let label = today-yester;
-                today>yester?label='+'+label:'';
-                today>yester?ctx.fillStyle = '#761388':ctx.fillStyle = '#137688';
-                const t4 = ctx.measureText(label).width;
-                ctx.fillText(
-                    label, 
-                    380-(t4/2),
-                    -25*(1-today/scale)+(140+(1-(today/scale)*Math.min(1,alpha))*140))
-                
-                ctx.font = '600 22px monty';
-                const t14 = ctx.measureText('17/05').width;
-                const t15 = ctx.measureText('18/05').width;
-                ctx.fillStyle = '#333D';
-                const date = new Date();
-                ctx.fillText((date.getDate()-1)+'/0'+(date.getMonth()+1), 225-(t14/2),320)
-                ctx.fillText(date.getDate()+'/0'+(date.getMonth()+1), 380-(t15/2),320)
-                ctx.fill();
-            }
+            ctx.beginPath();
+            ctx.font = '600 15px/19px Montserrat';
+            const date = new Date();
+            ctx.fillStyle = '#333D';
+            ctx.fillText((date.getDate()-1)+'/0'+(date.getMonth()+1), yesterLength+10,203)
+            ctx.fillText(date.getDate()+'/0'+(date.getMonth()+1), todayLength+10,227)
+            ctx.closePath();
             
-            if(today == 0 && yester>0){
-                ctx.beginPath();
-                ctx.fillStyle = '#137688';
-                ctx.font = '600 32px monty';
-                ctx.fillText('No', 150, 350 )
-                
-                let t5 = ctx.measureText('No').width
-                ctx.font = '400 24px monty';
-                ctx.fillText('new cases today', 155+t5, 350 )
-                ctx.fill();
-            }else if(today>1){
-                ctx.beginPath();
-                ctx.fillStyle = '#333';
-                ctx.font = '600 32px monty';
-                ctx.fillText(today, 150, 350 )
-                
-                let t5 = ctx.measureText(today).width
-                ctx.font = '400 24px monty';
-                ctx.fillText('New cases today', 155+t5, 350 )
-                ctx.fill();
-            }else if(today==1){
-                ctx.beginPath();
-                ctx.fillStyle = '#333';
-                ctx.font = '600 32px monty';
-                ctx.fillText('1', 150, 350 )
-                
-                let t5 = ctx.measureText(today).width
-                ctx.font = '400 24px monty';
-                ctx.fillText('New case today', 155+t5, 350 )
-                ctx.fill();
-            }else if(today ==0 && yester ==0){
-                ctx.beginPath();
-                ctx.fillStyle = '#137688';
-                ctx.font = '600 32px monty';
-                ctx.fillText('No', 150, 300 )
-                
-                let t5 = ctx.measureText('No').width
-                ctx.font = '400 24px monty';
-                ctx.fillText('new cases today', 155+t5, 300 )
-                ctx.fill();
-            }
-            
-
+            ctx.beginPath();
+            ctx.fillStyle = '#707070';
+            ctx.moveTo(0,332);
+            ctx.rect(0,332,canWid,1)
+            ctx.fill();
+            ctx.closePath();
 
             ctx.beginPath();
-            ctx.fillStyle = '#999';
-            ctx.moveTo(50,300);
-            ctx.arc(50, 430,48,0,2*Math.PI)
+            ctx.fillStyle = '#FF6E6E';
+            ctx.strokeStyle = '#FF6E6E';
+            ctx.moveTo(0,325);
+            ctx.rect(0,325,canWid*Math.min(1,alpha)*((element[2]/element[1])),16)
             ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
 
             ctx.beginPath();
-            ctx.fillStyle = 'rgba(74,111,32)';
-            ctx.moveTo(50, 430);
-            if(element[2]>0){
-                ctx.arc(50, 430,50,0,Math.min(1,alpha)*2*Math.PI*(1-element[2]/element[1]),true)
-            }
-            if(element[2] == element[1]){
-                ctx.arc(50, 430,50,0,2*Math.PI)
-            }
+            ctx.fillStyle = '#707070';
+            ctx.moveTo(0,382);
+            ctx.rect(0,382,canWid,1)
             ctx.fill();
+            ctx.closePath();
 
             ctx.beginPath();
-            ctx.fillStyle = '#F33';
-            ctx.moveTo(50, 430);
-            ctx.arc(50, 430,50,0,Math.min(1,alpha)*2*Math.PI*element[3]/element[1])
+            ctx.fillStyle = '#700000';
+            ctx.strokeStyle = '#700000';
+            ctx.moveTo(0,375);
+            ctx.rect(0,375,canWid*Math.min(1,alpha)*((element[3]/element[1])),16)
             ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
 
-            ctx.beginPath();
-            ctx.fillStyle = '#F5F5F6';
-            ctx.moveTo(50, 430);
-            ctx.arc(50, 430,45,0,2*Math.PI)
-            ctx.fill();
-
-            
-
-            ctx.beginPath();
-            ctx.fillStyle = 'rgba(74,111,32)';
-            ctx.font = '500 25px monty';
-            ctx.moveTo(50, 430);
-            const t2 = ctx.measureText((element[2]/element[1]*100).toFixed(1)+'%').width;
-            ctx.fillText((element[2]/element[1]*100).toFixed(1)+'%', 50-(t2/2), 430 )
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.fillStyle = '#F33';
-            ctx.font = '500 25px monty';
-            ctx.moveTo(50, 430);
-            const t3 = ctx.measureText((element[3]/element[1]*100).toFixed(1)+'%').width;
-            ctx.fillText((element[3]/element[1]*100).toFixed(1)+'%', 50-(t3/2), 450 )
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.fillStyle = '#333';
-            ctx.font = '300 32px monty';
-            ctx.fillText('Recovered & Deaths', 120, 430 )
-            ctx.font = '400 24px monty';
-            ctx.fillText('in the state', 120,450 )
-            ctx.fill();
+            $('.recovPData').text(((element[2]/element[1])*100).toFixed(1)+'%')
+            $('.deathPData').text(((element[3]/element[1])*100).toFixed(1)+'%')
 
         }
     }
@@ -389,8 +314,8 @@ $(document).ready(function(){
         if(globalCounter == 1){
             $('.legendStates').addClass('active')
         }
-        if(globalCounter<dataIndia.length-1){
-        // if(globalCounter<dataIndia.length*msecForEach-1){
+        // if(globalCounter<dataIndia.length-1){
+        if(globalCounter<dataIndia.length*msecForEach-1){
             updateColor(32);
             requestAnimationFrame(animate)
         }else{

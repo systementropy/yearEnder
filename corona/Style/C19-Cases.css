@@ -1,55 +1,55 @@
 @font-face {
     font-family: Cormorant;
-    src: url(../Cormorant/Cormorant-Regular.ttf);
+    src: url(../../Cormorant/Cormorant-Regular.ttf);
     font-weight: 400;
 }@font-face {
     font-family: Raleway;
-    src: url(../Raleway/Raleway-Regular.ttf);
-    font-weight: 400;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Thin.ttf);
-    font-weight: 100;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-ExtraLight.ttf);
-    font-weight: 200;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Light.ttf);
-    font-weight: 300;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Regular.ttf);
-    font-weight: 400;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Medium.ttf);
-    font-weight: 500;
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-SemiBold.ttf);
+    src: url(../../Raleway/Raleway-SemiBold.ttf);
     font-weight: 600;
 }
 @font-face {
     font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Bold.ttf);
+    src: url(../../Montserrat/Montserrat-Thin.ttf);
+    font-weight: 100;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-ExtraLight.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-Light.ttf);
+    font-weight: 300;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-Regular.ttf);
+    font-weight: 400;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-Medium.ttf);
+    font-weight: 500;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-SemiBold.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../../Montserrat/Montserrat-Bold.ttf);
     font-weight: 700;
 }
 @font-face {
     font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-ExtraBold.ttf);
+    src: url(../../Montserrat/Montserrat-ExtraBold.ttf);
     font-weight: 800;
 }
 @font-face {
     font-family: Montserrat;
-    src: url(../Montserrat/Montserrat-Black.ttf);
+    src: url(../../Montserrat/Montserrat-Black.ttf);
     font-weight: 900;
 }
 :root{
@@ -108,13 +108,17 @@ body{
     transform: scale(calc(981/1000));
     transform-origin: top;
 }
+.mainBody.mainBody-8-9{
+    height: 900px;
+    transform: scale(1);
+}
 .bgContent{
     position: absolute;
-    top: 327px;
+    /* top: 327px; */
     left: -1.719970703125px;
     width: 804px;
-    height: 689px;
-    background: transparent url('../Design/Rectangle2.png') 0% 0% no-repeat padding-box;
+    height: 100%;
+    background: transparent url('../../Design/Rectangle2.png') 0% 0% no-repeat padding-box;
     opacity: 0.32;
     z-index: -1;
 }
@@ -246,6 +250,19 @@ body{
     width: 134%;
     transform: translate(-93px, -207px);
 }
+.svgContainer.right{
+    left: unset;
+    right: 0;
+    width: 352px;
+    height: 387px;
+}
+.svgContainer.right svg{
+    width: 135%;
+    transform: translate(-60px, -134px);
+}
+.svgContainer.right svg path{
+    fill: 1px solid #FFA2A2;
+}
 .stateName{
     position: absolute;
     top: 364px;
@@ -270,6 +287,12 @@ body{
     display: flex;
     border: 1px solid #5A5A5A77;
 }
+/* .stateName{
+    left: 0;
+}
+.statContainer{
+    left: 0;
+} */
 .statContainer>div{
     flex-grow: 1;
     padding: 7px 0;
@@ -304,7 +327,7 @@ footer{
     bottom: 50px;
     width: 128px;
     text-align: left;
-    font: 400 15px/18px Raleway;
+    font: 600 15px/18px Raleway;
     letter-spacing: 0px;
     color: #5A5A5A;
     text-transform: uppercase;
@@ -313,8 +336,14 @@ footer{
 footer.casesWithNote{
     bottom: 25px;
 }
+footer.casesWithNote.stateInfo{
+    bottom: 0;
+}
 footer.casesWithNote img{
     margin: 5px 15px 25px;
+}
+footer.casesWithNote.stateInfo img{
+    margin: 5px auto 25px 0;
 }
 footer.casesWithNote p:nth-child(4){
     width: max-content;
@@ -324,6 +353,15 @@ footer.casesWithNote p:nth-child(3){
     width: max-content;
     transform: translateX(-80px);
     text-align: right;
+}
+
+footer.casesWithNote.stateInfo p:nth-child(3){
+    width: max-content;
+    transform: translateX(-80px);
+    text-align: right;
+    position: absolute;
+    left: -542px;
+    top: 52px;
 }
 footer.horizontal{
     display: flex;
@@ -351,7 +389,7 @@ footer img{
     width: 700px;
     height: 560px;
     opacity: 1;
-    z-index: 1000;
+    z-index: 100;
 }
 #canvas::before{
     content: 'sfjsbdfk';
@@ -377,6 +415,12 @@ footer img{
     background:#707070;
     
 }
+#canvas.stateInfo{
+    top: 436px;
+    width: 400px;
+    left: 20px;
+    /* opacity: 0.4; */
+}
 .stateName.canvasWith{
     left: 50px;
     top: 298px;
@@ -386,6 +430,14 @@ footer img{
     height: 94px;
     left: 50px;
     top: 335px;
+}
+.stateName.left{
+    left: 0;
+    top: 305px;
+}
+.statContainer.left{
+    left: 0;
+    top: 342px;
 }
 p.dataLine{
     width: 80%;
@@ -423,4 +475,74 @@ p.dataLine.red{
     color: #5A5A5A;
     text-transform: uppercase;
     opacity: 1;
+}
+.canvasLabels{
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 436px;
+    left: 20px;
+    z-index: 101;
+}
+.actPercP{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+    font: 600 15px/19px Montserrat;
+}
+.actPerc{
+    font: 600 26px/19px Montserrat;
+}
+.newCaseP{
+    position: absolute;
+    top: 96px;
+    text-align: left;
+    font: 600 49px/59px Montserrat;
+    letter-spacing: 0px;
+    color: #FF6E6E;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.newCaseP2{
+    position: absolute;
+    top: 155px;
+    text-align: left;
+    font: 600 15px/19px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.recovP{
+    position: absolute;
+    top: 300px;
+    text-align: left;
+    font: 900 15px/23px Montserrat;
+    letter-spacing: 0px;
+    color: #FF6E6E;
+    text-transform: uppercase;
+}
+.deathP{
+    position: absolute;
+    top: 350px;
+    text-align: left;
+    font: 900 15px/23px Montserrat;
+    letter-spacing: 0px;
+    color: #700000;
+    text-transform: uppercase;
+}
+.recovP span,.deathP span{
+    text-align: left;
+    font: 600 19px/23px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
 }
