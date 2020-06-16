@@ -91,12 +91,12 @@ body{
     left: 0;
     font-size: 3vh;
     font-weight: 500;
-    animation: aniTr 1s infinite alternate;
+    animation: aniTr 2s infinite forwards;
     color: #000;   
 }
 @keyframes aniTr {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(100px);}
+    0% {transform: rotate(0);opacity: 0.1;}
+    100% {transform: rotate(360deg);opacity: 1;}
 }
 .mainBody{
     height: 1000px;
