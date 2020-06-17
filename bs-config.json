@@ -1,0 +1,6 @@
+{
+   "notify": false,
+   "server": { "baseDir": "./" },
+   "open": false,
+   "port": 3000
+}
