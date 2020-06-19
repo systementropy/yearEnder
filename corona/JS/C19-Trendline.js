@@ -40,7 +40,7 @@ $(document).ready(function(){
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 160000;
+    const heightFactor = 200000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -52,8 +52,8 @@ $(document).ready(function(){
     let dailyCumulative = json['cases_time_series'];
     
     dailyCumulative = dailyCumulative.slice(62)
-    dailyCumulative.push(todayData[0])
-    dailyCumulative.push(todayData[1])
+    // dailyCumulative.push(todayData[0])
+    // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
     function makeGraph(counter){
@@ -115,7 +115,7 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 150; counter+=10) {
+        for (let counter = 0; counter < 200; counter+=10) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
