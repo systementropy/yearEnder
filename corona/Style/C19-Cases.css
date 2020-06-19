@@ -206,7 +206,8 @@ body{
 .strap{
     position: absolute;
     top: 180px;
-    left: 215px;
+    left: 50%;
+    transform: translateX(-50%);
     height: 40px;
     text-align: center;
     font: 700 33px/40px Montserrat;
