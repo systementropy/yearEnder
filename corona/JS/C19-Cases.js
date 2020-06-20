@@ -45,41 +45,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",11,33,0,44],
-        ["Andhra Pradesh",3637,3789,92,7518],
-        ["Arunachal Pradesh",93,10,0,103],
-        ["Assam",2114,2654,9,4777],
-        ["Bihar",1925,5056,44,7025],
-        ["Chandigarh",62,306,6,374],
-        ["Chhattisgarh",708,1228,10,1946],
-        ["Dadra and Nagar Haveli and Daman and Diu",45,13,0,58],
-        ["Delhi",26669,21341,1969,49979],
-        ["Goa",596,109,0,705],
-        ["Gujarat",6191,17819,1591,25601],
-        ["Haryana",4528,4556,134,9218],
-        ["Himachal Pradesh",205,382,8,595],
-        ["Jammu and Kashmir",2340,3144,71,5555],
-        ["Jharkhand",711,1198,11,1920],
-        ["Karnataka",2847,4983,114,7944],
-        ["Kerala",1358,1415,21,2794],
-        ["Ladakh",591,95,1,687],
-        ["Madhya Pradesh",2308,8632,486,11426],
-        ["Maharashtra",53915,60838,5751,120504],
-        ["Manipur",407,199,0,606],
-        ["Meghalaya",13,30,1,44],
+        ["Andaman and Nicobar Islands",10,35,0,45],
+        ["Andhra Pradesh",3948,3917,96,7961],
+        ["Arunachal Pradesh",92,11,0,103],
+        ["Assam",1856,3039,9,4904],
+        ["Bihar",2033,5098,50,7181],
+        ["Chandigarh",60,315,6,381],
+        ["Chhattisgarh",687,1331,10,2028],
+        ["Dadra and Nagar Haveli and Daman and Diu",48,14,0,62],
+        ["Delhi",27512,23569,2035,53116],
+        ["Goa",607,118,0,725],
+        ["Gujarat",6364,18159,1618,26141],
+        ["Haryana",4710,4889,144,9743],
+        ["Himachal Pradesh",223,388,8,619],
+        ["Jammu and Kashmir",2411,3194,75,5680],
+        ["Jharkhand",622,1332,11,1965],
+        ["Karnataka",2947,5210,124,8281],
+        ["Kerala",1380,1511,21,2912],
+        ["Ladakh",648,95,1,744],
+        ["Madhya Pradesh",2339,8748,495,11582],
+        ["Maharashtra",55665,62773,5893,124331],
+        ["Manipur",463,218,0,681],
+        ["Meghalaya",10,33,1,44],
         ["Mizoram",129,1,0,130],
-        ["Nagaland",90,103,0,193],
-        ["Odisha",1357,3144,11,4512],
-        ["Puducherry",155,109,7,271],
-        ["Punjab",962,2570,83,3615],
-        ["Rajasthan",2792,10742,323,13857],
+        ["Nagaland",73,125,0,198],
+        ["Odisha",1369,3297,11,4677],
+        ["Puducherry",161,118,7,286],
+        ["Punjab",1104,2636,92,3832],
+        ["Rajasthan",2826,10997,333,14156],
         ["Sikkim",65,5,0,70],
-        ["Tamil Nadu",23068,28641,625,52334],
-        ["Telangana",2531,3301,195,6027],
-        ["Tripura",515,639,1,1155],
-        ["Uttarakhand",690,1386,26,2102],
-        ["Uttar Pradesh",5477,9239,465,15181],
-        ["West Bengal",5216,7001,518,12735],
+        ["Tamil Nadu",23512,30271,666,54449],
+        ["Telangana",2975,3353,198,6526],
+        ["Tripura",520,657,1,1178],
+        ["Uttarakhand",718,1433,26,2177],
+        ["Uttar Pradesh",5659,9638,488,15785],
+        ["West Bengal",5258,7303,529,13090],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -160,7 +160,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 163248}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 168269}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -170,7 +170,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 204711}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 213831}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -180,7 +180,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 12573}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 12948}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
