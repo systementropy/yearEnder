@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>RIL</title>
+	<link rel="stylesheet" href="/default.css">
+</head>
+<body> 
+	<span class="texty"><a href="#lolwa">TEXTY</a></span>
+	<div class="mainBody mainBodyRIL ">
+		<div class="header headerRIL white">
+            <div class="logo">
+                <img src="/Design/RIL.png" alt="" srcset="">
+            </div>
+            <div class="headline">HOW BIG IS RIL</div>
+            <div class="strap">At <colorBlack>₹11 Trillion</colorBlack>, RIL is worth more than the GDP of these countries</div>
+        </div>
+        <!-- <div class="bgContent"></div> -->
+        <div id="regions_div">
+		</div>
+		<div id="lolwa" style="margin-top: 500vh;"></div>
+        <div class="countryName">
+			<p>Tuvalu, Nauru, Kiribati,Marshall Islands, Palau, Micronesia, Fed. Sts., Sao Tome and Principe, Tonga, Dominica, American Samoa, St. Vincent and the Grenadines, Samoa, Vanuatu, St. Kitts and Nevis, Turks and Caicos Islands, Comoros, Grenada, Northern Mariana Islands, Solomon Islands, Guinea-Bissau, Timor-Leste, Seychelles, Antigua and Barbuda, Gambia, The San Marino, Belize, St. Lucia, Cabo Verde, Central African Republic, Bhutan, Eritrea, New Caledonia, Faroe Islands, Aruba, Greenland , Lesotho, Djibouti, Burundi, Curacao, Andorra, Liberia, French Polynesia, Suriname, Virgin Islands (U.S.), Guyana , Sierra Leone, Eswatini, Somalia, Cayman Islands, Barbados, Mauritania, Maldives, Togo, Montenegro, Fiji, Bermuda, Guam, Liechtenstein, Isle of Man, Malawi, Monaco, Tajikistan, Kosovo, Kyrgyz Republic, Niger, Rwanda, Haiti, Guinea, Congo, Rep., Chad, Moldova, Channel Islands , South Sudan, Bahamas, The Armenia, North Macedonia, Nicaragua , Mongolia, Equatorial Guinea , Brunei Darussalam, Madagascar, Burkina Faso, Mauritius, Benin, Namibia , Malta, West Bank and Gaza, Mozambique, Albania, Jamaica, Gabon, Mali , Georgia, Lao PDR, Botswana, Afghanistan, Bosnia and Herzegovina, Papua New Guinea, Trinidad and Tobago, Honduras, Senegal, Cambodia, Cyprus, Iceland, El Salvador, Zambia, Yemen, Rep., Uganda, Nepal, Estonia, Zimbabwe, Latvia, Bahrain, Cameroon, Tunisia, Bolivia, Syrian Arab Republic, Paraguay , Turkmenistan, Sudan, Jordan, Cote d’Ivoire, Azerbaijan, Congo, Dem. Rep., Libya, Uzbekistan, Serbia, Lithuania, Slovenia, Macao SAR, China, Lebanon, Tanzania, Uruguay, Belarus, Costa Rica, Croatia, Panama, Bulgaria, Ghana, Luxembourg, Myanmar, Guatemala, Oman, Ethiopia, Dominican Republic, Kenya, Sri Lanka, Cuba, Puerto Rico, Angola, Slovak Republic, Ecuador, Morocco, Ukraine, Kuwait</p>
+		</div>
+        <footer class="footerRIL">
+            <p>Based on World Bank GDP datA</p>
+            <img src="../1logo.png" alt="">
+        </footer>
+        <div class="end"></div>
+    </div>
+	</div>
+	<script src="../../jquery.js"></script>
+	<script type="text/javascript" src="../../loader.js"></script>
+
+	<script>
+		$(document).ready(function(){
+
+			google.charts.load('current', {
+				'packages':['geochart'],
+				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
+			});
+			google.charts.setOnLoadCallback(init);
+			const codeMap ={
+				"Afghanistan":"AF","Aland Islands":"AX","Albania":"AL","Algeria":"DZ","American Samoa":"AS","Andorra":"AD","Angola":"AO","Anguilla":"AI","Antarctica":"AQ","Antigua and Barbuda":"AG","Argentina":"AR","Armenia":"AM","Aruba":"AW","Australia":"AU","Austria":"AT","Azerbaijan":"AZ","Bahamas":"BS","Bahrain":"BH","Bangladesh":"BD","Barbados":"BB","Belarus":"BY","Belgium":"BE","Belize":"BZ","Benin":"BJ","Bermuda":"BM","Bhutan":"BT","Bolivia":"BO","Bonaire, Sint Eustatius and Saba":"BQ","Bosnia and Herzegovina":"BA","Botswana":"BW","Bouvet Island":"BV","Brazil":"BR","British Indian Ocean Territory":"IO","Brunei Darussalam":"BN","Bulgaria":"BG","Burkina Faso":"BF","Burundi":"BI","Cabo Verde":"CV","Cambodia":"KH","Cameroon":"CM","Canada":"CA","Cayman Islands":"KY","Central African Republic":"CF","Chad":"TD","Chile":"CL","China":"CN","Christmas Island":"CX","Cocos Islands":"CC","Colombia":"CO","Comoros":"KM","Congo":"CG","Congo, Democratic Republic of the":"CD","Cook Islands":"CK","Costa Rica":"CR","Ivory Coast":"CI","Croatia":"HR","Cuba":"CU","Curaçao":"CW","Cyprus":"CY","Czechia":"CZ","Denmark":"DK","Djibouti":"DJ","Dominica":"DM","Dominican Republic":"DO","Ecuador":"EC","Egypt":"EG","El Salvador":"SV","Equatorial Guinea":"GQ","Eritrea":"ER","Estonia":"EE","Eswatini":"SZ","Ethiopia":"ET","Falkland Islands (Malvinas)":"FK","Faroe Islands":"FO","Fiji":"FJ","Finland":"FI","France":"FR","French Guiana":"GF","French Polynesia":"PF","French Southern Territories":"TF","Gabon":"GA","Gambia":"GM","Gambia, The":"GM","Georgia":"GE","Germany":"DE","Ghana":"GH","Gibraltar":"GI","Greece":"GR","Greenland":"GL","Grenada":"GD","Guadeloupe":"GP","Guam":"GU","Guatemala":"GT","Guernsey":"GG","Guinea":"GN","Guinea-Bissau":"GW","Guyana":"GY","Haiti":"HT","Heard Island and McDonald Islands":"HM","Holy See":"VA","Honduras":"HN","Hong Kong":"HK","Hungary":"HU","Iceland":"IS","India":"IN","Indonesia":"ID","Iran (Islamic Republic of)":"IR","Iraq":"IQ","Ireland":"IE","Isle of Man":"IM","Israel":"IL","Italy":"IT","Jamaica":"JM","Japan":"JP","Jersey":"JE","Jordan":"JO","Kazakhstan":"KZ","Kenya":"KE","Kiribati":"KI","Korea (Democratic People's Republic of)":"KP","Korea, Republic of":"KR","Kuwait":"KW","Kyrgyzstan":"KG","Kyrgyz Republic":"KG","Laos":"LA","Latvia":"LV","Lebanon":"LB","Lesotho":"LS","Liberia":"LR","Libya":"LY","Liechtenstein":"LI","Lithuania":"LT","Luxembourg":"LU","Macao":"MO","Madagascar":"MG","Malawi":"MW","Malaysia":"MY","Maldives":"MV","Mali":"ML","Malta":"MT","Marshall Islands":"MH","Martinique":"MQ","Mauritania":"MR","Mauritius":"MU","Mayotte":"YT","Mexico":"MX","Micronesia (Federated States of)":"FM","Micronesia, Fed. Sts.":"FM","Moldova, Republic of":"MD","Moldova":"MD","Monaco":"MC","Mongolia":"MN","Montenegro":"ME","Montserrat":"MS","Morocco":"MA","Mozambique":"MZ","Myanmar":"MM","Namibia":"NA","Nauru":"NR","Nepal":"NP","Netherlands":"NL","New Caledonia":"NC","New Zealand":"NZ","Nicaragua":"NI","Niger":"NE","Nigeria":"NG","Niue":"NU","Norfolk Island":"NF","North Macedonia":"MK","Northern Mariana Islands":"MP","Norway":"NO","Oman":"OM","Pakistan":"PK","Palau":"PW","Palestine":"PS","Panama":"PA","Papua New Guinea":"PG","Paraguay":"PY","Peru":"PE","Philippines":"PH","Pitcairn":"PN","Poland":"PL","Portugal":"PT","Puerto Rico":"PR","Qatar":"QA","Reunion":"RE","Romania":"RO","Russian Federation":"RU","Rwanda":"RW","Saint Barthélemy":"BL","Saint Helena, Ascension and Tristan da Cunha":"SH","Saint Kitts and Nevis":"KN","St. Kitts and Nevis":"KN","Saint Lucia":"LC","St. Lucia":"LC","Saint Martin (French part)":"MF","Saint Pierre and Miquelon":"PM","Saint Vincent and the Grenadines":"VC","St. Vincent and the Grenadines":"VC","Samoa":"WS","San Marino":"SM","Sao Tome and Principe":"ST","Saudi Arabia":"SA","Senegal":"SN","Serbia":"RS","Seychelles":"SC","Sierra Leone":"SL","Singapore":"SG","Sint Maarten (Dutch part)":"SX","Slovakia":"SK","Slovenia":"SI","Solomon Islands":"SB","Somalia":"SO","South Africa":"ZA","South Georgia and the South Sandwich Islands":"GS","South Sudan":"SS","Spain":"ES","Sri Lanka":"LK","Sudan":"SD","Suriname":"SR","Svalbard and Jan Mayen":"SJ","Sweden":"SE","Switzerland":"CH","Syrian Arab Republic":"SY","Taiwan, Province of China":"TW","Tajikistan":"TJ","Tanzania":"TZ","Thailand":"TH","Timor-Leste":"TL","Togo":"TG","Tokelau":"TK","Tonga":"TO","Trinidad and Tobago":"TT","Tunisia":"TN","Turkey":"TR","Turkmenistan":"TM","Turks and Caicos Islands":"TC","Tuvalu":"TV","Uganda":"UG","Ukraine":"UA","United Arab Emirates":"AE","United Kingdom of Great Britain and Northern Ireland":"GB","United States Minor Outlying Islands":"UM","United States of America":"US","Uruguay":"UY","Uzbekistan":"UZ","Vanuatu":"VU","Venezuela (Bolivarian Republic of)":"VE","Viet Nam":"VN","Virgin Islands (British)":"VG","Virgin Islands (U.S.)":"VI","Wallis and Futuna":"WF","Western Sahara":"EH","Yemen":"YE","Zambia":"ZM","Zimbabwe":"ZW"
+			} ;
+			let dataComplete = [
+				["",1,"Tuvalu"],["",1,"Nauru"],["",1,"Kiribati"],["",1,"Marshall Islands"],["",1,"Palau"],["",1,"Micronesia, Fed. Sts."],["",1,"Sao Tome and Principe"],["",1,"Tonga"],["",1,"Dominica"],["",1,"American Samoa"],["",1,"St. Vincent and the Grenadines"],["",1,"Samoa"],["",1,"Vanuatu"],["",1,"St. Kitts and Nevis"],["",1,"Turks and Caicos Islands"],["",1,"Comoros"],["",1,"Grenada"],["",1,"Northern Mariana Islands"],["",1,"Solomon Islands"],["",1,"Guinea-Bissau"],["",1,"Timor-Leste"],["",1,"Seychelles"],["",1,"Antigua and Barbuda"],["",1,"Gambia, The"],["",1,"San Marino"],["",1,"Belize"],["",1,"St. Lucia"],["",1,"Cabo Verde"],["",1,"Central African Republic"],["",1,"Bhutan"],["",1,"Eritrea"],["",1,"New Caledonia"],["",1,"Faroe Islands"],["",1,"Aruba"],["",1,"Greenland"],["",1,"Lesotho"],["",1,"Djibouti"],["",1,"Burundi"],["",1,"Curacao"],["",1,"Andorra"],["",1,"Liberia"],["",1,"French Polynesia"],["",1,"Suriname"],["",1,"Virgin Islands (U.S.)"],["",1,"Guyana"],["",1,"Sierra Leone"],["",1,"Eswatini"],["",1,"Somalia"],["",1,"Cayman Islands"],["",1,"Barbados"],["",1,"Mauritania"],["",1,"Maldives"],["",1,"Togo"],["",1,"Montenegro"],["",1,"Fiji"],["",1,"Bermuda"],["",1,"Guam"],["",1,"Liechtenstein"],["",1,"Isle of Man"],["",1,"Malawi"],["",1,"Monaco"],["",1,"Tajikistan"],["",1,"Kosovo"],["",1,"Kyrgyz Republic"],["",1,"Niger"],["",1,"Rwanda"],["",1,"Haiti"],["",1,"Guinea"],["",1,"Congo"],["",1,"Chad"],["",1,"Moldova"],["",1,"Channel Islands"],["",1,"South Sudan"],["",1,"Bahamas"],["",1,"Armenia"],["",1,"North Macedonia"],["",1,"Nicaragua"],["",1,"Mongolia"],["",1,"Equatorial Guinea"],["",1,"Brunei Darussalam"],["",1,"Madagascar"],["",1,"Burkina Faso"],["",1,"Mauritius"],["",1,"Benin"],["",1,"Namibia"],["",1,"Malta"],["",1,"Palestine"],["",1,"Mozambique"],["",1,"Albania"],["",1,"Jamaica"],["",1,"Gabon"],["",1,"Mali"],["",1,"Georgia"],["",1,"Laos"],["",1,"Botswana"],["",1,"Afghanistan"],["",1,"Bosnia and Herzegovina"],["",1,"Papua New Guinea"],["",1,"Trinidad and Tobago"],["",1,"Honduras"],["",1,"Senegal"],["",1,"Cambodia"],["",1,"Cyprus"],["",1,"Iceland"],["",1,"El Salvador"],["",1,"Zambia"],["",1,"Yemen"],["",1,"Uganda"],["",1,"Nepal"],["",1,"Estonia"],["",1,"Zimbabwe"],["",1,"Latvia"],["",1,"Bahrain"],["",1,"Cameroon"],["",1,"Tunisia"],["",1,"Bolivia"],["",1,"Syrian Arab Republic"],["",1,"Paraguay"],["",1,"Turkmenistan"],["",1,"Sudan"],["",1,"Jordan"],["",1,"Ivory Coast"],["",1,"Azerbaijan"],["",1,"Congo, Democratic Republic of the"],["",1,"Libya"],["",1,"Uzbekistan"],["",1,"Serbia"],["",1,"Lithuania"],["",1,"Slovenia"],["",1,"Macao"],["",1,"Lebanon"],["",1,"Tanzania"],["",1,"Uruguay"],["",1,"Belarus"],["",1,"Costa Rica"],["",1,"Croatia"],["",1,"Panama"],["",1,"Bulgaria"],["",1,"Ghana"],["",1,"Luxembourg"],["",1,"Myanmar"],["",1,"Guatemala"],["",1,"Oman"],["",1,"Ethiopia"],["",1,"Dominican Republic"],["",1,"Kenya"],["",1,"Sri Lanka"],["",1,"Cuba"],["",1,"Puerto Rico"],["",1,"Angola"],["",1,"Slovakia"],["",1,"Ecuador"],["",1,"Morocco"],["",1,"Ukraine"],["",1,"Kuwait"]
+			]
+			for (let i = 0; i < dataComplete.length; i++) {
+				const element = dataComplete[i];
+				if(codeMap[element[2]]){
+					dataComplete[i][0]=codeMap[element[2]]
+				}else{
+					console.log(element[2]);
+					
+				}
+			}
+			console.log(dataComplete);
+			
+			
+			  
+			const colorArray = ['#FF0000','#C9224C','#7c4cc2','#C24C92','#4c92c2','#464646','#FF9933','#92C24C','#4cc292','#99FF33','#9933FF'];
+			let slideIndex;
+			let counter = 0;
+			let circleArray = [];
+			
+			let secs = 10;
+
+			let data, options, chart, counterCountry = 0, dataPlace, optionsPlace, chartPlace, counterPlace = 0; 
+			
+			function drawRegionsMap(counter) {
+				$('.stateName').append('<p>'+dataComplete[counter][2]+'</p>');
+				if(dataComplete[counter][1] == 1){
+					$('.stateName').removeClass('blue').addClass('orange')
+				}else{
+					$('.stateName').removeClass('orange').addClass('blue')
+				}
+				data.addRow([dataComplete[counter][0],dataComplete[counter][1]]);
+				chart.draw(data, options);	
+			}
+			function init(label){
+				
+				
+				if(!label){
+
+					
+					data = new google.visualization.DataTable();
+					data.addColumn('string', 'Country');
+					data.addColumn('number', 'Value');
+					options = {
+						domain: 'IN',
+						legend: 'none',
+						backgroundColor: 'transparent',
+						datalessRegionColor: '#DBD9D9',
+						colorAxis: {
+							values: [1,50,100,250,500,750,1000,1500,2000,3000,4000,40000],
+							colors: ['#BFA060','rgb(255, 246, 0)','rgb(255, 195, 2)','rgb(255, 210, 65)','rgb(255, 171, 63)','rgb(255, 143, 0)','rgb(255, 132, 63)','rgb(255, 91, 0)','rgb(255, 67, 67)','rgb(255, 5, 5)','rgb(176, 14, 14)','rgb(255, 0, 0)']
+						}
+					};
+					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
+					setTimeout(function(){
+					  init(1);
+					},2000);
+				}else if(label<=dataComplete.length){
+					setTimeout(function(){
+						drawRegionsMap(label-1);
+						if(dataComplete[label-1]){
+								console.log('stop');
+								init(label+1);
+						}else{
+							init(label+1);
+						}
+					},secs)
+				}else{
+				}
+			}
+		});
+	</script>
+		
+</body>
+</html>

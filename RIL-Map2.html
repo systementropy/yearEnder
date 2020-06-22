@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Thin.ttf);
+            font-weight: 100;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-ExtraLight.ttf);
+            font-weight: 200;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Light.ttf);
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Regular.ttf);
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Medium.ttf);
+            font-weight: 500;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-SemiBold.ttf);
+            font-weight: 600;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Bold.ttf);
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-ExtraBold.ttf);
+            font-weight: 800;
+        }
+        @font-face {
+            font-family: monty;
+            src: url(../Montserrat/Montserrat-Black.ttf);
+            font-weight: 900;
+        }
+        body,html{
+            margin : 0;
+            padding: 0;
+            font-family: monty;
+            font-weight: 400;
+        }
+        .title{
+            border-bottom: 5px solid #000;
+            padding: 0;
+        }
+        .title h1{
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+        }
+        .title h3{
+            font-size: 35px;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .mainBody{
+            border: 1px solid #999;
+            height: 100vh;
+            width: 100vh;
+            margin: 0 auto;
+            padding: 40px;
+            box-sizing: border-box;
+			position: relative;
+        }
+        .graphicsContainer{
+            width: 100%;
+            height: 80%;
+            position: relative;
+			overflow: hidden;
+        }
+        #year{
+            font-size: 34px;
+            font-weight: 400;
+            margin: auto;
+            text-align: center;
+            padding: 15px 0 0;
+            color: #555555;
+            text-transform: uppercase;
+        }
+        #year p{
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #year p.weeks{margin-bottom: 0;}
+        #year p span{
+            font-size: 16px;
+            flex-grow: 1;
+            padding: 5px 0;
+            outline: 1px solid #DDD;
+            width: 14.2857142857%;
+        }
+        #year p span:nth-child(1),#year p span:nth-child(7){color: #dc3502;}
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bottom img{
+            height: 24px;
+        }
+        .bottom{
+            line-height: 30px;
+        }
+        #labels{
+            position: absolute;
+            bottom: 0;
+            display: block;
+            z-index: -1;
+            filter: blur(0px);
+            transition: all 0.2s ease;
+        }
+        #labels.active{
+            filter: blur(5px);
+        }
+        #canvas{
+            display: block;
+            margin: auto;
+        }
+        .Month{
+            opacity: 0;
+            letter-spacing: 10px;
+            transition: all 0s ease 0s;
+        }
+        .Month.active{
+            opacity: 1;
+            letter-spacing: 0px;
+            transition: all 1s ease 0.3s;
+        }
+        .logo{
+            width: 280px;
+            margin-bottom: 15px;
+            transform: translateX(-9px);
+        }
+        .legendStates {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 40px;
+            line-height: 1;
+            padding: 25px 0;
+            box-sizing: border-box;
+            font-weight: 500;
+            width: 400px;
+            text-align: center;
+            opacity: 1;
+            transition : all 250ms ease-in;
+            z-index: 1;
+        }
+        .legendStates.active{
+            opacity: 1;
+        }
+        .stateName{
+            font-weight: 300;
+            padding: 15px 0;
+			height: 200px;
+        }
+		.stateName.blue{
+			color: #2277cc
+		}
+		.stateName.orange{
+			color: #cc7722
+		}
+        .totalSeats{
+            font-weight: 300;
+        }
+        .total{
+            font-weight: 500;
+        }
+        .bjpSeats{
+            font-weight: 300;
+        }
+        .bjp{
+            font-weight: 500;
+        }
+        .internal{
+            display: flex;
+            justify-content: space-evenly;
+            position: relative;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .internal p{
+            font-size: 18px;
+            line-height: 1;
+            margin: 0;
+            font-weight: 200;
+            perspective: 100px;
+        }
+        .bar{
+            width: 2px;
+            background: #333;
+            transform: skewX(-20deg) scale(0.5);
+        }
+        .footer{
+            position: static;
+            top: 80%;
+            width: 100%;
+        }
+        .internal .fillbg{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #F5F5F6;
+            border: 2px solid #333;
+            box-shadow: 0px 0px 1px 1px #2821195E;
+            transform: translate3d(-21px,8px,78px) rotate3d(2,0,0,67deg);
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .internal .fill{
+            content: " ";
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 0%;
+            height: 10px;
+            background: #F28500;
+            transform: translate3d(4px,-2px,172px) rotate3d(2,0,0,67deg);
+            background: linear-gradient(to right, 
+                    rgb(240,240,240)    0px,
+                    rgb(255,243,228)    calc(0 * 40px),
+                    rgb(255,231,203)    calc(1 * 40px),
+                    rgb(255,214,164)    calc(2 * 40px),
+                    rgb(255,196,124)    calc(3 * 40px),
+                    rgb(255,178,85)     calc(4 * 40px),
+                    rgb(255,161,46)     calc(5 * 40px),
+                    rgb(255,143,7)      calc(6 * 40px),
+                    rgb(203,111,0)      calc(7 * 40px),
+                    rgb(183,101,0)      calc(8 * 40px)
+            );
+            box-shadow: -1px 8px 7px 0px #8C6331;
+            transition: all 0.3s ease;
+            z-index: 1;
+            transform-origin: center;
+            /*! height: 100px; */
+        }
+        .footer i{
+            display: block;
+            font-weight: 300;
+            line-height: 1;
+            font-size: 14px;
+        }
+        .texty{
+            position: fixed;
+            top:0;
+            left: 0;
+            font-size: 3vh;
+            animation: aniTr 1s infinite alternate;
+            
+        }
+        @keyframes aniTr {
+            0% {transform: translateX(0);}
+            100% {transform: translateX(100px);}
+        }
+        .svgContainer {
+            padding-top: 40px;
+        }
+		#regions_div {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+			z-index: 0;
+		}
+		.legend{
+			position: absolute;
+			left: -100%;
+			top: 20%;
+			width: 200px;
+			text-align: left;
+		}
+		.legend span {
+			display: block;
+			line-height: 30px;
+			font-size: 20px;
+			color: 
+			rgba(0,0,0,0.7);
+			width: 200px;
+			position: relative;
+		}
+		.legend span::before{
+			content: '';
+			position: absolute;
+			top: 8px;
+			left: -25px;
+			width: 12px;
+			height: 12px;
+			box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.3);
+		}
+		.legend span.blue::before{
+			background-color: #2277cc;
+		}.legend span.red::before{
+			background-color: #cc7722;
+		}
+    </style>
+</head>
+<body> 
+    <span class="texty">TEXTY</span>
+    <div class="mainBody">
+
+        <div class="title">
+            <h1>HOW BIG IS RIL</h1>
+            <h3>At Rs 11 Trillion, RIL is worth more than the GDP of these countries</h3>
+
+        </div>
+        <div class="graphicsContainer">
+			<div class="legendStates">
+                <div class="stateName"></div>
+				<div class="legend">
+					<span class="blue">Visa-free</span><span class="red">Visa on arrival</span>
+				</div>
+			</div>
+			<div id="regions_div"></div>
+		</div>
+		<div class="footer">
+            <div class="bottom">
+				<span>
+					Based on World Bank GDP data
+					<!-- <i>As of Jan 10, 2020</i> -->
+				</span>
+				<span><img src="../logo.png" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<script src="../jquery.js"></script>
+	<script type="text/javascript" src="../loader.js"></script>
+
+    <script>
+        $(document).ready(function(){
+			google.charts.load('current', {
+				'packages':['geochart'],
+				'mapsApiKey': 'AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s '
+			});
+			google.charts.setOnLoadCallback(init);
+			const codeMap ={
+				"Afghanistan":"AF","Aland Islands":"AX","Albania":"AL","Algeria":"DZ","American Samoa":"AS","Andorra":"AD","Angola":"AO","Anguilla":"AI","Antarctica":"AQ","Antigua and Barbuda":"AG","Argentina":"AR","Armenia":"AM","Aruba":"AW","Australia":"AU","Austria":"AT","Azerbaijan":"AZ","Bahamas":"BS","Bahrain":"BH","Bangladesh":"BD","Barbados":"BB","Belarus":"BY","Belgium":"BE","Belize":"BZ","Benin":"BJ","Bermuda":"BM","Bhutan":"BT","Bolivia":"BO","Bonaire, Sint Eustatius and Saba":"BQ","Bosnia and Herzegovina":"BA","Botswana":"BW","Bouvet Island":"BV","Brazil":"BR","British Indian Ocean Territory":"IO","Brunei Darussalam":"BN","Bulgaria":"BG","Burkina Faso":"BF","Burundi":"BI","Cabo Verde":"CV","Cambodia":"KH","Cameroon":"CM","Canada":"CA","Cayman Islands":"KY","Central African Republic":"CF","Chad":"TD","Chile":"CL","China":"CN","Christmas Island":"CX","Cocos Islands":"CC","Colombia":"CO","Comoros":"KM","Congo":"CG","Congo, Democratic Republic of the":"CD","Cook Islands":"CK","Costa Rica":"CR","Ivory Coast":"CI","Croatia":"HR","Cuba":"CU","Curaçao":"CW","Cyprus":"CY","Czechia":"CZ","Denmark":"DK","Djibouti":"DJ","Dominica":"DM","Dominican Republic":"DO","Ecuador":"EC","Egypt":"EG","El Salvador":"SV","Equatorial Guinea":"GQ","Eritrea":"ER","Estonia":"EE","Eswatini":"SZ","Ethiopia":"ET","Falkland Islands (Malvinas)":"FK","Faroe Islands":"FO","Fiji":"FJ","Finland":"FI","France":"FR","French Guiana":"GF","French Polynesia":"PF","French Southern Territories":"TF","Gabon":"GA","Gambia":"GM","Gambia, The":"GM","Georgia":"GE","Germany":"DE","Ghana":"GH","Gibraltar":"GI","Greece":"GR","Greenland":"GL","Grenada":"GD","Guadeloupe":"GP","Guam":"GU","Guatemala":"GT","Guernsey":"GG","Guinea":"GN","Guinea-Bissau":"GW","Guyana":"GY","Haiti":"HT","Heard Island and McDonald Islands":"HM","Holy See":"VA","Honduras":"HN","Hong Kong":"HK","Hungary":"HU","Iceland":"IS","India":"IN","Indonesia":"ID","Iran (Islamic Republic of)":"IR","Iraq":"IQ","Ireland":"IE","Isle of Man":"IM","Israel":"IL","Italy":"IT","Jamaica":"JM","Japan":"JP","Jersey":"JE","Jordan":"JO","Kazakhstan":"KZ","Kenya":"KE","Kiribati":"KI","Korea (Democratic People's Republic of)":"KP","Korea, Republic of":"KR","Kuwait":"KW","Kyrgyzstan":"KG","Kyrgyz Republic":"KG","Laos":"LA","Latvia":"LV","Lebanon":"LB","Lesotho":"LS","Liberia":"LR","Libya":"LY","Liechtenstein":"LI","Lithuania":"LT","Luxembourg":"LU","Macao":"MO","Madagascar":"MG","Malawi":"MW","Malaysia":"MY","Maldives":"MV","Mali":"ML","Malta":"MT","Marshall Islands":"MH","Martinique":"MQ","Mauritania":"MR","Mauritius":"MU","Mayotte":"YT","Mexico":"MX","Micronesia (Federated States of)":"FM","Micronesia, Fed. Sts.":"FM","Moldova, Republic of":"MD","Moldova":"MD","Monaco":"MC","Mongolia":"MN","Montenegro":"ME","Montserrat":"MS","Morocco":"MA","Mozambique":"MZ","Myanmar":"MM","Namibia":"NA","Nauru":"NR","Nepal":"NP","Netherlands":"NL","New Caledonia":"NC","New Zealand":"NZ","Nicaragua":"NI","Niger":"NE","Nigeria":"NG","Niue":"NU","Norfolk Island":"NF","North Macedonia":"MK","Northern Mariana Islands":"MP","Norway":"NO","Oman":"OM","Pakistan":"PK","Palau":"PW","Palestine":"PS","Panama":"PA","Papua New Guinea":"PG","Paraguay":"PY","Peru":"PE","Philippines":"PH","Pitcairn":"PN","Poland":"PL","Portugal":"PT","Puerto Rico":"PR","Qatar":"QA","Reunion":"RE","Romania":"RO","Russian Federation":"RU","Rwanda":"RW","Saint Barthélemy":"BL","Saint Helena, Ascension and Tristan da Cunha":"SH","Saint Kitts and Nevis":"KN","St. Kitts and Nevis":"KN","Saint Lucia":"LC","St. Lucia":"LC","Saint Martin (French part)":"MF","Saint Pierre and Miquelon":"PM","Saint Vincent and the Grenadines":"VC","St. Vincent and the Grenadines":"VC","Samoa":"WS","San Marino":"SM","Sao Tome and Principe":"ST","Saudi Arabia":"SA","Senegal":"SN","Serbia":"RS","Seychelles":"SC","Sierra Leone":"SL","Singapore":"SG","Sint Maarten (Dutch part)":"SX","Slovakia":"SK","Slovenia":"SI","Solomon Islands":"SB","Somalia":"SO","South Africa":"ZA","South Georgia and the South Sandwich Islands":"GS","South Sudan":"SS","Spain":"ES","Sri Lanka":"LK","Sudan":"SD","Suriname":"SR","Svalbard and Jan Mayen":"SJ","Sweden":"SE","Switzerland":"CH","Syrian Arab Republic":"SY","Taiwan, Province of China":"TW","Tajikistan":"TJ","Tanzania":"TZ","Thailand":"TH","Timor-Leste":"TL","Togo":"TG","Tokelau":"TK","Tonga":"TO","Trinidad and Tobago":"TT","Tunisia":"TN","Turkey":"TR","Turkmenistan":"TM","Turks and Caicos Islands":"TC","Tuvalu":"TV","Uganda":"UG","Ukraine":"UA","United Arab Emirates":"AE","United Kingdom of Great Britain and Northern Ireland":"GB","United States Minor Outlying Islands":"UM","United States of America":"US","Uruguay":"UY","Uzbekistan":"UZ","Vanuatu":"VU","Venezuela (Bolivarian Republic of)":"VE","Viet Nam":"VN","Virgin Islands (British)":"VG","Virgin Islands (U.S.)":"VI","Wallis and Futuna":"WF","Western Sahara":"EH","Yemen":"YE","Zambia":"ZM","Zimbabwe":"ZW"
+			} ;
+			let dataComplete = [
+				["",1,"Tuvalu"],["",1,"Nauru"],["",1,"Kiribati"],["",1,"Marshall Islands"],["",1,"Palau"],["",1,"Micronesia, Fed. Sts."],["",1,"Sao Tome and Principe"],["",1,"Tonga"],["",1,"Dominica"],["",1,"American Samoa"],["",1,"St. Vincent and the Grenadines"],["",1,"Samoa"],["",1,"Vanuatu"],["",1,"St. Kitts and Nevis"],["",1,"Turks and Caicos Islands"],["",1,"Comoros"],["",1,"Grenada"],["",1,"Northern Mariana Islands"],["",1,"Solomon Islands"],["",1,"Guinea-Bissau"],["",1,"Timor-Leste"],["",1,"Seychelles"],["",1,"Antigua and Barbuda"],["",1,"Gambia, The"],["",1,"San Marino"],["",1,"Belize"],["",1,"St. Lucia"],["",1,"Cabo Verde"],["",1,"Central African Republic"],["",1,"Bhutan"],["",1,"Eritrea"],["",1,"New Caledonia"],["",1,"Faroe Islands"],["",1,"Aruba"],["",1,"Greenland"],["",1,"Lesotho"],["",1,"Djibouti"],["",1,"Burundi"],["",1,"Curacao"],["",1,"Andorra"],["",1,"Liberia"],["",1,"French Polynesia"],["",1,"Suriname"],["",1,"Virgin Islands (U.S.)"],["",1,"Guyana"],["",1,"Sierra Leone"],["",1,"Eswatini"],["",1,"Somalia"],["",1,"Cayman Islands"],["",1,"Barbados"],["",1,"Mauritania"],["",1,"Maldives"],["",1,"Togo"],["",1,"Montenegro"],["",1,"Fiji"],["",1,"Bermuda"],["",1,"Guam"],["",1,"Liechtenstein"],["",1,"Isle of Man"],["",1,"Malawi"],["",1,"Monaco"],["",1,"Tajikistan"],["",1,"Kosovo"],["",1,"Kyrgyz Republic"],["",1,"Niger"],["",1,"Rwanda"],["",1,"Haiti"],["",1,"Guinea"],["",1,"Congo"],["",1,"Chad"],["",1,"Moldova"],["",1,"Channel Islands"],["",1,"South Sudan"],["",1,"Bahamas"],["",1,"Armenia"],["",1,"North Macedonia"],["",1,"Nicaragua"],["",1,"Mongolia"],["",1,"Equatorial Guinea"],["",1,"Brunei Darussalam"],["",1,"Madagascar"],["",1,"Burkina Faso"],["",1,"Mauritius"],["",1,"Benin"],["",1,"Namibia"],["",1,"Malta"],["",1,"Palestine"],["",1,"Mozambique"],["",1,"Albania"],["",1,"Jamaica"],["",1,"Gabon"],["",1,"Mali"],["",1,"Georgia"],["",1,"Laos"],["",1,"Botswana"],["",1,"Afghanistan"],["",1,"Bosnia and Herzegovina"],["",1,"Papua New Guinea"],["",1,"Trinidad and Tobago"],["",1,"Honduras"],["",1,"Senegal"],["",1,"Cambodia"],["",1,"Cyprus"],["",1,"Iceland"],["",1,"El Salvador"],["",1,"Zambia"],["",1,"Yemen"],["",1,"Uganda"],["",1,"Nepal"],["",1,"Estonia"],["",1,"Zimbabwe"],["",1,"Latvia"],["",1,"Bahrain"],["",1,"Cameroon"],["",1,"Tunisia"],["",1,"Bolivia"],["",1,"Syrian Arab Republic"],["",1,"Paraguay"],["",1,"Turkmenistan"],["",1,"Sudan"],["",1,"Jordan"],["",1,"Ivory Coast"],["",1,"Azerbaijan"],["",1,"Congo, Democratic Republic of the"],["",1,"Libya"],["",1,"Uzbekistan"],["",1,"Serbia"],["",1,"Lithuania"],["",1,"Slovenia"],["",1,"Macao"],["",1,"Lebanon"],["",1,"Tanzania"],["",1,"Uruguay"],["",1,"Belarus"],["",1,"Costa Rica"],["",1,"Croatia"],["",1,"Panama"],["",1,"Bulgaria"],["",1,"Ghana"],["",1,"Luxembourg"],["",1,"Myanmar"],["",1,"Guatemala"],["",1,"Oman"],["",1,"Ethiopia"],["",1,"Dominican Republic"],["",1,"Kenya"],["",1,"Sri Lanka"],["",1,"Cuba"],["",1,"Puerto Rico"],["",1,"Angola"],["",1,"Slovakia"],["",1,"Ecuador"],["",1,"Morocco"],["",1,"Ukraine"],["",1,"Kuwait"]
+			]
+			for (let i = 0; i < dataComplete.length; i++) {
+				const element = dataComplete[i];
+				if(codeMap[element[2]]){
+					dataComplete[i][0]=codeMap[element[2]]
+				}else{
+					console.log(element[2]);
+					
+				}
+			}
+			console.log(dataComplete);
+			
+			let data;
+			let options;
+			let chart;
+			let counterCountry = 0; 
+			function drawRegionsMap(counter) {
+				$('.stateName').append('<p>'+dataComplete[counter][2]+'</p>');
+				if(dataComplete[counter][1] == 1){
+					$('.stateName').removeClass('blue').addClass('orange')
+				}else{
+					$('.stateName').removeClass('orange').addClass('blue')
+				}
+				data.addRow([dataComplete[counter][0],dataComplete[counter][1]]);
+				chart.draw(data, options);	
+			}
+			function init(label){
+				
+				if(!label){
+					data = new google.visualization.DataTable();
+					data.addColumn('string', 'Country');
+					data.addColumn('number', 'Value');
+					options = {
+						domain: 'IN',
+						legend: 'none',
+						colorAxis: {
+							values: [1,10],
+							colors: ['#cc7722','#2277cc']
+						}
+					};
+					chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+					chart.draw(data, options);
+                    setTimeout(function(){
+					    init(1);
+                    },1000);
+				}else if(label<dataComplete.length+1){
+					setTimeout(function(){
+						// console.log(dataComplete[label-1]);
+						drawRegionsMap(label-1);
+						init(label+1);
+					},100)
+				}
+			}
+		});
+	</script>
+		
+</body>
+</html>
