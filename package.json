@@ -1,0 +1,22 @@
+{
+  "name": "yearender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jquery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/systementropy/yearEnder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/systementropy/yearEnder/issues"
+  },
+  "homepage": "https://github.com/systementropy/yearEnder#readme",
+  "dependencies": {
+    "csv-parser": "^2.3.3"
+  }
+}
