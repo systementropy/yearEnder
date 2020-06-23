@@ -180,7 +180,7 @@ $(document).ready(function(){
 				ctx.font = '500 21px/48px Montserrat';
 				// this.label == 'India'?ctx.fillStyle=this.color:'';
 				ctx.textAlign = 'right';
-				ctx.fillText(this.label, this.posX -40 , this.posY+8+(this.width/2));
+				ctx.fillText(this.label, this.posX -25 , this.posY+8+(this.width/2));
 				this.textLabelWidth = ctx.measureText(this.label).width;
 				ctx.closePath();
 

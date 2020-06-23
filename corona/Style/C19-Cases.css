@@ -2,7 +2,8 @@
     font-family: Cormorant;
     src: url(../../Cormorant/Cormorant-Regular.ttf);
     font-weight: 400;
-}@font-face {
+}
+@font-face {
     font-family: Raleway;
     src: url(../../Raleway/Raleway-SemiBold.ttf);
     font-weight: 600;
@@ -402,6 +403,9 @@ footer.casesWithNote.countryBars{
 footer.casesWithNote.countryBars img{
     margin: unset;
 }
+footer.casesWithNote.countryBars p b{
+    color: #000;
+}
 footer.casesWithNote img{
     margin: 5px 15px 25px;
 }
@@ -613,4 +617,14 @@ p.dataLine.red{
     letter-spacing: 0px;
     color: #5A5A5A;
     text-transform: uppercase;
+}
+.legend2.prominent{
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 21px;
+    color: #5A5A5A;
+}
+#canvas.countryBar.worstStates{
+    top: 350px
 }
