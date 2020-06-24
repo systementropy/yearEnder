@@ -7,8 +7,8 @@ $(document).ready(function(){
 	];
 	var countryCode = JSON.parse($.ajax({'url': "../../countryCode.json", 'async': false}).responseText);
 	// console.log(countryCode);
-	$('<div class="legend2 prominent">Coronavirus cases over time</div>').insertAfter('.legend1.legend1Big');
-	$('#canvas.countryBar').css({top:'350px'});
+	$('.strap').text('Coronavirus cases over time')
+	// $('#canvas.countryBar').css({top:'350px'});
 	var maxArr = 10;
 	var barArray = [];
 	let count = 0; 
