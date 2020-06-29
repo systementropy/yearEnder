@@ -628,3 +628,143 @@ p.dataLine.red{
 #canvas.countryBar.worstStates{
     top: 350px
 }
+
+/* =============================================mainBodyMap =========================== */
+.mainBodyMap{
+    width: 800px;
+    height: 900px;
+    transform: scale(1);
+}
+.mainBodyMap .header{
+    width: 100%;
+}
+.mainBodyMap .headline,.mainBodyMap .strap{
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+}
+.mainBodyMap .stateName.canvasWith {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -44px;
+}
+.mainBodyMap .statContainer.canvasWith{
+    width: 500px;
+    height: 115px;
+    left: 0;
+    top: 284px;
+    padding-bottom: 20px;
+}
+.mainBodyMap div#regions_div {
+    top: 100px;
+    position: absolute;
+    top: 420px;
+    width: 550px;
+    height: 270px;
+    left: -25px;
+}
+.mainBodyMap div#regions_div path{
+    stroke: #efefef;
+    stroke-width: 0.5px;
+}
+.mainBodyMap .statContainer>div:nth-child(3){
+    border-left: 1px solid #5A5A5A55;
+    border-right: 1px solid #5A5A5A55;
+}
+.mainBodyMap .statContainer>div:nth-child(2){
+    border-left:none;
+    border-right:none;
+}
+.mainBodyMap #canvas{
+    position: static;
+    display: block;
+    margin: 100px auto 0;
+    transform: translateX(0%);
+    border-right: 1px solid #DBD9D9;
+    border-bottom: 1px solid #DBD9D9;
+}
+.mainBodyMap #canvas .before{
+    content: "JAN 22";
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.mainBodyMap #canvas .after{
+    content: "JUN 29";
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.liner{
+    width: 100%;
+    padding: 0 25px;
+    font: 600 15px/19px Montserrat;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: #5a5a5a;
+}
+.mainBodyMap footer.horizontal{
+    width: 100%;
+    right: 0;
+    padding: 10px 25px;
+    bottom: 5px;
+    justify-content: space-between;
+}
+.mainBodyMap p.dataLine.red{background-color: #8C1919;}
+.mainBodyMap p.dataLine.lred{background-color: #F86E6E;background-color: #198C19;}
+.mainBodyMap p.dataLine.black{background-color: #525252;}
+
+.statContainer>div.gradient {
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    width: 600px;
+    padding: 0;
+    background: linear-gradient(to right,
+    rgb(255, 235, 235) 0 50px,
+    rgb(255, 213, 213) 50px 100px,
+    rgb(255, 192, 192) 100px 150px,
+    rgb(254, 170, 170) 150px 200px,
+    rgb(254, 149, 149) 200px 250px,
+    rgb(255, 162, 162) 250px 300px,
+    rgb(254, 127, 127) 300px 350px,
+    rgb(226, 102, 102) 350px 400px,
+    rgb(197, 76, 76) 400px 450px,
+    rgb(169, 51, 51) 450px 500px,
+    rgb(140, 25, 25) 500px 550px,
+    rgb(112, 0, 0) 550px 600px
+    );
+    transform: scaleX( calc( 500 / 601));
+    transform-origin: left;
+}
+.statContainer>div.gradient::before{
+    content: 'LOW';
+    position: absolute;
+    left: 10px;
+    height: 100%;
+    width: max-content;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    font: 700 12px/22px Montserrat;
+}
+.statContainer>div.gradient::after{
+    content: 'HIGH';
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    width: max-content;
+    color: #efefef;
+    text-transform: uppercase;
+    font: 700 12px/22px Montserrat;
+}
+.mainBodyMap .legendDataBlock .nameLabel{
+    font: 600 15px/19px Montserrat;
+}
+.mainBodyMap .legendDataBloc{
+    flex-basis: 33.3333%;
+}
