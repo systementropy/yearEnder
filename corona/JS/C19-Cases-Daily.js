@@ -45,44 +45,44 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",16,43,0,59,13,43,0,56],
-        ["Andhra Pradesh",5760,4988,136,10884,5428,4779,124,10331],
-        ["Arunachal Pradesh",121,38,1,160,120,38,0,158],
-        ["Assam",2279,4033,9,6321,2231,3958,9,6198],
-        ["Bihar",1975,6441,57,8473,2039,6113,57,8209],
-        ["Chandigarh",88,329,6,423,91,323,6,420],
-        ["Chhattisgarh",685,1755,12,2452,780,1627,12,2419],
-        ["Dadra and Nagar Haveli and Daman and Diu",123,32,0,155,90,30,0,120],
-        ["Delhi",26586,44765,2429,73780,26588,41437,2365,70390],
-        ["Goa",658,335,2,995,660,289,2,951],
-        ["Gujarat",6269,21498,1753,29520,6120,21088,1735,28943],
-        ["Haryana",4885,7380,198,12463,4897,6925,188,12010],
-        ["Himachal Pradesh",353,477,9,839,332,466,8,806],
-        ["Jammu and Kashmir",2492,3967,90,6549,2516,3818,88,6422],
-        ["Jharkhand",645,1605,12,2262,626,1570,11,2207],
-        ["Karnataka",3720,6670,170,10560,3803,6151,164,10118],
-        ["Kerala",1761,1943,22,3726,1693,1888,22,3603],
-        ["Ladakh",582,358,1,941,666,274,1,941],
-        ["Madhya Pradesh",2435,9619,542,12596,2441,9473,534,12448],
-        ["Maharashtra",63357,77453,6931,147741,62369,73792,6739,142900],
-        ["Manipur",702,354,0,1056,642,328,0,970],
-        ["Meghalaya",3,42,1,46,3,42,1,46],
-        ["Mizoram",115,30,0,145,123,19,0,142],
-        ["Nagaland",195,160,0,355,199,148,0,347],
-        ["Odisha",1654,4291,17,5962,1612,4123,17,5752],
-        ["Puducherry",306,187,9,502,276,176,9,461],
-        ["Punjab",1457,3192,120,4769,1415,3099,113,4627],
-        ["Rajasthan",3077,12840,379,16296,3023,12611,375,16009],
-        ["Sikkim",46,39,0,85,45,39,0,84],
-        ["Tamil Nadu",30067,39999,911,70977,28839,37763,866,67468],
-        ["Telangana",6446,4688,230,11364,5858,4361,225,10444],
-        ["Tripura",270,1019,1,1290,361,897,1,1259],
-        ["Uttarakhand",897,1758,36,2691,867,1721,35,2623],
-        ["Uttar Pradesh",6463,13119,611,20193,6375,12586,596,19557],
-        ["West Bengal",4852,10190,606,15648,4880,9702,591,15173],
+        ["Andaman and Nicobar Islands",31,45,0,76,0,43,0,72],
+        ["Andhra Pradesh",7164,5908,169,13241,0,5480,157,12285],
+        ["Arunachal Pradesh",121,60,1,182,0,54,1,177],
+        ["Assam",2108,5088,10,7206,0,4500,9,6816],
+        ["Bihar",2034,7118,60,9212,0,6843,59,8931],
+        ["Chandigarh",87,336,6,429,0,335,6,428],
+        ["Chhattisgarh",558,2091,13,2662,0,1914,13,2545],
+        ["Dadra and Nagar Haveli and Daman and Diu",118,60,0,178,0,55,0,177],
+        ["Delhi",27847,52607,2623,83077,0,49301,2558,80188],
+        ["Goa",717,478,3,1198,0,420,2,1128],
+        ["Gujarat",6712,22800,1808,31320,0,22409,1789,30709],
+        ["Haryana",4689,8917,223,13829,0,8472,218,13427],
+        ["Himachal Pradesh",378,529,9,916,0,509,9,894],
+        ["Jammu and Kashmir",2683,4316,94,7093,0,4225,93,6966],
+        ["Jharkhand",559,1793,12,2364,0,1724,12,2339],
+        ["Karnataka",5476,7507,207,13190,0,7287,191,11923],
+        ["Kerala",2015,2152,22,4189,0,2110,22,4071],
+        ["Ladakh",376,586,1,963,0,554,1,960],
+        ["Madhya Pradesh",2545,10084,557,13186,0,9971,550,12965],
+        ["Maharashtra",70622,86575,7429,164626,0,84245,7273,159133],
+        ["Manipur",730,455,0,1185,0,432,0,1092],
+        ["Meghalaya",4,42,1,47,0,42,1,47],
+        ["Mizoram",93,55,0,148,0,55,0,148],
+        ["Nagaland",251,164,0,415,0,164,0,387],
+        ["Odisha",1850,4743,21,6614,0,4606,18,6350],
+        ["Puducherry",388,221,10,619,0,221,10,619],
+        ["Punjab",1557,3526,133,5216,0,3320,128,5056],
+        ["Rajasthan",3261,13611,399,17271,0,13367,391,16944],
+        ["Sikkim",39,49,0,88,0,46,0,87],
+        ["Tamil Nadu",35659,45537,1079,82275,0,44094,1025,78335],
+        ["Telangana",9000,5172,247,14419,0,4928,243,13436],
+        ["Tripura",266,1079,1,1346,0,1071,1,1334],
+        ["Uttarakhand",767,2018,38,2823,0,1912,37,2791],
+        ["Uttar Pradesh",6679,14808,660,22147,0,14215,649,21549],
+        ["West Bengal",5451,11193,639,17283,0,10789,629,16711],
     ];
     $('.legend1').text('on '+(new Date().getDate())+' june, 2020 | 8:00 am')
-    let confirmedData = 8605; let recoveredData=0; let deathsData =0; let activeTotal = 0;
+    let confirmedData = 7839; let recoveredData=0; let deathsData =0; let activeTotal = 0;
     for (let index = 0; index < dataIndia.length; index++) {
         const element = dataIndia[index];
         confirmedData += element[8];
@@ -165,31 +165,31 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 490401-473105}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 548318-528859}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
-                        $this.text(Math.ceil(this.Counter));
+                        $this.text((this.Counter/1000).toFixed(1)+'K');
                     }
                 });
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 285637-271697}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 321723-309713}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
-                        $this.text(Math.ceil(this.Counter));
+                        $this.text((this.Counter/1000).toFixed(1)+'K');
                     }
                 });
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 15301-14894}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 16475-16095}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
-                        $this.text(Math.ceil(this.Counter));
+                        $this.text((this.Counter/1000).toFixed(1)+'K');
                     }
                 });
             });
