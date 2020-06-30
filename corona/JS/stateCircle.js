@@ -1,4 +1,16 @@
 $(document).ready(function(){
+	const canvas = document.getElementById("canvas");
+    const canHgt = 609;
+    const canWid = 554;
+    canvas.style.height = canHgt+'px';
+    canvas.style.width = canWid+'px';
+    canvas.height = canHgt*2;
+    canvas.width = canWid*2;
+    const ctx = canvas.getContext("2d");
+    ctx.scale(2,2);
+    ctx.lineWidth = 1;
+	ctx.strokeColor = '#5557';
+	
     var arrayId = ["Laddakh","andaman","Andhra","Arunachal","Assam","Bihar","Chandigarh","Chhatisgarh","Goa","Gujrat","Haryana","Himachal","Jharkhand","Karnataka","Kerala","MP","Maharashtra","Manipur","Meghayala","Mizoram","Nagaland","Delhi","Punjab","Rajasthan","Sikkim","Tamilnadu","Telangana","Tripura","UP","UK","WB","Orissa","J_K","DnNHaweli"];
     arrayId = {
         "Andhra Pradesh":["Andhra Pradesh","Andhra"],
@@ -45,41 +57,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",44,46,0,90],
-        ["Andhra Pradesh",7479,6232,180,13891],
-        ["Arunachal Pradesh",125,61,1,187],
-        ["Assam",2408,5333,11,7752],
-        ["Bihar",2188,7390,62,9640],
-        ["Chandigarh",80,349,6,435],
-        ["Chhattisgarh",575,2173,13,2761],
-        ["Dadra and Nagar Haveli and Daman and Diu",126,77,0,203],
-        ["Delhi",26246,56235,2680,85161],
+        ["Andaman and Nicobar Islands",31,45,0,76],
+        ["Andhra Pradesh",7164,5908,169,13241],
+        ["Arunachal Pradesh",121,60,1,182],
+        ["Assam",2108,5088,10,7206],
+        ["Bihar",2034,7118,60,9212],
+        ["Chandigarh",87,336,6,429],
+        ["Chhattisgarh",558,2091,13,2662],
+        ["Dadra and Nagar Haveli and Daman and Diu",118,60,0,178],
+        ["Delhi",27847,52607,2623,83077],
         ["Goa",717,478,3,1198],
-        ["Gujarat",6871,23240,1827,31938],
-        ["Haryana",4476,9502,232,14210],
-        ["Himachal Pradesh",377,556,9,942],
-        ["Jammu and Kashmir",2557,4585,95,7237],
-        ["Jharkhand",566,1845,15,2426],
-        ["Karnataka",6386,7683,226,14295],
+        ["Gujarat",6712,22800,1808,31320],
+        ["Haryana",4689,8917,223,13829],
+        ["Himachal Pradesh",378,529,9,916],
+        ["Jammu and Kashmir",2683,4316,94,7093],
+        ["Jharkhand",559,1793,12,2364],
+        ["Karnataka",5476,7507,207,13190],
         ["Kerala",2015,2152,22,4189],
-        ["Ladakh",347,616,1,964],
-        ["Madhya Pradesh",2607,10199,564,13370],
-        ["Maharashtra",73313,88960,7610,169883],
-        ["Manipur",733,494,0,1227],
+        ["Ladakh",376,586,1,963],
+        ["Madhya Pradesh",2545,10084,557,13186],
+        ["Maharashtra",70622,86575,7429,164626],
+        ["Manipur",730,455,0,1185],
         ["Meghalaya",4,42,1,47],
         ["Mizoram",93,55,0,148],
-        ["Nagaland",266,168,0,434],
-        ["Odisha",1890,4946,23,6859],
+        ["Nagaland",251,164,0,415],
+        ["Odisha",1850,4743,21,6614],
         ["Puducherry",388,221,10,619],
-        ["Punjab",1516,3764,138,5418],
-        ["Rajasthan",3637,13618,405,17660],
-        ["Sikkim",38,50,0,88],
-        ["Tamil Nadu",37334,47749,1141,86224],
-        ["Telangana",9559,5582,253,15394],
-        ["Tripura",294,1085,1,1380],
-        ["Uttarakhand",681,2111,39,2831],
-        ["Uttar Pradesh",6650,15506,672,22828],
-        ["West Bengal",5535,11719,653,17907],
+        ["Punjab",1557,3526,133,5216],
+        ["Rajasthan",3261,13611,399,17271],
+        ["Sikkim",39,49,0,88],
+        ["Tamil Nadu",35659,45537,1079,82275],
+        ["Telangana",9000,5172,247,14419],
+        ["Tripura",266,1079,1,1346],
+        ["Uttarakhand",767,2018,38,2823],
+        ["Uttar Pradesh",6679,14808,660,22147],
+        ["West Bengal",5451,11193,639,17283],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -160,7 +172,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 215125}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 210120}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -170,7 +182,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 334822}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 321723}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -180,7 +192,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 16893}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 16475}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -194,10 +206,13 @@ $(document).ready(function(){
             $('.total').addClass('active');
             $('.stateInfo').addClass('inactive');
         }else{
-            globalCounter += 1;
+			globalCounter += 1;
+			let shouldCircleDraw
             if(Math.floor(globalCounter/msecForEach) == index){
-                alpha += 0.025;
+				alpha += 0.05;
+				alpha = Math.min(alpha,1)
             }else{
+				shouldCircleDraw = true
                 alpha = 0;
                 index = Math.floor(globalCounter/msecForEach);
             }
@@ -213,16 +228,42 @@ $(document).ready(function(){
             $('.deathsData').html(
                 element[3]>1000?((element[3]/1000).toFixed(1)+'K'):element[3]
             );
-            if(arrayId[element[0]][0] === 'A & N Islands'){
-                $('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
-            }else if(arrayId[element[0]] !== undefined){
-                $('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
-            }else {
-                console.log(element[0],arrayId[element[0]]);
-            }
+            // if(arrayId[element[0]][0] === 'A & N Islands'){
+            //     $('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
+            // }else if(arrayId[element[0]] !== undefined){
+			// 	$('#'+arrayId[element[0]][1]).css({'fill':'rgba('+element[6][0]+','+element[6][1]+','+element[6][2]+','+alpha+')'})
+            // }else {
+            //     console.log(element[0],arrayId[element[0]]);
+			// }
+			
             const activeState = element[1];
-            // let activeStatePerc = Math.pow((activeState*100/activeTotal),0.5)
-            
+            if(shouldCircleDraw){
+				console.log(arrayId[element[0]][1], alpha,arrayId[element[0]][1])
+				const el = document.getElementById(arrayId[element[0]][1])
+				if(el){
+					const box = el.getBoundingClientRect()
+					// console.log(arrayId[element[0]][1], alpha, box)
+					ctx.beginPath()
+					ctx.fillStyle = '#FEAAAACC'
+					ctx.strokeStyle = '#E26666FF'
+					// ctx.moveTo(-650+box.x+(box.width/2),-310+box.y+(box.height/2))
+					ctx.arc(-650+box.x+(box.width/2),-310+box.y+(box.height/2), 1.5*(Math.sqrt(element[1]/30)), 0, 2* Math.PI)
+					ctx.fill()
+					ctx.stroke();
+					ctx.closePath()
+
+					ctx.beginPath()
+					ctx.fillStyle = '#333'
+					ctx.moveTo(-650+box.x+(box.width/2),-310+box.y+(box.height/2))
+					// ctx.fillText(arrayId[element[0]][1],-650+box.x+(box.width/2),-310+box.y+(box.height/2))
+					ctx.closePath()
+				}else{
+					console.log(arrayId[element[0]][1])
+				}
+				shouldCircleDraw = false;
+			}else{
+				console.log(shouldCircleDraw)
+			}
 
         }
     }

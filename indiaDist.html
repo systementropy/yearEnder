@@ -808,7 +808,8 @@
 			});
 			google.charts.setOnLoadCallback(init);
 			
-			let databyDate = [["South Andaman ",9,11.410170, 93.039177],["Chitoor ",1,10.029960, 76.274002],["East Godavari ",2],["Guntur ",2],["Krishna ",3],["Nellore ",1],["Prakasam ",1],["Vizag ",4],["Munger ",3],["Siwan ",1],["PATNA ",4],["Nalanda ",1],["Chandigarh ",8],["Raipur ",3],["Rajnandgaon ",1],["Durg ",1],["Bilaspur ",1],["Central ",4],["East Delhi ",5],["North Delhi ",4],["North East ",5],["North West ",5],["South Delhi ",8],["South West ",3],["West Delhi ",5],["Goa ",3],["Ahmedabad ",18],["Gandhinagar ",9],["Kutch ",1],["Rajkot ",8],["Mehsana ",1],["Surat ",6],["Vadodara ",9],["Bhavnagar ",1],["Faridabad ",2],["Gurugram ",24],["Palwal ",1],["Panchkula ",1],["Panipat ",4],["Sonipat ",1],["Kangra ",3],["Jammu ",3],["Rajauri ",3],["Udhampur ",3],["Srinagar ",12],["Bandipora ",8],["Budgam ",1],["Pulwama ",1],["BBMP ",26],["Bengaluru Urban ",17],["Chikkaballapura ",6],["Dakshin Kannada ",7],["Dharwad ",1],["Kalaburgi ",3],["Kodagu ",1],["Mysore ",3],["Tumkuru ",1],["Udupi ",1],["Uttar Kannada ",7],["Davangere ",3],["Alappuzha ",2],["Ernakulam ",19],["Idukki ",2],["Kannur ",27],["Kasargod ",78],["Kottayam ",6],["Kozhikode ",9],["Palakkad ",4],["Pathanamthitta ",10],["Wayanad ",1],["Thiruvanthpuram ",8],["Mallapuram ",8],["Thrissur ",6],["Kollam ",2],["Kargil ",2],["Leh ",11],["Bhopal ",3],["Gwalior ",1],["Indore ",10],["Shivpuri ",2],["Ujjain ",4],["Jabalpur ",8],["Ahmednagar ",3],["Aurangabad ",1],["Mumbai ",81],["Gondia ",1],["Nagpur ",12],["Kolhapur ",1],["Palghar ",2],["Pune ",31],["Raigad ",1],["Ratnagiri ",1],["Sangli ",24],["Satara ",2],["Sindhudurg ",1],["Thane ",16],["Yavatmal ",4],["Imphal West ",1],["Aizwal (W) ",1],["Khurda ",3],["Mahe ",1],["Amritsar ",1],["Hoshiarpur ",6],["Jalandhar ",5],["Ludhiana ",1],["Nawanshahr ",1],["SAS Nagar ",6],["SBS Nagar ",18],["Bhilwara ",22],["Jaipur ",8],["Jhunjhunu ",6],["Jodhpur ",6],["Pali ",1],["Dungarpur ",2],["Ajmer ",1],["Pratapgarh ",2],["Sikar ",1],["Churu ",1],["Ariyalur ",1],["Chennai ",18],["Coimbatoor ",1],["Erode ",5],["Kanchipurum ",1],["Madurai ",4],["Salem ",6],["Thanjavur ",1],["Tiruneveli ",1],["Tirupur ",1],["Trichy ",1],["Vellore ",2],["Bhadradri Kothagudam ",4],["Hyderabad ",27],["Karimnagar ",1],["Madchal ",1],["Mahboobnagar ",1],["Medchal ",3],["Ranga Reddy ",7],["Warangal (U) ",1],["Agra ",10],["GB Nagar ",22],["Ghaziabad ",5],["Jaunpur ",1],["Kanpur ",1],["Lakhimpur Kheri ",1],["Lucknow ",8],["Moradabd ",1],["Philibhit ",2],["Shamli ",1],["Bagpat ",1],["Meerut ",1],["Varanasi ",1],["Dehradun ",4],["Pauri Garhwal ",1],["Kolkata ",7],["Nadia ",5],["North 24 Pargana ",2],["South 24 Pargana ",1],["East Mirzapur ",2],
+			let databyDate = [
+				["South Andaman ",9,11.410170, 93.039177],["Chitoor ",1,10.029960, 76.274002],["East Godavari ",2],["Guntur ",2],["Krishna ",3],["Nellore ",1],["Prakasam ",1],["Vizag ",4],["Munger ",3],["Siwan ",1],["PATNA ",4],["Nalanda ",1],["Chandigarh ",8],["Raipur ",3],["Rajnandgaon ",1],["Durg ",1],["Bilaspur ",1],["Central ",4],["East Delhi ",5],["North Delhi ",4],["North East ",5],["North West ",5]
 			]
 			const caseArr = [2,16,6,1,1,1,1]
 			
@@ -826,17 +827,17 @@
 				if(databyDate[counter]){
 					$('.wuhan').addClass('active');
 					$('.stateName').addClass('active');
-					console.log(counter);
+					// console.log(counter);
 					data.addRow([databyDate[counter][0],10,databyDate[counter][1]]);	
 					chart.draw(data, options);
 				}
 				setTimeout(()=>{
-					console.log()
+					// console.log()
 					const circle = $('svg circle').eq(counter)
 					const x = circle.attr("cx")
 					const y = circle.attr("cy")
 					const r = circle.attr("r")
-					console.log(circle,counter)
+					// console.log(circle,counter)
 					// chart.setSelection([{row: i}]);
 					chart.setSelection([1])
 					$('.barContainer').children('span').eq(counter).css({top:y+'px', left:x+'px'}).text(databyDate[counter][0]+' : '+databyDate[counter][4])
@@ -923,18 +924,18 @@
 					},400)
 				}else{
 					var rArray = [];
-					// setTimeout(function(){
-					// 	$('svg circle').each(function(i){	
-					// 		const circle = $(this);
-					// 		const x = circle.attr("cx")
-					// 		const y = circle.attr("cy")
-					// 		const r = circle.attr("r")
-					// 		console.log(circle,i)
-					// 		// chart.setSelection([{row: i}]);
-					// 		chart.setSelection([1])
-					// 		$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
-					// 	})
-					// },1000);
+					setTimeout(function(){
+						$('svg circle').each(function(i){	
+							const circle = $(this);
+							const x = circle.attr("cx")
+							const y = circle.attr("cy")
+							const r = circle.attr("r")
+							console.log(circle,i)
+							// chart.setSelection([{row: i}]);
+							chart.setSelection([1])
+							$('.barContainer').children('span').eq(i).css({top:y+'px', left:x+'px'}).text(databyDate[i][0]+' : '+databyDate[i][4])
+						})
+					},1000);
 				}
 			}
 		});

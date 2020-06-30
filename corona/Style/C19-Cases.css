@@ -768,3 +768,52 @@ p.dataLine.red{
 .mainBodyMap .legendDataBloc{
     flex-basis: 33.3333%;
 }
+
+/* ============================================= state circles =========================== */
+.stateCircle  #canvas,.stateCircle .svgContainer{
+    position: absolute;
+    top: 318px;
+    left: 89px;
+    width: 543px;
+    height: 597px;;
+    opacity: 1;
+}
+.stateCircle .statContainer{
+    top: 312px;
+    left: 393px;
+    width: 343px;
+    height: 99px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 0.30000001192092896px solid #5A5A5A;
+    opacity: 1;
+    display: block;
+}
+.stateCircle .stateName{
+    text-align: center;
+    font: 400 25px/30px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    position: static;
+    width: 100%;
+}
+.stateCircle .data{
+    text-align: center;
+    font: 700 50px/61px Montserrat;
+    letter-spacing: -0.5px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+}
+.stateCircle footer.casesWithNote{
+    width: 100%;
+    right: 0;
+    padding: 0 25px;
+    text-align: right;
+    bottom: 0;
+}
+.stateCircle footer.casesWithNote p:nth-child(3){
+    position: absolute;
+    transform: translateX(0);
+    bottom: 25px;
+
+}
