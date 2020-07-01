@@ -99,7 +99,7 @@ $(document).ready(function(){
     var max = [242,133,0];
     var min = [255,255,255];
     var globalCounter = 0;
-    $('.legend1').text('on '+(new Date().getDate())+' june, 2020 | 8:00 am')
+    $('.legend1').text('on '+(new Date().getDate())+' july, 2020 | 8:00 am')
     dataIndia.sort(function(a,b){
         return ((a[1]-a[4])-(b[1]-b[4]))
     })
