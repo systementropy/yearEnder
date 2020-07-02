@@ -116,7 +116,8 @@ $(document).ready(function(){
         return ((a[1])-(b[1]))
     })
     console.log(dataIndia);
-    $('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+$('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
     for (let i = 0; i < dataIndia.length; i++) {
         const element = dataIndia[i];
         const perc = element[1];
