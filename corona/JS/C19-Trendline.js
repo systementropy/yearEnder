@@ -24,23 +24,15 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "13 June ",
-        totalconfirmed: "308993",
-        totaldeceased: "8884",
-        totalrecovered: "154330",
-    },{
-        dailyconfirmed: "424",
-        dailydeceased: "6",
-        dailyrecovered: "19",
-        date: "14 June ",
-        totalconfirmed: "320922",
-        totaldeceased: "9195",
-        totalrecovered: "162379",
+        date: "04 July ",
+        totalconfirmed: "648315",
+        totaldeceased: "18655",
+        totalrecovered: "394227",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 200000;
+    const heightFactor = 420000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -48,11 +40,11 @@ $(document).ready(function(){
     // const countNum = [8,52,67,76,82];
     // const countText = ['','100+','1000+','5000+','10000+']
     const countNum =[]
-    var json = JSON.parse($.ajax({'url': "./data.json", 'async': false}).responseText);
+    var json = JSON.parse($.ajax({'url': "/data/data.json", 'async': false}).responseText);
     let dailyCumulative = json['cases_time_series'];
-    
+    console.log(dailyCumulative)
     dailyCumulative = dailyCumulative.slice(62)
-    // dailyCumulative.push(todayData[0])
+    dailyCumulative.push(todayData[0])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
@@ -80,7 +72,7 @@ $(document).ready(function(){
                 let activePrevNum = prevDateElement['totalconfirmed']-prevDateElement['totalrecovered']-prevDateElement['totaldeceased'];
                 let recvPrevNum = prevDateElement['totalrecovered'];
                 let deathPrevNum = prevDateElement['totaldeceased'];
-
+                ctx.lineCap = 'round';
                 ctx.beginPath();
                 ctx.strokeStyle = confirmedColorSwitch;
                 ctx.moveTo((widthStep/2)+(widthStep*(counter-1)),(canHgt*(1-((activePrevNum)/heightFactor))));
@@ -115,7 +107,7 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 200; counter+=10) {
+        for (let counter = 0; counter < 420; counter+=10) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'

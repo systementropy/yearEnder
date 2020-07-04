@@ -57,41 +57,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",47,50,0,97],
-        ["Andhra Pradesh",7897,6511,187,14595],
-        ["Arunachal Pradesh",128,62,1,191],
-        ["Assam",2568,5647,12,8227],
-        ["Bihar",2289,7687,67,10043],
-        ["Chandigarh",70,364,6,440],
-        ["Chhattisgarh",597,2250,13,2860],
-        ["Dadra and Nagar Haveli and Daman and Diu",131,82,0,213],
-        ["Delhi",26270,58348,2742,87360],
-        ["Goa",716,596,3,1315],
-        ["Gujarat",7049,23662,1846,32557],
-        ["Haryana",4340,9972,236,14548],
-        ["Himachal Pradesh",363,580,10,953],
-        ["Jammu and Kashmir",2674,4722,101,7497],
-        ["Jharkhand",591,1884,15,2490],
-        ["Karnataka",7078,7918,246,15242],
-        ["Kerala",2112,2306,24,4442],
-        ["Ladakh",324,648,1,973],
-        ["Madhya Pradesh",2626,10395,572,13593],
-        ["Maharashtra",75995,90911,7855,174761],
-        ["Manipur",681,553,0,1234],
-        ["Meghalaya",9,42,1,52],
-        ["Mizoram",38,122,0,160],
-        ["Nagaland",291,168,0,459],
-        ["Odisha",1851,5189,25,7065],
-        ["Puducherry",430,272,12,714],
-        ["Punjab",1557,3867,144,5568],
-        ["Rajasthan",3381,14220,413,18014],
-        ["Sikkim",37,52,0,89],
-        ["Tamil Nadu",38892,50074,1201,90167],
-        ["Telangana",8785,7294,260,16339],
-        ["Tripura",301,1086,1,1388],
-        ["Uttarakhand",609,2231,41,2881],
-        ["Uttar Pradesh",6711,16084,697,23492],
-        ["West Bengal",5761,12130,668,18559],
+        ["Andaman and Nicobar Islands",62,54,0,116],
+        ["Andhra Pradesh",9096,7632,206,16934],
+        ["Arunachal Pradesh",176,75,1,252],
+        ["Assam",3310,6349,14,9673],
+        ["Bihar",2660,8214,80,10954],
+        ["Chandigarh",58,393,6,457],
+        ["Chhattisgarh",614,2437,14,3065],
+        ["Dadra and Nagar Haveli and Daman and Diu",161,96,0,257],
+        ["Delhi",26148,65624,2923,94695],
+        ["Goa",744,734,4,1482],
+        ["Gujarat",7763,24933,1904,34600],
+        ["Haryana",4057,11691,255,16003],
+        ["Himachal Pradesh",356,667,10,1033],
+        ["Jammu and Kashmir",2825,5075,119,8019],
+        ["Jharkhand",679,2001,15,2695],
+        ["Karnataka",10612,8805,293,19710],
+        ["Kerala",2098,2841,25,4964],
+        ["Ladakh",223,777,1,1001],
+        ["Madhya Pradesh",2655,11049,593,14297],
+        ["Maharashtra",79927,104687,8376,192990],
+        ["Manipur",677,639,0,1316],
+        ["Meghalaya",18,43,1,62],
+        ["Mizoram",36,126,0,162],
+        ["Nagaland",311,228,0,539],
+        ["Odisha",2372,5705,29,8106],
+        ["Puducherry",459,331,12,802],
+        ["Punjab",1514,4266,157,5937],
+        ["Rajasthan",3331,15281,440,19052],
+        ["Sikkim",49,53,0,102],
+        ["Tamil Nadu",42958,58378,1385,102721],
+        ["Telangana",9984,10195,283,20462],
+        ["Tripura",325,1199,1,1525],
+        ["Uttarakhand",525,2481,42,3048],
+        ["Uttar Pradesh",7451,17597,749,25797],
+        ["West Bengal",6200,13571,717,20488],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -117,7 +117,7 @@ $(document).ready(function(){
     })
     console.log(dataIndia);
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-$('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
+    $('.legend1').text('As of '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
     for (let i = 0; i < dataIndia.length; i++) {
         const element = dataIndia[i];
         const perc = element[1];
@@ -165,7 +165,7 @@ $('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
     
 
     var alpha; var index;
-    const msecForEach = 60;
+    const msecForEach = 40;
     function updateColor(label){
         if(label == "init"){
             animate();
@@ -173,7 +173,7 @@ $('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 220114}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 235433}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -210,7 +210,7 @@ $('.legend1').text('As of '+(new Date().getDate())+' july, 2020 | 8:00 am');
 			globalCounter += 1;
 			let shouldCircleDraw
             if(Math.floor(globalCounter/msecForEach) == index){
-				alpha += 0.05;
+				alpha += 0.1;
 				alpha = Math.min(alpha,1)
             }else{
 				shouldCircleDraw = true

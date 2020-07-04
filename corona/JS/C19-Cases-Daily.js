@@ -45,41 +45,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",50,50,0,100,47,50,0,97],
-        ["Andhra Pradesh",8071,6988,193,15252,7897,6511,187,14595],
-        ["Arunachal Pradesh",128,66,1,195,128,62,1,191],
-        ["Assam",2719,5851,12,8582,2568,5647,12,8227],
-        ["Bihar",2233,7946,70,10249,2289,7687,67,10043],
-        ["Chandigarh",73,367,6,446,70,364,6,440],
-        ["Chhattisgarh",623,2303,14,2940,597,2250,13,2860],
-        ["Dadra and Nagar Haveli and Daman and Diu",129,86,0,215,131,82,0,213],
-        ["Delhi",27007,59992,2803,89802,26270,58348,2742,87360],
-        ["Goa",713,670,4,1387,716,596,3,1315],
-        ["Gujarat",7335,24030,1867,33232,7049,23662,1846,32557],
-        ["Haryana",4202,10499,240,14941,4340,9972,236,14548],
-        ["Himachal Pradesh",355,614,10,979,363,580,10,953],
-        ["Jammu and Kashmir",2734,4856,105,7695,2674,4722,101,7497],
-        ["Jharkhand",575,1931,15,2521,591,1884,15,2490],
-        ["Karnataka",8198,8063,253,16514,7078,7918,246,15242],
-        ["Kerala",2130,2439,24,4593,2112,2306,24,4442],
-        ["Ladakh",295,694,1,990,324,648,1,973],
-        ["Madhya Pradesh",2625,10655,581,13861,2626,10395,572,13593],
-        ["Maharashtra",79091,93154,8053,180298,75995,90911,7855,174761],
-        ["Manipur",681,579,0,1260,681,553,0,1234],
-        ["Meghalaya",9,42,1,52,9,42,1,52],
-        ["Mizoram",37,123,0,160,38,122,0,160],
-        ["Nagaland",291,168,0,459,291,168,0,459],
-        ["Odisha",1938,5353,25,7316,1851,5189,25,7065],
-        ["Puducherry",430,272,12,714,430,272,12,714],
-        ["Punjab",1652,3867,149,5668,1557,3867,144,5568],
-        ["Rajasthan",3317,14574,421,18312,3381,14220,413,18014],
-        ["Sikkim",48,53,0,101,37,52,0,89],
-        ["Tamil Nadu",39859,52926,1264,94049,38892,50074,1201,90167],
-        ["Telangana",9008,8082,267,17357,8785,7294,260,16339],
-        ["Tripura",302,1093,1,1396,301,1086,1,1388],
-        ["Uttarakhand",589,2317,41,2947,609,2231,41,2881],
-        ["Uttar Pradesh",6709,16629,718,24056,6711,16084,697,23492],
-        ["West Bengal",5959,12528,683,19170,5761,12130,668,18559],
+        ["Andaman and Nicobar Islands",62,54,0,116,58,51,0,109],
+        ["Andhra Pradesh",9096,7632,206,16934,8586,7313,198,16097],
+        ["Arunachal Pradesh",176,75,1,252,128,66,1,195],
+        ["Assam",3310,6349,14,9673,2895,6106,12,9013],
+        ["Bihar",2660,8214,80,10954,2374,8020,77,10471],
+        ["Chandigarh",58,393,6,457,55,389,6,450],
+        ["Chhattisgarh",614,2437,14,3065,614,2385,14,3013],
+        ["Dadra and Nagar Haveli and Daman and Diu",161,96,0,257,141,89,0,230],
+        ["Delhi",26148,65624,2923,94695,26304,63007,2864,92175],
+        ["Goa",744,734,4,1482,744,734,4,1482],
+        ["Gujarat",7763,24933,1904,34600,7434,24593,1886,33913],
+        ["Haryana",4057,11691,255,16003,4239,11019,251,15509],
+        ["Himachal Pradesh",356,667,10,1033,376,628,10,1014],
+        ["Jammu and Kashmir",2825,5075,119,8019,2760,4974,115,7849],
+        ["Jharkhand",679,2001,15,2695,586,1983,15,2584],
+        ["Karnataka",10612,8805,293,19710,9410,8334,272,18016],
+        ["Kerala",2098,2841,25,4964,2088,2640,25,4753],
+        ["Ladakh",223,777,1,1001,259,730,1,990],
+        ["Madhya Pradesh",2655,11049,593,14297,2702,10815,589,14106],
+        ["Maharashtra",79927,104687,8376,192990,77276,101172,8178,186626],
+        ["Manipur",677,639,0,1316,662,617,0,1279],
+        ["Meghalaya",18,43,1,62,13,42,1,56],
+        ["Mizoram",36,126,0,162,36,126,0,162],
+        ["Nagaland",311,228,0,539,319,182,0,501],
+        ["Odisha",2372,5705,29,8106,2016,5502,27,7545],
+        ["Puducherry",459,331,12,802,459,331,12,802],
+        ["Punjab",1514,4266,157,5937,1488,4144,152,5784],
+        ["Rajasthan",3331,15281,440,19052,3284,14948,430,18662],
+        ["Sikkim",49,53,0,102,49,53,0,102],
+        ["Tamil Nadu",42958,58378,1385,102721,41050,56021,1321,98392],
+        ["Telangana",9984,10195,283,20462,9226,9069,275,18570],
+        ["Tripura",325,1199,1,1525,288,1146,1,1435],
+        ["Uttarakhand",525,2481,42,3048,537,2405,42,2984],
+        ["Uttar Pradesh",7451,17597,749,25797,6869,17221,735,24825],
+        ["West Bengal",6200,13571,717,20488,6083,13037,699,19819],
     ];
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $('.legend1').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
@@ -158,7 +158,7 @@ $(document).ready(function(){
     }
     
     var alpha; var index;
-    const msecForEach = 60;
+    const msecForEach = 40;
     function updateColor(label){
         if(label == "init"){
             animate();
@@ -166,7 +166,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 604641-585493}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 648315-625544}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -176,7 +176,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 359860-347979}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 394227-379892}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -186,7 +186,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 17834-17400}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 18655-18213}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -202,7 +202,7 @@ $(document).ready(function(){
         }else{
             globalCounter += 1;
             if(Math.floor(globalCounter/msecForEach) == index){
-                alpha += 0.025;
+                alpha += 0.1;
             }else{
                 alpha = 0;
                 index = Math.floor(globalCounter/msecForEach);
