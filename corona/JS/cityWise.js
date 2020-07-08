@@ -56,43 +56,52 @@ $(document).ready(function(){
         "Daman & Diu":["Daman & Diu","Daman"]
     };
     
-    var dataIndia = [
-        ["Andaman and Nicobar Islands",72,75,0,147],
-        ["Andhra Pradesh",11200,9745,252,21197],
-        ["Arunachal Pradesh",169,105,2,276],
-        ["Assam",4179,8329,14,12522],
-        ["Bihar",3182,9284,104,12570],
-        ["Chandigarh",86,401,7,494],
-        ["Chhattisgarh",650,2751,14,3415],
-        ["Dadra and Nagar Haveli and Daman and Diu",222,183,0,405],
-        ["Delhi",25449,74217,3165,102831],
-        ["Goa",739,1156,8,1903],
-        ["Gujarat",8853,26720,1977,37550],
-        ["Haryana",4075,13645,279,17999],
-        ["Himachal Pradesh",282,790,11,1083],
-        ["Jammu and Kashmir",3389,5399,143,8931],
-        ["Jharkhand",870,2104,22,2996],
-        ["Karnataka",15301,11098,416,26815],
-        ["Kerala",2415,3452,27,5894],
-        ["Ladakh",204,836,1,1041],
-        ["Madhya Pradesh",3237,11768,622,15627],
-        ["Maharashtra",89313,118558,9250,217121],
-        ["Manipur",659,771,0,1430],
-        ["Meghalaya",36,43,1,80],
-        ["Mizoram",64,133,0,197],
-        ["Nagaland",382,243,0,625],
-        ["Odisha",3352,6703,42,10097],
-        ["Puducherry",482,434,14,930],
-        ["Punjab",2020,4554,175,6749],
-        ["Rajasthan",4357,16575,472,21404],
-        ["Sikkim",55,70,0,125],
-        ["Tamil Nadu",45842,71116,1636,118594],
-        ["Telangana",11012,16287,313,27612],
-        ["Tripura",455,1248,1,1704],
-        ["Uttarakhand",566,2621,43,3230],
-        ["Uttar Pradesh",9514,19627,827,29968],
-        ["West Bengal",7243,15790,804,23837],
-    ];
+    var dataIndia = [['District Name','Confirmed','Recovered','Deceassed','Tested']];
+    var jsondata = JSON.parse($.ajax({'url': "/data/citydata.json", 'async': false}).responseText);
+    for (const state in jsondata) {
+        if (jsondata.hasOwnProperty(state)) {
+            const element = jsondata[state].districts;
+            if(element){
+                Object.keys(element).map(a=>{
+                    if(element[a]['total'] && element[a]['total']['confirmed']){
+                        if(a==="Unknown" || a==="Others" ){
+                            const newArr = ["",0,0,0,0]
+                            newArr[0] = state+'-'+a;
+                            newArr[1] = element[a]['total']['confirmed'] || 0;
+                            newArr[2] = element[a]['total']['recovered'] || 0;
+                            newArr[3] = element[a]['total']['deceased'] || 0;
+                            newArr[4] = element[a]['total']['tested'] || 0;
+                            newArr[5] = state+',IN';
+                            dataIndia.push([...newArr])
+                        }else{
+                            const newArr = ["",0,0,0,0]
+                            newArr[0] = a;
+                            newArr[1] = element[a]['total']['confirmed'] || 0;
+                            newArr[2] = element[a]['total']['recovered'] || 0;
+                            newArr[3] = element[a]['total']['deceased'] || 0;
+                            newArr[4] = element[a]['total']['tested'] || 0;
+                            newArr[5] = state+',IN';
+                            dataIndia.push([...newArr])
+                        }
+                    }
+                })
+            }
+        }
+    }
+    console.log(dataIndia)
+    dataIndia.sort(function(a,b){
+        return ((b[1])-(a[1]))
+    })
+    
+    // let csvContent = "data:text/csv;charset=utf-8," 
+    // + dataIndia.map(e => e.join(",")).join("\n");
+    // var encodedUri = encodeURI(csvContent);
+    // var link = document.createElement("a");
+    // link.setAttribute("href", encodedUri);
+    // link.setAttribute("download", "my_data.csv");
+    // document.body.appendChild(link); // Required for FF
+    // link.click();
+    console.log(dataIndia);
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
         [255, 235, 235],
@@ -112,10 +121,7 @@ $(document).ready(function(){
     var max = [242,133,0];
     var min = [255,255,255];
     var globalCounter = 0;
-    dataIndia.sort(function(a,b){
-        return ((a[1])-(b[1]))
-    })
-    console.log(dataIndia);
+    
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $('.legend1').text('As of '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
     for (let i = 0; i < dataIndia.length; i++) {
@@ -170,20 +176,20 @@ $(document).ready(function(){
         if(label == "init"){
             animate();
         }else if(label == "final"){
-            $('.stateName').html('India');
-            $('.confirmedData').each(function () {
-                var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 264944}, {
-                    duration: 1000,
-                    easing: 'swing',
-                    step: function () {
-                        $this.text((this.Counter/1000).toFixed(1)+'K');
-                    }
-                });
-            });
+            // $('.stateName').html('India');
+            // $('.confirmedData').each(function () {
+            //     var $this = $(this);
+            //     jQuery({ Counter: 0 }).animate({ Counter: 264944}, {
+            //         duration: 1000,
+            //         easing: 'swing',
+            //         step: function () {
+            //             $this.text((this.Counter/1000).toFixed(1)+'K');
+            //         }
+            //     });
+            // });
             
-            $('.total').addClass('active');
-            $('.stateInfo').addClass('inactive');
+            // $('.total').addClass('active');
+            // $('.stateInfo').addClass('inactive');
         }else{
 			globalCounter += 1;
 			let shouldCircleDraw
