@@ -809,7 +809,7 @@
 			google.charts.setOnLoadCallback(init);
 			
 			let databyDate = [
-				["South Andaman ",9,11.410170, 93.039177],["Chitoor ",1,10.029960, 76.274002],["East Godavari ",2],["Guntur ",2],["Krishna ",3],["Nellore ",1],["Prakasam ",1],["Vizag ",4],["Munger ",3],["Siwan ",1],["PATNA ",4],["Nalanda ",1],["Chandigarh ",8],["Raipur ",3],["Rajnandgaon ",1],["Durg ",1],["Bilaspur ",1],["Central ",4],["East Delhi ",5],["North Delhi ",4],["North East ",5],["North West ",5]
+				["South Andaman ",9,11.410170, 93.039177],["Chitoor ",1,10.029960, 76.274002],["East Godavari ",2],["Guntur ",2],["Krishna ",3],["Nellore ",1],["Prakasam ",1],["Vizag ",4],["Munger ",3]//,["Siwan ",1],["PATNA ",4],["Nalanda ",1],["Chandigarh ",8],["Raipur ",3],["Rajnandgaon ",1],["Durg ",1],["Bilaspur ",1],["Central ",4],["East Delhi ",5],["North Delhi ",4],["North East Delhi",5],["North West Delhi",5]
 			]
 			const caseArr = [2,16,6,1,1,1,1]
 			
@@ -828,7 +828,7 @@
 					$('.wuhan').addClass('active');
 					$('.stateName').addClass('active');
 					// console.log(counter);
-					data.addRow([databyDate[counter][0],10,databyDate[counter][1]]);	
+					data.addRow([databyDate[counter][0],10,databyDate[counter][1]]);
 					chart.draw(data, options);
 				}
 				setTimeout(()=>{
