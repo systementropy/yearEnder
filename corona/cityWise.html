@@ -8,13 +8,13 @@
 </head>
 <body>
     <span class="texty">TEXTY</span>
-    <div class="mainBody stateCircle">
+    <div class="mainBody stateCircle cityCircle">
         <div class="header">
             <div class="logo">
                 <img src="../Design/covid_pandemic.png" alt="" srcset="">
             </div>
             <div class="headline">Coronavirus in india</div>
-            <div class="strap">Active cases</div>
+            <div class="strap">Worst hit cities</div>
         </div>
         <div class="legend1"></div>
         <!-- <div class="legend2">
@@ -32,8 +32,10 @@
             <div>&gt;30K</div>
         </div> -->
         <div class="bgContent"></div>
-        <div id="regions_div"></div>
-		<div id="places_div"></div>
+        <div class="mapContainerBox">
+            <div id="regions_div"></div>
+		    <div id="places_div"></div>
+        </div>
         
         <div class="statContainer">
             <div class="stateName"></div>
@@ -51,14 +53,17 @@
             </div> -->
 		</div>
 		<canvas id="canvas"></canvas>
-        <footer class="casesWithNote ">
-            <p>Source: MoHFW</p>
+        <footer class="casesWithNote countryBars">
+            <p>Source: covid19india</p>
             <img src="../1logo.png" alt="">
-            <p>*DNHDD - Daman and Diu & Dadra and Nagar Haveli</p>
+            <!-- <p>*DNHDD - Daman and Diu & Dadra and Nagar Haveli</p> -->
         </footer>
         <div class="end"></div>
     </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwGAMpFviLTiB9UpdJ1_iH3Ox6Ru0Sm4s&libraries=visualization&callback=initMap" async="false" ></script>
     <script src="../jquery.js"></script>
+    <script src="/loader.js"></script>
     <script src="./JS/cityWise.js"></script>
+    
 </body>
 </html>

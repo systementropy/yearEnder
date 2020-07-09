@@ -822,3 +822,33 @@ p.dataLine.red{
 .stateCircle .statContainer>div:nth-child(2){
     border: none;   
 }
+
+
+
+/* ============================================= district map =========================== */
+.mapContainerBox{
+    position: relative;
+    width: 700px;
+    height: 600px;
+    margin: auto;
+}
+div#places_div,div#regions_div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto;
+    transform: translate(-50%,-50%);
+    z-index: 0;
+}
+div#regions_div{
+    z-index: 1;
+}
+.cityCircle circle{
+    opacity: 0.8;
+    stroke: #E26666;
+    fill: #FEAAAACC;
+}
+.cityCircle footer.casesWithNote{
+    bottom: 30px;
+}
