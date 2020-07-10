@@ -832,7 +832,7 @@ p.dataLine.red{
     height: 600px;
     margin: auto;
 }
-div#places_div,div#regions_div{
+.cityCircle div#places_div,.cityCircle div#regions_div{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -841,7 +841,7 @@ div#places_div,div#regions_div{
     transform: translate(-50%,-50%);
     z-index: 0;
 }
-div#regions_div{
+.cityCircle div#regions_div{
     z-index: 1;
 }
 .cityCircle circle{
@@ -866,7 +866,7 @@ div#regions_div{
     width: 200px;
 }
 p.dataLine.red.deth{
-    /* background-color: #a01e1e; */
+    background-color: #a01e1e;
 }
 .dailyCasesBar .showAfter{
     font: 500 18px/22px Montserrat;
@@ -891,5 +891,6 @@ p.dataLine.red.deth{
 .dailyCasesBar .headline{
     left: 50%;
     width: 100%;
+    top: 132px;
     transform: translateX(-50%);
 }

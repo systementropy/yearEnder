@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	$('.nameLabel').text('Confirmed');
-	$('.legendVertical').text('No. of Cases')
+	$('.nameLabel').text('Deaths');
+	$('.legendVertical').text('No. of Deaths')
     const canvas = document.getElementById("canvas");
     const canHgt = 560;
     const canWidAvailable = 650;
@@ -34,7 +34,7 @@ $(document).ready(function(){
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 32000;
+    const heightFactor = 2200;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
     let secs = 100;
@@ -70,14 +70,14 @@ $(document).ready(function(){
 			let deathPrevNum = prevDateElement['totaldeceased'];
             
             
-            (activeNum-activePrevNum)>=1000?$('.confirmedData').text(((activeNum-activePrevNum)/1000).toFixed(1)+'K'):$('.confirmedData').text((activeNum-activePrevNum))
+            (deathNum-deathPrevNum)>=1000?$('.confirmedData').text(((deathNum-deathPrevNum)/1000).toFixed(1)+'K'):$('.confirmedData').text((deathNum-deathPrevNum))
             // recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
             
 			
 			ctx.lineCap = 'round';
 			ctx.beginPath();
-			ctx.fillStyle = confirmedColorSwitch;
-			ctx.rect(widthStep*(counter-0.5),canHgt,widthStep,-((activeNum-activePrevNum)*canHgt)/heightFactor)
+			ctx.fillStyle = deathColor;
+			ctx.rect(widthStep*(counter-0.5),canHgt,widthStep,-((deathNum-deathPrevNum)*canHgt)/heightFactor)
 			ctx.fill();
 			ctx.closePath();
             
@@ -101,12 +101,12 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 31; counter+=2) {
+        for (let counter = 0; counter < 31; counter+=0.5) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%5 === 0 && counter!==0){
+            if(counter%1 === 0 && counter!==0){
                 ctx.fillText(counter+'K', canWidAvailable + 30, 6+(canHgt*(1-(counter*1000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
