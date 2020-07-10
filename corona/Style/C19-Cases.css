@@ -223,7 +223,7 @@ body{
     width: 802px;
     height: 40px;
     text-align: center;
-    font: Bold 30px/37px Montserrat;
+    font: 700 30px/37px Montserrat;
     letter-spacing: -0.3px;
     color: #FFFFFF;
     opacity: 1;
@@ -237,7 +237,7 @@ body{
     width: 801px;
     height: 30px;
     text-align: center;
-    font: Bold 20px/24px Montserrat;
+    font: 700 20px/24px Montserrat;
     letter-spacing: 2px;
     color: #5A5A5A;
     text-transform: uppercase;
@@ -325,7 +325,7 @@ body{
     width: 420px;
     height: 30px;
     text-align: center;
-    font: Bold 25px/30px Montserrat;
+    font: 700 25px/30px Montserrat;
     letter-spacing: 0px;
     color: #5A5A5A;
     text-transform: uppercase;
@@ -851,4 +851,45 @@ div#regions_div{
 }
 .cityCircle footer.casesWithNote{
     bottom: 30px;
+}
+
+.dailyCasesBar footer.horizontal{
+    width: 100%;
+    right: 0;
+    padding: 0 40px;
+    justify-content: space-between;
+}
+.dailyCasesBar .stateName.canvasWith{
+    width: 200px;
+}
+.dailyCasesBar .statContainer.canvasWith{
+    width: 200px;
+}
+p.dataLine.red.deth{
+    /* background-color: #a01e1e; */
+}
+.dailyCasesBar .showAfter{
+    font: 500 18px/22px Montserrat;
+    letter-spacing: 0.8px;
+    color: #5A5A5A;
+    position: absolute;
+    bottom: -20px;
+    transform: translate(-50%,100%);
+    text-align: center;
+    width: max-content;
+    left: 50%;
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+.dailyCasesBar .showAfter.active{
+    opacity: 1;
+}
+.dailyCasesBar .showAfter span{
+    display: block;
+    font: 700 25px/30px Montserrat;
+}
+.dailyCasesBar .headline{
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
 }
