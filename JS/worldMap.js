@@ -86,6 +86,8 @@ $(document).ready(function(){
 				}
 			},secs)
 		}else{
+			$('.notes').addClass('active')
+			$('.india').addClass('active')
 		}
 	}
 });

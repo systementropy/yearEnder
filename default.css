@@ -728,13 +728,21 @@ colorblack{
 .mainBodyMap .headline{
     top: 62px;
 }
-.mainBodyMap .legend2 div{width: 16.66667%;}
+.mainBodyMap .legend2 div{width: 16.66667%;text-align: right;}
 .legend2 div:nth-child(1)::after{background :var(--red1)}
+.legend2 div:nth-child(1)::before{
+    content: '0';
+    position: absolute;
+    left: 0;
+}
 .legend2 div:nth-child(2)::after{background :var(--red3)}
 .legend2 div:nth-child(3)::after{background :var(--red5)}
 .legend2 div:nth-child(4)::after{background :var(--red7)}
 .legend2 div:nth-child(5)::after{background :var(--red9)}
 .legend2 div:nth-child(6)::after{background :var(--red11)}
+.legend2 div:nth-child(6){
+    text-align: center;
+}
 .mainBodyMap footer img{
     margin: 0;
 }
@@ -748,4 +756,80 @@ colorblack{
 }
 .mainBodyMap .legend1{
     height: 57px;
+}
+
+.notes {
+    position: absolute;
+    bottom: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 500%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 25px;
+    opacity: 0;
+    transition: all 400ms ease-in;
+}
+.notes.active{
+    width: 100%;
+    opacity: 1;
+}
+.notes h4{
+    font: 700 20px/24px Montserrat;
+    color: #777777;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+.notes p{
+    font: 500 18px/22px Montserrat;
+    color: #FF6E6E;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 400ms ease-in 400ms;
+}
+.notes.active p{
+    opacity: 1;
+    transform: translateY(0px);
+}
+.notes p span{
+    margin-left: 15px;
+    color: #5A5A5A;
+    opacity: 0;
+    transition: opacity 250ms ease-in 1000ms;
+}
+.notes.active p span{
+    opacity: 1;
+}
+.india {
+    position: absolute;
+    z-index: 1;
+    width: 130px;
+    height: 95px;
+    background:#2B2A2ADD;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 45% 70%, 50% 100%, 55% 70%, 0% 70%);
+    top: 570px;
+    right: 180px;
+    border-radius: 2px;
+    opacity: 0;
+    transition: all 1s ease 1.4s;
+}
+.india.active {
+    opacity: 1;
+}
+.india h2{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 300;
+    font: 700 20px/24px Montserrat;
+    margin: 0;
+    color:#FFF;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-top: 7px;
+}
+.india h2 span{
+    display: block;
+    font-size: 29px;
+    font-weight: 500;
+    color:#f07c7e;
 }
