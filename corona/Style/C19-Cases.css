@@ -894,3 +894,51 @@ p.dataLine.red.deth{
     top: 132px;
     transform: translateX(-50%);
 }
+
+.mainBodyIndiaLabel.mainBodyMap .statContainer.canvasWith{
+    padding-bottom: 0;
+}
+
+.mainBodyIndiaLabel .legendVertical{
+    right: -40px;
+}
+.mainBodyIndiaLabel.mainBodyMap #canvas{
+    border: none;
+} 
+.mainBodyIndiaLabel.mainBodyMap .liner{
+    padding: 5px 93px 0 25px;
+}
+.infoBox{
+    position: absolute;
+    top: 398px;
+    left: 0px;
+    height: 0px;
+    opacity: 0;
+    width: 500px;
+    overflow: hidden;
+    background: #FFFFFF;
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.3);
+    transition: all 250ms ease;
+}
+.infoBox.active{
+    height: 40px;
+    opacity: 1;
+}
+.infoBox .inner{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    transition: all 400ms ease;
+}
+.infoBox .inner p{
+    color: #707070;
+    height: 40px;
+    font: 600 19px/40px Montserrat;
+    text-align: center;
+    
+}
+.infoBox .inner p span{
+    color: #5A5A5A;
+    font: 700 25px/40px Montserrat;
+}
