@@ -45,41 +45,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",57,109,0,166,70,93,0,163],
-        ["Andhra Pradesh",14274,16464,365,31103,13428,15412,328,29168],
-        ["Arunachal Pradesh",240,145,2,387,219,138,2,359],
-        ["Assam",5876,10894,36,16806,5610,10426,35,16071],
-        ["Bihar",5482,12317,160,17959,5001,11498,143,16642],
-        ["Chandigarh",157,423,8,588,134,417,8,559],
-        ["Chhattisgarh",996,3202,19,4217,887,3153,19,4059],
-        ["Dadra and Nagar Haveli and Daman and Diu",226,268,1,495,234,245,0,479],
-        ["Delhi",19017,91312,3411,113740,19155,89968,3371,112494],
-        ["Goa",1026,1540,17,2583,952,1487,14,2453],
-        ["Gujarat",10897,29770,2055,42722,10613,29162,2045,41820],
-        ["Haryana",4984,16602,308,21894,4956,15983,301,21240],
-        ["Himachal Pradesh",292,940,11,1243,273,929,11,1213],
-        ["Jammu and Kashmir",4545,6095,187,10827,4355,5979,179,10513],
-        ["Jharkhand",1514,2351,33,3898,1418,2308,30,3756],
-        ["Karnataka",24576,16248,757,41581,22750,15409,684,38843],
-        ["Kerala",4032,4257,33,8322,3747,4095,31,7873],
-        ["Ladakh",146,946,1,1093,157,928,1,1086],
-        ["Madhya Pradesh",4336,13208,663,18207,4103,12876,653,17632],
-        ["Maharashtra",105935,144507,10482,260924,103813,140325,10289,254427],
-        ["Manipur",656,970,0,1626,713,896,0,1609],
-        ["Meghalaya",250,66,2,318,238,66,2,306],
-        ["Mizoram",82,151,0,233,81,150,0,231],
-        ["Nagaland",505,340,0,845,447,327,0,774],
-        ["Odisha",4412,9255,70,13737,4307,8750,64,13121],
-        ["Puducherry",665,785,18,1468,661,739,18,1418],
-        ["Punjab",2388,5586,204,8178,2230,5392,199,7821],
-        ["Rajasthan",5781,18630,525,24936,5779,18103,510,24392],
-        ["Sikkim",106,86,0,192,72,81,0,153],
-        ["Tamil Nadu",48199,92567,2032,142798,46972,89532,1966,138470],
-        ["Telangana",12177,23679,365,36221,11833,22482,356,34671],
-        ["Tripura",603,1475,2,2080,631,1421,2,2054],
-        ["Uttarakhand",703,2856,49,3608,704,2786,47,3537],
-        ["Uttar Pradesh",12972,24203,955,38130,12208,23334,934,36476],
-        ["West Bengal",11279,19213,956,31448,10500,18581,932,30013],
+        ["Andaman and Nicobar Islands",57,109,0,166,57,109,0,166],
+        ["Andhra Pradesh",15144,17467,408,33019,14274,16464,365,31103],
+        ["Arunachal Pradesh",306,153,3,462,240,145,2,387],
+        ["Assam",6351,11416,40,17807,5876,10894,36,16806],
+        ["Bihar",6261,12849,174,19284,5482,12317,160,17959],
+        ["Chandigarh",144,446,10,600,157,423,8,588],
+        ["Chhattisgarh",1084,3275,20,4379,996,3202,19,4217],
+        ["Dadra and Nagar Haveli and Daman and Diu",209,310,1,520,226,268,1,495],
+        ["Delhi",18664,93236,3446,115346,19017,91312,3411,113740],
+        ["Goa",1128,1607,18,2753,1026,1540,17,2583],
+        ["Gujarat",11065,30503,2069,43637,10897,29770,2055,42722],
+        ["Haryana",5226,17090,312,22628,4984,16602,308,21894],
+        ["Himachal Pradesh",347,951,11,1309,292,940,11,1243],
+        ["Jammu and Kashmir",4755,6223,195,11173,4545,6095,187,10827],
+        ["Jharkhand",1628,2427,36,4091,1514,2351,33,3898],
+        ["Karnataka",25845,17390,842,44077,24576,16248,757,41581],
+        ["Kerala",4458,4438,34,8930,4032,4257,33,8322],
+        ["Ladakh",146,946,1,1093,146,946,1,1093],
+        ["Madhya Pradesh",4757,13575,673,19005,4336,13208,663,18207],
+        ["Maharashtra",107963,149007,10695,267665,105935,144507,10482,260924],
+        ["Manipur",702,970,0,1672,656,970,0,1626],
+        ["Meghalaya",250,66,2,318,250,66,2,318],
+        ["Mizoram",79,159,0,238,82,151,0,233],
+        ["Nagaland",550,346,0,896,505,340,0,845],
+        ["Odisha",4342,9864,74,14280,4412,9255,70,13737],
+        ["Puducherry",684,829,18,1531,665,785,18,1468],
+        ["Punjab",2635,5663,213,8511,2388,5586,204,8178],
+        ["Rajasthan",5885,19161,525,25571,5781,18630,525,24936],
+        ["Sikkim",122,87,0,209,106,86,0,192],
+        ["Tamil Nadu",47915,97310,2099,147324,48199,92567,2032,142798],
+        ["Telangana",12530,24840,375,37745,12177,23679,365,36221],
+        ["Tripura",630,1538,2,2170,603,1475,2,2080],
+        ["Uttarakhand",769,2867,50,3686,703,2856,49,3608],
+        ["Uttar Pradesh",13758,24983,983,39724,12972,24203,955,38130],
+        ["West Bengal",11927,19931,980,32838,11279,19213,956,31448],
     ];
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $('.legend1').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
@@ -120,25 +120,25 @@ $(document).ready(function(){
         let colorIndex;
         if(perc<1){
             colorIndex = 0
-        }else if(perc>0 && perc <= 100){
+        }else if(perc>0 && perc <= 50){
             colorIndex = 1
-        }else if(perc>100 && perc <= 250){
+        }else if(perc>50 && perc <= 100){
             colorIndex = 2
-        }else if(perc>250 && perc <= 500){
+        }else if(perc>100 && perc <= 250){
             colorIndex = 3
-        }else if(perc>500 && perc <= 1000){
+        }else if(perc>250 && perc <= 500){
             colorIndex = 4
-        }else if(perc>1000 && perc <= 2000){
+        }else if(perc>500 && perc <= 750){
             colorIndex = 5
-        }else if(perc>2000 && perc <= 3000){
+        }else if(perc>750 && perc <= 1000){
             colorIndex = 6
-        }else if(perc>3000 && perc <= 4000){
+        }else if(perc>1000 && perc <= 2000){
             colorIndex = 7
-        }else if(perc>4000 && perc <= 5000){
+        }else if(perc>2000 && perc <= 3000){
             colorIndex = 8
-        }else if(perc>5000 && perc <= 7500){
+        }else if(perc>3000 && perc <= 4000){
             colorIndex = 9
-        }else if(perc>7500 && perc <= 10000){
+        }else if(perc>4000 && perc <= 5000){
             colorIndex = 10
         }else{
             colorIndex = 11
@@ -167,7 +167,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 906752-878254}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 936181-906752}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -177,7 +177,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 571460-553471}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 592032-571460}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -187,7 +187,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 23727-23174}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 24309-23727}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -212,9 +212,15 @@ $(document).ready(function(){
             const element = dataIndia[index];
             if(element[0] && arrayId[element[0]]){
                 $('.stateName').html(arrayId[element[0]][0]);
-                $('.confirmedData').html(element[4] - element[8]);
-                $('.recoveredData').html(element[2] - element[6]);
-                $('.deathsData').html(element[3] - element[7]);
+                $('.confirmedData').html(
+                    element[4] - element[8]>1000?((element[4] - element[8])/1000).toFixed(1)+'K':element[4] - element[8]
+                );
+                $('.recoveredData').html(
+                    element[2] - element[6]>1000?((element[2] - element[6])/1000).toFixed(1)+'K':element[2] - element[6]
+                );
+                $('.deathsData').html(
+                    element[3] - element[7]>1000?((element[3] - element[7])/1000).toFixed(1)+'K':element[3] - element[7]
+                );
                 if(arrayId[element[0]][0] === 'A & N Islands'){
                     $('.'+arrayId[element[0]][1]).css({'fill':'rgba('+element[10][0]+','+element[10][1]+','+element[10][2]+','+alpha+')'})
                 }else if(arrayId[element[0]] !== undefined){

@@ -894,7 +894,11 @@ p.dataLine.red.deth{
     top: 132px;
     transform: translateX(-50%);
 }
-
+.dailyCasesBar .liner{
+    bottom: 112px;
+    position: absolute;
+    padding: 0 147px 0 0;
+}
 .mainBodyIndiaLabel.mainBodyMap .statContainer.canvasWith{
     padding-bottom: 0;
 }
