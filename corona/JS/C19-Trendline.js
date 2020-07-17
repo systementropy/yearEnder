@@ -32,7 +32,7 @@ $(document).ready(function(){
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 420000;
+    const heightFactor = 680000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -44,7 +44,7 @@ $(document).ready(function(){
     let dailyCumulative = json['cases_time_series'];
     console.log(dailyCumulative)
     dailyCumulative = dailyCumulative.slice(62)
-    dailyCumulative.push(todayData[0])
+    // dailyCumulative.push(todayData[0])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
@@ -107,7 +107,7 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 420; counter+=10) {
+        for (let counter = 0; counter < 700; counter+=20) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'

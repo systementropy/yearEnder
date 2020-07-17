@@ -204,6 +204,12 @@ body{
     text-transform: uppercase;
     opacity: 1;
 }
+.trendline .headline{
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 135px;
+}
 .strap{
     position: absolute;
     top: 180px;

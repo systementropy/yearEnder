@@ -3,16 +3,16 @@ $(document).ready(function(){
 	const legends = [
 		
 	];
-	const csvData = $.ajax({'url': "/data/datasets_557629_1273282_covid_19_india.csv", 'async': false}).responseText;
+	const csvData = $.ajax({'url': "/data/datasets_557629_1337247_covid_19_india.csv", 'async': false}).responseText;
 	let rowCsvData = csvData.split(/\r?\n|\r/);
 	const dateWiseData = {}
-	// console.log(rowCsvData)
+	
 	
 	for (let index = 1; index < rowCsvData.length; index++) {
 		const element = rowCsvData[index].split(',');
 		const prement = rowCsvData[index-1];
 		if(!element[1]){
-			console.log(element)
+			// console.log(element)
 		}else{
 			let thisDate = element[1].split('/');
 			let thisState = element[3]
@@ -25,8 +25,8 @@ $(document).ready(function(){
 				legends.push(thisDate)
 			}
 			if(!dateWiseData[thisState]){
-				let emptyArray = new Array(Math.max(0,legends.length-2))
-				emptyArray.fill(0,Math.max(0,legends.length-2))
+				let emptyArray = new Array(Math.max(0,legends.length-1))
+				emptyArray.fill(0,Math.max(0,legends.length-1))
 				// console.log(legends.length,emptyArray,thisState)
 				// dateWiseData[thisState] = [].fill(0,legends.length-1)
 				dateWiseData[thisState] = emptyArray;
@@ -58,7 +58,7 @@ $(document).ready(function(){
 	let count = 0; 
 	// const ticks = legends.length;
 	const ticks = legends.length;
-	let globalCounter = 0;
+	
 	let tick;
 	// const areaIndex = {"Asia Pacific":1,"Europe":4,}
 	var canvas = document.getElementById("canvas");
@@ -77,8 +77,9 @@ $(document).ready(function(){
 	ctx.strokeStyle = '#FFFDDD';
 	ctx.fillStyle = 'rgba(255,0,0,1)';
 	ctx.scale(2,2);
-	const secs  = 30;
-	const lengthFactor = 300;
+	const secs  = 20;
+	let globalCounter = (62*secs)-1;
+	const lengthFactor = 640;
 	var colorArray =['#000000','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#AECDAD'];
 	function Bar(x, y, length, dl, color, index, label, countryCode){
 		this.posX = x;
@@ -103,7 +104,7 @@ $(document).ready(function(){
 				this.previousIndex = this.index;
 				this.index = i;
 				if(Math.abs(this.previousIndex - this.index)>0.0001){
-					this.dy = (this.index-this.previousIndex)/20;
+					this.dy = (this.index-this.previousIndex)/10;
 				}else{
 					this.previousIndex = this.index;
 					this.dy = 0;
@@ -111,7 +112,7 @@ $(document).ready(function(){
 
 				this.tick = dateCounter;
 				
-				this.dx = (this.dl[dateCounter]-this.dl[dateCounter-1])/20;
+				this.dx = (this.dl[dateCounter]-this.dl[dateCounter-1])/10;
 				
 				
 				this.posY = (((this.previousIndex+this.dy) * (this.width+21)));
@@ -212,7 +213,7 @@ $(document).ready(function(){
 	}
 
 	function animateCircles(tickCounter){
-
+		
 		if(tickCounter!==tick && tickCounter<ticks){
 			tick = tickCounter
 			for (var i = 0; i < barArray.length; i++) {
@@ -222,27 +223,11 @@ $(document).ready(function(){
 				let month;
 				let date;
 				
-				// legends[tick][0]>9?date = legends[tick][0]:date = '0'+legends[tick][0];
+				const monthNames = ["--","January","February","March","April","May","June","July","August","September","October","November","December"];
 				date = legends[tick][0]
-				if(legends[tick][1] == 1){
-					month = 'Jan'
-				}else if(legends[tick][1] == 2){
-					month = 'Feb'
-				}else if(legends[tick][1] == 3){
-					month = 'Mar'
-				}else if(legends[tick][1] == 4){
-					month = 'Apr'
-				}else if(legends[tick][1] == 5){
-					month = 'May'
-				}else if(legends[tick][1] == 6){
-					month = 'Jun'
-				}
+				month = monthNames[parseInt(legends[tick][1])]
 				$('.legend1').text(`${month} ${date}, 2020`)
-				// june 18, 2020
-				// $('.stateName').addClass('active')
-				// $('.legendContainer').addClass('active');
 			}
-			// setTimeout(()=>{animateCircles(tickCounter+1)},secs)
 		}else{
 		}
 	}
@@ -281,17 +266,9 @@ $(document).ready(function(){
 		for (const country in dataTotal) {
 			if (dataTotal.hasOwnProperty(country) && country!=='Unassigned') {
 				const element = dataTotal[country];
-				// if(!countryCode[country]){
-				// 	console.log(country)
-				// }
-				// if(!dataDeath[country]){
-				// 	console.log('deth'+country)
-				// }
-				// if(dataDeath[country] && dataDeath[country][dataDeath[country].length-1]>50){
 				let color;
 				country == 'India'?color = '#009DFF':color = '#FF6E6E'
 				const contArr = [ 'INDIA','China','US','Russia','South Korea','Iran','Turkey','UK','Germany','Italy','Spain'];
-					// if(contArr.indexOf(country)>-1)
 					barArray.push(new Bar(
 						220,
 						count,
@@ -301,17 +278,14 @@ $(document).ready(function(){
 						count,
 						country,
 						null
-						// dataDeath[country]
 					));	
-				// }
 				
 			}
 			count++;
 		}
-		// ticks = count-1
 		setTimeout(()=>{
 			allTimeAnimate();
-			animateCircles(0);
+			animateCircles(62);
 		},2000)
 	};
 	init();
