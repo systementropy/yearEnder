@@ -32,7 +32,7 @@ $(document).ready(function(){
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 680000;
+    const heightFactor = 770000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -107,12 +107,12 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 700; counter+=20) {
+        for (let counter = 0; counter < 1200; counter+=50) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%50 === 0 && counter!==0){
+            if(counter%250 === 0 && counter!==0){
                 ctx.fillText(counter+'K', canWidAvailable + 30, 6+(canHgt*(1-(counter*1000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
@@ -122,7 +122,7 @@ $(document).ready(function(){
             
 
             ctx.beginPath();
-            counter%50 === 0?
+            counter%250 === 0?
                 ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),20,1)
                 :ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),10,1);
             ctx.fill();
