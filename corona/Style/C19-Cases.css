@@ -976,14 +976,18 @@ p.dataLine.red.deth{
 .strap2line.trendBar .header{
     height: 268px;
 }
-.strap2line .statContainer.canvasWith{
+/* .strap2line .statContainer.canvasWith{
     top: 365px;
 }
 .strap2line .stateName.canvasWith{
     top: 330px;
+} */
+.strap2line .legendVertical{
+    bottom: 170px;
+    right: -15px;
 }
 .strap2line #canvas{
-    top: 345px;
+    top: 460px;
 }
 .strap2line footer.horizontal{
     bottom: 20px;

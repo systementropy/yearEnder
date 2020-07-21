@@ -1,7 +1,7 @@
 $(document).ready(function(){
     const canvas = document.getElementById("canvas");
-    const canHgt = 560;
-    const canWidAvailable = 650;
+    const canHgt = 450;
+    let canWidAvailable = 675;
     const canWid = 740;
     canvas.style.height = canHgt+'px';
     canvas.style.width = canWid+'px';
@@ -43,11 +43,12 @@ $(document).ready(function(){
     var json = JSON.parse($.ajax({'url': "/data/data.json", 'async': false}).responseText);
     let dailyCumulative = json['cases_time_series'];
     console.log(dailyCumulative)
-    dailyCumulative = dailyCumulative.slice(62)
+    // dailyCumulative = dailyCumulative.slice(62)
     dailyCumulative.push(todayData[0])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/(dailyCumulative.length);
+    // canWidAvailable = widthStep*dailyCumulative.length
     function makeGraph(counter){
         if(counter<dailyCumulative.length){
             $('.legendContainer').addClass('active')
@@ -70,12 +71,12 @@ $(document).ready(function(){
             recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
             deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
             
-            if(counter>0){
-                const prevDateElement = dailyCumulative[counter-1];
-                let activePrevNum = prevDateElement['totalconfirmed']-prevDateElement['totalrecovered']-prevDateElement['totaldeceased'];
-                let recvPrevNum = prevDateElement['totalrecovered'];
-                // let recvPrevNum = prevDateElement['totalconfirmed'];
-                let deathPrevNum = prevDateElement['totaldeceased'];
+            if(counter>-1){
+                // const prevDateElement = dailyCumulative[counter-1];
+                // let activePrevNum = prevDateElement['totalconfirmed']-prevDateElement['totalrecovered']-prevDateElement['totaldeceased'];
+                // let recvPrevNum = prevDateElement['totalrecovered'];
+                // // let recvPrevNum = prevDateElement['totalconfirmed'];
+                // let deathPrevNum = prevDateElement['totaldeceased'];
                 ctx.lineCap = 'round';
                 
 
@@ -84,10 +85,10 @@ $(document).ready(function(){
                 ctx.fillStyle = confirmedColor;
                 ctx.rect(
 					(counter*widthStep),canHgt,
-					widthStep-1,-(canHgt*activeNum)/heightFactor
+					widthStep-1,-(canHgt*(activeNum/activeNum))
 				)
 				ctx.fill();
-				ctx.stroke();
+				// ctx.stroke();
                 ctx.closePath();
 
                 ctx.beginPath();
@@ -95,10 +96,10 @@ $(document).ready(function(){
                 ctx.fillStyle = deathColor;
                 ctx.rect(
 					(counter*widthStep),canHgt,
-					widthStep-1,-(canHgt*deathNum)/heightFactor
+					widthStep-1,-(canHgt*(deathNum/activeNum))
 				)
 				ctx.fill();
-				ctx.stroke();
+				// ctx.stroke();
                 ctx.closePath();
 
 
@@ -106,11 +107,11 @@ $(document).ready(function(){
 				ctx.strokeStyle = recoveredColor+'77'
                 ctx.fillStyle = recoveredColor;
                 ctx.rect(
-					(counter*widthStep),canHgt-(canHgt*deathNum)/heightFactor,
-					widthStep-1,-(canHgt*recvNum)/heightFactor
+					(counter*widthStep),canHgt-(canHgt*(deathNum/activeNum)),
+					widthStep-1,-(canHgt*(recvNum/activeNum))
 				)
 				ctx.fill();
-				ctx.stroke();
+				// ctx.stroke();
                 ctx.closePath();
 				
 				
@@ -135,24 +136,25 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 1200; counter+=50) {
+        for (let counter = 0; counter < 105; counter+=5) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%250 === 0 && counter!==0){
-                ctx.fillText(counter+'K', canWidAvailable + 30, 6+(canHgt*(1-(counter*1000/heightFactor))));
-                // ctx.fill();
-            }else if(counter===0){
-                ctx.fillText(counter+'K', canWidAvailable + 30, canHgt);
+            if(counter===0){
+                ctx.fillText(counter+'%', canWidAvailable + 25, canHgt);
+            }else if(counter===100){
+                ctx.fillText(counter+'%', canWidAvailable + 25, 12);
+            }else if(counter%25 === 0){
+                ctx.fillText(counter+'%', canWidAvailable + 25, 6+(canHgt*(1-(counter/100))));
             }
             ctx.closePath();
             
 
             ctx.beginPath();
-            counter%250 === 0?
-                ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),20,1)
-                :ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),10,1);
+            counter%25 === 0?
+                ctx.rect(canWidAvailable,(canHgt*(1-(counter/100))),20,1)
+                :ctx.rect(canWidAvailable,(canHgt*(1-(counter/100))),10,1);
             ctx.fill();
             ctx.closePath()
 
