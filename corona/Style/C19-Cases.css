@@ -964,9 +964,29 @@ p.dataLine.red.deth{
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
+    
 }
+
 .trendBar .canvasWith.statContainer,.trendBar .stateName{
     width: 500px;
+}
+.strap2line.trendBar .strap{
+    font: 700 28px/35px Montserrat;
+}
+.strap2line.trendBar .header{
+    height: 268px;
+}
+.strap2line .statContainer.canvasWith{
+    top: 365px;
+}
+.strap2line .stateName.canvasWith{
+    top: 330px;
+}
+.strap2line #canvas{
+    top: 345px;
+}
+.strap2line footer.horizontal{
+    bottom: 20px;
 }
 .trendBar .legendDataBlock.confirmed{
     width: 165px;
