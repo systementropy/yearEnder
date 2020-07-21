@@ -17,17 +17,17 @@ $(document).ready(function(){
     let counter = 0;
     let circleArray = [];
     let confirmedColorSwitch ='#E26666';
-    let confirmedColor ='#AFB6D0';
+    let confirmedColor ='#E26666';
     let recoveredColor ='#55ABEA';
-    let deathColor ='#ca9828';
+    let deathColor ='#525252';
     const todayData = [{
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "20 July ",
-        totalconfirmed: "1118043",
-        totaldeceased: "27497",
-        totalrecovered: "700087",
+        date: "21 July ",
+        totalconfirmed: "1155191",
+        totaldeceased: "28084",
+        totalrecovered: "724578",
     }]
     console.log(todayData);
     
@@ -59,46 +59,61 @@ $(document).ready(function(){
             $('.date').text(dateString[0])
             
             // let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
-            let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
-            // let recvNum = thisDateElement['totalrecovered'];
-            let recvNum = thisDateElement['totalconfirmed'];
+            let activeNum = thisDateElement['totalconfirmed']//-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
+            let recvNum = thisDateElement['totalrecovered'];
+            // let recvNum = thisDateElement['totalconfirmed'];
             let deathNum = thisDateElement['totaldeceased'];
 
             
             
             activeNum>=1000?$('.confirmedData').text((activeNum/1000).toFixed(1)+'K'):$('.confirmedData').text(activeNum)
             recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
+            deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
             
             if(counter>0){
                 const prevDateElement = dailyCumulative[counter-1];
                 let activePrevNum = prevDateElement['totalconfirmed']-prevDateElement['totalrecovered']-prevDateElement['totaldeceased'];
-                // let recvPrevNum = prevDateElement['totalrecovered'];
-                let recvPrevNum = prevDateElement['totalconfirmed'];
+                let recvPrevNum = prevDateElement['totalrecovered'];
+                // let recvPrevNum = prevDateElement['totalconfirmed'];
                 let deathPrevNum = prevDateElement['totaldeceased'];
                 ctx.lineCap = 'round';
                 
+
+                ctx.beginPath();
+				ctx.strokeStyle = confirmedColor+'77'
+                ctx.fillStyle = confirmedColor;
+                ctx.rect(
+					(counter*widthStep),canHgt,
+					widthStep-1,-(canHgt*activeNum)/heightFactor
+				)
+				ctx.fill();
+				ctx.stroke();
+                ctx.closePath();
+
+                ctx.beginPath();
+				ctx.strokeStyle = deathColor+'77'
+                ctx.fillStyle = deathColor;
+                ctx.rect(
+					(counter*widthStep),canHgt,
+					widthStep-1,-(canHgt*deathNum)/heightFactor
+				)
+				ctx.fill();
+				ctx.stroke();
+                ctx.closePath();
+
+
 				ctx.beginPath();
 				ctx.strokeStyle = recoveredColor+'77'
                 ctx.fillStyle = recoveredColor;
                 ctx.rect(
-					(counter*widthStep),canHgt,
+					(counter*widthStep),canHgt-(canHgt*deathNum)/heightFactor,
 					widthStep-1,-(canHgt*recvNum)/heightFactor
 				)
 				ctx.fill();
 				ctx.stroke();
                 ctx.closePath();
 				
-				ctx.beginPath();
-				ctx.strokeStyle = confirmedColorSwitch+'77'
-                ctx.fillStyle = confirmedColorSwitch;
-                ctx.rect(
-					(counter*widthStep),canHgt,
-					widthStep-1,-(canHgt*activeNum)/heightFactor
-				)
-				ctx.stroke();
-				ctx.fill();
 				
-                ctx.closePath();
                 
             }
             

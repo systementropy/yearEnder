@@ -210,10 +210,6 @@ body{
     transform: translateX(-50%);
     top: 135px;
 }
-.trendBar .headline{
-    top: 125px;
-    font: 400 56px/50px Cormorant;
-}
 .strap{
     position: absolute;
     top: 180px;
@@ -515,6 +511,7 @@ footer img{
     left: 50px;
     top: 335px;
 }
+
 .stateName.left{
     left: 0;
     top: 305px;
@@ -955,4 +952,31 @@ p.dataLine.red.deth{
 .infoBox .inner p span{
     color: #5A5A5A;
     font: 700 25px/40px Montserrat;
+}
+
+/* ============================================= trend bar =========================== */
+
+.trendBar .headline{
+    top: 125px;
+    font: 400 56px/50px Cormorant;
+}
+.trendBar .strap{
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.trendBar .canvasWith.statContainer,.trendBar .stateName{
+    width: 500px;
+}
+.trendBar .legendDataBlock.confirmed{
+    width: 165px;
+}
+.trendBar .legendDataBlock.recovered{
+    width: 182px;
+}
+.trendBar .legendDataBlock.death{
+    width: 140px;
+}
+p.dataLine.black{
+    background-color: #525252;
 }
