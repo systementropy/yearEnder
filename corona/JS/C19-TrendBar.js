@@ -43,7 +43,7 @@ $(document).ready(function(){
     var json = JSON.parse($.ajax({'url': "/data/data.json", 'async': false}).responseText);
     let dailyCumulative = json['cases_time_series'];
     console.log(dailyCumulative)
-    // dailyCumulative = dailyCumulative.slice(62)
+    dailyCumulative = dailyCumulative.slice(62)
     dailyCumulative.push(todayData[0])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
@@ -60,7 +60,8 @@ $(document).ready(function(){
             $('.date').text(dateString[0])
             
             // let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
-            let activeNum = thisDateElement['totalconfirmed']//-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
+            let totalNum = thisDateElement['totalconfirmed']
+            let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
             let recvNum = thisDateElement['totalrecovered'];
             // let recvNum = thisDateElement['totalconfirmed'];
             let deathNum = thisDateElement['totaldeceased'];
@@ -78,28 +79,15 @@ $(document).ready(function(){
                 // // let recvPrevNum = prevDateElement['totalconfirmed'];
                 // let deathPrevNum = prevDateElement['totaldeceased'];
                 ctx.lineCap = 'round';
-                
-
-                ctx.beginPath();
-				ctx.strokeStyle = confirmedColor+'77'
-                ctx.fillStyle = confirmedColor;
-                ctx.rect(
-					(counter*widthStep),canHgt,
-					widthStep-1,-(canHgt*(activeNum/activeNum))
-				)
-				ctx.fill();
-				// ctx.stroke();
-                ctx.closePath();
 
                 ctx.beginPath();
 				ctx.strokeStyle = deathColor+'77'
                 ctx.fillStyle = deathColor;
                 ctx.rect(
 					(counter*widthStep),canHgt,
-					widthStep-1,-(canHgt*(deathNum/activeNum))
+					widthStep,-(canHgt*(deathNum/totalNum))
 				)
 				ctx.fill();
-				// ctx.stroke();
                 ctx.closePath();
 
 
@@ -107,14 +95,22 @@ $(document).ready(function(){
 				ctx.strokeStyle = recoveredColor+'77'
                 ctx.fillStyle = recoveredColor;
                 ctx.rect(
-					(counter*widthStep),canHgt-(canHgt*(deathNum/activeNum)),
-					widthStep-1,-(canHgt*(recvNum/activeNum))
+					(counter*widthStep),canHgt-(canHgt*(deathNum/totalNum)),
+					widthStep,-(canHgt*(recvNum/totalNum))
 				)
 				ctx.fill();
-				// ctx.stroke();
                 ctx.closePath();
 				
-				
+                
+                ctx.beginPath();
+				ctx.strokeStyle = confirmedColor+'77'
+                ctx.fillStyle = confirmedColor;
+                ctx.rect(
+					(counter*widthStep),canHgt-(canHgt*(deathNum/totalNum))-(canHgt*(recvNum/totalNum)),
+					widthStep,-(canHgt*(activeNum/totalNum))
+				)
+				ctx.fill();
+                ctx.closePath();
                 
             }
             
