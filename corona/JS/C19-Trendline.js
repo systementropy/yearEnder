@@ -24,10 +24,10 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "04 July ",
-        totalconfirmed: "648315",
-        totaldeceased: "18655",
-        totalrecovered: "394227",
+        date: "22 July ",
+        totalconfirmed: "1192915",
+        totaldeceased: "28732",
+        totalrecovered: "753050",
     }]
     console.log(todayData);
     
@@ -44,7 +44,7 @@ $(document).ready(function(){
     let dailyCumulative = json['cases_time_series'];
     console.log(dailyCumulative)
     dailyCumulative = dailyCumulative.slice(62)
-    // dailyCumulative.push(todayData[0])
+    dailyCumulative.push(todayData[0])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
