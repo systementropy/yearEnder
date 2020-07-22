@@ -24,10 +24,10 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "21 July ",
-        totalconfirmed: "1155191",
-        totaldeceased: "28084",
-        totalrecovered: "724578",
+        date: "22 July ",
+        totalconfirmed: "1192915",
+        totaldeceased: "28732",
+        totalrecovered: "753050",
     }]
     console.log(todayData);
     
@@ -135,12 +135,12 @@ $(document).ready(function(){
         for (let counter = 0; counter < 105; counter+=5) {
             ctx.lineWidth =1;
             ctx.beginPath();
-            ctx.font = '500 18px Montserrat'
+            ctx.font = '500 16px Montserrat'
             ctx.textAlign = 'left';
             if(counter===0){
                 ctx.fillText(counter+'%', canWidAvailable + 25, canHgt);
             }else if(counter===100){
-                ctx.fillText(counter+'%', canWidAvailable + 25, 12);
+                ctx.fillText(counter+'%', canWidAvailable + 25, 11);
             }else if(counter%25 === 0){
                 ctx.fillText(counter+'%', canWidAvailable + 25, 6+(canHgt*(1-(counter/100))));
             }
