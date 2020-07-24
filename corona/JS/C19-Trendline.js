@@ -20,19 +20,24 @@ $(document).ready(function(){
     let confirmedColor ='#AFB6D0';
     let recoveredColor ='#55ABEA';
     let deathColor ='#ca9828';
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    let today = new Date();
+    let dateLiteral = today.getDate();
+    dateLiteral>9?dateLiteral=dateLiteral:dateLiteral='0'+dateLiteral
+
     const todayData = [{
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "22 July ",
-        totalconfirmed: "1192915",
-        totaldeceased: "28732",
-        totalrecovered: "753050",
+        date: dateLiteral+" "+monthNames[new Date().getMonth()],
+        totalconfirmed: "1238635",
+        totaldeceased: "29861",
+        totalrecovered: "782607",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 770000;
+    const heightFactor = 800000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;

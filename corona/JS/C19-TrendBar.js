@@ -20,19 +20,23 @@ $(document).ready(function(){
     let confirmedColor ='#E26666';
     let recoveredColor ='#55ABEA';
     let deathColor ='#525252';
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    let today = new Date();
+    let dateLiteral = today.getDate();
+    dateLiteral>9?dateLiteral=dateLiteral:dateLiteral='0'+dateLiteral
     const todayData = [{
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "22 July ",
-        totalconfirmed: "1192915",
-        totaldeceased: "28732",
-        totalrecovered: "753050",
+        date: dateLiteral+" "+monthNames[new Date().getMonth()],
+        totalconfirmed: "1238635",
+        totaldeceased: "29861",
+        totalrecovered: "782607",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 1200000;
+    const heightFactor = 1500000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -75,7 +79,7 @@ $(document).ready(function(){
             ctx.fillStyle = confirmedColor;
             ctx.rect(
                 (counter*widthStep),canHgt,
-                widthStep-1,-(canHgt*activeNum)/heightFactor
+                widthStep,-(canHgt*activeNum)/heightFactor
             )
             ctx.fill();
             ctx.stroke();
@@ -86,7 +90,7 @@ $(document).ready(function(){
             ctx.fillStyle = deathColor;
             ctx.rect(
                 (counter*widthStep),canHgt,
-                widthStep-1,-(canHgt*deathNum)/heightFactor
+                widthStep,-(canHgt*deathNum)/heightFactor
             )
             ctx.fill();
             ctx.stroke();
@@ -98,7 +102,7 @@ $(document).ready(function(){
             ctx.fillStyle = recoveredColor;
             ctx.rect(
                 (counter*widthStep),canHgt-(canHgt*deathNum)/heightFactor,
-                widthStep-1,-(canHgt*recvNum)/heightFactor
+                widthStep,-(canHgt*recvNum)/heightFactor
             )
             ctx.fill();
             ctx.stroke();
@@ -123,7 +127,7 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 1200; counter+=50) {
+        for (let counter = 0; counter < 1500; counter+=50) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
