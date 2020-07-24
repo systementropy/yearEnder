@@ -29,15 +29,23 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: dateLiteral+" "+monthNames[new Date().getMonth()],
+        date: "23 July",
         totalconfirmed: "1238635",
         totaldeceased: "29861",
         totalrecovered: "782607",
+    },{
+        dailyconfirmed: "424",
+        dailydeceased: "6",
+        dailyrecovered: "19",
+        date: dateLiteral+" "+monthNames[new Date().getMonth()],
+        totalconfirmed: "1287945",
+        totaldeceased: "30601",
+        totalrecovered: "817209",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 800000;
+    const heightFactor = 850000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -47,10 +55,10 @@ $(document).ready(function(){
     const countNum =[]
     var json = JSON.parse($.ajax({'url': "/data/data.json", 'async': false}).responseText);
     let dailyCumulative = json['cases_time_series'];
-    console.log(dailyCumulative)
     dailyCumulative = dailyCumulative.slice(62)
-    dailyCumulative.push(todayData[0])
-    // dailyCumulative.push(todayData[1])
+    for (let index = 0; index < todayData.length; index++) {
+        dailyCumulative.push(todayData[index]) 
+    }
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
     function makeGraph(counter){
