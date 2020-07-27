@@ -29,23 +29,15 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "23 July",
-        totalconfirmed: "1238635",
-        totaldeceased: "29861",
-        totalrecovered: "782607",
-    },{
-        dailyconfirmed: "424",
-        dailydeceased: "6",
-        dailyrecovered: "19",
-        date: dateLiteral+" "+monthNames[new Date().getMonth()],
-        totalconfirmed: "1287945",
-        totaldeceased: "30601",
-        totalrecovered: "817209",
+        date: "25 July",
+        totalconfirmed: "1336861",
+        totaldeceased: "31358",
+        totalrecovered: "849432",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 850000;
+    const heightFactor = 1040000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;

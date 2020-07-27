@@ -971,7 +971,8 @@ p.dataLine.red.deth{
     width: 500px;
 }
 .strap2line.trendBar .strap{
-    font: 700 28px/35px Montserrat;
+    font: 700 30px/35px Montserrat;
+    width: 80%;
 }
 .strap2line.trendBar .header{
     height: 268px;
