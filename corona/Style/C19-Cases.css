@@ -1005,3 +1005,39 @@ p.dataLine.red.deth{
 p.dataLine.black{
     background-color: #525252;
 }
+
+
+/* ============================================= death Cause =========================== */
+.mainBody.mainBody-8-9.causeOfDeath{
+    height: 981px;
+}
+.mainBody.mainBody-8-9.causeOfDeath .header.header200{
+    height: 233px;
+}
+.causeOfDeath .header.header200 .headline{
+    font: 400 52px/68px Cormorant;
+}
+.causeOfDeath .strap.strap2line{
+    width: 80%;
+    font: 700 27px/30px Montserrat;
+}
+
+.causeOfDeath .legend1{
+    display: flex;
+    margin: 0;
+}
+.causeOfDeath .legend1 span{
+    background-color: #DDD;
+    padding: 3px 0;
+    width: 20%;
+    transition: all 400ms ease-in-out;
+}
+.causeOfDeath .legend1 span.active{
+    background-color: #FF6E6E99;
+}
+.causeOfDeath #canvas.countryBar.worstStates{
+    top: 285px;
+}
+.causeOfDeath footer{
+    color: #777;
+}
