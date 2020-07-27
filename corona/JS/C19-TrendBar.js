@@ -28,10 +28,10 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "25 July",
-        totalconfirmed: "1336861",
-        totaldeceased: "31358",
-        totalrecovered: "849432",
+        date: "27 July",
+        totalconfirmed: "1435453",
+        totaldeceased: "32771",
+        totalrecovered: "917568",
     }]
     console.log(todayData);
     
@@ -65,7 +65,7 @@ $(document).ready(function(){
             $('.date').text(dateString[0])
             
             // let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
-            let activeNum = thisDateElement['totalconfirmed']//-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
+            let activeNum = thisDateElement['totalconfirmed']-thisDateElement['totalrecovered']-thisDateElement['totaldeceased'];
             let recvNum = thisDateElement['totalrecovered'];
             // let recvNum = thisDateElement['totalconfirmed'];
             let deathNum = thisDateElement['totaldeceased'];
@@ -75,6 +75,7 @@ $(document).ready(function(){
             activeNum>=1000?$('.confirmedData').text((activeNum/1000).toFixed(1)+'K'):$('.confirmedData').text(activeNum)
             recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
             deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
+            activeNum = thisDateElement['totalconfirmed']
             
             ctx.beginPath();
             ctx.strokeStyle = confirmedColor+'77'
