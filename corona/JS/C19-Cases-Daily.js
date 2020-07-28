@@ -45,53 +45,60 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",142,182,0,324,173,174,0,268],
-        ["Andhra Pradesh",48956,46301,1041,96298,41363,39935,933,80858],
-        ["Arunachal Pradesh",650,505,3,1158,745,393,3,1055],
-        ["Assam",8109,24040,79,32228,11722,21761,76,29921],
-        ["Bihar",13117,25815,244,39176,12887,22343,220,33926],
-        ["Chandigarh",302,572,13,887,548,535,13,823],
-        ["Chhattisgarh",2463,4944,43,7450,2863,4567,36,6731],
-        ["Dadra and Nagar Haveli and Daman and Diu",362,550,2,914,261,480,2,660],
-        ["Delhi",11904,114875,3827,130606,34460,110931,3777,128389],
-        ["Goa",1549,3277,35,4861,1886,2865,29,4541],
-        ["Gujarat",13131,40365,2326,55822,15240,38849,2278,53545],
-        ["Haryana",6556,24384,392,31332,9000,22953,382,29765],
-        ["Himachal Pradesh",966,1198,12,2176,1063,1145,11,1954],
-        ["Jammu and Kashmir",7680,9928,312,17920,8315,9217,296,16782],
-        ["Jharkhand",4486,3704,85,8275,4654,3299,69,7485],
-        ["Karnataka",58425,35838,1878,96141,53572,31347,1724,85870],
-        ["Kerala",9664,9300,61,19025,9813,7562,54,16995],
-        ["Ladakh",218,1063,4,1285,893,1035,2,1246],
-        ["Madhya Pradesh",7857,19132,811,27800,8983,17761,774,25878],
-        ["Maharashtra",148905,213238,13656,375799,154624,199967,13132,357121],
-        ["Manipur",681,1554,0,2235,1079,1491,0,2146],
-        ["Meghalaya",562,135,5,702,529,104,4,583],
-        ["Mizoram",168,193,0,361,168,185,0,361],
-        ["Nagaland",786,549,4,1339,745,529,1,1130],
-        ["Odisha",8456,16793,140,25389,7943,15201,120,22693],
-        ["Puducherry",1101,1645,40,2786,1024,1483,36,2515],
-        ["Punjab",4102,8810,306,13218,6163,8096,282,12216],
-        ["Rajasthan",9935,25353,621,35909,11750,24547,602,34178],
-        ["Sikkim",397,148,0,545,438,144,0,519],
-        ["Tamil Nadu",53703,156526,3494,213723,57405,143297,3320,199749],
-        ["Telangana",12264,41332,463,54059,13312,37462,378,45106],
-        ["Tripura",1526,2361,13,3900,2361,2131,11,3758],
-        ["Uttarakhand",2475,3566,63,6104,2935,3399,60,5446],
-        ["Uttar Pradesh",23921,41641,1426,66988,22301,37712,1348,60771],
-        ["West Bengal",19595,37751,1372,58718,20125,33532,1290,53973],
+        ["Andaman and Nicobar Islands",145,192,1,,142,182,0,],
+        ["Andhra Pradesh",51701,49558,1090,,48956,46301,1041,],
+        ["Arunachal Pradesh",662,574,3,,650,505,3,],
+        ["Assam",8088,25402,86,,8109,24040,79,],
+        ["Bihar",13461,27530,253,,13117,25815,244,],
+        ["Chandigarh",321,575,14,,302,572,13,],
+        ["Chhattisgarh",2529,5172,44,,2463,4944,43,],
+        ["Dadra and Nagar Haveli and Daman and Diu",380,564,2,,362,550,2,],
+        ["Delhi",10994,116372,3853,,11904,114875,3827,],
+        ["Goa",1673,3410,36,,1549,3277,35,],
+        ["Gujarat",13146,41380,2348,,13131,40365,2326,],
+        ["Haryana",6684,25046,397,,6556,24384,392,],
+        ["Himachal Pradesh",1040,1216,14,,966,1198,12,],
+        ["Jammu and Kashmir",7667,10402,321,,7680,9928,312,],
+        ["Jharkhand",4824,3770,89,,4486,3704,85,],
+        ["Karnataka",61827,37685,1953,,58425,35838,1878,],
+        ["Kerala",9619,10045,63,,9664,9300,61,],
+        ["Ladakh",236,1066,4,,218,1063,4,],
+        ["Madhya Pradesh",7978,19791,820,,7857,19132,811,],
+        ["Maharashtra",147896,221944,13883,,148905,213238,13656,],
+        ["Manipur",690,1596,0,,681,1554,0,],
+        ["Meghalaya",547,186,5,,562,135,5,],
+        ["Mizoram",191,193,0,,168,193,0,],
+        ["Nagaland",811,569,5,,786,549,4,],
+        ["Odisha",9371,17374,147,,8456,16793,140,],
+        ["Puducherry",1109,1720,43,,1101,1645,40,],
+        ["Punjab",4387,9064,318,,4102,8810,306,],
+        ["Rajasthan",10124,26123,631,,9935,25353,621,],
+        ["Sikkim",380,174,1,,397,148,0,],
+        ["Tamil Nadu",54896,162249,3571,,53703,156526,3494,],
+        ["Telangana",13753,42909,480,,12264,41332,463,],
+        ["Tripura",1565,2467,17,,1526,2361,13,],
+        ["Uttarakhand",2587,3675,66,,2475,3566,63,],
+        ["Uttar Pradesh",26204,42833,1456,,23921,41641,1426,],
+        ["West Bengal",19502,39917,1411,,19595,37751,1372,],
     ];
+    
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $('.legend1').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
     let confirmedData = 3024; let recoveredData=0; let deathsData =0; let activeTotal = 0;
     for (let index = 0; index < dataIndia.length; index++) {
-        const element = dataIndia[index];
+        const element = dataIndia[index]
+        element[4] = element[1]+element[2]+element[3]
+        element[8] = element[5]+element[6]+element[7]
+        // const element = element;
         confirmedData += element[8];
         recoveredData += element[6];
         deathsData += element[7];
-        element[5] = element[8] - element[6] - element[7]
+        dataIndia[index] = element
+        // element[5] = element[8] - element[6] - element[7]
     }
+
     console.log(confirmedData,recoveredData,deathsData)
+    console.log(dataIndia)
     confirmedData = 0; recoveredData=0; deathsData =0; activeTotal = 0;
     let colorArray = [
         [255, 235, 235],
@@ -118,31 +125,32 @@ $(document).ready(function(){
         let element = dataIndia[i];
         const perc = element[4]-element[8];
         let colorIndex;
-        if(perc<1){
+        if(perc==0){
             colorIndex = 0
-        }else if(perc>0 && perc <= 100){
+        }else if(perc>0 && perc <= 250){
             colorIndex = 1
-        }else if(perc>100 && perc <= 250){
-            colorIndex = 2
         }else if(perc>250 && perc <= 500){
-            colorIndex = 3
+            colorIndex = 2
         }else if(perc>500 && perc <= 750){
-            colorIndex = 4
+            colorIndex = 3
         }else if(perc>750 && perc <= 1000){
-            colorIndex = 5
+            colorIndex = 4
         }else if(perc>1000 && perc <= 2000){
-            colorIndex = 6
+            colorIndex = 5
         }else if(perc>2000 && perc <= 3000){
-            colorIndex = 7
+            colorIndex = 6
         }else if(perc>3000 && perc <= 4000){
-            colorIndex = 8
+            colorIndex = 7
         }else if(perc>4000 && perc <= 5000){
+            colorIndex = 8
+        }else if(perc>5000 && perc <= 6000){
             colorIndex = 9
-        }else if(perc>5000 && perc <= 7500){
+        }else if(perc>6000 && perc <= 7000){
             colorIndex = 10
         }else{
             colorIndex = 11
         }
+        console.log(colorIndex)
         // perc==0?colorIndex=0:colorIndex = colorIndex+1
         const color = [colorArray[colorIndex][0],colorArray[colorIndex][1],colorArray[colorIndex][2]]
         confirmedData += element[1]
@@ -167,7 +175,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 49931}, {//1435453
+                jQuery({ Counter: 0 }).animate({ Counter: 11874}, {//1435453
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -177,7 +185,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 31991}, {//917568
+                jQuery({ Counter: 0 }).animate({ Counter: 35175}, {//917568
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -187,7 +195,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 708}, {//32771
+                jQuery({ Counter: 0 }).animate({ Counter: 654}, {//32771
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
