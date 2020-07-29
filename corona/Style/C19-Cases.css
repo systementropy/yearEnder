@@ -424,6 +424,11 @@ footer.casesWithNote p:nth-child(4){
     width: max-content;
     transform: translateX(-113px);
 }
+.mainBodyDailyCases footer.casesWithNote p:nth-child(4){
+    width: max-content;
+    transform: translateX(-87px);
+    margin-top: 7px;
+}
 footer.casesWithNote p:nth-child(3){
     width: max-content;
     transform: translateX(-80px);
