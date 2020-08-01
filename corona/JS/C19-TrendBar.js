@@ -28,15 +28,15 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "31 July",
-        totalconfirmed: "1638870",
-        totaldeceased: "35747",
-        totalrecovered: "1057805",
+        date: "01 August",
+        totalconfirmed: "1695988",
+        totaldeceased: "36511",
+        totalrecovered: "1094374",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 1700000;
+    const heightFactor = 1800000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -130,7 +130,7 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 1700; counter+=50) {
+        for (let counter = 0; counter < 1800; counter+=50) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
