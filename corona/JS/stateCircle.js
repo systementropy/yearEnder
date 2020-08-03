@@ -57,41 +57,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",53,159,0,212],
-        ["Andhra Pradesh",32336,25574,758,58668],
-        ["Arunachal Pradesh",552,303,3,858],
-        ["Assam",7291,18033,58,25382],
-        ["Bihar",10220,18515,217,28952],
-        ["Chandigarh",221,518,12,751],
-        ["Chhattisgarh",1586,4114,29,5729],
-        ["Dadra and Nagar Haveli and Daman and Diu",240,463,2,705],
-        ["Delhi",15288,106118,3690,125096],
-        ["Goa",1552,2449,26,4027],
-        ["Gujarat",11760,36423,2196,50379],
-        ["Haryana",6146,20952,364,27462],
-        ["Himachal Pradesh",576,1077,11,1664],
-        ["Jammu and Kashmir",6540,8455,263,15258],
-        ["Jharkhand",3200,2904,55,6159],
-        ["Karnataka",44146,25459,1464,71069],
-        ["Kerala",8060,5890,44,13994],
-        ["Ladakh",186,1010,2,1198],
-        ["Madhya Pradesh",7082,16257,756,24095],
-        ["Maharashtra",132538,182217,12276,327031],
-        ["Manipur",615,1400,0,2015],
-        ["Meghalaya",416,70,4,490],
-        ["Mizoram",149,168,0,317],
-        ["Nagaland",545,485,0,1030],
-        ["Odisha",5344,13310,103,18757],
-        ["Puducherry",831,1318,30,2179],
-        ["Punjab",3237,7389,263,10889],
-        ["Rajasthan",8052,22744,577,31373],
-        ["Sikkim",222,108,0,330],
-        ["Tamil Nadu",51347,126670,2626,180643],
-        ["Telangana",9891,37385,429,47705],
-        ["Tripura",1397,1926,8,3331],
-        ["Uttarakhand",1497,3297,55,4849],
-        ["Uttar Pradesh",20204,31855,1229,53288],
-        ["West Bengal",17813,28035,1182,47030],
+        ["Andaman and Nicobar Islands",24580,0,0],
+        ["Andhra Pradesh",2065407,0,0],
+        ["Arunachal Pradesh",89031,0,0],
+        ["Assam",964499,0,0],
+        ["Bihar",612415,0,0],
+        ["Chandigarh",14493,0,0],
+        ["Chhattisgarh",331268,0,0],
+        ["Dadra and Nagar Haveli and Daman and Diu",42635,0,0],
+        ["Delhi",1063669,0,0],
+        ["Goa",134395,0,0],
+        ["Gujarat",814335,0,0],
+        ["Haryana",646286,0,0],
+        ["Himachal Pradesh",150186,0,0],
+        ["Jammu and Kashmir",654117,0,0],
+        ["Jharkhand",316332,0,0],
+        ["Karnataka",1418569,0,0],
+        ["Kerala",817078,0,0],
+        ["Ladakh",19860,0,0],
+        ["Madhya Pradesh",799500,0,0],
+        ["Maharashtra",2301514,0,0],
+        ["Manipur",85441,0,0],
+        ["Meghalaya",36341,0,0],
+        ["Mizoram",21523,0,0],
+        ["Nagaland",39292,0,0],
+        ["Odisha",556588,0,0],
+        ["Puducherry",41540,0,0],
+        ["Punjab",599651,0,0],
+        ["Rajasthan",1570989,0,0],
+        ["Sikkim",26473,0,0],
+        ["Tamil Nadu",2779062,0,0],
+        ["Telangana",487238,0,0],
+        ["Tripura",180684,0,0],
+        ["Uttar Pradesh",2623260,0,0],
+        ["Uttarakhand",175881,0,0],
+        ["West Bengal",934537,0,0],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
     let colorArray = [
@@ -173,11 +173,11 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 411133}, {
+                jQuery({ Counter: 0 }).animate({ Counter: 20202858}, {
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
-                        $this.text((this.Counter/1000).toFixed(1)+'K');
+                        $this.text((this.Counter/10000000).toFixed(2)+'Cr');
                     }
                 });
             });
@@ -226,7 +226,7 @@ $(document).ready(function(){
 					ctx.fillStyle = '#FEAAAACC'
 					ctx.strokeStyle = '#E26666FF'
 					// ctx.moveTo(-650+box.x+(box.width/2),-310+box.y+(box.height/2))
-					ctx.arc(-650+box.x+(box.width/2),-310+box.y+(box.height/2), (1.5*(Math.sqrt(element[1]/30))), 0, 2* Math.PI)
+					ctx.arc(-650+box.x+(box.width/2),-310+box.y+(box.height/2), (1.5*(Math.sqrt(element[1]/2000))), 0, 2* Math.PI)
 					ctx.fill()
 					ctx.stroke();
 					ctx.closePath()
