@@ -29,10 +29,10 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "01 August",
-        totalconfirmed: "1695988",
-        totaldeceased: "36511",
-        totalrecovered: "1094374",
+        date: "03 August",
+        totalconfirmed: "1803695",
+        totaldeceased: "38135",
+        totalrecovered: "1186203",
     }]
     console.log(todayData);
     
