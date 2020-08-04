@@ -45,41 +45,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",484,242,8,,0,226,7,636],
-        ["Andhra Pradesh",74404,82886,1474,,0,76614,1407,150209],
-        ["Arunachal Pradesh",699,996,3,,0,969,3,1673],
-        ["Assam",10415,32384,105,,0,31442,101,41726],
-        ["Bihar",20306,36389,329,,0,34994,309,54240],
-        ["Chandigarh",400,698,19,,0,683,18,1079],
-        ["Chhattisgarh",2482,6991,58,,0,6610,55,9385],
-        ["Dadra and Nagar Haveli and Daman and Diu",416,766,2,,0,725,2,1145],
-        ["Delhi",10356,123317,4004,,0,122131,3989,136716],
-        ["Goa",1809,4668,53,,0,4438,48,6193],
-        ["Gujarat",14572,46504,2486,,0,45699,2464,62463],
-        ["Haryana",6396,29690,433,,0,29080,428,35758],
-        ["Himachal Pradesh",1130,1559,14,,0,1502,14,2634],
-        ["Jammu and Kashmir",7893,13127,396,,0,12871,388,20972],
-        ["Jharkhand",7723,4682,118,,0,4513,113,11686],
-        ["Karnataka",74598,57725,2496,,0,53648,2412,129287],
-        ["Kerala",11366,14463,82,,0,13775,81,24742],
-        ["Ladakh",351,1108,7,,0,1108,7,1462],
-        ["Madhya Pradesh",9099,23550,886,,0,22969,876,32614],
-        ["Maharashtra",148843,276809,15576,,0,266883,15316,431719],
-        ["Manipur",1087,1737,7,,0,1699,6,2756],
-        ["Meghalaya",605,264,5,,0,252,5,856],
-        ["Mizoram",224,258,0,,0,253,0,468],
-        ["Nagaland",1282,648,5,,0,640,5,1831],
-        ["Odisha",12761,21955,197,,0,21274,187,33479],
-        ["Puducherry",1445,2309,52,,0,2198,51,3606],
-        ["Punjab",5964,11466,423,,0,11075,405,17063],
-        ["Rajasthan",12391,30710,703,,0,29977,690,42646],
-        ["Sikkim",368,289,1,,0,269,1,650],
-        ["Tamil Nadu",56998,196483,4132,,0,190966,4034,251738],
-        ["Telangana",18547,47590,540,,0,46502,530,64786],
-        ["Tripura",1742,3605,27,,0,3463,23,5233],
-        ["Uttarakhand",3070,4437,86,,0,4330,83,7447],
-        ["Uttar Pradesh",38023,53168,1730,,0,51334,1677,89048],
-        ["West Bengal",21108,52730,1678,,0,50517,1629,72777],
+        ["Andaman and Nicobar Islands",557,263,10,,484,242,8,],
+        ["Andhra Pradesh",76377,88672,1537,,74404,82886,1474,],
+        ["Arunachal Pradesh",692,1063,3,,699,996,3,],
+        ["Assam",11738,33428,109,,10415,32384,105,],
+        ["Bihar",20770,38228,330,,20306,36389,329,],
+        ["Chandigarh",434,706,19,,400,698,19,],
+        ["Chhattisgarh",2462,7256,61,,2482,6991,58,],
+        ["Dadra and Nagar Haveli and Daman and Diu",412,860,2,,416,766,2,],
+        ["Delhi",10207,124254,4021,,10356,123317,4004,],
+        ["Goa",1884,4876,56,,1809,4668,53,],
+        ["Gujarat",14599,47478,2508,,14572,46504,2486,],
+        ["Haryana",6263,30470,440,,6396,29690,433,],
+        ["Himachal Pradesh",1146,1658,14,,1130,1559,14,],
+        ["Jammu and Kashmir",7567,14032,407,,7893,13127,396,],
+        ["Jharkhand",8561,4792,125,,7723,4682,118,],
+        ["Karnataka",74477,62500,2594,,74598,57725,2496,],
+        ["Kerala",11511,15278,84,,11366,14463,82,],
+        ["Ladakh",369,1109,7,,351,1108,7,],
+        ["Madhya Pradesh",9286,24099,900,,9099,23550,886,],
+        ["Maharashtra",147324,287030,15842,,148843,276809,15576,],
+        ["Manipur",1147,1766,7,,1087,1737,7,],
+        ["Meghalaya",633,264,5,,605,264,5,],
+        ["Mizoram",235,266,0,,224,258,0,],
+        ["Nagaland",1467,657,5,,1282,648,5,],
+        ["Odisha",13016,23074,207,,12761,21955,197,],
+        ["Puducherry",1515,2411,56,,1445,2309,52,],
+        ["Punjab",6203,11882,442,,5964,11466,423,],
+        ["Rajasthan",12802,31458,715,,12391,30710,703,],
+        ["Sikkim",390,297,1,,368,289,1,],
+        ["Tamil Nadu",56698,202283,4241,,56998,196483,4132,],
+        ["Telangana",18708,49675,563,,18547,47590,540,],
+        ["Tripura",1802,3675,28,,1742,3605,27,],
+        ["Uttarakhand",3172,4538,90,,3070,4437,86,],
+        ["Uttar Pradesh",40191,55393,1778,,38023,53168,1730,],
+        ["West Bengal",21683,54818,1731,,21108,52730,1678,],
     ];
     
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -88,7 +88,7 @@ $(document).ready(function(){
     for (let index = 0; index < dataIndia.length; index++) {
         const element = dataIndia[index]
         element[4] = element[1]+element[2]+element[3]
-        // element[8] = element[5]+element[6]+element[7]
+        element[8] = element[5]+element[6]+element[7]
         // const element = element;
         confirmedData += element[8];
         recoveredData += element[6];
@@ -175,7 +175,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 11627}, {//1435453
+                jQuery({ Counter: 0 }).animate({ Counter: 6941}, {//1435453
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -185,7 +185,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 40574}, {//917568
+                jQuery({ Counter: 0 }).animate({ Counter: 44306}, {//917568
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -195,7 +195,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 771}, {//32771
+                jQuery({ Counter: 0 }).animate({ Counter: 803}, {//32771
                     duration: 1000,
                     easing: 'swing',
                     step: function () {

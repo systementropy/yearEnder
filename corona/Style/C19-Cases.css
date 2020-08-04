@@ -973,7 +973,7 @@ p.dataLine.red.deth{
 }
 
 .trendBar .canvasWith.statContainer,.trendBar .stateName{
-    width: 250px;
+    width: 500px;
 }
 .strap2line.trendBar .strap{
     font: 700 30px/35px Montserrat;
@@ -1017,7 +1017,7 @@ p.dataLine.black{
     height: 981px;
 }
 .mainBody.mainBody-8-9.causeOfDeath .header.header200{
-    height: 233px;
+    /* height: 233px; */
 }
 .causeOfDeath .header.header200 .headline{
     font: 400 52px/68px Cormorant;
@@ -1041,7 +1041,7 @@ p.dataLine.black{
     background-color: #FF6E6E99;
 }
 .causeOfDeath #canvas.countryBar.worstStates{
-    top: 285px;
+    top: 300px;
 }
 .causeOfDeath footer{
     color: #777;
