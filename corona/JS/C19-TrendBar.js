@@ -28,15 +28,15 @@ $(document).ready(function(){
         dailyconfirmed: "424",
         dailydeceased: "6",
         dailyrecovered: "19",
-        date: "05 August",
-        totalconfirmed: "1908254",
-        totaldeceased: "39795",
-        totalrecovered: "1282215",
+        date: "06 August",
+        totalconfirmed: "1964536",
+        totaldeceased: "40699",
+        totalrecovered: "1328336",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 1950000;
+    const heightFactor = 2100000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -75,21 +75,12 @@ $(document).ready(function(){
             activeNum>=1000?$('.confirmedData').text((activeNum/1000).toFixed(1)+'K'):$('.confirmedData').text(activeNum)
             recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
             deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
-            activeNum = thisDateElement['totalconfirmed']
+            // activeNum = thisDateElement['totalconfirmed']
             
-            ctx.beginPath();
-            ctx.strokeStyle = confirmedColor+'77'
-            ctx.fillStyle = confirmedColor;
-            ctx.rect(
-                (counter*widthStep),canHgt,
-                widthStep,-(canHgt*activeNum)/heightFactor
-            )
-            ctx.fill();
-            ctx.stroke();
-            ctx.closePath();
+            
 
             ctx.beginPath();
-            ctx.strokeStyle = deathColor+'77'
+            ctx.strokeStyle = deathColor
             ctx.fillStyle = deathColor;
             ctx.rect(
                 (counter*widthStep),canHgt,
@@ -101,7 +92,7 @@ $(document).ready(function(){
 
 
             ctx.beginPath();
-            ctx.strokeStyle = recoveredColor+'77'
+            ctx.strokeStyle = recoveredColor
             ctx.fillStyle = recoveredColor;
             ctx.rect(
                 (counter*widthStep),canHgt-(canHgt*deathNum)/heightFactor,
@@ -110,7 +101,18 @@ $(document).ready(function(){
             ctx.fill();
             ctx.stroke();
             ctx.closePath();
+            
 
+            ctx.beginPath();
+            ctx.strokeStyle = confirmedColor
+            ctx.fillStyle = confirmedColor;
+            ctx.rect(
+                (counter*widthStep),canHgt-((canHgt*deathNum+canHgt*recvNum))/heightFactor,
+                widthStep,-(canHgt*activeNum)/heightFactor
+            )
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
             
             setTimeout(()=>{
                 makeGraph(counter+1)
@@ -130,24 +132,24 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 2000; counter+=100) {
+        for (let counter = 0; counter < 21; counter+=1) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%500 === 0 && counter!==0){
-                ctx.fillText(counter+'K', canWidAvailable + 30, 6+(canHgt*(1-(counter*1000/heightFactor))));
+            if(counter%5 === 0 && counter!==0){
+                ctx.fillText(counter+'L', canWidAvailable + 30, 6+(canHgt*(1-(counter*100000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
-                ctx.fillText(counter+'K', canWidAvailable + 30, canHgt);
+                ctx.fillText(counter+'L', canWidAvailable + 30, canHgt);
             }
             ctx.closePath();
             
 
             ctx.beginPath();
-            counter%500 === 0?
-                ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),20,1)
-                :ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),10,1);
+            counter%5 === 0?
+                ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),20,1)
+                :ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),10,1);
             ctx.fill();
             ctx.closePath()
 
