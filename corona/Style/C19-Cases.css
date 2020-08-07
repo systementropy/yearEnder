@@ -1046,3 +1046,43 @@ p.dataLine.black{
 .causeOfDeath footer{
     color: #777;
 }
+
+
+/* ============================================= all countries =========================== */
+.mainBody.trendline.allCountries{
+    height: 900px;
+    width: 800px;
+    transform: scale(1);
+}
+.allCountries #canvas{
+    top: 300px;
+    left: 100px;
+}
+.allCountries #canvas2Label{
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    border-right: 1px solid;
+}
+.allCountries .liner{
+    top: 800px;
+    position: absolute;
+    width: 700px;
+    left: 100px;
+    border-top: 1px solid;
+    padding: 0;
+}
+.allCountries .horizontal.casesWithNote{
+    width: 100%;
+    right: 0;
+    justify-content: space-between;
+}
+.allCountries .horizontal.casesWithNote img{
+    margin: unset;
+}
+.allCountries.trendline .headline{
+    top: 112px;
+}
+.allCountries.trendline .strap{
+    text-transform: uppercase;
+}

@@ -89,8 +89,8 @@ $(document).ready(function(){
         ["Tamil Nadu",53486,0,0],
         ["Telangana",21417,0,0],
         ["Tripura",1957,0,0],
-        ["Uttar Pradesh",3027,0,0],
-        ["Uttarakhand",43654,0,0],
+        ["Uttarakhand",3027,0,0],
+        ["Uttar Pradesh",43654,0,0],
         ["West Bengal",23829,0,0],
     ];
     let confirmedTotal = 0; let recoveredTotal=0; let deathsTotal =0; let activeTotal = 0;
