@@ -3,7 +3,7 @@ $(document).ready(function(){
 	const legends = [
 		
 	];
-	const csvData = $.ajax({'url': "/data/datasets_557629_1366084_covid_19_india.csv", 'async': false}).responseText;
+	const csvData = $.ajax({'url': "/data/datasets_557629_1400958_covid_19_india.csv", 'async': false}).responseText;
 	let rowCsvData = csvData.split(/\r?\n|\r/);
 	const dateWiseData = {}
 	
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	ctx.scale(2,2);
 	const secs  = 20;
 	let globalCounter = (62*secs)-1;
-	const lengthFactor = 640;
+	const lengthFactor = 1100;
 	var colorArray =['#000000','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#AECDAD'];
 	function Bar(x, y, length, dl, color, index, label, countryCode){
 		this.posX = x;
@@ -125,12 +125,18 @@ $(document).ready(function(){
 				}
 				
 				this.previousIndex += this.dy;
-				if(this.dateCounter>1000){
-					this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
-				}else{
-					this.dateCounterLabel = this.dateCounter
-				}
-				
+				// if(this.dateCounter>1000){
+				// 	this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
+				// }else{
+				// 	this.dateCounterLabel = this.dateCounter
+				// }
+				this.dateCounter>1000000
+					?this.dateCounterLabel = (this.dateCounter/1000000).toFixed(2)+'M'
+					:this.dateCounter>1000
+						?this.dateCounterLabel = (this.dateCounter/1000).toFixed(1)+'K'
+						:this.dateCounterLabel = this.dateCounter
+
+			
 			}else{
 				
 

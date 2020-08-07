@@ -56,11 +56,13 @@ const distAddressMap = {
 }
 
 
+
 var map;
 var initMap = function(){
     geocoder = new google.maps.Geocoder();
     for (let index = 0; index < dataIndia.length; index++) {
         const element = dataIndia[index];
+        console.log(element);
         if(!distAddressMap[element[6]]){
             getLatLng(index,element[6],element[0])
         }
@@ -224,7 +226,7 @@ function getLatLng(i,address,name){
         if (status == google.maps.GeocoderStatus.OK){
             let lat = results[0].geometry.location.lat();
             let lng = results[0].geometry.location.lng();
-            console.log(results[0].geometry.location.lat());
+            // console.log(results[0].geometry.location.lat());
             if(name === address){
                 distAddressMap[address] = [lat,lng,name];
             }else{
