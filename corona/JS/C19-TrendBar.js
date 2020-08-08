@@ -32,6 +32,14 @@ $(document).ready(function(){
         totalconfirmed: "2027074",
         totaldeceased: "41585",
         totalrecovered: "1378105",
+    },{
+        dailyconfirmed: "",
+        dailydeceased: "",
+        dailyrecovered: "",
+        date: "08 August",
+        totalconfirmed: "2088611",
+        totaldeceased: "42518",
+        totalrecovered: "1427005",
     }]
     console.log(todayData);
     
@@ -46,13 +54,13 @@ $(document).ready(function(){
     const countNum =[]
     var json = JSON.parse($.ajax({'url': "/data/data.json", 'async': false}).responseText);
     let dailyCumulative = json['cases_time_series'];
-    console.log(dailyCumulative)
+    
     dailyCumulative = dailyCumulative.slice(62)
     for (let index = 0; index < todayData.length; index++) {
         dailyCumulative.push(todayData[index]) 
     }
     
-    console.log(dailyCumulative)
+    
     const widthStep = canWidAvailable/(dailyCumulative.length);
     function makeGraph(counter){
         if(counter<dailyCumulative.length){

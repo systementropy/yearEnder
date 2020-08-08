@@ -33,6 +33,14 @@ $(document).ready(function(){
         totalconfirmed: "2027074",
         totaldeceased: "41585",
         totalrecovered: "1378105",
+    },{
+        dailyconfirmed: "",
+        dailydeceased: "",
+        dailyrecovered: "",
+        date: "08 August",
+        totalconfirmed: "2088611",
+        totaldeceased: "42518",
+        totalrecovered: "1427005",
     }]
     console.log(todayData);
     
