@@ -45,41 +45,41 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",778,425,19,,752,355,16,],
-        ["Andhra Pradesh",84654,120464,1842,,82166,112870,1753,],
-        ["Arunachal Pradesh",720,1326,3,,700,1245,3,],
-        ["Assam",16555,38809,132,,15467,37224,126,],
-        ["Bihar",26453,44482,369,,23888,43537,363,],
-        ["Chandigarh",531,820,23,,530,777,20,],
-        ["Chhattisgarh",3002,8319,87,,2767,8088,77,],
-        ["Dadra and Nagar Haveli and Daman and Diu",421,1014,2,,416,973,2,],
-        ["Delhi",10409,128232,4082,,10348,127124,4059,],
-        ["Goa",2282,5595,70,,2095,5453,66,],
-        ["Gujarat",14443,51720,2605,,14766,50350,2583,],
-        ["Haryana",6143,33444,467,,6205,32640,458,],
-        ["Himachal Pradesh",1182,1954,14,,1168,1865,14,],
-        ["Jammu and Kashmir",7260,16218,449,,7310,15708,436,],
-        ["Jharkhand",8923,7391,151,,9017,6594,145,],
-        ["Karnataka",77694,84232,2998,,75076,80281,2897,],
-        ["Kerala",12451,19147,102,,12019,18333,97,],
-        ["Ladakh",411,1194,9,,411,1177,7,],
-        ["Madhya Pradesh",8715,27621,962,,8716,26902,946,],
-        ["Maharashtra",145889,327281,17092,,146612,316375,16792,],
-        ["Manipur",1530,1926,10,,1304,1905,8,],
-        ["Meghalaya",590,411,5,,640,345,5,],
-        ["Mizoram",277,289,0,,251,288,0,],
-        ["Nagaland",1826,824,7,,1755,819,6,],
-        ["Odisha",13605,28698,247,,13594,26888,235,],
-        ["Puducherry",1873,2914,75,,1743,2808,70,],
-        ["Punjab",7351,14040,539,,6715,13659,517,],
-        ["Rajasthan",13195,36195,767,,13108,35131,757,],
-        ["Sikkim",447,406,1,,475,353,1,],
-        ["Tamil Nadu",52759,227575,4690,,53486,221087,4571,],
-        ["Telangana",22568,54330,615,,21417,53239,601,],
-        ["Tripura",1878,4084,37,,1957,3860,36,],
-        ["Uttarakhand",3058,5731,112,,3027,5427,98,],
-        ["Uttar Pradesh",44563,66834,1981,,43654,63402,1918,],
-        ["West Bengal",24652,63060,1954,,23829,61023,1902,],
+        ["Andaman and Nicobar Islands",0,648,20,1490,0,500,20,1351],
+        ["Andhra Pradesh",0,138712,2036,227860,0,129615,1939,217040],
+        ["Arunachal Pradesh",0,1482,3,2155,0,1430,3,2117],
+        ["Assam",0,42325,145,58837,0,40591,140,57714],
+        ["Bihar",0,51158,387,79451,0,48243,382,75294],
+        ["Chandigarh",0,904,25,1515,0,872,24,1426],
+        ["Chhattisgarh",0,8809,96,12148,0,8582,89,11743],
+        ["Dadra and Nagar Haveli and Daman and Diu",0,1121,2,1564,0,1037,2,1456],
+        ["Delhi",0,130587,4111,145427,0,129362,4098,144127],
+        ["Goa",0,5995,75,8712,0,5802,72,8206],
+        ["Gujarat",0,54166,2652,70965,0,52855,2628,69869],
+        ["Haryana",0,34781,483,41635,0,34031,474,40843],
+        ["Himachal Pradesh",0,2181,15,3371,0,2081,14,3264],
+        ["Jammu and Kashmir",0,17003,472,24897,0,16667,459,24390],
+        ["Jharkhand",0,8838,177,18138,0,8123,155,17094],
+        ["Karnataka",0,93908,3198,178087,0,89238,3091,172102],
+        ["Kerala",0,21832,108,34331,0,20862,106,33120],
+        ["Ladakh",0,1222,9,1688,0,1214,9,1639],
+        ["Madhya Pradesh",0,29020,996,39025,0,28353,977,38157],
+        ["Maharashtra",0,351710,17757,515332,0,338362,17367,503084],
+        ["Manipur",0,2044,11,3753,0,1927,11,3635],
+        ["Meghalaya",0,490,6,1062,0,423,6,1023],
+        ["Mizoram",0,298,0,620,0,296,0,593],
+        ["Nagaland",0,904,8,2781,0,896,7,2688],
+        ["Odisha",0,31785,272,45927,0,30242,259,44193],
+        ["Puducherry",0,3201,87,5382,0,3054,80,5123],
+        ["Punjab",0,15319,586,23903,0,14880,562,22928],
+        ["Rajasthan",0,38235,789,52497,0,37163,778,51328],
+        ["Sikkim",0,494,1,866,0,470,1,860],
+        ["Tamil Nadu",0,238638,4927,296901,0,232618,4808,290907],
+        ["Telangana",0,57586,637,80751,0,55999,627,79495],
+        ["Tripura",0,4443,42,6208,0,4176,41,6146],
+        ["Uttarakhand",0,6134,125,9632,0,5963,117,9402],
+        ["Uttar Pradesh",0,72650,2069,122609,0,69833,2028,118038],
+        ["West Bengal",0,67120,2059,95554,0,65124,2005,92615],
     ];
     
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -87,8 +87,8 @@ $(document).ready(function(){
     let confirmedData = 3024; let recoveredData=0; let deathsData =0; let activeTotal = 0;
     for (let index = 0; index < dataIndia.length; index++) {
         const element = dataIndia[index]
-        element[4] = element[1]+element[2]+element[3]
-        element[8] = element[5]+element[6]+element[7]
+        // element[4] = element[1]+element[2]+element[3]
+        // element[8] = element[5]+element[6]+element[7]
         // const element = element;
         confirmedData += element[8];
         recoveredData += element[6];
@@ -175,7 +175,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 61537}, {//1435453
+                jQuery({ Counter: 0 }).animate({ Counter: 62064}, {//1435453
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -185,7 +185,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 48900}, {//917568
+                jQuery({ Counter: 0 }).animate({ Counter: 54859}, {//917568
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -195,7 +195,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 933}, {//32771
+                jQuery({ Counter: 0 }).animate({ Counter: 1007}, {//32771
                     duration: 1000,
                     easing: 'swing',
                     step: function () {

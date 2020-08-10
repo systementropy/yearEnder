@@ -26,21 +26,13 @@ $(document).ready(function(){
     dateLiteral>9?dateLiteral=dateLiteral:dateLiteral='0'+dateLiteral
 
     const todayData = [{
-        dailyconfirmed: "424",
-        dailydeceased: "6",
-        dailyrecovered: "19",
-        date: "07 August",
-        totalconfirmed: "2027074",
-        totaldeceased: "41585",
-        totalrecovered: "1378105",
-    },{
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "08 August",
-        totalconfirmed: "2088611",
-        totaldeceased: "42518",
-        totalrecovered: "1427005",
+        date: "10 August",
+        totalconfirmed: "2215074",
+        totaldeceased: "44386",
+        totalrecovered: "1535743",
     }]
     console.log(todayData);
     
