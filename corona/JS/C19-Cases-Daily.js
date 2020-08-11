@@ -45,60 +45,64 @@ $(document).ready(function(){
     };
     
     var dataIndia = [
-        ["Andaman and Nicobar Islands",0,648,20,1490,0,500,20,1351],
-        ["Andhra Pradesh",0,138712,2036,227860,0,129615,1939,217040],
-        ["Arunachal Pradesh",0,1482,3,2155,0,1430,3,2117],
-        ["Assam",0,42325,145,58837,0,40591,140,57714],
-        ["Bihar",0,51158,387,79451,0,48243,382,75294],
-        ["Chandigarh",0,904,25,1515,0,872,24,1426],
-        ["Chhattisgarh",0,8809,96,12148,0,8582,89,11743],
-        ["Dadra and Nagar Haveli and Daman and Diu",0,1121,2,1564,0,1037,2,1456],
-        ["Delhi",0,130587,4111,145427,0,129362,4098,144127],
-        ["Goa",0,5995,75,8712,0,5802,72,8206],
-        ["Gujarat",0,54166,2652,70965,0,52855,2628,69869],
-        ["Haryana",0,34781,483,41635,0,34031,474,40843],
-        ["Himachal Pradesh",0,2181,15,3371,0,2081,14,3264],
-        ["Jammu and Kashmir",0,17003,472,24897,0,16667,459,24390],
-        ["Jharkhand",0,8838,177,18138,0,8123,155,17094],
-        ["Karnataka",0,93908,3198,178087,0,89238,3091,172102],
-        ["Kerala",0,21832,108,34331,0,20862,106,33120],
-        ["Ladakh",0,1222,9,1688,0,1214,9,1639],
-        ["Madhya Pradesh",0,29020,996,39025,0,28353,977,38157],
-        ["Maharashtra",0,351710,17757,515332,0,338362,17367,503084],
-        ["Manipur",0,2044,11,3753,0,1927,11,3635],
-        ["Meghalaya",0,490,6,1062,0,423,6,1023],
-        ["Mizoram",0,298,0,620,0,296,0,593],
-        ["Nagaland",0,904,8,2781,0,896,7,2688],
-        ["Odisha",0,31785,272,45927,0,30242,259,44193],
-        ["Puducherry",0,3201,87,5382,0,3054,80,5123],
-        ["Punjab",0,15319,586,23903,0,14880,562,22928],
-        ["Rajasthan",0,38235,789,52497,0,37163,778,51328],
-        ["Sikkim",0,494,1,866,0,470,1,860],
-        ["Tamil Nadu",0,238638,4927,296901,0,232618,4808,290907],
-        ["Telangana",0,57586,637,80751,0,55999,627,79495],
-        ["Tripura",0,4443,42,6208,0,4176,41,6146],
-        ["Uttarakhand",0,6134,125,9632,0,5963,117,9402],
-        ["Uttar Pradesh",0,72650,2069,122609,0,69833,2028,118038],
-        ["West Bengal",0,67120,2059,95554,0,65124,2005,92615],
+        ["Andaman and Nicobar Islands",896,709,20,,0,648,20,1490],
+        ["Andhra Pradesh",87773,145636,2116,,0,138712,2036,227860],
+        ["Arunachal Pradesh",636,1592,3,,0,1482,3,2155],
+        ["Assam",18000,43586,151,,0,42325,145,58837],
+        ["Bihar",28065,54088,397,,0,51158,387,79451],
+        ["Chandigarh",566,1004,25,,0,904,25,1515],
+        ["Chhattisgarh",3336,9013,99,,0,8809,96,12148],
+        ["Dadra and Nagar Haveli and Daman and Diu",444,1167,2,,0,1121,2,1564],
+        ["Delhi",10346,131657,4131,,0,130587,4111,145427],
+        ["Goa",2741,6208,80,,0,5995,75,8712],
+        ["Gujarat",14055,55304,2672,,0,54166,2652,70965],
+        ["Haryana",6448,35492,489,,0,34781,483,41635],
+        ["Himachal Pradesh",1241,2205,17,,0,2181,15,3371],
+        ["Jammu and Kashmir",7514,17375,478,,0,17003,472,24897],
+        ["Jharkhand",8811,9724,188,,0,8838,177,18138],
+        ["Karnataka",79916,99126,3312,,0,93908,3198,178087],
+        ["Kerala",12784,22616,115,,0,21832,108,34331],
+        ["Ladakh",471,1237,9,,0,1222,9,1688],
+        ["Madhya Pradesh",9202,29674,1015,,0,29020,996,39025],
+        ["Maharashtra",148042,358421,18050,,0,351710,17757,515332],
+        ["Manipur",1720,2122,11,,0,2044,11,3753],
+        ["Meghalaya",610,498,6,,0,490,6,1062],
+        ["Mizoram",300,323,0,,0,298,0,620],
+        ["Nagaland",2030,973,8,,0,904,8,2781],
+        ["Odisha",14148,33021,286,,0,31785,272,45927],
+        ["Puducherry",2180,3355,89,,0,3201,87,5382],
+        ["Punjab",8550,15735,604,,0,15319,586,23903],
+        ["Rajasthan",13810,39060,800,,0,38235,789,52497],
+        ["Sikkim",399,510,1,,0,494,1,866],
+        ["Tamil Nadu",53099,244675,5041,,0,238638,4927,296901],
+        ["Telangana",22628,59374,645,,0,57586,637,80751],
+        ["Tripura",1673,4656,43,,0,4443,42,6208],
+        ["Uttarakhand",3586,6301,134,,0,6134,125,9632],
+        ["Uttar Pradesh",47878,76724,2120,,0,72650,2069,122609],
+        ["West Bengal",26031,70328,2100,,0,67120,2059,95554],
     ];
     
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     $('.legend1').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am');
     let confirmedData = 3024; let recoveredData=0; let deathsData =0; let activeTotal = 0;
+    let diffDataconfirmed=0,diffDatarecovered=0,diffDatadeaths=0;
     for (let index = 0; index < dataIndia.length; index++) {
         const element = dataIndia[index]
-        // element[4] = element[1]+element[2]+element[3]
+        element[4] = element[1]+element[2]+element[3]
         // element[8] = element[5]+element[6]+element[7]
         // const element = element;
         confirmedData += element[8];
+        diffDataconfirmed += (element[4]-element[8])
         recoveredData += element[6];
+        diffDatarecovered += (element[2]-element[6])
         deathsData += element[7];
+        diffDatadeaths += (element[3]-element[7])
         dataIndia[index] = element
         // element[5] = element[8] - element[6] - element[7]
     }
 
     console.log(confirmedData,recoveredData,deathsData)
-    console.log(dataIndia)
+    console.log(diffDataconfirmed,diffDatarecovered,diffDatadeaths)
     confirmedData = 0; recoveredData=0; deathsData =0; activeTotal = 0;
     let colorArray = [
         [255, 235, 235],
@@ -175,7 +179,7 @@ $(document).ready(function(){
             $('.stateName').html('India');
             $('.confirmedData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 62064}, {//1435453
+                jQuery({ Counter: 0 }).animate({ Counter: diffDataconfirmed},{
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -185,7 +189,7 @@ $(document).ready(function(){
             });
             $('.recoveredData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 54859}, {//917568
+                jQuery({ Counter: 0 }).animate({ Counter: diffDatarecovered},{
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
@@ -195,7 +199,7 @@ $(document).ready(function(){
             });
             $('.deathsData').each(function () {
                 var $this = $(this);
-                jQuery({ Counter: 0 }).animate({ Counter: 1007}, {//32771
+                jQuery({ Counter: 0 }).animate({ Counter: diffDatadeaths},{
                     duration: 1000,
                     easing: 'swing',
                     step: function () {
