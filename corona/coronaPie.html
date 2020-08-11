@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Style/C19-Cases.css">
+</head>
+<body>
+    <span class="texty">TEXTY</span>
+    <div class="mainBody coronaPie">
+        <div class="header">
+            <div class="logo">
+                <img src="../Design/covid_pandemic.png" alt="" srcset="">
+            </div>
+            <div class="headline">CORONAVIRUS - Total Cases</div>
+            <!-- <div class="strap ">Breakup of active cases, recoveries and deaths</div> -->
+            
+        </div>
+        <div class="legend1">Top 5 Countries</div>
+        <div class="bgContent bgFull"></div>
+        <canvas id="canvas"></canvas>
+        <canvas id="labels"></canvas>
+        <div class="canvasWith stateName">
+            
+        </div>
+        <div class="canvasWith statContainer">
+            <div class="legendDataBlock ">
+                <p class="red dataLine"></p>
+                <span class="nameLabel">USA</span>
+                <h1 class="data confirmedData">52.5L</h1>
+            </div>
+            <div class="legendDataBlock ">
+                <p class="blue dataLine"></p>
+                <span class="nameLabel">Brazil</span>
+                <h1 class="data recoveredData">30.6L</h1>
+            </div>
+            <div class="legendDataBlock ">
+                <p class="black dataLine"></p>
+                <span class="nameLabel">India</span>
+                <h1 class="data deathData">22.7L</h1>
+            </div>
+            <div class="legendDataBlock ">
+                <p class="black dataLine"></p>
+                <span class="nameLabel">Russia</span>
+                <h1 class="data deathData">9.0L</h1>
+            </div>
+            <div class="legendDataBlock ">
+                <p class="black dataLine"></p>
+                <span class="nameLabel">S Africa</span>
+                <h1 class="data deathData">5.6L</h1>
+            </div>
+        </div>
+        <div class="legendVertical">Share of cases</div>
+        <footer class="horizontal">
+            <p>Source: worldometers.info;</p>
+            <img src="../1logo.png" alt="">
+        </footer>
+        <div class="end"></div>
+    </div>
+    <script src="../jquery.js"></script>
+    <script src="./JS/coronaPie.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
