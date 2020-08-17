@@ -134,20 +134,20 @@ console.log(dataIndia)
 dataIndia.sort(function(a,b){
     return ((b[1])-(a[1]))
 })
-dataIndia = dataIndia.slice(1,26)
-dataIndia.sort(function(a,b){
-    return ((a[1])-(b[1]))
-})
-console.log(dataIndia);
+// dataIndia = dataIndia.slice(1,26)
+// dataIndia.sort(function(a,b){
+//     return ((a[1])-(b[1]))
+// })
+// console.log(dataIndia);
 
-// let csvContent = "data:text/csv;charset=utf-8," 
-// + dataIndia.map(e => e.join(",")).join("\n");
-// var encodedUri = encodeURI(csvContent);
-// var link = document.createElement("a");
-// link.setAttribute("href", encodedUri);
-// link.setAttribute("download", "my_data.csv");
-// document.body.appendChild(link); // Required for FF
-// link.click();
+let csvContent = "data:text/csv;charset=utf-8," 
++ dataIndia.map(e => e.join(",")).join("\n");
+var encodedUri = encodeURI(csvContent);
+var link = document.createElement("a");
+link.setAttribute("href", encodedUri);
+link.setAttribute("download", "my_data.csv");
+document.body.appendChild(link); // Required for FF
+link.click();
 
 function drawRegionsMap(counter) {
     if(distAddressMap[dataIndia[counter][6]]){
