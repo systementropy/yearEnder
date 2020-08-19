@@ -833,3 +833,190 @@ colorblack{
     font-weight: 500;
     color:#f07c7e;
 }
+
+/* ==================================== Sky Scrapers */
+.mainBodySky{
+    height: 800px;
+}
+.mainBodySky .header.headerSky{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0 15px;
+}
+.mainBodySky .headline{
+    position: static;
+    color: #FE7F7F;
+    transform:translateX(0%);
+    width: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.mainBodySky .headline::before{
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+    background: #2B2A2A;
+    transition: all 1000ms ease-out;
+}
+.mainBodySky.active .headline::before{
+    transform: translateX(100%);
+}
+.mainBodySky .strap{
+    color: #FFF;
+    position: static;
+    transform:translateX(0%);
+    opacity: 0;
+    transition: all 1000ms ease-out;
+}
+.mainBodySky.active .strap{
+    opacity: 1;
+    transition: all 400ms ease-out 600ms;
+}
+.mainBody.mainBodySky .end{
+    bottom: 0;
+}
+.mainBodySky .footerRIL{
+    bottom: 20px;
+}
+.mainBodySky #canvas{
+    position: static;
+}
+.indiaSVG {
+    position: absolute;
+    width: 100%;
+    top: 162px;
+    height: 550px;
+    opacity: 0;
+    transform-origin: center bottom;
+    transform: rotate(0deg);
+    transition: all 1000ms ease-out 1000ms;
+}
+.mainBodySky.active .indiaSVG {
+    transform: rotateX(62deg);
+    opacity: 1;
+}
+.indiaSVG object {
+    max-width: 100%;
+    max-height: unset;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
+    transition: all 1000ms ease-out 1000ms;
+}
+.scrapperCont {
+    position: relative;
+    height: 530px;
+    z-index: 10;
+}
+.scrapperCont>div{
+    position: absolute;
+    width: 40px;
+    height: 0px;
+    background: transparent;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 1000ms ease-out;
+}
+.scrapperCont>div.active{
+    opacity: 1;
+}
+.Mumbai{
+    top: 435px;
+    left: 183px;
+}
+.Bangalore {
+    top: 479px;
+    left: 272px;
+}
+.Kolkata {
+    left: 493px;
+    top: 389px;
+}
+.Noida{
+    left: 284px;
+    top: 319px;
+}
+.Gurgaon {
+    top: 312px;
+    left: 240px;
+}
+.Hyderabad {
+    top: 439px;
+    left: 315px;
+}
+.scrapperCont>div::before {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    /* background: #0003; */
+    height: 1px;
+    transform: translateX(-50%) rotateX(2deg);
+    left: 50%;
+    box-shadow: 0px 0px 5px 2px #000;
+    z-index: -1;
+}
+.scrapperCont>div::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    min-height: 100%;
+    height: 10px;
+    transform: translateY(-0%);
+    left: 0%;
+    background: #FF6E6E;
+    background-image: linear-gradient(to right bottom, #FF6E6E,rgba(51, 51, 51, 1)),url(./bld.jpg);
+    background-repeat: no-repeat,repeat;
+    background-blend-mode: multiply;
+    background-size: cover, 40px 40px;
+    background-position: center, left center;
+    z-index: -1;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 5px;
+}
+.scrapperCont>div.Mumbai::after {
+    border-top-right-radius: 10px;
+}
+.mainBodySky .statContainer {
+    position: absolute;
+    top: 225px;
+    right: 0;
+    width: 300px;
+    height: 100px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #5A5A5A77;
+}
+.mainBodySky .stateName{
+    position: static;
+    width: 100%;
+}
+.mainBodySky .statContainer>div:nth-child(2){
+    border: none;
+}
+.mainBodySky .legend1{
+    opacity: 0;
+    transition: all 250ms ease-out 1000ms;
+}
+.mainBodySky.active .legend1{
+    opacity: 1;
+}
+.mainBodySky .statContainer{
+    opacity: 0;
+    transition: all 250ms ease-out 1000ms;
+}
+.mainBodySky.active .statContainer{
+    opacity: 1;
+}
