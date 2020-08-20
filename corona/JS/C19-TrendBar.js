@@ -28,15 +28,15 @@ $(document).ready(function(){
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "19 August",
-        totalconfirmed: "2767273",
-        totaldeceased: "52889",
-        totalrecovered: "2037870",
+        date: "20 August",
+        totalconfirmed: "2836925",
+        totaldeceased: "53866",
+        totalrecovered: "2096664",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 2790000;
+    const heightFactor = 2950000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
