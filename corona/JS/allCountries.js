@@ -66,7 +66,7 @@ let tick;
 
 colorArray =['#105499','#EB638D','#9DBF57','rgba(0, 51, 68, 0.4)','rgba(221, 34, 34, 0.4)','rgba(158, 127, 4, 0.5)','rgba(158, 127, 4, 0.5)','rgba(34, 187, 255, 0.4)','rgba(102, 17, 153, 0.4)','rgba(0, 136, 136, 0.4)','rgba(220,220,220,0.4)','rgba(221, 34, 34, 0.5)'];
 const colorCont = {"India":"#9DBF57","US":"#105499","Brazil":"#EB638D"}
-let secs = 100;
+let secs = 10;
 function getRandom (min, max){
 	return Math.floor(Math.random() * (max - min) + min);
 }
@@ -101,23 +101,56 @@ function Bar(x, y, length, dl, color, index, label,offset){
 	}else{
 		this.lineWidth = 1;
 	}
-	this.update = function(i,dateCounter){
-		this.index = i;
-		this.tick = dateCounter
-		this.dateCounter =this.dl[dateCounter]; 
-		this.length = 5+(this.dl[dateCounter]);
-		this.posY = 1+ (this.index * (this.width + 2));
-		if(this.dateCounter>1000){
-			this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
+	this.update = function(i,dateCounter,barIndex){
+		if(barIndex === 999){
+			this.index = i;
+			this.tick = dateCounter
+			this.dateCounter =this.dl[dateCounter]; 
+			this.length = 5+(this.dl[dateCounter]);
+			this.posY = 1+ (this.index * (this.width + 2));
+			if(this.dateCounter>1000){
+				this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
+			}else{
+				this.dateCounterLabel = this.dateCounter
+			}
+			// this.valY = Math.log10(this.dl[this.tick]-dataTotalOld['recovered'][this.label][this.tick]-dataTotalOld['deaths'][this.label][this.tick]);
+			this.valY = Math.log10(this.dl[this.tick]);
+			this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
+			this.draw();
+		}else if(this.index !== barIndex){
+
+			this.lineWidth = 1;
+			this.color = '#9995';
+			for (let datesCount = 0; datesCount < ticks; datesCount++) {
+				
+				this.tick = datesCount
+				this.dateCounter =this.dl[datesCount]; 
+				this.length = 5+(this.dl[datesCount]);
+				this.posY = 1+ (this.index * (this.width + 2));
+				
+				this.valY = Math.log10(this.dl[this.tick]);
+				this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
+				this.draw();
+			}
 		}else{
-			this.dateCounterLabel = this.dateCounter
+
+			this.lineWidth = 5;
+			this.color = '#F00';
+			for (let datesCount = 0; datesCount < ticks; datesCount++) {
+				
+				this.tick = datesCount
+				this.dateCounter =this.dl[datesCount]; 
+				this.length = 5+(this.dl[datesCount]);
+				this.posY = 1+ (this.index * (this.width + 2));
+				
+				this.valY = Math.log10(this.dl[this.tick]);
+				this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
+				this.draw(true);
+			}
 		}
-		// this.valY = Math.log10(this.dl[this.tick]-dataTotalOld['recovered'][this.label][this.tick]-dataTotalOld['deaths'][this.label][this.tick]);
-		this.valY = Math.log10(this.dl[this.tick]);
-		this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
-		this.draw();
+		
 	};
-	this.draw = function(){
+	this.draw = function(label){
 		if(this.tick>0){
 			ctx.beginPath();
 			ctx.strokeStyle = this.color;
@@ -133,7 +166,7 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			
 		}
 		
-		if(tick == this.dl.length-1){
+		if(this.tick == this.dl.length-1){
 			ctx.beginPath();
 			ctx.fillStyle = '#555'
 			ctx.font = '500 15px/19px Montserrat';
@@ -149,6 +182,15 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			ctx.fill();
 			ctx.closePath();
 		}
+		if(label==true && this.tick == this.dl.length-1){
+			ctx.beginPath();
+			ctx.fillStyle = '#555'
+			ctx.font = '500 15px/19px Montserrat';
+			ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			ctx.closePath();
+
+			
+		}
 
 		ctx.beginPath();
 		ctx.fillStyle = this.color;
@@ -159,12 +201,12 @@ function Bar(x, y, length, dl, color, index, label,offset){
 	this.update();
 }
 
-function animateCircles(tickCounter){
+function animateCircles(tickCounter, indexCountry){
 	ctx.setLineDash([])
-	if(tickCounter!==tick && tickCounter<ticks){
+	if(tickCounter!==tick && tickCounter<ticks && indexCountry === 9999){
 		tick = tickCounter
 		for (var i = 0; i < barArray.length; i++) {
-			barArray[i].update(i,tick);
+			barArray[i].update(i,tick,999);
 		}
 		if((tickCounter+1)>9){
 			$('.date').text((tickCounter+1))
@@ -176,8 +218,18 @@ function animateCircles(tickCounter){
 		}
 		// $('.stateName').addClass('active')
 		$('.legendContainer').addClass('active');
-		setTimeout(()=>{animateCircles(tickCounter+1)},secs)
+		setTimeout(()=>{animateCircles(tickCounter+1,9999)},secs)
 	}else{
+		ctx.setLineDash([])
+		indexCountry===9999?indexCountry=-1:'';
+		if(indexCountry<barArray.length){
+
+			ctx.clearRect(0,0,canWid,canHgt)
+			for (var i = 0; i < barArray.length; i++) {
+				barArray[i].update(i,tickCounter,indexCountry);
+			}
+			setTimeout(()=>{animateCircles(tickCounter,indexCountry+1)},secs *100)			
+		}
 	}
 	
 }
@@ -239,8 +291,13 @@ var init = function(label){
 			
 		}
 		count++;
+		
 	}
-	
+	console.log(barArray);
+	barArray.sort(function(a,b){
+        return ((b.dl[b.dl.length-1])-(a.dl[a.dl.length-1]))
+	})
+	console.log(barArray);
 	ctx.beginPath();
 	// ctx.setLineDash([1,5]);
 	ctx.lineWidth =1;
@@ -278,7 +335,7 @@ var init = function(label){
 	
 	ctx.setLineDash([])
 	setTimeout(()=>{
-		animateCircles(0);
+		animateCircles(0,9999);
 	},100)
 };
 setTimeout(()=>{

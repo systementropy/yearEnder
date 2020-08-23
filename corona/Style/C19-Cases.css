@@ -872,10 +872,10 @@ p.dataLine.red{
     justify-content: space-between;
 }
 .dailyCasesBar .stateName.canvasWith{
-    width: 200px;
+    width: 250px;
 }
 .dailyCasesBar .statContainer.canvasWith{
-    width: 200px;
+    width: 250px;
 }
 p.dataLine.red.deth{
     background-color: #a01e1e;
