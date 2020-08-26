@@ -97,7 +97,7 @@ const mapOptions = {
 let initForMap = false;
 const coordinateObj = {};
 var dataIndia = [['District Name','Confirmed','Recovered','Deceassed','Tested']];
-var jsondata = JSON.parse($.ajax({'url': "/data/citydata.json", 'async': false}).responseText);
+var jsondata = JSON.parse($.ajax({'url': "/data/citydatanew.json", 'async': false}).responseText);
 for (const state in jsondata) {
     if (jsondata.hasOwnProperty(state)) {
         const element = jsondata[state].districts;
@@ -145,7 +145,7 @@ let csvContent = "data:text/csv;charset=utf-8,"
 var encodedUri = encodeURI(csvContent);
 var link = document.createElement("a");
 link.setAttribute("href", encodedUri);
-link.setAttribute("download", "my_data.csv");
+link.setAttribute("download", "citydata - "+(new Date().getDate())+", "+(monthNames[new Date().getMonth()])+", 2020+.csv");
 document.body.appendChild(link); // Required for FF
 link.click();
 
