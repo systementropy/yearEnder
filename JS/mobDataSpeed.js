@@ -76,9 +76,13 @@ function init(num){
 	console.log('here'+num);
 	var cuboids = $(".cuboid");
 	if(num<cuboids.length){
-		cuboids.eq(num).attr("value", (techVal[num][0]/10000) * 100);
+
+		for (var i = 0; i <= num; i++) {
+			cuboids.eq(i).attr("value", (techVal[i][0]/techVal[num][0]) * 100);
+			updateCuboid(cuboids.eq(i),(techVal[i][0]/techVal[num][0]) * 100)
+		}
 		$('.speedData').eq(num).addClass('active')
-		updateCuboid(cuboids.eq(num),(techVal[num][0]/10000) * 100)
+		
 		setTimeout(() => {
 			init(num+1)
 		},1000)
