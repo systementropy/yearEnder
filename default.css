@@ -756,6 +756,8 @@ colorblack{
 }
 .mainBodyMap .legend1{
     height: 57px;
+    margin-top: 0;
+    font: Bold 20px/57px Montserrat;
 }
 
 .notes {
