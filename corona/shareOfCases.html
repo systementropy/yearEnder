@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Style/C19-Cases.css">
+</head>
+<body>
+    <span class="texty">TEXTY</span>
+    <div class="mainBody trendline trendlineShare">
+        <div class="header">
+            <div class="logo">
+                <img src="../Design/covid_pandemic.png" alt="" srcset="">
+            </div>
+            <div class="headline">INDIA'S SHARE IN GLOBAL COVID-19 CASES</div>
+            <!-- <div class="strap strapCap">Covid recoveries now exceed active cases in India</div> -->
+            <div class="strap strapCap">&nbsp;</div>
+        </div>
+        <div class="bgContent bgFull"></div>
+        <canvas id="canvas"></canvas>
+        <div class="canvasWith stateName">
+            <span class="month">Jan</span>
+            <span class="date">22</span>,
+            <span class="year">2020</span>
+        </div>
+        <div class="canvasWith statContainer">
+            <div class="legendDataBlock recovered">
+                <!-- <p class="blue dataLine"></p> -->
+                <span class="nameLabel">Total cases<br>globally</span>
+                <h1 class="data recoveredData"></h1>
+            </div>
+            <div class="legendDataBlock confirmed">
+                <!-- <p class="red dataLine"></p> -->
+                <span class="nameLabel">India's share<br>in cases</span>
+                <h1 class="data confirmedData"></h1>
+            </div>
+        </div>
+        <div class="liner">
+			<span class="before">JAN 22</span>
+			<span class="after">AUG 30</span>
+		</div>
+        <div class="legendVertical">India's share in total cases globally</div>
+        <footer class="horizontal">
+            <p>Source: Johns hopkins csse</p>
+            <img src="../1logo.png" alt="">
+        </footer>
+        <div class="end"></div>
+    </div>
+    <script src="../jquery.js"></script>
+    <script src="./JS/shareOfCases.js"></script>
+</body>
+</html>
