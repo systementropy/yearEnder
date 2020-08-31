@@ -55,13 +55,15 @@ ctx2.strokeStyle = '#FFFDDD';
 ctx2.fillStyle = 'rgba(255,0,0,1)';
 canvas2Label.width = canWidLbl;
 canvas2Label.height = canHgtLbl;
+const ticks = 200;
+$('.after').text('DAY '+ticks)
 
-const widthStep = canWid/160;
+const widthStep = canWid/ticks;
 var maxArr = 20;
 var barArray = [];
 let count = 0; 
 let slideLabel;
-const ticks = 160;
+
 let tick;
 
 colorArray =['#105499','#EB638D','#9DBF57','rgba(0, 51, 68, 0.4)','rgba(221, 34, 34, 0.4)','rgba(158, 127, 4, 0.5)','rgba(158, 127, 4, 0.5)','rgba(34, 187, 255, 0.4)','rgba(102, 17, 153, 0.4)','rgba(0, 136, 136, 0.4)','rgba(220,220,220,0.4)','rgba(221, 34, 34, 0.5)'];
@@ -136,21 +138,29 @@ function Bar(x, y, length, dl, color, index, label,offset){
 
 			this.lineWidth = 5;
 			this.color = '#F00';
-			for (let datesCount = 0; datesCount < ticks; datesCount++) {
+			// for (let datesCount = 0; datesCount < ticks; datesCount++) {
 				
-				this.tick = datesCount
-				this.dateCounter =this.dl[datesCount]; 
-				this.length = 5+(this.dl[datesCount]);
+				this.tick = dateCounter
+				this.dateCounter =this.dl[dateCounter]; 
+				this.length = 5+(this.dl[dateCounter]);
 				this.posY = 1+ (this.index * (this.width + 2));
 				
 				this.valY = Math.log10(this.dl[this.tick]);
 				this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
+				if(dateCounter>0){
+					const grRate = (Math.log(this.dateCounter/this.dl[dateCounter-1])*100).toFixed(1)+'%'
+					const dblRate = (Math.log(2)/Math.log(this.dateCounter/this.dl[dateCounter-1]))
+					$('.confirmedData').text(grRate)
+					$('.recoveredData').text(dblRate.toFixed(1)+' days')
+					$('.stateName').text('India : Day '+dateCounter)
+				}
+				
 				this.draw(true);
-			}
+			// }
 		}
 		
 	};
-	this.draw = function(label){
+	this.draw = function(labelName){
 		if(this.tick>0){
 			ctx.beginPath();
 			ctx.strokeStyle = this.color;
@@ -170,9 +180,13 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			ctx.beginPath();
 			ctx.fillStyle = '#555'
 			ctx.font = '500 15px/19px Montserrat';
-			if (this.label == 'India' || this.label == 'US' || this.label == 'Brazil'){
-				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
-			}
+			textAlign = 'left';
+			// if (this.label == 'US' || this.label == 'Brazil'){
+			// 	ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			// }else if(this.label == 'India'){
+			// 	textAlign = 'right';
+			// 	ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			// }
 			
 			ctx.closePath();
 
@@ -182,10 +196,16 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			ctx.fill();
 			ctx.closePath();
 		}
-		if(label==true && this.tick == this.dl.length-1){
+		if(labelName==true && this.tick == this.dl.length-1){
 			ctx.beginPath();
 			ctx.fillStyle = '#555'
 			ctx.font = '500 15px/19px Montserrat';
+			if (this.label == 'US' || this.label == 'Brazil'){
+				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			}else if(this.label == 'India'){
+				textAlign = 'right';
+				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			}
 			ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
 			ctx.closePath();
 
@@ -228,12 +248,19 @@ function animateCircles(tickCounter, indexCountry){
 			for (var i = 0; i < barArray.length; i++) {
 				barArray[i].update(i,tickCounter,indexCountry);
 			}
-			setTimeout(()=>{animateCircles(tickCounter,indexCountry+1)},secs *100)			
+			// console.log(tickcounter);
+			setTimeout(()=>{/*animateCircles(tickCounter,2);*/plotIndia(0,0)},secs *100)			
 		}
 	}
 	
 }
-
+function plotIndia(num,tickL){
+	const arr = barArray[2];
+	if(num<arr.dl.length){
+		barArray[2].update(2,num,2);
+		setTimeout(()=>{plotIndia(num+1)},50)
+	}
+}
 var init = function(label){
 	slideLabel = label;
 	barArray = [];

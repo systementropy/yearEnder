@@ -1049,6 +1049,21 @@ p.dataLine.black{
 
 
 /* ============================================= all countries =========================== */
+.allCountries.onlyCountries #canvas{
+    top: 300px;
+    left: 100px;
+}
+.allCountries.onlyCountries #canvas2Label{
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    right: auto;
+    border-right: 1px solid;
+    border-left: none;
+}
+.allCountries.onlyCountries .liner{
+    left: 100px;
+}
 .mainBody.trendline.allCountries{
     height: 900px;
     width: 800px;
@@ -1101,7 +1116,7 @@ p.dataLine.black{
     top: 290px;
 }
 .allCountries .statContainer::after{
-    content: 'As of today';
+    /* content: 'As of today'; */
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -1148,4 +1163,39 @@ p.dataLine.black{
 }
 .coronaPie .canvasWith.statContainer .legendDataBlock:nth-child(4)  p.dataLine{
     background-color: #55EAAB;
+}
+
+.trendlineShare .statContainer.canvasWith{
+    width: 420px;
+    height: auto;
+    left: 50px;
+    top: 335px;
+}
+.trendlineShare .stateName.canvasWith{
+    width: 420px;
+}
+.trendlineShare .legendDataBlock .nameLabel{
+    height: auto;
+}
+.trendlineShare .statContainer>div:nth-child(2){
+    border-right: none;
+    border-bottom: 5px solid #E26666;
+}
+
+.trendlineShare .legendVertical{
+    width: 265px;
+}
+.trendlineShare .liner {
+    position: absolute;
+    bottom: 111px;
+    width: 650px;
+    padding: 0;
+}
+.trendline.trendlineShare .headline{
+    width: 67%;
+    font: 400 46px/40px Cormorant;
+}
+.allCountries .stateName,.allCountries .statContainer{
+    left: 125px;
+    /* transform: translateY(-35px); */
 }
