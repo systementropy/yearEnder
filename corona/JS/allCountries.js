@@ -55,17 +55,15 @@ ctx2.strokeStyle = '#FFFDDD';
 ctx2.fillStyle = 'rgba(255,0,0,1)';
 canvas2Label.width = canWidLbl;
 canvas2Label.height = canHgtLbl;
-const ticks = 200;
-$('.after').text('DAY '+ticks)
 
+
+const ticks = 200;
+let tick;
 const widthStep = canWid/ticks;
 var maxArr = 20;
 var barArray = [];
 let count = 0; 
 let slideLabel;
-
-let tick;
-
 colorArray =['#105499','#EB638D','#9DBF57','rgba(0, 51, 68, 0.4)','rgba(221, 34, 34, 0.4)','rgba(158, 127, 4, 0.5)','rgba(158, 127, 4, 0.5)','rgba(34, 187, 255, 0.4)','rgba(102, 17, 153, 0.4)','rgba(0, 136, 136, 0.4)','rgba(220,220,220,0.4)','rgba(221, 34, 34, 0.5)'];
 const colorCont = {"India":"#9DBF57","US":"#105499","Brazil":"#EB638D"}
 let secs = 10;
@@ -91,11 +89,11 @@ function Bar(x, y, length, dl, color, index, label,offset){
 	this.positionY;
 	this.valYPrev;
 	this.positionYPrev;
-	this.offset = offset;
+	this.offset = 3;
 	if(this.offset == 4){
 		this.heightF =3;
 	}else{
-		this.heightF =4;
+		this.heightF =2.4;
 	}
 	if (this.label == 'India' || this.label == 'US' || this.label == 'Brazil'){
 		this.lineWidth = 5;
@@ -107,72 +105,97 @@ function Bar(x, y, length, dl, color, index, label,offset){
 		if(barIndex === 999){
 			this.index = i;
 			this.tick = dateCounter
-			this.dateCounter =this.dl[dateCounter]; 
-			this.length = 5+(this.dl[dateCounter]);
+			this.dateCounter =(this.dl[dateCounter]-this.dl[dateCounter-1]); 
+			this.length = 5+((this.dl[dateCounter]-this.dl[dateCounter-1]));
 			this.posY = 1+ (this.index * (this.width + 2));
 			if(this.dateCounter>1000){
 				this.dateCounterLabel = parseFloat(this.dateCounter/1000).toFixed(1)+'K';
 			}else{
 				this.dateCounterLabel = this.dateCounter
 			}
-			// this.valY = Math.log10(this.dl[this.tick]-dataTotalOld['recovered'][this.label][this.tick]-dataTotalOld['deaths'][this.label][this.tick]);
-			this.valY = Math.log10(this.dl[this.tick]);
+			// this.valY = Math.log10(this.dl[this.tick]-this.dl[this.tick-1]-dataTotalOld['recovered'][this.label][this.tick]-dataTotalOld['deaths'][this.label][this.tick]);
+			this.valY = Math.log10(this.dl[this.tick]-this.dl[this.tick-1]);
 			this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
 			this.draw();
 		}else if(this.index !== barIndex){
-
-			this.lineWidth = 1;
-			this.color = '#9995';
+			if(this.label === 'India'){
+				this.lineWidth = 5;
+				this.color = '#FFA2A2';
+			}else{
+				this.lineWidth = 1;
+				this.color = '#9995';
+			}
+			
 			for (let datesCount = 0; datesCount < ticks; datesCount++) {
 				
 				this.tick = datesCount
-				this.dateCounter =this.dl[datesCount]; 
-				this.length = 5+(this.dl[datesCount]);
+				this.dateCounter =(this.dl[datesCount]-this.dl[datesCount-1]); 
+				this.length = 5+((this.dl[datesCount]-this.dl[datesCount-1]));
 				this.posY = 1+ (this.index * (this.width + 2));
 				
-				this.valY = Math.log10(this.dl[this.tick]);
+				this.valY = Math.log10(this.dl[this.tick]-this.dl[this.tick-1]);
 				this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
 				this.draw();
 			}
 		}else{
 
-			this.lineWidth = 5;
-			this.color = '#F00';
-			// for (let datesCount = 0; datesCount < ticks; datesCount++) {
+			this.lineWidth = 2;
+			this.color = '#70000077';
+			for (let datesCount = 0; datesCount < ticks; datesCount++) {
 				
-				this.tick = dateCounter
-				this.dateCounter =this.dl[dateCounter]; 
-				this.length = 5+(this.dl[dateCounter]);
+				this.tick = datesCount
+				this.dateCounter =(this.dl[datesCount]-this.dl[datesCount-1]); 
+				this.length = 5+((this.dl[datesCount]-this.dl[datesCount-1]));
 				this.posY = 1+ (this.index * (this.width + 2));
 				
-				this.valY = Math.log10(this.dl[this.tick]);
+				this.valY = Math.log10(this.dl[this.tick]-this.dl[this.tick-1]);
 				this.positionY = canHgt - (this.valY-this.offset)*(canHgt/this.heightF);
-				if(dateCounter>0){
-					const grRate = (Math.log(this.dateCounter/this.dl[dateCounter-1])*100).toFixed(1)+'%'
-					const dblRate = (Math.log(2)/Math.log(this.dateCounter/this.dl[dateCounter-1]))
-					$('.confirmedData').text(grRate)
-					$('.recoveredData').text(dblRate.toFixed(1)+' days')
-					$('.stateName').text('India : Day '+dateCounter)
-				}
-				
 				this.draw(true);
-			// }
+			}
 		}
 		
 	};
-	this.draw = function(labelName){
+	this.draw = function(label){
 		if(this.tick>0){
-			ctx.beginPath();
-			ctx.strokeStyle = this.color;
-			ctx.lineWidth = this.lineWidth
-			// this.valYPrev = Math.log10(this.dl[this.tick-1]-dataTotalOld['recovered'][this.label][this.tick-1]-dataTotalOld['deaths'][this.label][this.tick-1]);
-			this.valYPrev = Math.log10(this.dl[this.tick-1]);
-			this.positionYPrev = canHgt - (this.valYPrev-this.offset)*(canHgt/this.heightF);
+			if(this.label !== 'India' && label ){
+				ctx.beginPath();
+				ctx.strokeStyle = this.color;
+				ctx.lineWidth = this.lineWidth
+				// this.valYPrev = Math.log10(this.dl[this.tick-1]-dataTotalOld['recovered'][this.label][this.tick-1]-dataTotalOld['deaths'][this.label][this.tick-1]);
+				this.valYPrev = Math.log10(this.dl[this.tick-1]-this.dl[this.tick-2]);
+				this.positionYPrev = canHgt - (this.valYPrev-this.offset)*(canHgt/this.heightF);
 
-			ctx.moveTo((widthStep*(this.tick-1)),this.positionYPrev);
-			ctx.lineTo((widthStep*this.tick),this.positionY)
-			ctx.stroke();
-			ctx.closePath();
+				// ctx.moveTo((widthStep*(this.tick-1)),this.positionYPrev);
+				// ctx.lineTo((widthStep*this.tick),this.positionY)
+				ctx.rect(widthStep*this.tick,this.positionY,widthStep,canHgt-this.positionY)
+				ctx.fill();
+				ctx.closePath();
+			}else if(this.label === 'India' && label ){
+				ctx.beginPath();
+				ctx.strokeStyle = this.color;
+				ctx.lineWidth = this.lineWidth
+				// this.valYPrev = Math.log10(this.dl[this.tick-1]-dataTotalOld['recovered'][this.label][this.tick-1]-dataTotalOld['deaths'][this.label][this.tick-1]);
+				this.valYPrev = Math.log10(this.dl[this.tick-1]-this.dl[this.tick-2]);
+				this.positionYPrev = canHgt - (this.valYPrev-this.offset)*(canHgt/this.heightF);
+
+				// ctx.moveTo((widthStep*(this.tick-1)),this.positionYPrev);
+				// ctx.lineTo((widthStep*this.tick),this.positionY)
+				ctx.rect(widthStep*this.tick,this.positionY,widthStep,canHgt-this.positionY)
+				ctx.stroke();
+				ctx.closePath();
+			}else{
+				ctx.beginPath();
+				ctx.strokeStyle = this.color;
+				ctx.lineWidth = this.lineWidth
+				this.valYPrev = Math.log10(this.dl[this.tick-1]-this.dl[this.tick-2]);
+				this.positionYPrev = canHgt - (this.valYPrev-this.offset)*(canHgt/this.heightF);
+				ctx.moveTo((widthStep*(this.tick-1)),this.positionYPrev);
+				ctx.lineTo((widthStep*this.tick),this.positionY)
+				// ctx.rect(widthStep*this.tick,this.positionY,widthStep,canHgt-this.positionY)
+				ctx.stroke();
+				ctx.closePath();
+			}
+			
 			
 		}
 		
@@ -180,13 +203,9 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			ctx.beginPath();
 			ctx.fillStyle = '#555'
 			ctx.font = '500 15px/19px Montserrat';
-			textAlign = 'left';
-			// if (this.label == 'US' || this.label == 'Brazil'){
-			// 	ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
-			// }else if(this.label == 'India'){
-			// 	textAlign = 'right';
-			// 	ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
-			// }
+			if (this.label == 'India' || this.label == 'US' || this.label == 'Brazil'){
+				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
+			}
 			
 			ctx.closePath();
 
@@ -196,16 +215,10 @@ function Bar(x, y, length, dl, color, index, label,offset){
 			ctx.fill();
 			ctx.closePath();
 		}
-		if(labelName==true && this.tick == this.dl.length-1){
+		if(label==true && this.tick == this.dl.length-1){
 			ctx.beginPath();
 			ctx.fillStyle = '#555'
 			ctx.font = '500 15px/19px Montserrat';
-			if (this.label == 'US' || this.label == 'Brazil'){
-				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
-			}else if(this.label == 'India'){
-				textAlign = 'right';
-				ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
-			}
 			ctx.fillText(this.label,widthStep*this.tick+10,this.positionY+3);
 			ctx.closePath();
 
@@ -246,21 +259,16 @@ function animateCircles(tickCounter, indexCountry){
 
 			ctx.clearRect(0,0,canWid,canHgt)
 			for (var i = 0; i < barArray.length; i++) {
+				
 				barArray[i].update(i,tickCounter,indexCountry);
+				barArray[2].update(i,tickCounter,indexCountry);
 			}
-			// console.log(tickcounter);
-			setTimeout(()=>{/*animateCircles(tickCounter,2);*/plotIndia(0,0)},secs *100)			
+			setTimeout(()=>{animateCircles(tickCounter,indexCountry+1)},secs *100)			
 		}
 	}
 	
 }
-function plotIndia(num,tickL){
-	const arr = barArray[2];
-	if(num<arr.dl.length){
-		barArray[2].update(2,num,2);
-		setTimeout(()=>{plotIndia(num+1)},50)
-	}
-}
+
 var init = function(label){
 	slideLabel = label;
 	barArray = [];
@@ -297,15 +305,15 @@ var init = function(label){
 	tckarr = [1,10,100,1000,10000,100000,1000000,10000000]
 	txtarr = [1,10,100,'1K','10K','1L','10L','100L']
 	
-	tckarr = [10,20,40,1000,2000,4000,10000,20000,40000,100000,200000,400000,1000000,2000000,4000000,10000000]
-	txtarr = [10,'','','1K','','','10K','','','1L','','','10L','','','100L']
+	tckarr = [10,20,40,100,1000,2000,4000,10000,20000,40000,100000,200000,400000,1000000,2000000,4000000,10000000]
+	txtarr = [10,'','','100','1K','','','10K','','','1L','','','10L','','','100L']
 
 	grarr = [100,41.42,25.992,18.92,14.87,12.246,10.4,9.05,8,7.177,4.73,3.526,2.81];
 	numarr = [12,25,38,50,65,75,87,93,97,99];
 	circArr = [-1.4222678110138751, -1.273731075093857, -1.1252091723954274, -0.9766617502434156, -0.89, -0.79,-0.75,-0.70,-0.65,-0.60,-0.44890210054182716,-0.3365894965960431,-0.2691779250647427]
 	dtdarr = [1,2,3,4,5,6,7,8,9,10,15,20,25,14,15,16]
 	offset = 3;
-	heightF = 4;
+	heightF = 2.4;
 	factor = 1000;
 	
 	for (const country in dataTotalOld[label]) {
@@ -318,13 +326,13 @@ var init = function(label){
 			}
 			
 		}
-		count++;
-		
+		count++;	
 	}
 	console.log(barArray);
 	barArray.sort(function(a,b){
         return ((b.dl[b.dl.length-1])-(a.dl[a.dl.length-1]))
 	})
+	barArray = barArray.slice(0,10)
 	console.log(barArray);
 	ctx.beginPath();
 	// ctx.setLineDash([1,5]);
@@ -364,7 +372,7 @@ var init = function(label){
 	ctx.setLineDash([])
 	setTimeout(()=>{
 		animateCircles(0,9999);
-	},100)
+	},1000)
 };
 setTimeout(()=>{
 	init('confirmed');
