@@ -28,15 +28,15 @@ $(document).ready(function(){
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "23 August",
-        totalconfirmed: "3044940",
-        totaldeceased: "56706",
-        totalrecovered: "2280566",
+        date: "05 September",
+        totalconfirmed: "4023179",
+        totaldeceased: "69561",
+        totalrecovered: "3107223",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 3150000;
+    const heightFactor = 4150000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -72,9 +72,15 @@ $(document).ready(function(){
 
             
             
-            activeNum>=1000?$('.confirmedData').text((activeNum/1000).toFixed(1)+'K'):$('.confirmedData').text(activeNum)
-            recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
-            deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
+            
+            activeNum>=100000?$('.confirmedData').text((activeNum/100000).toFixed(1)+'L')
+                :activeNum>=1000?$('.confirmedData').text((activeNum/1000).toFixed(1)+'K'):$('.confirmedData').text(activeNum)
+            
+            recvNum>=100000?$('.recoveredData').text((recvNum/100000).toFixed(1)+'L')
+                :recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
+            
+            deathNum>=100000?$('.deathData').text((deathNum/100000).toFixed(1)+'L')
+                :deathNum>=1000?$('.deathData').text((deathNum/1000).toFixed(1)+'K'):$('.deathData').text(deathNum)
             // activeNum = thisDateElement['totalconfirmed']
             
             
@@ -132,12 +138,12 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 50; counter+=1) {
+        for (let counter = 0; counter < 50; counter+=2) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%5 === 0 && counter!==0){
+            if(counter%10 === 0 && counter!==0){
                 ctx.fillText(counter+'L', canWidAvailable + 30, 6+(canHgt*(1-(counter*100000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
@@ -147,7 +153,7 @@ $(document).ready(function(){
             
 
             ctx.beginPath();
-            counter%5 === 0?
+            counter%10 === 0?
                 ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),20,1)
                 :ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),10,1);
             ctx.fill();
