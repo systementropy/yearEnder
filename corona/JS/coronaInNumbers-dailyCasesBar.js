@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 	const legends = [
-		[1,22],[1,23],[1,24],[1,25],[1,26],[1,27],[1,28],[1,29],[1,30],[1,31],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[2,17],[2,18],[2,19],[2,20],[2,21],[2,22],[2,23],[2,24],[2,25],[2,26],[2,27],[2,28],[2,29],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16],[3,17],[3,18],[3,19],[3,20],[3,21],[3,22],[3,23],[3,24],[3,25],[3,26],[3,27],[3,28],[3,29],[3,30],[3,31],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9],[4,10],[4,11],[4,12],[4,13],[4,14],[4,15],[4,16],[4,17],[4,18],[4,19],[4,20],[4,21],[4,22],[4,23],[4,24],[4,25],[4,26],[4,27],[4,28],[4,29],[4,30],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[5,12],[5,13],[5,14],[5,15],[5,16],[5,17],[5,18],[5,19],[5,20],[5,21],[5,22],[5,23],[5,24],[5,25],[5,26],[5,27],[5,28],[5,29],[5,30],[5,31],[6,1],[6,2],[6,3],[6,4],[6,5],[6,6],[6,7],[6,8],[6,9],[6,10],[6,11],[6,12],[6,13],[6,14],[6,15],[6,16],[6,17],[6,18],[6,19],[6,20],[6,21],[6,22],[6,23],[6,24],[6,25],[6,26],[6,27],[6,28],[6,29],[6,30],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[7,12],[7,13],[7,14],[7,15],[7,16],[7,17],[7,18],[7,19],[7,20],[7,21],[7,22],[7,23],[7,24],[7,25],[7,26],[7,27],[7,28],[7,29],[7,30],[7,31],[8,1],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],[8,8],[8,9],[8,10],[8,11],[8,12],[8,13],[8,14],[8,15],[8,16],[8,17],[8,18],[8,19],[8,20],[8,21],[8,22],[8,23],[8,24],[8,25],[8,26],[8,27],[8,28],[8,29],[8,30],[8,31],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+		[1,22,20],[1,23,20],[1,24,20],[1,25,20],[1,26,20],[1,27,20],[1,28,20],[1,29,20],[1,30,20],[1,31,20],[2,1,20],[2,2,20],[2,3,20],[2,4,20],[2,5,20],[2,6,20],[2,7,20],[2,8,20],[2,9,20],[2,10,20],[2,11,20],[2,12,20],[2,13,20],[2,14,20],[2,15,20],[2,16,20],[2,17,20],[2,18,20],[2,19,20],[2,20,20],[2,21,20],[2,22,20],[2,23,20],[2,24,20],[2,25,20],[2,26,20],[2,27,20],[2,28,20],[2,29,20],[3,1,20],[3,2,20],[3,3,20],[3,4,20],[3,5,20],[3,6,20],[3,7,20],[3,8,20],[3,9,20],[3,10,20],[3,11,20],[3,12,20],[3,13,20],[3,14,20],[3,15,20],[3,16,20],[3,17,20],[3,18,20],[3,19,20],[3,20,20],[3,21,20],[3,22,20],[3,23,20],[3,24,20],[3,25,20],[3,26,20],[3,27,20],[3,28,20],[3,29,20],[3,30,20],[3,31,20],[4,1,20],[4,2,20],[4,3,20],[4,4,20],[4,5,20],[4,6,20],[4,7,20],[4,8,20],[4,9,20],[4,10,20],[4,11,20],[4,12,20],[4,13,20],[4,14,20],[4,15,20],[4,16,20],[4,17,20],[4,18,20],[4,19,20],[4,20,20],[4,21,20],[4,22,20],[4,23,20],[4,24,20],[4,25,20],[4,26,20],[4,27,20],[4,28,20],[4,29,20],[4,30,20],[5,1,20],[5,2,20],[5,3,20],[5,4,20],[5,5,20],[5,6,20],[5,7,20],[5,8,20],[5,9,20],[5,10,20],[5,11,20],[5,12,20],[5,13,20],[5,14,20],[5,15,20],[5,16,20],[5,17,20],[5,18,20],[5,19,20],[5,20,20],[5,21,20],[5,22,20],[5,23,20],[5,24,20],[5,25,20],[5,26,20],[5,27,20],[5,28,20],[5,29,20],[5,30,20],[5,31,20],[6,1,20],[6,2,20],[6,3,20],[6,4,20],[6,5,20],[6,6,20],[6,7,20],[6,8,20],[6,9,20],[6,10,20],[6,11,20],[6,12,20],[6,13,20],[6,14,20],[6,15,20],[6,16,20],[6,17,20],[6,18,20],[6,19,20],[6,20,20],[6,21,20],[6,22,20],[6,23,20],[6,24,20],[6,25,20],[6,26,20],[6,27,20],[6,28,20],[6,29,20],[6,30,20],[7,1,20],[7,2,20],[7,3,20],[7,4,20],[7,5,20],[7,6,20],[7,7,20],[7,8,20],[7,9,20],[7,10,20],[7,11,20],[7,12,20],[7,13,20],[7,14,20],[7,15,20],[7,16,20],[7,17,20],[7,18,20],[7,19,20],[7,20,20],[7,21,20],[7,22,20],[7,23,20],[7,24,20],[7,25,20],[7,26,20],[7,27,20],[7,28,20],[7,29,20],[7,30,20],[7,31,20],[8,1,20],[8,2,20],[8,3,20],[8,4,20],[8,5,20],[8,6,20],[8,7,20],[8,8,20],[8,9,20],[8,10,20],[8,11,20],[8,12,20],[8,13,20],[8,14,20],[8,15,20],[8,16,20],[8,17,20],[8,18,20],[8,19,20],[8,20,20],[8,21,20],[8,22,20],[8,23,20],[8,24,20],[8,25,20],[8,26,20],[8,27,20],[8,28,20],[8,29,20],[8,30,20],[8,31,20]
 	];
 	var countryCode = JSON.parse($.ajax({'url': "../../countryCode.json", 'async': false}).responseText);
 	// console.log(countryCode);
@@ -31,8 +31,8 @@ $(document).ready(function(){
 	ctx.strokeStyle = '#FFFDDD';
 	ctx.fillStyle = 'rgba(255,0,0,1)';
 	ctx.scale(2,2);
-	const secs  = 12;
-	const lengthFactor = 16000;
+	const secs  = 20;
+	const lengthFactor = 250;
 	var colorArray =['#000000','#EE999F','#F0DDB8','#F0C38F','#D0DEc2','#AECDAD','#999FEE','#AECDAD'];
 	function Bar(x, y, length, dl, color, index, label, countryCode){
 		this.posX = x;
@@ -62,11 +62,12 @@ $(document).ready(function(){
 		// this.deathCounter = this.deathData[0];
 		this.update = function(i,dateCounter){
 			if(i!==undefined && dateCounter!==undefined){
-				
+				this.index===0?console.log(this.tick):'';
+				// console.log(dateCounter);
 				this.previousIndex = this.index;
 				this.index = i;
 				if(Math.abs(this.previousIndex - this.index)>0.0001){
-					this.dy = (this.index-this.previousIndex)/10;
+					this.dy = (this.index-this.previousIndex)/(0.5*secs);
 				}else{
 					this.previousIndex = this.index;
 					this.dy = 0;
@@ -74,16 +75,16 @@ $(document).ready(function(){
 
 				this.tick = dateCounter;
 				
-				this.dx = (this.dl[dateCounter]-this.dl[dateCounter-1])/10;
+				this.dx = ((this.dl[dateCounter]-this.dl[dateCounter-1])-(this.dl[dateCounter-1]-this.dl[dateCounter-2]))/(0.5*secs);
 				
 				
 				this.posY = (((this.previousIndex+this.dy) * (this.width+21)));
 				// this.posY = (((this.index) * (this.width+15)));
-				this.dateCounter =this.dl[dateCounter];
+				this.dateCounter =(this.dl[dateCounter]-this.dl[dateCounter-1]);
 				if(this.dx == 0){
-					this.length = 1+((this.dl[dateCounter])/lengthFactor);
+					this.length = 1+(((this.dl[dateCounter]-this.dl[dateCounter-1]))/lengthFactor);
 				}else{
-					this.length = 1+((this.dl[dateCounter-1]+this.dx)/lengthFactor);
+					this.length = 1+(((this.dl[dateCounter-1]-this.dl[dateCounter-2])+this.dx)/lengthFactor);
 				}
 				
 				this.previousIndex += this.dy;
@@ -102,9 +103,9 @@ $(document).ready(function(){
 			}else{
 				
 
-				if(( 1+((this.dl[this.tick])/lengthFactor) - this.length)<1){
+				if(( 1+((this.dl[this.tick]-this.dl[this.tick-1])/lengthFactor) - this.length)<1){
 					this.dx = 0;
-					this.length = 1+(this.dl[this.tick])/lengthFactor;
+					this.length = 1+(this.dl[this.tick]-this.dl[this.tick-1])/lengthFactor;
 				}else{
 					this.length = this.length + (this.dx/lengthFactor);
 				}
@@ -121,10 +122,12 @@ $(document).ready(function(){
 				}
 				
 			}
+			
 			this.draw();
 		};
 		this.draw = function(){
 			if(this.dateCounter>0){
+				
 				ctx.beginPath();
 				ctx.fillStyle = '#E6E5E5';
 				ctx.strokeStyle = this.color;
@@ -178,8 +181,9 @@ $(document).ready(function(){
 				ctx.fillText(this.dateCounterLabel, this.length+ this.posX + 30 , this.posY+8+(this.width/2));
 				ctx.fill();
 				ctx.closePath();
-
+				
 			}
+			
 			if(this.tick == ticks-1){
 				ctx.beginPath();
 				ctx.fillStyle = '#5A5A5A';
@@ -197,6 +201,7 @@ $(document).ready(function(){
 
 		if(tickCounter!==tick && tickCounter<ticks){
 			tick = tickCounter
+			console.log(tick);
 			for (var i = 0; i < barArray.length; i++) {
 				barArray[i].update(i,tick);
 			}
@@ -207,6 +212,7 @@ $(document).ready(function(){
 				legends[tick][1]>9?date = legends[tick][1]:date = '0'+legends[tick][1];
 				month = monthNames[legends[tick][0] - 1]
 				$('.legend1').text(`${month} ${date}, 2020`)
+				// console.log(`${month} ${date}, 2020`);
 				// june 18, 2020
 				// $('.stateName').addClass('active')
 				// $('.legendContainer').addClass('active');
@@ -216,7 +222,7 @@ $(document).ready(function(){
 		}
 	}
 	function allTimeAnimate(){
-		if(globalCounter<secs*ticks-1){
+		if(globalCounter<secs*(ticks+1)-1){
 			if(globalCounter ==0 || globalCounter%secs!==0){
 				ctx.clearRect(0,0,canWid,canHgt);
 				for (var i = 0; i < barArray.length; i++) {
@@ -224,11 +230,11 @@ $(document).ready(function(){
 				}
 				globalCounter = globalCounter + 1;
 			}else{
-				// console.log(globalCounter,globalCounter/secs)
 				let ticker = Math.floor(globalCounter/secs);
 				ctx.clearRect(0,0,canWid,canHgt);
+				console.log(ticker);
 				barArray = barArray.sort(function(a, b){
-					return (b.dl[ticker] - a.dl[ticker]);
+					return ((b.dl[ticker]-b.dl[ticker-1]) - (a.dl[ticker]-a.dl[ticker-1]));
 				});
 				animateCircles(ticker);
 				globalCounter += 1;
