@@ -1076,44 +1076,58 @@ p.dataLine.black{
 .allCountries #canvas2Label{
     position: absolute;
     top: 400px;
-    right: 0px;
+    right: 50px;
     border-left: 1px solid;
 }
 .allCountries .liner{
     top: 800px;
     position: absolute;
-    width: 700px;
+    width: 650px;
     left: 30px;
     border-top: 1px solid;
     padding: 0;
 }
+.allCountries .legendVertical{
+    transform: translate(44%,100%) rotate(-90deg);
+}
 .allCountries .horizontal.casesWithNote{
     width: 100%;
     right: 0;
+    padding: 0 30px;
     justify-content: space-between;
 }
 .allCountries .horizontal.casesWithNote img{
     margin: unset;
 }
 .allCountries.trendline .headline{
-    top: 112px;
+    top: 105px;
+    font: 400 47px/68px Cormorant;
+}
+.allCountries .logo{
+    top: 32px;
 }
 .allCountries.trendline .strap{
     text-transform: uppercase;
+    top: 170px;
+    font: 700 28px/25px Montserrat;
 }
 .allCountries .svgContainer {
     position: absolute;
-    top: 327px;
+    top: 440px;
     left: 50px;
     width: 350px;
     height: 609px;
     opacity: 1;
 }
 .allCountries .stateName{
-    top: 250px;
+    top: 400px;
 }
 .allCountries .statContainer{
     top: 290px;
+    height: auto;
+}
+.allCountries .nameLabel{
+    height: auto;
 }
 .allCountries .statContainer::after{
     /* content: 'As of today'; */
@@ -1123,6 +1137,34 @@ p.dataLine.black{
     transform: translate(-50%, 100%);
     font: 600 15px/18px Montserrat;
     color: #707070;
+}
+.allCountries .stateName,.allCountries .statContainer{
+    left: auto;
+    right: 120px;
+    width: 350px;
+    opacity: 0;
+    transform: translate(-35px, 0px);
+}
+.allCountries .legend2 div{
+    width: 20%;
+}
+.allCountries .legend2 div:nth-child(1)::after{
+    background: #700000;
+}
+.allCountries .legend2 div:nth-child(2)::after{
+    background: #A93333;
+}
+.allCountries .legend2 div:nth-child(3)::after{
+    background: #E26666;
+}
+.allCountries .legend2 div:nth-child(4)::after{
+    background: #FE9595;
+}
+.allCountries .legend2 div:nth-child(5)::after{
+    background: #FFD5D5;
+}
+.allCountries .legend1{
+    display: none;
 }
 /* ============================================= corona pie =========================== */
 .coronaPie #labels,.coronaPie #canvas{
@@ -1194,8 +1236,4 @@ p.dataLine.black{
 .trendline.trendlineShare .headline{
     width: 67%;
     font: 400 46px/40px Cormorant;
-}
-.allCountries .stateName,.allCountries .statContainer{
-    left: 125px;
-    /* transform: translateY(-35px); */
 }
