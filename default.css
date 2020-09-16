@@ -1443,3 +1443,85 @@ span.headingLeg {
 span.headingLeg.headingLegAbs {
     left: 402px;
 }
+
+.mainBodyDataBreaches.mainBodyMobSpeedNew .strap{
+	width: 80%;
+}
+.mainBodyMobSpeedNew.mainBodyDataBreaches .log{
+	padding-top: 0;
+	margin: auto;
+}
+.mainBodyMobSpeedNew.mainBodyDataBreaches .log img{
+	margin-top: 10px;
+	width: 40px;
+	filter: invert(1);
+}
+.mainBodyMobSpeedNew.mainBodyDataBreaches .contentInner .icon,.mainBodyMobSpeedNew.mainBodyDataBreaches .headline{
+	color: #a00033;
+}
+.mainBodyDataBreaches.mainBodyMobSpeedNew .header::after{
+	background: #a00033
+}
+.mainBodyMobSpeedNew.mainBodyDataBreaches .contentInner .nameTag,.mainBodyMobSpeedNew.mainBodyDataBreaches .nameTag span.headingLeg{
+	width: 205px;
+}
+.mainBodyDataBreaches .footermobSpeedNew p{
+	font: normal normal 400 20px/28px Myriad-Pro
+}
+.contentNotes{
+	height: 150px;
+	overflow: hidden;
+	position: relative;
+}
+.contentNotes>div>div{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 150px;
+	overflow: hidden;
+}
+.contentNotes>div>div p{
+	font: normal normal 400 20px/30px Myriad-Pro;
+	text-align: left;
+    
+	position: relative;
+}
+.contentNotes>div>div p:nth-child(1){
+	font: normal normal 900 50px/100px Myriad-Pro;
+	color: #c9828f;
+	margin-right: 25px;
+}
+.contentNotes>div>div p:nth-child(2){
+	max-width: 60%;
+}
+.contentNotes>div p::before{
+	/* content: ''; */
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	background: #000;
+	transform: translate(-10px, 15px);
+	border-radius: 50%;
+
+}
+.mainBodyMobSpeedNew .canvasContainer{
+	margin-top: 0	;
+}
+.contentNotes>div.innerCont{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: auto;
+	top: 0;
+	transition: all 200ms ease;
+}
+.mainBodyDataBreaches{
+	background: #ECECEC;
+	background-image: linear-gradient(to right bottom, #ECECEC,#EEEEEE),url(/Banner/lock.jpg);
+	background-repeat: no-repeat,repeat;
+	background-blend-mode: soft-light;
+	background-size: cover, cover;
+	background-position: center, left center;
+}
