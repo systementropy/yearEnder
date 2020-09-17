@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-	$('.stateName').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020');
+	$('.legend1').text('on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020');
 	
 	var canvas = document.getElementById("canvas");
 	var canHgt = 500;
@@ -123,19 +123,69 @@ $(document).ready(function(){
 	var counter = 0;
 	var circleArray = []
 	function init(index) {
+		let indiaData = [
+			["Andaman and Nicobar Islands",196,"AN Islands"],
+			["Andhra Pradesh",90279,"Andhra P."],
+			["Arunachal Pradesh",1892,"Arunachal P."],
+			["Assam",29091,"Assam"],
+			["Bihar",12959,"Bihar"],
+			["Chandigarh",3171,"Chandigarh"],
+			["Chhattisgarh",37470,"Chhattisgarh"],
+			["Dadra and Nagar Haveli and Daman and Diu",233,"Dadra and Nagar Haveli and Daman and Diu"],
+			["Delhi",30914,"Delhi"],
+			["Goa",5375,"Goa"],
+			["Gujarat",16262,"Gujarat"],
+			["Haryana",21334,"Haryana"],
+			["Himachal Pradesh",4146,"Himachal P."],
+			["Jammu and Kashmir",19503,"Jammu & Kashmir"],
+			["Jharkhand",14138,"Jharkhand"],
+			["Karnataka",101645,"Karnataka"],
+			["Kerala",32775,"Kerala"],
+			["Ladakh",953,"Ladakh"],
+			["Madhya Pradesh",22136,"Madhya P."],
+			["Maharashtra",297506,"Maharashtra"],
+			["Manipur",1751,"Manipur"],
+			["Meghalaya",1902,"Meghalaya"],
+			["Mizoram",567,"Mizoram"],
+			["Nagaland",1261,"Nagaland"],
+			["Odisha",32405,"Odisha"],
+			["Puducherry",4770,"Puducherry"],
+			["Punjab",21022,"Punjab"],
+			["Rajasthan",17049,"Rajasthan"],
+			["Sikkim",480,"Sikkim"],
+			["Tamil Nadu",46633,"TN"],
+			["Telangana",30443,"Telangana"],
+			["Tripura",7498,"Tripura"],
+			["Uttarakhand",11068,"Uttarakhand"],
+			["Uttar Pradesh",67002,"Uttar P."],
+			["West Bengal",24147,"West Bengal"],
+		]
+		indiaData.sort(function(a,b){
+			return ((b[1])-(a[1]))
+		})
+		let totalActive = 0;
+		for (let index = 0; index < indiaData.length; index++) {
+			const element = indiaData[index][1];
+			totalActive += element
+		}
+		
+		indiaData = indiaData.slice(0,5)
+		console.log(indiaData);
+		console.log(totalActive);
 		slideIndex = index;
 		counter = 1;
 		circleArray = [];
 		var colorArray = ['#E26666','#55ABEA','#700000','#55EAAB','#525252'];
 		var total = 100;
-		var totalNum = 202805.18;
-		var pieData = [
-			['USA',(5251997/totalNum),'US'],
-			['Brazil',(3057470/totalNum),'Brazil'],
-			['India',(2271034/totalNum),'India'],
-			['Russia',(897599/totalNum),'Russia'],
-			['S Africa',(563598/totalNum),'S Africa'],
-		]
+		var totalNum = totalActive;
+		var pieData = []
+		for (let index = 0; index < indiaData.length; index++) {
+			const element = indiaData[index];
+			pieData.push(
+				[element[0],((element[1]*100)/totalNum),element[2],element[1]]
+			)
+		}
+		console.log(JSON.stringify(pieData));
 		for (let i = 0; i < pieData.length; i++) {
 			const element = pieData[i];
 			circleArray.push(new Circle(

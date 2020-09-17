@@ -63,9 +63,9 @@ function init(num){
 		$('.innerCont').css({'top':(num)*-150+'px'})
 		setTimeout(() => {
 			init(num+1)
-		},2000)
+		},3000)
 	}
 }
 setTimeout(() => {
 	init(0)
-},2000)
+},1000)

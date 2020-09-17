@@ -1170,7 +1170,7 @@ p.dataLine.black{
 .coronaPie #labels,.coronaPie #canvas{
     position: absolute;
     top: 400px;
-    left: 0;
+    left: 95px;
     width: 700px;
     height: 560px;
     opacity: 1;
@@ -1181,12 +1181,29 @@ p.dataLine.black{
     left: 0;
     transform: translateY(-40px);
 }
+.coronaPie.coronaPieIndia .stateName.canvasWith{
+    top: 320px;
+}
+.coronaPie.coronaPieIndia .statContainer.canvasWith{
+    top: 310px;
+}
+.legendDataBlock .nameLabel{
+    font: 600 15px/22px Montserrat;
+}
 .coronaPie .statContainer>div:nth-child(2n){
     border-left: 1px solid #5A5A5A77;
     border-right: 1px solid #5A5A5A77;
 }
 .coronaPie .header{
     height: 200px;
+}
+.coronaPie.coronaPieIndia .header{
+    height: 233px;
+}
+.coronaPieIndia .strap{
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .coronaPie .header .headline{
     top: 112px;

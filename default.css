@@ -1452,15 +1452,19 @@ span.headingLeg.headingLegAbs {
 	margin: auto;
 }
 .mainBodyMobSpeedNew.mainBodyDataBreaches .log img{
-	margin-top: 10px;
-	width: 40px;
+	margin-top: 0px;
+	width: 60px;
 	filter: invert(1);
 }
 .mainBodyMobSpeedNew.mainBodyDataBreaches .contentInner .icon,.mainBodyMobSpeedNew.mainBodyDataBreaches .headline{
 	color: #a00033;
 }
+.mainBodyMobSpeedNew.mainBodyDataBreaches .contentInner .icon{
+	color: #333;
+}
 .mainBodyDataBreaches.mainBodyMobSpeedNew .header::after{
-	background: #a00033
+	background: #a00033;
+	display: none;
 }
 .mainBodyMobSpeedNew.mainBodyDataBreaches .contentInner .nameTag,.mainBodyMobSpeedNew.mainBodyDataBreaches .nameTag span.headingLeg{
 	width: 205px;
@@ -1469,18 +1473,21 @@ span.headingLeg.headingLegAbs {
 	font: normal normal 400 20px/28px Myriad-Pro
 }
 .contentNotes{
-	height: 150px;
+	height: 140px;
 	overflow: hidden;
 	position: relative;
+	margin-bottom: 10px;
 }
 .contentNotes>div>div{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: center;
+	align-items: unset;
 	text-align: center;
 	height: 150px;
 	overflow: hidden;
+	padding-top: 10px;
+	/* border-bottom: 1px solid #7a7a7a; */
 }
 .contentNotes>div>div p{
 	font: normal normal 400 20px/30px Myriad-Pro;
@@ -1489,12 +1496,25 @@ span.headingLeg.headingLegAbs {
 	position: relative;
 }
 .contentNotes>div>div p:nth-child(1){
-	font: normal normal 900 50px/100px Myriad-Pro;
+	font: normal normal 900 50px/50px Myriad-Pro;
 	color: #c9828f;
 	margin-right: 25px;
+	width: 36%;
+	text-align: right;
 }
 .contentNotes>div>div p:nth-child(2){
-	max-width: 60%;
+	width: 70%;
+}
+.contentNotes>div>div p:nth-child(2) span{
+	text-transform: capitalize;
+	display: inline-block;
+	padding: 3px 8px;
+	margin: 5px 8px 5px 0px;
+	border-radius: 2px;
+	border: 1px solid #F337;
+	background: #a00033;
+	color: #FFF;
+	font: normal normal 700 20px/30px Myriad-Pro;
 }
 .contentNotes>div p::before{
 	/* content: ''; */
@@ -1524,4 +1544,23 @@ span.headingLeg.headingLegAbs {
 	background-blend-mode: soft-light;
 	background-size: cover, cover;
 	background-position: center, left center;
+}
+.mainBodyMobSpeedNew.mainBodyDataBreaches .header .inner{
+	height: 130px;
+    display: flex;
+}
+.mainBodyDataBreaches.mainBodyMobSpeedNew .strap{
+	text-align: left;
+    color: #c9828f;
+}
+.mainBodyDataBreaches .legend1{
+	display: flex;
+}
+.mainBodyDataBreaches .legend1 p:nth-child(1){
+	width: 33%;
+	text-align: right;
+	margin-right: 25px;
+}
+.mainBodyDataBreaches .legend1{
+	font: normal normal 700 20px/30px Myriad-Pro;
 }
