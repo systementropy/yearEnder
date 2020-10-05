@@ -28,15 +28,15 @@ $(document).ready(function(){
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "05 September",
-        totalconfirmed: "4023179",
-        totaldeceased: "69561",
-        totalrecovered: "3107223",
+        date: "05 October",
+        totalconfirmed: "6623815",
+        totaldeceased: "102685",
+        totalrecovered: "5586703",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 4150000;
+    const heightFactor = 6750000;
     const countriesFactor = 250;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
@@ -138,12 +138,12 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 50; counter+=2) {
+        for (let counter = 0; counter < 100; counter+=5) {
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%10 === 0 && counter!==0){
+            if(counter%20 === 0 && counter!==0){
                 ctx.fillText(counter+'L', canWidAvailable + 30, 6+(canHgt*(1-(counter*100000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
@@ -153,7 +153,7 @@ $(document).ready(function(){
             
 
             ctx.beginPath();
-            counter%10 === 0?
+            counter%20 === 0?
                 ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),20,1)
                 :ctx.rect(canWidAvailable,(canHgt*(1-(counter*100000/heightFactor))),10,1);
             ctx.fill();

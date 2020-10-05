@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	$('.nameLabel').html('Confirmed');
-	$('.legendVertical').text('No. of Cases')
+	$('.nameLabel').html('Deaths');
+	$('.legendVertical').text('No. of Deaths')
     const canvas = document.getElementById("canvas");
     const canHgt = 560;
     const canWidAvailable = 650;
@@ -26,18 +26,18 @@ $(document).ready(function(){
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "23 August",
-        totalconfirmed: "3044940",
-        totaldeceased: "56706",
-        totalrecovered: "2280566",
+        date: "03 October",
+        totalconfirmed: "6473544",
+        totaldeceased: "100842",
+        totalrecovered: "5427706",
     }]
     console.log(todayData);
     
     // const widthStep = canWidAvailable/todayData['dates'].length;
-    const heightFactor = 100000;
+    const heightFactor = 3100;
     const heightStep = canHgt/heightFactor;
     let counterPrev  = 1;
-    let secs = 100;
+    let secs = 60;
     // const countNum = [8,52,67,76,82];
     // const countText = ['','100+','1000+','5000+','10000+']
     const countNum =[]
@@ -70,14 +70,14 @@ $(document).ready(function(){
 			let deathPrevNum = prevDateElement['totaldeceased'];
             
             
-            (activeNum-activePrevNum)>=1000?$('.confirmedData').text(((activeNum-activePrevNum)/1000).toFixed(1)+'K'):$('.confirmedData').text((activeNum-activePrevNum))
+            (deathNum-deathPrevNum)>=1000?$('.confirmedData').text(((deathNum-deathPrevNum)/1000).toFixed(1)+'K'):$('.confirmedData').text((deathNum-deathPrevNum))
             // recvNum>=1000?$('.recoveredData').text((recvNum/1000).toFixed(1)+'K'):$('.recoveredData').text(recvNum)
             
 			
 			ctx.lineCap = 'round';
 			ctx.beginPath();
 			ctx.fillStyle = deathColor;
-			ctx.rect(widthStep*(counter-0.5),canHgt,widthStep,-((activeNum-activePrevNum)*canHgt)/heightFactor)
+			ctx.rect(widthStep*(counter-0.5),canHgt,widthStep,-((deathNum-deathPrevNum)*canHgt)/heightFactor)
 			ctx.fill();
 			ctx.closePath();
             
@@ -86,7 +86,7 @@ $(document).ready(function(){
             },secs)
             
         }else{
-			$('.showAfter').html('Cumulative cases (23 Aug)<span>30.4L</span>').addClass('active')
+			$('.showAfter').html('Total Deaths (03 Oct) : <span>1.0L</span>').addClass('active')
 		}
     }
     setTimeout(function () {
@@ -101,12 +101,13 @@ $(document).ready(function(){
         ctx.rect(0,canHgt-1,canWidAvailable,1);
         ctx.fill();
         ctx.closePath();
-        for (let counter = 0; counter < 100; counter+=5) {
+        for (let counter = 0; counter < 100; counter+=0.25) {
+            console.log(counter);
             ctx.lineWidth =1;
             ctx.beginPath();
             ctx.font = '500 18px Montserrat'
             ctx.textAlign = 'left';
-            if(counter%25 === 0 && counter!==0){
+            if(counter%1 === 0 && counter!==0){
                 ctx.fillText(counter+'K', canWidAvailable + 30, 6+(canHgt*(1-(counter*1000/heightFactor))));
                 // ctx.fill();
             }else if(counter===0){
@@ -116,7 +117,7 @@ $(document).ready(function(){
             
 
             ctx.beginPath();
-            counter%25 === 0?
+            counter%1 === 0?
                 ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),20,1)
                 :ctx.rect(canWidAvailable,(canHgt*(1-(counter*1000/heightFactor))),10,1);
             ctx.fill();

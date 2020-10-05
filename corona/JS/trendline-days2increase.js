@@ -26,7 +26,7 @@ $(document).ready(function(){
 	let counter = 0;
 	let circleArray = [];
 	const widthStep = canWidAvailable/(dates.length);
-	const heightFactor = 6500000;
+	const heightFactor = 110000;
 	let secs = 50;
 
 	let data, options, chart, counterCountry = 0, dataPlace, optionsPlace, chartPlace, counterPlace = 0; 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 		$('.year').text(dates[counter][2])
 
 		ctx.beginPath();
-		const confRect = databyDate['confirmed'][counter];
+		const confRect = databyDate['death'][counter];
 		ctx.fillStyle = '#FBE8E8';
 		ctx.rect(
 			(widthStep*counter)+1,
@@ -52,22 +52,22 @@ $(document).ready(function(){
 		ctx.closePath();
 
 		if(counter>0){
-			ctx.beginPath();
-			ctx.strokeStyle = '#8C1919';
-			ctx.lineCap = "round";
-			ctx.moveTo((widthStep*(counter-(1/2))),(canHgt*(1-(databyDate['confirmed'][counter-1]/heightFactor))));
-			ctx.lineTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['confirmed'][counter]/heightFactor))))
-			ctx.stroke();
-			ctx.closePath();
+			// ctx.beginPath();
+			// ctx.strokeStyle = '#8C1919';
+			// ctx.lineCap = "round";
+			// ctx.moveTo((widthStep*(counter-(1/2))),(canHgt*(1-(databyDate['confirmed'][counter-1]/heightFactor))));
+			// ctx.lineTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['confirmed'][counter]/heightFactor))))
+			// ctx.stroke();
+			// ctx.closePath();
 
-			ctx.beginPath();
-			ctx.strokeStyle = '#F86E6E';
-			ctx.strokeStyle = '#198C19';
-			ctx.lineCap = "round";
-			ctx.moveTo((widthStep*(counter-(1/2))),(canHgt*(1-(databyDate['recovered'][counter-1]/heightFactor))));
-			ctx.lineTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['recovered'][counter]/heightFactor))))
-			ctx.stroke();
-			ctx.closePath();
+			// ctx.beginPath();
+			// ctx.strokeStyle = '#F86E6E';
+			// ctx.strokeStyle = '#198C19';
+			// ctx.lineCap = "round";
+			// ctx.moveTo((widthStep*(counter-(1/2))),(canHgt*(1-(databyDate['recovered'][counter-1]/heightFactor))));
+			// ctx.lineTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['recovered'][counter]/heightFactor))))
+			// ctx.stroke();
+			// ctx.closePath();
 
 			ctx.beginPath();
 			ctx.strokeStyle = '#525252';
@@ -78,7 +78,7 @@ $(document).ready(function(){
 			ctx.closePath();
 
 			indexCounterCurr = counter
-			if(Math.floor(databyDate['confirmed'][counter]/1000000) === Math.floor(databyDate['confirmed'][counter-1]/1000000)){
+			if(Math.floor(databyDate['death'][counter]/10000) === Math.floor(databyDate['death'][counter-1]/10000)){
 				// $('.inner').css({'top':Math.floor(databyDate['confirmed'][counter]/100000)*40+'px'})
 			}else{
 				secs += 25
@@ -87,16 +87,16 @@ $(document).ready(function(){
 					ctx.beginPath();
 					ctx.fillStyle = '#FFF';
 					ctx.lineCap = "round";
-					ctx.moveTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['confirmed'][counter]/heightFactor))));
-					ctx.arc((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['confirmed'][counter]/heightFactor))), widthStep, 0, 2*Math.PI)
+					ctx.moveTo((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['death'][counter]/heightFactor))));
+					ctx.arc((widthStep*(counter+(1/2))),(canHgt*(1-(databyDate['death'][counter]/heightFactor))), widthStep, 0, 2*Math.PI)
 					ctx.fill();
 					ctx.closePath();
 				}else{
 				}
 				
-				console.log(Math.floor(databyDate['confirmed'][counter]/1000000),indexCounterCurr - indexCounterPrev)
+				console.log(Math.floor(databyDate['death'][counter]/10000),indexCounterCurr - indexCounterPrev)
 				indexCounterPrev = counter
-				$('.inner').css({'top':(-1 + Math.floor(databyDate['confirmed'][counter]/1000000))*-40+'px'})
+				$('.inner').css({'top':(-1 + Math.floor(databyDate['death'][counter]/10000))*-40+'px'})
 			}
 		}
 

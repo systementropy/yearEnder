@@ -877,11 +877,15 @@ p.dataLine.red{
 .dailyCasesBar .statContainer.canvasWith{
     width: 250px;
 }
+.dailyCasesBar .stateName.canvasWith,.dailyCasesBar .statContainer.canvasWith{
+    width: 350px;
+    transform: translateY(-50px);
+}
 p.dataLine.red.deth{
     background-color: #a01e1e;
 }
 .dailyCasesBar .showAfter{
-    font: 500 18px/22px Montserrat;
+    font: 500 18px/30px Montserrat;
     letter-spacing: 0.8px;
     color: #5A5A5A;
     position: absolute;
@@ -900,10 +904,13 @@ p.dataLine.red.deth{
     display: block;
     font: 700 25px/30px Montserrat;
 }
+.dailyCasesBar .showAfter span{
+    display: inline;
+}
 .dailyCasesBar .headline{
     left: 50%;
     width: 100%;
-    top: 132px;
+    /* top: 132px; */
     transform: translateX(-50%);
 }
 .dailyCasesBar .liner{
