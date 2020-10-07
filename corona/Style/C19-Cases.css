@@ -722,6 +722,10 @@ p.dataLine.red{
     text-transform: uppercase;
     color: #5a5a5a;
 }
+.liner.trenline-indi-world{position: absolute;
+    bottom: 109px;
+    width: 81%;
+    padding: 0;}
 .mainBodyMap footer.horizontal{
     width: 100%;
     right: 0;
