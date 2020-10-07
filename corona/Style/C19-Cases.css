@@ -1150,7 +1150,7 @@ p.dataLine.black{
     right: 120px;
     width: 350px;
     opacity: 0;
-    transform: translate(-35px, 0px);
+    transform: translate(-100px, 0px);
 }
 .allCountries .legend2 div{
     width: 20%;
@@ -1168,7 +1168,13 @@ p.dataLine.black{
     background: #FE9595;
 }
 .allCountries .legend2 div:nth-child(5)::after{
+    background: #FFC0C0;
+}
+.allCountries .legend2 div:nth-child(6)::after{
     background: #FFD5D5;
+}
+.allCountries .legend2 div:nth-child(7)::after{
+    background: #FFEBEB;
 }
 .allCountries .legend1{
     display: none;
