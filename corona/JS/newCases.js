@@ -26,9 +26,17 @@ $(document).ready(function(){
         dailyconfirmed: "",
         dailydeceased: "",
         dailyrecovered: "",
-        date: "03 October",
+        date: "11 October",
         totalconfirmed: "6473544",
-        totaldeceased: "100842",
+        totaldeceased: "108334",
+        totalrecovered: "5427706",
+    },{
+        dailyconfirmed: "",
+        dailydeceased: "",
+        dailyrecovered: "",
+        date: "12 October",
+        totalconfirmed: "6473544",
+        totaldeceased: "109150",
         totalrecovered: "5427706",
     }]
     console.log(todayData);
@@ -46,6 +54,7 @@ $(document).ready(function(){
     console.log(dailyCumulative)
     dailyCumulative = dailyCumulative.slice(61)
     dailyCumulative.push(todayData[0])
+    dailyCumulative.push(todayData[1])
     // dailyCumulative.push(todayData[1])
     console.log(dailyCumulative)
     const widthStep = canWidAvailable/dailyCumulative.length;
@@ -86,7 +95,7 @@ $(document).ready(function(){
             },secs)
             
         }else{
-			$('.showAfter').html('Total Deaths (03 Oct) : <span>1.0L</span>').addClass('active')
+			$('.showAfter').html('Total Deaths (12 Oct) : <span>1.1L</span>').addClass('active')
 		}
     }
     setTimeout(function () {
