@@ -1564,3 +1564,79 @@ span.headingLeg.headingLegAbs {
 .mainBodyDataBreaches .legend1{
 	font: normal normal 700 20px/30px Myriad-Pro;
 }
+
+.mainBody4Gvs5G.mainBodyMobSpeedNew .canvasContainer{
+	height: 800px;
+}
+.mainBody4Gvs5G .contentInner{
+	display: flex;
+    width: 100%;
+    padding-top: 150px;
+    padding-left: 32%;
+}
+.mainBody4Gvs5G .contentInner>div{
+	width: 50%;
+	text-align: center;
+}
+.mainBody4Gvs5G .contentInner .dataDiv{
+	height: 600px;
+    display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+.mainBodyMobSpeedNew .bg{
+	background: transparent url('./Banner/bgDot.png') 0% 0% repeat padding-box
+}
+.mainBody4Gvs5G .headingTech{
+	font: normal normal 400 25px/49px Myriad-Pro;
+}
+.mainBody4Gvs5G .dataDiv>div {
+    height: 0%;
+    width: 0px;
+	box-shadow: 0px 0px 1px 0px #3337;
+	transition: height 1s ease-in-out;
+	overflow: hidden;
+}
+.mainBody4Gvs5G .dataDiv>div.active{
+	width: 100px;
+	background-color: #00A0A0;
+}
+/* .mainBody4Gvs5G .dataDiv>div:nth-child(1){
+	background-color: #00A0A0;
+}
+.mainBody4Gvs5G .dataDiv>div:nth-child(2){
+	background-color: #00A0A0;
+}
+.mainBody4Gvs5G .dataDiv>div:nth-child(3){
+	background-color: #00A0A0;
+} */
+.dataPt{
+	color: #efefef;
+	font: 700 19px/25px Montserrat;
+	display: block;
+	padding: 10px 0 0;
+}
+.dataComp{
+	font: 600 24px/40px Myriad-Pro;
+	color: #333;
+	display: block;
+}
+.small .dataComp{
+	font: 600 24px/24px Myriad-Pro;
+}
+span.legendTitle {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+	text-align: center;
+	
+}
+.mainBody4Gvs5G .mobileLogo {
+	position: absolute;
+    right: auto;
+    left: -4px;
+    top: 145px;
+    z-index: 101;
+    transform: rotateY(-180deg);
+}
