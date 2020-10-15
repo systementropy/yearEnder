@@ -1568,17 +1568,20 @@ span.headingLeg.headingLegAbs {
 .mainBody4Gvs5G.mainBodyMobSpeedNew .canvasContainer{
 	height: 800px;
 }
-.mainBody4Gvs5G .contentInner{
+.mainBody4Gvs5G .contentInner, .iPhone .contentInner{
 	display: flex;
     width: 100%;
     padding-top: 150px;
     padding-left: 32%;
 }
-.mainBody4Gvs5G .contentInner>div{
+.iPhone .contentInner{
+	padding-left: 0%;
+}
+.mainBody4Gvs5G .contentInner>div, .iPhone .contentInner>div{
 	width: 50%;
 	text-align: center;
 }
-.mainBody4Gvs5G .contentInner .dataDiv{
+.mainBody4Gvs5G .contentInner .dataDiv, .iPhone .contentInner .dataDiv{
 	height: 600px;
     display: flex;
 	justify-content: center;
@@ -1587,7 +1590,7 @@ span.headingLeg.headingLegAbs {
 .mainBodyMobSpeedNew .bg{
 	background: transparent url('./Banner/bgDot.png') 0% 0% repeat padding-box
 }
-.mainBody4Gvs5G .headingTech{
+.mainBody4Gvs5G .headingTech,.iPhone .headingTech{
 	font: normal normal 400 25px/49px Myriad-Pro;
 }
 .mainBody4Gvs5G .dataDiv>div {
@@ -1600,6 +1603,29 @@ span.headingLeg.headingLegAbs {
 .mainBody4Gvs5G .dataDiv>div.active{
 	width: 100px;
 	background-color: #00A0A0;
+}
+.mainBody4Gvs5G.mainBodyIphone .dataDiv>div.active{
+	background-color: #00A0A0;
+    border-radius: 10%;
+	border: 3px solid #333;
+	background-image: linear-gradient(to right bottom, #00A0A077,#00A0A0FF),url(/Banner/iphone.jpg);
+	background-repeat: no-repeat;
+	background-blend-mode: overlay;
+	background-size: cover;
+	background-position: center;
+}
+.mainBody4Gvs5G.mainBodyIphone .dataDiv>div.weight{
+	width: 40px;
+	margin-left: 15px;
+}
+.mainBody4Gvs5G.mainBodyIphone .dataDiv>div.active.noborder{
+	background-color: #A0A0A0;
+	background-image: none;
+
+	border-radius: 0%;
+	
+	border: none;
+	box-shadow: 0px 0px 0px 2px #7777;
 }
 /* .mainBody4Gvs5G .dataDiv>div:nth-child(1){
 	background-color: #00A0A0;
@@ -1639,4 +1665,40 @@ span.legendTitle {
     top: 145px;
     z-index: 101;
     transform: rotateY(-180deg);
+}
+
+.iphoneModel img {
+    filter: grayscale(1) invert(1);
+    margin: 0 auto;
+}
+.iPhone .contentInner>div{
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	height: 300px;
+}
+
+.iPhone .contentInner .iphoneModel{
+	height: 400px;
+	display: flex;	
+	overflow: hidden;
+}
+.iPhone .contentInner .iphoneModel img{margin: auto auto 0;height: 0; transition: height 1s ease-in-out;}
+.iPhone .headingTech{
+	width: 100%;
+}
+.mainBody4Gvs5G.mainBodyIphone .contentInner{
+	padding: 0;
+	flex-wrap: wrap;
+}
+.mainBody4Gvs5G.mainBodyIphone .log img{
+	width: 32px;
+}
+.mainBody4Gvs5G.mainBodyIphone .log img:nth-child(1){
+	filter: grayscale(1) invert(1);
+	border-radius: 7px;
+}
+.mainBody4Gvs5G.mainBodyIphone .contentInner .dataDiv{
+	height: 300px;
 }
