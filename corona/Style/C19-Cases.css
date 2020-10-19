@@ -885,6 +885,12 @@ p.dataLine.red{
     width: 350px;
     transform: translateY(-50px);
 }
+.dailyCasesBar .stateName.canvasWith{
+    width: auto;
+    left: 50%;
+    transform: translate(-50%,-50px);
+}
+
 p.dataLine.red.deth{
     background-color: #a01e1e;
 }
