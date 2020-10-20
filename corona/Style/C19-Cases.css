@@ -1033,9 +1033,9 @@ p.dataLine.black{
 .mainBody.mainBody-8-9.causeOfDeath{
     height: 981px;
 }
-.mainBody.mainBody-8-9.causeOfDeath .header.header200{
-    /* height: 233px; */
-}
+/* .mainBody.mainBody-8-9.causeOfDeath .header.header200{
+    height: 233px;
+} */
 .causeOfDeath .header.header200 .headline{
     font: 400 52px/68px Cormorant;
 }
