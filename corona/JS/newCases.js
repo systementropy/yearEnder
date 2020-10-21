@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	$('.nameLabel').html('Daily New Case');
-    $('.legendVertical').text('Daily New Case');
-    $('.after').text('Oct 18');
+	$('.nameLabel').html('Daily New Cases');
+    $('.legendVertical').text('Daily New Cases');
+    $('.after').text('Oct 19');
     $('.strap.strapCap').text('DAILY NEW CASES')
     const counterMultiplier = 1000;
     const heightFactor = 101900;
