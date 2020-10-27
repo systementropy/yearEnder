@@ -21,7 +21,7 @@ const arrayId = {
 	"Uttar Pradesh":["UP","UP"],
 	"UP":["Uttar Pradesh","UP"],
 	"Uttarakhand":["Uttarakhand","UK"],
-	"West Bengal":["West Bengal","WB"],
+	"West Bengal":["WB","WB"],
 	"Chhattisgarh":["Chhattisgarh","Chhatisgarh"],
 	"Gujarat":["Gujarat","Gujrat"],
 	"Puducherry":["Puducherry","Puducherry"],
@@ -241,10 +241,10 @@ function animateCircles(tickCounter, indexCountry){
 		}
 		totalWorst = (totalWorst/100000).toFixed(2);
 		$('.confirmedData').text(totalWorst+'L')
-		$('.recoveredData').text('9.19L')
+		$('.recoveredData').text('6.26L')
 		$('.legend2').hide(0)
 		$('.legend1').show(0).text('As on '+(new Date().getDate())+' '+(monthNames[new Date().getMonth()])+', 2020 | 8:00 am')
-		$('.stateName').text('Share of Active Cases : '+(100*totalWorst/9.19).toFixed(1)+'%')
+		$('.stateName').text('Share of Active Cases : '+(100*totalWorst/6.26).toFixed(1)+'%')
 	}
 	
 }
