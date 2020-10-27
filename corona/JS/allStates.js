@@ -151,7 +151,14 @@ const dataTotalOld = {
 console.log(dataTotalOld);
 const dates = [['Jan','22'],['Jan','23'],['Jan','24'],['Jan','25'],['Jan','26'],['Jan','27'],['Jan','28'],['Jan','29'],['Jan','30'],['Jan','31'],['Feb','1'],['Feb','2'],['Feb','3'],['Feb','4'],['Feb','5'],['Feb','6'],['Feb','7'],['Feb','8'],['Feb','9'],['Feb','10'],['Feb','11'],['Feb','12'],['Feb','13'],['Feb','14'],['Feb','15'],['Feb','16'],['Feb','17'],['Feb','18'],['Feb','19'],['Feb','20'],['Feb','21'],['Feb','22'],['Feb','23'],['Feb','24'],['Feb','25'],['Feb','26'],['Feb','27'],['Feb','28'],['Feb','29'],['Mar','1'],['Mar','2'],['Mar','3'],['Mar','4'],['Mar','5'],['Mar','6'],['Mar','7'],['Mar','8'],['Mar','9'],['Mar','10'],['Mar','11'],['Mar','12'],['Mar','13'],['Mar','14'],['Mar','15'],['Mar','16'],['Mar','17'],['Mar','18'],['Mar','19'],['Mar','20'],['Mar','21'],['Mar','22'],['Mar','23'],['Mar','24'],['Mar','25'],['Mar','26'],['Mar','27'],['Mar','28'],['Mar','29'],['Mar','30'],['Mar','31'],['Apr','1'],['Apr','2'],['Apr','3'],['Apr','4'],['Apr','5'],['Apr','6'],['Apr','7'],['Apr','8'],['Apr','9'],['Apr','10'],['Apr','11'],['Apr','12'],['Apr','13'],['Apr','14'],['Apr','15'],['Apr','16'],['Apr','17'],['Apr','18'],['Apr','19'],['Apr','20'],['Apr','21'],['Apr','22'],['Apr','23'],['Apr','24'],['Apr','25'],['Apr','26'],['Apr','27'],['Apr','28'],['Apr','29'],['Apr','30'],['May','1'],['May','2'],['May','3'],['May','4'],['May','5'],['May','6'],['May','7'],['May','8'],['May','9'],['May','10'],['May','11'],['May','12'],['May','13'],['May','14'],['May','15'],['May','16'],['May','17'],['May','18'],['May','19'],['May','20'],['May','21'],['May','22'],['May','23'],['May','24'],['May','25'],['May','26'],['May',27],['May',28],['May',29],['May',30],['May',31],['June',1],['June',2],['June',3],['June',4],['June',5],['June',6],['June',7],['June',8],['June',9],['June',10],['June',11],['June',12],['June',13],['June',14],['June',15],['June',16],['June',17],['June',18],['June',19],['June',20],['June',21],['June',22],['June',23],['June',24],['June',25],['June',26],['June',27],['June',28],['June',29],['June',30],['July',1],['July',2],['July',3],['July',4],['July',5],['July',6],['July',7],['July',8],['July',9],['July',10],['July',11],['July',12],['July',13],['July',14],['July',15],['July',16],['July',17],['July',18],['July',19],['July',20],['July',21],['July',22],['July',23],['July',24],['July',25],['July',26],['July',27],['July',28],['July',29],['July',30],['July',31],['Aug',1],['Aug',2],['Aug',3],['Aug',4],['Aug',5],['Aug',6],['Aug','7'],['Aug','8'],['Aug','9'],['Aug','10'],['Aug','11'],['Aug','12'],['Aug','13'],['Aug','14'],['Aug','15'],['Aug','16'],['Aug','17'],['Aug','18'],['Aug','19'],['Aug','20'],['Aug','21'],['Aug','22'],['Aug','23']
 ];
-
+const jsonData = JSON.parse($.ajax({'url': "/data/timeseries.json", 'async': false}).responseText);
+console.log(typeof(jsonData));
+for (const key in jsonData) {
+	if (jsonData.hasOwnProperty(key)) {
+		const element = jsonData[key];
+		console.log(element);
+	}
+}
 // const areaIndex = {"Asia Pacific":1,"Europe":4,}
 var canvas = document.getElementById("canvas");
 var canHgt = 400;
