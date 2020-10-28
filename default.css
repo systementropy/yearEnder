@@ -1060,7 +1060,7 @@ colorblack{
     flex-flow: wrap;
 }
 .legendBg.legendAQI>span {
-    width: 33%;
+    width: 33.333333%;
     text-align: center;
     background: #EEE;
     padding: 10px 0;
@@ -1763,4 +1763,51 @@ span.legendTitle {
 }
 .mainBody4Gvs5G.mainBodyIphone .contentInner .dataDiv{
 	height: 300px;
+}
+.mainBody.mainBodyRIL.mainBodySky.mainBodyAQI.mainBodyNCRAQI{
+	height: 100vh;
+}
+.mainBodyNCRAQI .strap{
+	height: 75px;
+}
+.mainBodyNCRAQI .legendBg.legendAQI {
+    display: flex;
+    flex-flow: wrap;
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+}
+.mainBodySky.mainBodyNCRAQI .statContainer{
+	width: 100%;
+	left: 50%;
+	transform: translate(-50%, -28px);
+	height: 170px;
+}
+.mainBodySky.mainBodyNCRAQI.active .legend1 {
+    opacity: 1;
+    bottom: 164px;
+    position: absolute;
+    left: 0;
+    width: auto;
+}
+.mainBodyNCRAQI .marker{
+	width: 64px;
+    height: 64px;
+    position: absolute;
+    z-index: 10;
+    left: 400px;
+	top: 516px;
+	opacity: 0;
+	transition: all 250ms ease-in-out 0ms, opacity 250ms ease-in-out 2000ms;
+}
+.mainBodyNCRAQI.active .marker{
+	opacity: 1;
+}
+.mainBodyNCRAQI .marker object{
+	max-width: 100%;
+	max-height: 100%;
+	pointer-events: none;
+}
+.mainBodySky.mainBodyNCRAQI .strap span {
+    font: 400 20px/8px Montserrat;
 }
