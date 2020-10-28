@@ -866,6 +866,9 @@ colorblack{
 .mainBodySky{
 	height: 800px;
 }
+.mainBodySky.mainBodyAQI{
+	height: 900px;
+}
 .mainBodySky .header.headerSky{
 	height: auto;
 	display: flex;
@@ -947,7 +950,7 @@ colorblack{
 }
 .scrapperCont>div{
 	position: absolute;
-	width: 40px;
+	width: 16px;
 	height: 0px;
 	background: transparent;
 	transform: translateY(-100%);
@@ -981,6 +984,22 @@ colorblack{
 	top: 439px;
 	left: 315px;
 }
+.Delhi{
+	left: 265px;
+	top: 316px;
+}
+.Chennai {
+    top: 479px;
+    left: 337px;
+}
+.Ahmedabad {
+    top: 376px;
+    left: 166px;
+}
+.Pune {
+    top: 440px;
+    left: 207px;
+}
 .scrapperCont>div::before {
 	content: '';
 	position: absolute;
@@ -1003,17 +1022,60 @@ colorblack{
 	transform: translateY(-0%);
 	left: 0%;
 	background: #FF6E6E;
-	background-image: linear-gradient(to right bottom, #FF6E6E,rgba(51, 51, 51, 1)),url(./bld.jpg);
+	background-image: linear-gradient(to right bottom, #FF6E6E,rgba(51, 51, 51, 1)),url('./Banner/bgDot.png');
 	background-repeat: no-repeat,repeat;
 	background-blend-mode: multiply;
-	background-size: cover, 40px 40px;
+	background-size: cover;
 	background-position: center, left center;
 	z-index: -1;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 5px;
+	/* border-top-left-radius: 2px;
+	border-top-right-radius: 5px; */
 }
+.scrapperCont>div[data-color = "#009966"]::after{
+	background: #009966;
+	background-image: linear-gradient(to right bottom, #009966),url('./Banner/bgDot.png');
+}
+.scrapperCont>div[data-color = "#FFDE33"]::after{
+	background: #FFDE33;
+	background-image: linear-gradient(to right bottom, #FFDE33),url('./Banner/bgDot.png');
+}
+.scrapperCont>div[data-color = "#FF9933"]::after{
+	background: #FF9933;
+	background-image: linear-gradient(to right bottom, #FF9933),url('./Banner/bgDot.png');
+}
+.scrapperCont>div[data-color = "#CC0033"]::after{
+	background: #CC0033;
+	background-image: linear-gradient(to right bottom, #CC0033),url('./Banner/bgDot.png');
+}
+.scrapperCont>div[data-color = "#660099"]::after{
+	background: #660099;
+	background-image: linear-gradient(to right bottom, #660099),url('./Banner/bgDot.png');
+}
+.scrapperCont>div[data-color = "#7E0023"]::after{
+	background: #7E0023;
+	background-image: linear-gradient(to right bottom, #7E0023),url('./Banner/bgDot.png');
+}
+.legendBg.legendAQI {
+    display: flex;
+    flex-flow: wrap;
+}
+.legendBg.legendAQI>span {
+    width: 33%;
+    text-align: center;
+    background: #EEE;
+    padding: 10px 0;
+    font: 600 16px/24px Montserrat;
+    color: #555;
+    text-transform: uppercase;
+}
+.legendBg.legendAQI>span:nth-child(1){background-color:#009966;}
+.legendBg.legendAQI>span:nth-child(2){background-color:#FFDE33;}
+.legendBg.legendAQI>span:nth-child(3){background-color:#FF9933;}
+.legendBg.legendAQI>span:nth-child(4){background-color:#CC0033;color: #efefef;}
+.legendBg.legendAQI>span:nth-child(5){background-color:#660099;color: #efefef;}
+.legendBg.legendAQI>span:nth-child(6){background-color:#7E0023;color: #efefef;}
 .scrapperCont>div.Mumbai::after {
-	border-top-right-radius: 10px;
+	/* border-top-right-radius: 10px; */
 }
 .mainBodySky .statContainer {
 	position: absolute;
