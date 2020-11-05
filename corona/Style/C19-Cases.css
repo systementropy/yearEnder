@@ -1277,3 +1277,14 @@ p.dataLine.black{
     width: 67%;
     font: 400 46px/40px Cormorant;
 }
+.us2020.strap2line .legendVertical{
+    bottom: 260px;
+}
+.us2020.strap2line footer.horizontal{
+    width: 100%;
+    right: 0;
+    justify-content: space-between;
+}
+.us2020.strap2line #canvas {
+    top: 360px;
+}

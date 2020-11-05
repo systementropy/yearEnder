@@ -1811,3 +1811,51 @@ span.legendTitle {
 .mainBodySky.mainBodyNCRAQI .strap span {
     font: 400 20px/8px Montserrat;
 }
+
+
+.US2020 .strap{
+	width: 53%;
+}
+.US2020 .header::after{
+	width: 53%;
+	background: linear-gradient(to bottom, #b22234 0 50%, #3c3b6e 50% 100%);
+}
+.US2020 .mobileLogo{
+	transform: rotate(0);
+	width: 200px;
+	height: 300px;
+	background-image: linear-gradient(to right, #3c3b6e77, #b2223477),url(/Banner/TB.jpg);
+	background-repeat: no-repeat;
+	background-blend-mode: multiply;
+	background-size: cover;
+	background-position: center;
+}
+.US2020 .dataDiv>div.Reps.active{
+	background: #b22234;
+}
+.US2020 .dataDiv>div.Dems.active{
+	background: #3c3b6e;
+}
+.US2020 .log img{
+	width: 64px;
+}
+.US2020 .headline{
+	color: #FFF;
+}
+.US2020 .headingTech img{
+	width: 60px;
+	display: block;
+	margin: 10px auto;
+}
+.US2020.mainBodyMobSpeedNew .canvasContainer{
+	height: 865px;
+}
+.US2020 .footermobSpeedNew{
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+.US2020 .headline span{
+	font: 300 18px/18px Montserrat;
+	margin-left: 15px;
+}
