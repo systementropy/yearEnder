@@ -18,6 +18,24 @@
 }
 @font-face {
 	font-family: Raleway;
+	src: url(/Raleway/Raleway-Light.ttf);
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: Raleway;
+	src: url(/Raleway/Raleway-Regular.ttf);
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: Raleway;
+	src: url(/Raleway/Raleway-Medium.ttf);
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: Raleway;
 	src: url(/Raleway/Raleway-SemiBold.ttf);
 	font-weight: 600;
 	font-style: normal;
@@ -1958,4 +1976,153 @@ span.legendTitle {
 }
 .US2020 .footermobSpeedNew{
 	margin-top: 40px;
+}
+
+
+
+.mainBody.mainBodyBiden{
+	width: 1000px;
+}
+.header.headerBiden{
+	width: 100%;
+	background: #FFF;
+	height: 187px;
+}
+.headerBiden .inner{
+	height: 128px;
+	padding: 42px 37px 17px 0;
+	display: flex;
+	justify-content: flex-end;
+}
+.headerBiden .headline{
+	position: static;
+	width: 376px;
+	height: 128px;
+	text-align: center;
+	font: normal normal 800 61px/57px Raleway;
+	letter-spacing: 0px;
+	color: #000000;
+	text-transform: uppercase;
+	opacity: 1;
+	margin-left: 21px;
+}
+.mainBodyBiden .bgContent{
+	background: transparent url('/Biden/white-paper-texture-@2x.png') 0% 0% no-repeat padding-box;
+	width: 100%;
+	opacity: 1;
+}
+.imgInsideContainer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 448px;
+    height: 1000px;
+	z-index: 1000;
+	background-image: url(/Biden/biden.png);
+	background-repeat: no-repeat;
+	background-blend-mode: multiply;
+	background-size: cover;
+	background-position: right 68px;
+}
+.mainBodyBiden .contentInner{
+	width: 661px;
+	margin-right: 36px;
+	margin-left: auto;
+	display: block;
+	padding-top: 10px;
+}
+.mainBodyBiden .inlineStrap{
+	width: 89%;
+	height: 65px;
+	text-align: center;
+	font: italic normal 400 28px/32px Raleway;
+	letter-spacing: 0px;
+	color: #000000;
+	opacity: 1;
+	margin-left: auto;
+	margin-right: 0;
+	margin-bottom: 15px;
+}
+.mainBodyBiden .dataAll{
+	width: 100%;
+}
+.mainBodyBiden .eachData{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border-bottom: 1px solid #777;
+	height: auto;
+    padding: 10px 0 12px;
+}
+.mainBodyBiden .dataNum{
+	text-align: left;
+	font: normal normal 900 36px/21px Raleway;
+	letter-spacing: 0px;
+	color: #0090B2;
+	width: 85px;
+	margin-left: 36px;
+}
+.mainBodyBiden p.dataLine{
+	width: 290px;
+	height: 15px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	opacity: 1;
+	margin: unset;
+	position: relative;
+}
+.mainBodyBiden p.dataLine .fillWith{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 0;
+	background: #0090B2;
+	transition: opacity 200ms ease-in-out, width 400ms ease-in-out 250ms;
+}
+.mainBodyBiden p.peopleType,.mainBodyBiden p.dataNum,.mainBodyBiden p.dataLine{
+	opacity: 0;
+	transition: opacity 200ms ease-in-out, width 400ms ease-in-out 250ms;
+}
+.mainBodyBiden p.peopleType{
+	text-align: right;
+	font: normal normal 500 24px/21px Raleway;
+	letter-spacing: 0px;
+	color: #5A5A5A;
+	text-transform: uppercase;
+	opacity: 1;
+	flex-grow: 1;
+}
+.mainBodyBiden .eachData:nth-child(1){
+	border-bottom: none;
+	width: 521px;
+	height: 29px;
+	text-align: center;
+	font: normal normal 600 24px/32px Raleway;
+	letter-spacing: 2.4px;
+	color: #0090B2;
+	text-transform: uppercase;
+	opacity: 1;
+	margin-left: auto;
+	margin-right: 0;
+}
+.mainBodyBiden .eachData:last-child{
+	border-bottom: none;	
+}
+.mainBodyBiden .footermobSpeedNew {
+    width: auto;
+	margin-left: 44%;
+	margin-right: 36px;
+	flex-direction: row;
+}
+.mainBodyBiden .footermobSpeedNew p{
+	text-align: left;
+	font: normal normal normal 16px/21px Raleway;
+	letter-spacing: 0px;
+	color: #5A5A5A;
+	text-transform: uppercase;
+	opacity: 1;
+	width: 390px;
+}
+.mainBodyBiden .footermobSpeedNew img{
+	margin: unset;
 }

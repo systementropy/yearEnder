@@ -57,9 +57,9 @@ function init(num){
 		ctx.rect(0, (49*num), canWid*(techVal[num][0]/100), 15);
 		ctx.fill();
 		ctx.closePath();
-		$('.nameTag>span').eq(num).css({opacity: 1})
-		$('.icon>span').eq(num).css({opacity: 1})
-		$('.dataline>span').eq(num).css({opacity: 1, width: techVal[num][0]+'%'})
+		$('.eachData').eq(num+1).children('.peopleType').css({opacity: 1})
+		$('.eachData').eq(num+1).children('.dataNum').css({opacity: 1})
+		$('.eachData').eq(num+1).children('.dataLine').css({opacity: 1}).children('.fillWith').css({width: techVal[num][0]+'%'})
 		setTimeout(() => {
 			init(num+1)
 		},2000)
