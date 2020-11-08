@@ -1897,14 +1897,13 @@ span.legendTitle {
 	top: -1px;
 }
 .US2020 .strap {
-    width: 100%;
-	font: normal normal 400 39px/48px Cormorant_Infant;
+	font: normal normal 400 25px/34px Cormorant_Infant;
     padding: 10px 0 25px;
     color: #333;
     position: absolute;
-    left: 0px;
-    width: 71%;
-    top: 145px;
+    left: 43px;
+    width: 58%;
+    top: 218px;
 }
 .US2020 .headline {
     color: #FFF;
