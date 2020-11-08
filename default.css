@@ -1828,7 +1828,7 @@ span.legendTitle {
 	background-repeat: no-repeat;
 	background-blend-mode: multiply;
 	background-size: cover;
-	background-position: center;
+	background-position: left center;
 }
 .US2020 .dataDiv>div.Reps.active{
 	background: #b22234;
@@ -1858,4 +1858,105 @@ span.legendTitle {
 .US2020 .headline span{
 	font: 300 18px/18px Montserrat;
 	margin-left: 15px;
+}
+
+.mainBodyMobSpeedNew .log{
+
+}
+.US2020 .strap {
+    width: 100%;
+    font: normal normal 400 30px/32px Cormorant_Infant;
+	padding: 10px 0 25px;
+	color: #FFF;
+
+}
+.US2020 .headline {
+    color: #b4cbff;
+	font: normal normal 800 36px/50px Raleway;
+	height: auto;
+}
+.US2020 .header .inner {
+    background: #414141;
+    height: auto;
+}
+.mainBody4Gvs5G.US2020 .contentInner, .iPhone .contentInner{
+	padding-top: 375px;
+	width: 100%;
+	padding-left: 0;
+}
+.mainBody4Gvs5G.US2020 .contentInner>div.icon{
+	width: 100px;
+}
+.contentInner .nameTag span{
+	text-align: right;
+	width: 348px;
+}
+.US2020 .mobileLogo{
+	left: auto;
+	right: -13px;
+	top: -1px;
+}
+.US2020 .strap {
+    width: 100%;
+	font: normal normal 400 39px/48px Cormorant_Infant;
+    padding: 10px 0 25px;
+    color: #333;
+    position: absolute;
+    left: 0px;
+    width: 71%;
+    top: 145px;
+}
+.US2020 .headline {
+    color: #FFF;
+    font: normal normal 800 36px/50px Raleway;
+    height: auto;
+    padding-bottom: 10px;
+}
+.US2020 .header::after {
+    width: 53%;
+    background: linear-gradient(to bottom, #b22234 0 50%, #3c3b6e 50% 100%);
+    top: 418px;
+    left: 273px;
+}
+.US2020 .contentInner .icon{
+	color: #3c3b6e;
+}
+.contentInner .nameTag{
+	font: normal normal 400 24px/49px Myriad-Pro;
+}
+.footermobSpeedNew p{
+	width: 60%;
+	font: normal normal 400 20px/24px Myriad-Pro;
+}
+.US2020 .contentInner>div.dataline{
+
+}
+.contentInner .nameTag span, .contentInner .icon span, .contentInner .dataline span{
+	opacity: 0;
+	transition: opacity 200ms ease-in-out;
+}
+.US2020 .contentInner>div.dataline span{
+	width: 0;
+	display: block;
+	height: 15px;
+	background: #3c3b6e;
+	margin: 34px 0;
+	position: relative;
+	transition: opacity 200ms ease-in-out, width 400ms ease-in-out 250ms;
+}
+.US2020 .contentInner>div.dataline span::after{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1000px;
+	height: 100%;
+	background: #efefef;
+	z-index: -1;
+}
+.US2020 .contentInner>div.dataline span:nth-child(1){
+	margin: 19px 0 32px;
+}
+.US2020 .footermobSpeedNew{
+	margin-top: 40px;
 }
