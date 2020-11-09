@@ -197,7 +197,7 @@ body{
 	left: 0px;
 	width: 800px;
 	height: auto;
-	background: #2B2A2A 0% 0% no-repeat padding-box;
+	background: #454545 0% 0% no-repeat padding-box;
 	opacity: 1;
 	position: relative;
 }
@@ -260,11 +260,24 @@ body{
 .logo img{
 	max-width: 100%;
 }
+.log{
+	position: relative;
+}
+.logo.logoBihar {
+    pointer-events: none;
+    position: absolute;
+    transform-origin: left;
+    left: 0;
+    top: 0;
+    transform: translate(0%, -50%);
+    height: 91px;
+    width: auto;
+}
 .headline{
 	position: static;
-	height: 68px;
+	height: auto;
 	text-align: center;
-	font: 400 38px/68px Cormorant;
+	font: 400 38px/56px Cormorant;
 	letter-spacing: -0.6px;
 	color: #FF6E6E;
 	text-transform: uppercase;
@@ -431,6 +444,9 @@ footer img{
 	transition: all 400ms ease-in-out;
 	position: relative;
 }
+.bihar2020Leads .dataFix{
+	transition: all 1.5s ease-in-out;
+}
 .dataFix::after {
 	content: attr(datatxt);
 	position: absolute;
@@ -444,3 +460,18 @@ footer img{
 .dataFix.INC{background: #4A90CC;}
 .dataFix.JDU{background: #72a554;}
 .dataFix.RJD{background: #3d6116;}
+.dataFix.MGB{background: #31B900;}
+.dataFix.NDA{background: #FF9800;}
+.dataFix.LJP{background: #B1C2A7;}
+.dataFix.OTH{background: #AAAAAA;}
+object.logoParty {
+    width: 50%;
+}
+.bihar2020 .strap{
+	position: static;
+    transform: none;
+    text-align: right;
+}
+.bihar2020Leads .headline{
+	text-align: right;
+}

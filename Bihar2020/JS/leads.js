@@ -1,8 +1,4 @@
-const shareData = [['Election Year: 1995 (324 seats)',41,29,0,0],
-['Election Year: 2000 (324 seats)',67,23,21,124],
-['Election Year: 2005 (243 seats)',55,9,88,54],
-['Election Year: 2010 (243 seats)',91,4,115,22],
-['Election Year: 2015 (243 seats)',53,27,71,80]]
+const shareData = [['Election Year: 1995 (324 seats)',41,29,20,30]]
 function init(num){
 	if(num<shareData.length){
 		
