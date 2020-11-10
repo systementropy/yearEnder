@@ -155,6 +155,7 @@ body{
 	font-weight: 500;
 	animation: aniTr 2s infinite forwards;
 	color: #000; 
+	font: 500 33px/40px Montserrat;
 }
 @keyframes aniTr {
 	0% {transform: rotate(0);opacity: 0.1;}
@@ -474,4 +475,261 @@ object.logoParty {
 }
 .bihar2020Leads .headline{
 	text-align: right;
+	font: 400 56px/56px Cormorant;
+}
+
+.clock {
+	border-radius: 100%;
+	background: #EEE;
+	font-family: "Montserrat";
+	border: 15px solid #FF6E6E;
+	box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
+	position: absolute;
+	z-index: 1000;
+	right: 40px;
+	transform: scale(0.3);
+	top: 72px;
+	transform-origin: right;
+}
+
+.wrap {
+	overflow: hidden;
+	position: relative;
+	width: 350px;
+	height: 350px;
+	border-radius: 100%;
+}
+
+.minute,.hour {
+	position: absolute;
+	height: 100px;
+	width: 6px;
+	margin: auto;
+	top: -27%;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: #000;
+	transform-origin: bottom center;
+	transform: rotate(0deg);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+	z-index: 1;
+	transition: all 250ms ease;
+}
+
+.minute {
+	position: absolute;
+	height: 130px;
+	width: 4px;
+	top: -38%;
+	left: 0;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+	transform: rotate(0deg);
+	
+}
+.noAni .minute{
+	transition: all 0ms ease;
+}
+.second {
+	position: absolute;
+	height: 90px;
+	width: 5px;
+	margin: auto;
+	top: -26%;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	border-radius: 4px;
+	background: #FF4B3E;
+	transform-origin: bottom center;
+	transform: rotate(180deg);
+	z-index: 1;
+}
+
+.dot {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 12px;
+	height: 12px;
+	border-radius: 100px;
+	background: #000;
+	border: 2px solid #1b1b1b;
+	border-radius: 100px;
+	margin: auto;
+	z-index: 1;
+}
+.bihar2020Leads .logo.logoBihar{
+	height: 69px;
+}
+.statContainer{
+    position: absolute;
+    top: 213px;
+    left: 0;
+    width: 419px;
+    height: 98px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: flex;
+    border: 1px solid #5A5A5A77;
+}
+.bihar2020Trendline .statContainer{
+	top: 260px;
+}
+/* .stateName{
+    left: 0;
+}
+.statContainer{
+    left: 0;
+} */
+.statContainer>div{
+    flex-grow: 1;
+    padding: 7px 0;
+}
+.statContainer>div:nth-child(2){
+    border-left: 1px solid #5A5A5A77;;
+    border-right: 1px solid #5A5A5A77;;
+}
+.nameLabel{
+    height: 19px;
+    display: block;
+    text-align: center;
+    font: 600 15px/19px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.data{
+    height: 34px;
+    text-align: center;
+    margin: 0;
+    font: 700 28px/34px Montserrat;
+    letter-spacing: -0.28px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: 8px;
+}
+.statContainer.canvasWith{
+    width: 357px;
+    height: 94px;
+    left: 50px;
+    top: 335px;
+}
+
+.stateName.left{
+    left: 0;
+    top: 305px;
+}
+.statContainer.left{
+    left: 0;
+    top: 342px;
+}
+p.dataLine{
+    width: 80%;
+    height: 5px;
+    margin-top: 2px;
+    border-radius: 2px;
+    margin: 5px auto 0;
+}
+p.dataLine.blue{
+    background-color: #FF9800;
+}
+p.dataLine.red{
+    background-color: #31B900;
+}
+.legendDataBlock .nameLabel{
+    height: 22px;
+    text-align: center;
+    font: 600 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: 0;
+}
+.legendVertical{
+    position: absolute;
+    bottom: 316px;
+    right: 0px;
+    width: max-content;
+    height: 62px;
+    transform: translate(37%,-100%) rotate(-90deg);
+    text-align: center;
+    font: 500 18px/22px Montserrat;
+    letter-spacing: 1.8px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.canvasLabels{
+    z-index: 1;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 436px;
+    left: 20px;
+    z-index: 101;
+}
+.bihar2020Trendline .headline{
+	font: 400 44px/40px Cormorant;
+}
+.stateName {
+    position: absolute;
+    top: 364px;
+    left: 381px;
+    width: 420px;
+    height: 30px;
+    text-align: center;
+    font: 700 25px/30px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    text-transform: uppercase;
+    opacity: 1;
+}
+.bihar2020Trendline .stateName{
+	top: 225px;
+	left: 0;
+}
+.liner{
+    width: 100%;
+    padding: 0 25px;
+    font: 600 15px/19px Montserrat;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: #5a5a5a;
+}
+.liner.trenline-indi-world{
+	position: absolute;
+    bottom: 109px;
+    width: 81%;
+	padding: 0;
+}
+.bihar2020Trendline .liner.trenline-indi-world{
+	left: 34px;
+    bottom: 100px;
+    width: 78%;
+}
+.statContainer, .stateName{
+	width: 475px;
+}
+.legend2{
+    display: flex;
+	margin-top: 10px;
+	justify-content: center;
+}
+.legend2 div{
+    width: auto;
+    height: 24px;
+    text-align: center;
+    font: 500 18px/22px Montserrat;
+    letter-spacing: 0px;
+    color: #5A5A5A;
+    opacity: 1;
+    position: static;
 }

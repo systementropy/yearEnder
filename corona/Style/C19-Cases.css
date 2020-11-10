@@ -426,7 +426,7 @@ footer.casesWithNote p:nth-child(4){
 }
 .mainBodyDailyCases footer.casesWithNote p:nth-child(4){
     width: max-content;
-    transform: translateX(-87px);
+    transform: translateX(-76px);
     margin-top: 7px;
 }
 footer.casesWithNote p:nth-child(3){
