@@ -1,9 +1,11 @@
 
-const shareData = [['Election Year: 1995' ,12.96,16.27,0,0],
-['Election Year: 2000',14.64,11.06,6.47,28.34],
-['Election Year: 2005',15.65,6.09,20.46,23.45],
-['Election Year: 2010',16.49,8.37,22.58,18.84],
-['Election Year: 2015',24.42,6.66,16.83,18.35]]
+const shareData = [['Assembly Election Year: 1995' ,12.96,16.27,0,0],
+['Assembly Election Year: 2000',14.64,11.06,6.47,28.34],
+['Assembly Election Year: 2005',15.65,6.09,20.46,23.45],
+['Assembly Election Year: 2010',16.49,8.37,22.58,18.84],
+['Assembly Election Year: 2015',24.42,6.66,16.83,18.35],
+['Assembly Election Year: 2020',19.5,9.5,15.4,23.1]
+]
 function init(num){
 	if(num<shareData.length){
 		
