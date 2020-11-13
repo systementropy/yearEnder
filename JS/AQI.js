@@ -1,13 +1,13 @@
 const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const datArr = [
-	['Mumbai',160],
-	['Delhi',260],
-	['Kolkata',111],
-	['Chennai',169],
-	['Ahmedabad',142],
-	['Hyderabad',164],
-	['Bengaluru',161],
-	['Pune',139],
+	['Mumbai',168],
+	['Delhi',319],
+	['Kolkata',217],
+	['Chennai',191],
+	['Ahmedabad',193],
+	['Hyderabad',185],
+	['Bengaluru',85],
+	['Pune',169],
 ]
 function getColor(dp){
 	let color;
@@ -32,7 +32,7 @@ function plotEachCity(index){
 		$('.stateName').text(city[0])
 		$('.confirmedData').text(city[1])
 		$('.'+city[0]).addClass('active').css({
-			height:city[1],
+			height:0.8*city[1],
 			// 'background': getColor(city[1]),
 			// 'background-image': "linear-gradient(to right bottom, "+getColor(city[1]) +",rgba(51, 51, 51, 1)),url('./Banner/bgDot.png')",
 			// 'background-repeat': "no-repeat,repeat",
