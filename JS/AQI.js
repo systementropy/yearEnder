@@ -1,13 +1,13 @@
 const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const datArr = [
-	['Mumbai',124],
-	['Delhi',163],
-	['Kolkata',198],
-	['Chennai',153],
-	['Ahmedabad',159],
-	['Hyderabad',109],
-	['Bengaluru',42],
-	['Pune',80],
+	['Mumbai',155],
+	['Delhi',170],
+	['Kolkata',249],
+	['Chennai',90],
+	['Ahmedabad',167],
+	['Hyderabad',82],
+	['Bengaluru',68],
+	['Pune',81],
 ]
 function getColor(dp){
 	let color;
